@@ -5,7 +5,7 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'ehask_wh',
+		'login' => 'ehask_rei',
 		'password' => '1x45a2k',
 		'database' => 'ehask_rei',
 		'prefix' => '',
