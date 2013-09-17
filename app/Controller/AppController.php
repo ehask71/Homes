@@ -27,5 +27,7 @@ class AppController extends Controller {
             'loginAction' => '/login',
         ));
     
-    
+    public function beforeFilter() {
+	
+    }
 }
