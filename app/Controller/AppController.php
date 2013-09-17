@@ -11,7 +11,7 @@ class AppController extends Controller {
         'DebugKit.Toolbar',
         'Session',
         'Auth' => array(
-            //'authorize' => array('Tiny'),
+            'authorize' => array('Tiny'),
             'authenticate' => array(
                 'all' => array('userModel' => 'Account'),
                 'Form' => array(
