@@ -23,7 +23,9 @@ class HomeController extends AppController {
     public function buy(){
         echo '<pre>';
         print_r($this->request);
-        $this->set('slug',$slug);
+        if(isset($this->request->params['slug'])){
+            $this->set('slug',$this->request->params['slug']);
+        }
     }
     
     
