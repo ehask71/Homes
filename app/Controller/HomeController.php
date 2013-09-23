@@ -21,6 +21,7 @@ class HomeController extends AppController {
     }
     
     public function buy($slug=NULL){
+        echo $slug;
         $this->set('slug',$slug);
     }
     
