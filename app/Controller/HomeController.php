@@ -21,8 +21,8 @@ class HomeController extends AppController {
     }
     
     public function buy(){
-        if(isset($this->request->params['slug'])){
-            $this->set('slug',$this->request->params['slug']);
+        if(isset($this->request->params['county']) && isset($this->request->params['state'])){
+            $this->set('slug',$this->request->params['county'].'-'.$this->request->params['state']);
         }
     }
     
