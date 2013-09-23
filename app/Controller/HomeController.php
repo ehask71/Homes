@@ -16,4 +16,10 @@ class HomeController extends AppController {
         
     }
     
+    public function sell($slug=null){
+        $this->set('slug',$slug);
+    }
+    
+    
+    
 }
