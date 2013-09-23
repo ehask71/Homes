@@ -20,6 +20,10 @@ class HomeController extends AppController {
         $this->set('slug',$slug);
     }
     
+    public function buy($slug=NULL){
+        $this->set('slug',$slug);
+    }
+    
     
     
 }
