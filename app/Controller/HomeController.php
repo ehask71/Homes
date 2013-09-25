@@ -21,16 +21,16 @@ class HomeController extends AppController {
     public function sell(){
         if($this->request->is('post')){
 	    // From the Index
-	    if(isset($this->request->params[ZipCodes]['fzip']) && isset($this->request->params[ZipCodes]['fname']) && isset($this->request->params[ZipCodes]['femail'])){
-		$zipinfo = $this->ZipCodes->getZipInfo($this->request->params[ZipCodes]['fzip']);
+	    if(isset($this->request->params['ZipCodes']['fzip']) && isset($this->request->params['ZipCodes']['fname']) && isset($this->request->params['ZipCodes']['femail'])){
+		$zipinfo = $this->ZipCodes->getZipInfo($this->request->params['ZipCodes']['fzip']);
 		$data = array(
-		    'name' => $this->request->params[ZipCodes]['fname'],
-		    'email' => $this->request->params[ZipCodes]['femail'],
-		    'phone' => $this->request->params[ZipCodes]['fphone'],
-		    'zip' => $this->request->params[ZipCodes]['fzip'],
-		    'city' => (isset($zipinfo[ZipCodes][city]))?$zipinfo[ZipCodes][city]:'',
-		    'state' => (isset($zipinfo[ZipCodes][state]))?$zipinfo[ZipCodes][state]:'',
-		    'address' => $this->request->params[ZipCodes]['faddress']
+		    'name' => $this->request->params['ZipCodes']['fname'],
+		    'email' => $this->request->params['ZipCodes']['femail'],
+		    'phone' => $this->request->params['ZipCodes']['fphone'],
+		    'zip' => $this->request->params['ZipCodes']['fzip'],
+		    'city' => (isset($zipinfo['ZipCodes']['city']))?$zipinfo['ZipCodes']['city']:'',
+		    'state' => (isset($zipinfo['ZipCodes']['state']))?$zipinfo['ZipCodes']['state']:'',
+		    'address' => $this->request->params['ZipCodes']['faddress']
 		);
 		$this->request->data = $data;
 	    } else {
