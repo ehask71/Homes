@@ -22,7 +22,7 @@ class HomeController extends AppController {
     public function sell(){
         if($this->request->is('post')){
 	    // From the Index
-	    print_r($this->request->params);
+	    print_r($this->request);
 	    if(isset($this->request->params['ZipCodes']['fzip']) && isset($this->request->params['ZipCodes']['fname']) && isset($this->request->params['ZipCodes']['femail'])){
 		$zipinfo = $this->ZipCodes->getZipInfo($this->request->params['ZipCodes']['fzip']);
 		$data = array(
