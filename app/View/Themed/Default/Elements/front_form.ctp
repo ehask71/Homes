@@ -1,5 +1,5 @@
 <?php
-echo $this->Form->create(NULL,array('action'=>'/sell'));
+echo $this->Form->create(NULL,array('url'=>'/sell'));
 echo $this->Form->input('fname');
 echo $this->Form->input('fphone');
 echo $this->Form->input('femail');
