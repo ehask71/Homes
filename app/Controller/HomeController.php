@@ -42,6 +42,12 @@ class HomeController extends AppController {
 	}
     }
     
+    public function contact(){
+	if($this->request->is('post')){
+	    
+	}
+    }
+    
     public function buy(){
 	// Check for Slug Params
         if(isset($this->request->params['county']) && isset($this->request->params['state'])){
@@ -49,6 +55,9 @@ class HomeController extends AppController {
         }
     }
     
+    public function why(){
+	
+    }
     
     
 }
