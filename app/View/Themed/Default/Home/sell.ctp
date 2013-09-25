@@ -1,1 +1,1 @@
-<?php echo $slug;?>
+<h2>Sell</h2>
