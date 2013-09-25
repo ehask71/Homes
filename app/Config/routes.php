@@ -30,6 +30,10 @@
         Router::connect('/', array('controller' => 'home', 'action' => 'index'));
 	Router::connect('/contact', array('controller' => 'home', 'action' => 'contact'));
 	Router::connect('/why-us', array('controller' => 'home', 'action' => 'why'));
+	Router::connect('/privacy', array('controller' => 'home', 'action' => 'privacy'));
+	Router::connect('/terms', array('controller' => 'home', 'action' => 'terms'));
+	Router::connect('/sitemap', array('controller' => 'seo', 'action' => 'sitemap'));
+	
 	Router::connect('/sell', array('controller' => 'home', 'action' => 'sell'));
         Router::connect('/buy/',array('controller'=>'home','action'=>'buy'));
         Router::connect('/buy/:county-:state',array('controller'=>'home','action'=>'buy'),array('county'=>'[a-zA-Z0-9_-]+','state'=>'[a-zA-Z0-9_-]+'));
