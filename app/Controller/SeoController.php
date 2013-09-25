@@ -9,6 +9,11 @@ class SeoController extends AppController {
     
     public $name = 'Seo';
     
+    public function beforeFilter() {
+	parent::beforeFilter();
+	$this->Auth->allow();
+    }
+    
     public function index(){
         
     }
