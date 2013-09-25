@@ -29,8 +29,8 @@ class HomeController extends AppController {
 		    'email' => $this->request->data['ZipCodes']['femail'],
 		    'phone' => $this->request->data['ZipCodes']['fphone'],
 		    'zip' => $this->request->data['ZipCodes']['fzip'],
-		    'city' => (isset($zipinfo['ZipCodes']['city']))?$zipinfo['ZipCodes']['city']:'',
-		    'state' => (isset($zipinfo['ZipCodes']['state']))?$zipinfo['ZipCodes']['state']:'',
+		    'city' => (isset($zipinfo['ZipCodes']['City']))?$zipinfo['ZipCodes']['City']:'',
+		    'state' => (isset($zipinfo['ZipCodes']['State']))?$zipinfo['ZipCodes']['State']:'',
 		    'address' => $this->request->data['ZipCodes']['faddress']
 		);
 		$this->request->data = $data;
