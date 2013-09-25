@@ -7,6 +7,7 @@ App::uses('AppController', 'Controller');
 
 class HomeController extends AppController {
     
+    public $name = 'Home';
     public $uses = array('ZipCodes');
     
     public function beforeFilter() {
