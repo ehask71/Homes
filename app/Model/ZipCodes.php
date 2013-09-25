@@ -6,6 +6,7 @@
 App::uses('AppModel', 'Model');
 
 class ZipCodes extends AppModel {
+    public $name = 'ZipCodes';
     public $primaryKey = 'id';
     public $useTable = 'zip_codes';
     
