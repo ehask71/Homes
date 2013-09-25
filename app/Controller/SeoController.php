@@ -17,4 +17,9 @@ class SeoController extends AppController {
 	
     }
     
+    public function robots(){
+	$this->autoRender = false;
+	
+    }
+    
 }
