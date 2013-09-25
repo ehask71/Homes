@@ -28,6 +28,7 @@
  */
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
         Router::connect('/', array('controller' => 'home', 'action' => 'index'));
+	Router::connect('/sell', array('controller' => 'home', 'action' => 'sell'));
         Router::connect('/buy/',array('controller'=>'home','action'=>'buy'));
         Router::connect('/buy/:county-:state',array('controller'=>'home','action'=>'buy'),array('county'=>'[a-zA-Z0-9_-]+','state'=>'[a-zA-Z0-9_-]+'));
 /**
