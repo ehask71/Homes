@@ -19,7 +19,23 @@ class AccountController extends AppController {
     }
     
     public function register(){
-        
+        if ($this->request->is('post')) {
+	    $this->Account->set($this->data);
+	    if ($this->Account->accountValidate()) {
+		if ($this->Account->save($this->request->data)) {
+		    // We need to store the site relation to the user we just generated
+		    $userid = $this->Account->getLastInsertID();
+		    $this->loadModel('RoleUser');
+		    $this->RoleUser->addUserSite($userid);
+
+		    $this->Session->setFlash('The user has been saved');
+		    $this->redirect(array('controller' => 'home', 'action' => 'index'));
+		} else {
+		    $this->Session->setFlash('The user could not be saved. Please, try again.');
+		}
+	    }
+	}
+	$this->set('countries', $this->Country->getCountries());
     }
 
     public function login() {
@@ -33,7 +49,107 @@ class AccountController extends AppController {
     }
     
     public function logout() {
-        
+        $this->redirect($this->Auth->logout());
+    }
+    
+    public function forgetpwd() {
+	if ($this->request->is('post')) {
+	    $account = $this->Account->find('first', array(
+		'conditions' => array(
+		    'Account.email' => $this->request->data['Account']['email']
+		)
+		    ));
+	    if (count($account) > 0) {
+		$data['id'] = $account['Account']['id'];
+		$data['reset_code'] = md5($this->request->data['Account']['email'] . date('Y-m-d h:i:s'));
+
+		if ($this->Account->save($data)) {
+		    App::uses('CakeEmail', 'Network/Email');
+		    $email = new CakeEmail();
+		    $email->from(array('do-not-reply@leaguelaunch.com' => Configure::read('Settings.leaguename')))
+			    ->config(array('host' => 'mail.leaguelaunch.com', 'port' => 25, 'username' => 'do-not-reply@leaguelaunch.com', 'password' => '87.~~?ZG}eI}', 'transport' => 'Smtp'))
+			    ->sender(Configure::read('Settings.admin_email'))
+			    ->replyTo(Configure::read('Settings.admin_email'))
+			    ->cc(Configure::read('Settings.admin_email'))
+			    ->to($account['Account']['email'])
+			    ->subject(Configure::read('Settings.leaguename') . ' Password Reset')
+			    ->template('forgot_passwd')
+			    ->theme(Configure::read('Settings.theme'))
+			    ->emailFormat('text')
+			    ->viewVars(array('account' => $account, 'code' => $data['reset_code']))
+			    ->send();
+		}
+	    }
+	    $this->Session->setFlash(__('Check Your Email. If your in our system you should get an email.'), 'alerts/info');
+	    $this->redirect(array('action' => 'resetcode'));
+	}
+    }
+
+    public function resetcode() {
+	$this->autoRender = false;
+	$account = array();
+	// From Form
+	if ($this->request->is('post')) {
+	    if ($this->request->data['Account']['code'] != '' && strlen($this->request->data['Account']['code']) == 32) {
+		$account = $this->Account->find('first', array(
+		    'conditions' => array(
+			'Account.reset_code' => $this->request->data['Account']['code']
+		    )
+			));
+	    }
+	    if (isset($this->request->data['Account']['password']) && isset($this->request->data['Account']['confirm_password']) && isset($this->request->data['Account']['rstcode'])) {
+		// We are restting the passwd
+		if ($this->request->data['Account']['password'] == $this->request->data['Account']['confirm_password'] && $this->request->data['Account']['password'] != '') {
+		    $account = $this->Account->find('first', array(
+			'conditions' => array(
+			    'Account.reset_code' => $this->request->data['Account']['rstcode']
+			)
+			    ));
+
+		    $data['id'] = $account['Account']['id'];
+		    $data['password'] = $this->request->data['Account']['password'];
+		    $data['reset_code'] = '';
+
+		    if ($this->Account->save($data)) {
+			App::uses('CakeEmail', 'Network/Email');
+			$email = new CakeEmail();
+			$email->from(array('do-not-reply@leaguelaunch.com' => Configure::read('Settings.leaguename')))
+				->config(array('host' => 'mail.leaguelaunch.com', 'port' => 25, 'username' => 'do-not-reply@leaguelaunch.com', 'password' => '87.~~?ZG}eI}', 'transport' => 'Smtp'))
+				->sender(Configure::read('Settings.admin_email'))
+				->replyTo(Configure::read('Settings.admin_email'))
+				->cc(Configure::read('Settings.admin_email'))
+				->to($account['Account']['email'])
+				->subject(Configure::read('Settings.leaguename') . ' Password Changed')
+				->template('passwd_changed')
+				->theme(Configure::read('Settings.theme'))
+				->emailFormat('text')
+				->viewVars(array('account' => $account))
+				->send();
+
+			$this->Session->setFlash(__('Password Changed!'), 'alerts/success');
+			$this->redirect('/login');
+		    }
+		} else {
+		    $this->Session->setFlash('Passwords Do Not Match or Blank', 'alerts/error');
+		    $this->redirect('/account/resetcode/?code=' . $this->request->data['Account']['rstcode']);
+		}
+	    }
+	}
+	// From Email Link
+	if ($this->request->query['code'] != '' && strlen($this->request->query['code']) == 32) {
+	    $account = $this->Account->find('first', array(
+		'conditions' => array(
+		    'Account.reset_code' => $this->request->query['code']
+		)
+		    ));
+	}
+
+	if (count($account) > 0) {
+	    $this->set('code', $account['Account']['reset_code']);
+	    $this->render('new_password');
+	} else {
+	    $this->render('entercode');
+	}
     }
 }
 
