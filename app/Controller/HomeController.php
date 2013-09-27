@@ -8,7 +8,7 @@ App::uses('AppController', 'Controller');
 class HomeController extends AppController {
     
     public $name = 'Home';
-    public $uses = array('ZipCodes');
+    public $uses = array('ZipCodes','Lead');
     
     public function beforeFilter() {
 	parent::beforeFilter();
@@ -36,7 +36,14 @@ class HomeController extends AppController {
 		$this->request->data = $data;
 		
 	    } else {
-		
+		// From the Sell Page Insert the Lead
+                if($this->Lead->validateLead()){
+                    // Valid So Check to see who gets notified
+                    $zipdata = $this->ZipCodes->getZipInfo($this->request->data['Lead']['zip']);
+                    
+                    echo '<pre>';
+                    print_r($zipdata);
+                }
 	    }
 	}
     }
