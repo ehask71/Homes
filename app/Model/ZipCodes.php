@@ -9,12 +9,13 @@ class ZipCodes extends AppModel {
     public $name = 'ZipCodes';
     public $primaryKey = 'id';
     public $useTable = 'zip_codes';
-    public $hasOne = array(
+    public $belongsTo = array(
         'ZipData' => array(
             'className' => 'ZipData',
-            'foreignKey' => 'fips'
+            'foreignKey' => 'zd_id'
         )
     );
+    
     public function getZipInfo($zip){
 	$data = $this->find('first',array(
 	    'conditions' => array(
