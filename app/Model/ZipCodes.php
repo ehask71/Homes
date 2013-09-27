@@ -9,7 +9,7 @@ class ZipCodes extends AppModel {
     public $name = 'ZipCodes';
     public $primaryKey = 'id';
     public $useTable = 'zip_codes';
-    public $belongsTo = array(
+    public $hasOne = array(
         'ZipData' => array(
             'className' => 'ZipData',
             'foreignKey' => 'fips'
@@ -23,5 +23,15 @@ class ZipCodes extends AppModel {
 	));
 	
 	return $data;
+    }
+    
+    public function getZipUser($zip){
+        $user = $this->find('first',array(
+            'conditions' => array(
+                'ZipCodes.ZipCode' => $zip
+            )
+        ));
+        
+        return $user;
     }
 }
