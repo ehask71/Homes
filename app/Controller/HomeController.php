@@ -24,7 +24,7 @@ class HomeController extends AppController {
 	    // From the Index
 	    if(isset($this->request->data['ZipCodes']['fzip']) && isset($this->request->data['ZipCodes']['fname']) && isset($this->request->data['ZipCodes']['femail'])){
 		$zipinfo = $this->ZipCodes->getZipInfo($this->request->data['ZipCodes']['fzip']);
-		$data = array(
+		$data = array('Lead' => array(
 		    'firstname' => $this->request->data['ZipCodes']['fname'],
 		    'email' => $this->request->data['ZipCodes']['femail'],
 		    'phone' => $this->request->data['ZipCodes']['fphone'],
@@ -32,7 +32,7 @@ class HomeController extends AppController {
 		    'city' => (isset($zipinfo['ZipCodes']['City']))?$zipinfo['ZipCodes']['City']:'',
 		    'state' => (isset($zipinfo['ZipCodes']['State']))?$zipinfo['ZipCodes']['State']:'',
 		    'address' => $this->request->data['ZipCodes']['faddress']
-		);
+		));
 		$this->request->data = $data;
 		
 	    } else {
