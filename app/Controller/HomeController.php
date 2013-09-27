@@ -34,8 +34,7 @@ class HomeController extends AppController {
 		    'address' => $this->request->data['ZipCodes']['faddress']
 		);
 		$this->request->data = $data;
-		echo '<pre>';
-		print_r($this->request->data);
+		
 	    } else {
 		
 	    }
