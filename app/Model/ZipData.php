@@ -10,11 +10,11 @@ class ZipData extends AppModel {
 
     public $primaryKey = 'id';
     public $useTable = 'zip_data';
-    public $hasMany = array(
+    public $belongsTo = array(
         'ZipCodes' => array(
             'className' => 'ZipCodes',
             'foreignKey' => 'fips'
-            )
+        )
     );
     
     
