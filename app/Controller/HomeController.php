@@ -25,7 +25,7 @@ class HomeController extends AppController {
 	    if(isset($this->request->data['ZipCodes']['fzip']) && isset($this->request->data['ZipCodes']['fname']) && isset($this->request->data['ZipCodes']['femail'])){
 		$zipinfo = $this->ZipCodes->getZipInfo($this->request->data['ZipCodes']['fzip']);
 		$data = array(
-		    'name' => $this->request->data['ZipCodes']['fname'],
+		    'firstname' => $this->request->data['ZipCodes']['fname'],
 		    'email' => $this->request->data['ZipCodes']['femail'],
 		    'phone' => $this->request->data['ZipCodes']['fphone'],
 		    'zip' => $this->request->data['ZipCodes']['fzip'],
