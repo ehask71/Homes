@@ -20,7 +20,10 @@ class ZipCodes extends AppModel {
 	$data = $this->find('first',array(
 	    'conditions' => array(
 		'ZipCodes.ZipCode' => $zip
-	    )
+	    ),
+            'joins' => array(
+                array('')
+            )
 	));
 	
 	return $data;
