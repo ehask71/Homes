@@ -37,6 +37,13 @@
 	Router::connect('/sell', array('controller' => 'home', 'action' => 'sell'));
         Router::connect('/buy/',array('controller'=>'home','action'=>'buy'));
         Router::connect('/buy/:county-:state',array('controller'=>'home','action'=>'buy'),array('county'=>'[a-zA-Z0-9_-]+','state'=>'[a-zA-Z0-9_-]+'));
+
+	// Registration Flow
+	Router::connect('/register/personal-info', array('controller' => 'account', 'action' => 'register'));
+	Router::connect('/register/select-counties', array('controller' => 'account', 'action' => 'selectcounties'));
+	Router::connect('/register/billing-info', array('controller' => 'account', 'action' => 'billingprofile'));
+	Router::connect('/register/finish', array('controller' => 'account', 'action' => 'selectcounties'));
+	
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
