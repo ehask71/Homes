@@ -37,7 +37,21 @@ class AccountController extends AppController {
 	}
 	$this->set('countries', $this->Country->getCountries());
     }
-
+    
+    // Registration Step 2
+    public function selectcounties(){
+	
+    }
+    
+    // Billing Profile
+    public function billingprofile(){
+	
+    }
+    
+    public function finshregistration(){
+	
+    }
+    
     public function login() {
 	if ($this->request->is('post')) {
 	    if ($this->Auth->login()) {
