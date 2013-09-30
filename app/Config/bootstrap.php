@@ -107,3 +107,9 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+/**
+ *   Config Section
+ */
+Configure::write('Authnet.apilogin','6VckCd8562vT');
+Configure::write('Authnet.txnkey','22Fk7S5srmm7B57r');
