@@ -42,7 +42,7 @@
 	Router::connect('/register/personal-info', array('controller' => 'account', 'action' => 'register'));
 	Router::connect('/register/select-counties', array('controller' => 'account', 'action' => 'selectcounties'));
 	Router::connect('/register/billing-info', array('controller' => 'account', 'action' => 'billingprofile'));
-	Router::connect('/register/finish', array('controller' => 'account', 'action' => 'selectcounties'));
+	Router::connect('/register/finish', array('controller' => 'account', 'action' => 'finshregistration'));
 	
 /**
  * ...and connect the rest of 'Pages' controller's urls.
