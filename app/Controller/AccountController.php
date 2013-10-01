@@ -23,8 +23,12 @@ class AccountController extends AppController {
 	    $this->Account->set($this->data);
 	    if ($this->Account->accountValidate()) {
 		if ($this->Account->save($this->request->data)) {
-		    // We need to store the site relation to the user we just generated
 		    $userid = $this->Account->getLastInsertID();
+		    // Log the user in
+		    $id = $this->Account->id;
+		    $this->request->data['User'] = array_merge($this->request->data['User'], array('id' => $id));
+		    $this->Auth->login($this->request->data['User']);
+		    // Assign a Role
 		    $this->loadModel('RoleUser');
 		    $this->RoleUser->addUserSite($userid);
 
