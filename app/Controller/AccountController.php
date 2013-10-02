@@ -32,13 +32,16 @@ class AccountController extends AppController {
 	    if ($this->Account->accountValidate()) {
 		if ($this->Account->save($this->request->data)) {
 		    $userid = $this->Account->getLastInsertID();
-		    // Log the user in
-		    $id = $this->Account->id;
-		    $this->request->data['User'] = array_merge($this->request->data['User'], array('id' => $id));
-		    $this->Auth->login($this->request->data['User']);
+		    
 		    // Assign a Role
 		    $this->loadModel('RoleUser');
 		    $this->RoleUser->addUserSite($userid);
+		    // Log the user in
+		    //$id = $this->Account->id;
+		    $this->request->data['User'] = array_merge($this->request->data['User'], array('id' => $userid));
+		    $this->Auth->login($this->request->data['User']);
+		   
+		 
 
 		    $this->Session->setFlash('The user has been saved');
 		    $this->redirect(array('controller' => 'home', 'action' => 'index'));
