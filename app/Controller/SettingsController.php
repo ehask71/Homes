@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
 class SettingsController extends AppController {
     
     public $name = 'Settings';
+    public $uses = array('ZipData');
     
     public function beforeFilter() {
 	parent::beforeFilter();
