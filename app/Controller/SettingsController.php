@@ -14,6 +14,10 @@ class SettingsController extends AppController {
         $this->Auth->allow('index');
     }
     
+    public function index(){
+        
+    }
+    
     public function admin_index(){
         
     }
