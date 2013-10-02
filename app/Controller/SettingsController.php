@@ -31,6 +31,11 @@ class SettingsController extends AppController {
             foreach ($county AS $val){
 		$price = $this->ZipData->getPricing((int)$val['ZipData']['PST045212']);
                 echo $val['ZipData']['county'].'    $'.$price.'<br>';
+		$data = array(
+		    'id' => $val['ZipData']['id'],
+		    'price' => $price
+		);
+		$this->ZipData->save($data);
             }
         }
     }
