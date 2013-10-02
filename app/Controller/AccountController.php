@@ -47,7 +47,7 @@ class AccountController extends AppController {
 		}
 	    }
 	}
-	$this->set('countries', $this->Country->getCountries());
+	//$this->set('countries', $this->Country->getCountries());
     }
     
     // Registration Step 2
