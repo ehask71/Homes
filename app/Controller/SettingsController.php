@@ -20,7 +20,7 @@ class SettingsController extends AppController {
         $county = $this->ZipData->query("SELECT * FROM zip_data ZipData WHERE ZipData.state != '' ORDER BY ZipData.price DESC");
             
             foreach ($county AS $val){
-		echo $val['ZipData']['state'].' - '. $val['ZipData']['county'].'    $'.$val['ZipData']['price'].'<br>';
+		echo $val['ZipData']['state'].' - '. $val['ZipData']['county'].'    <b>$'.$val['ZipData']['price'].'</b><br>';
 	    }
     }
     
