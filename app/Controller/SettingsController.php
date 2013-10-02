@@ -20,7 +20,7 @@ class SettingsController extends AppController {
         $county = $this->ZipData->query("SELECT * FROM zip_data ZipData WHERE ZipData.state != ''");
             
             foreach ($county AS $val){
-		echo $val['ZipData']['state'].' - '. $val['ZipData']['county'].'    $'.$price.'<br>';
+		echo $val['ZipData']['state'].' - '. $val['ZipData']['county'].'    $'.$val['ZipData']['price'].'<br>';
 	    }
     }
     
