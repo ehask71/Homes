@@ -38,11 +38,7 @@ class HomeController extends AppController {
 	    } else {
 		// From the Sell Page Insert the Lead
                 if($this->Lead->validateLead()){
-                    // Valid So Check to see who gets notified
-                    $zipdata = $this->ZipCodes->getZipInfo($this->request->data['Lead']['zip']);
                     
-                    echo '<pre>';
-                    print_r($zipdata);
                 }
 	    }
 	}
