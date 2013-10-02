@@ -31,6 +31,7 @@ if (!defined('ACL_FILE')) {
  * @author Mark Scherer
  * @cakephp 2.x
  * @license MIT
+ * 2012-01-09 ms
  */
 class TinyAuthorize extends BaseAuthorize {
 
@@ -38,9 +39,7 @@ class TinyAuthorize extends BaseAuthorize {
 
 	protected $_defaults = array(
 		'allowUser' => false, # quick way to allow user access to non prefixed urls
-		'allowAdmin' => false, # quick way to allow admin access to admin prefixed urls
 		'adminPrefix' => 'admin_',
-		'adminRole' => null, # needed together with adminPrefix if allowAdmin is enabled
 		'cache' => AUTH_CACHE,
 		'cacheKey' => 'tiny_auth_acl',
 		'autoClearCache' => false, # usually done by Cache automatically in debug mode,
@@ -67,7 +66,7 @@ class TinyAuthorize extends BaseAuthorize {
 	 *
 	 * @param array $user The user to authorize
 	 * @param CakeRequest $request The request needing authorization.
-	 * @return boolean Success
+	 * @return bool Success
 	 */
 	public function authorize($user, CakeRequest $request) {
 		if (isset($user[$this->settings['aclModel']])) {
@@ -87,10 +86,10 @@ class TinyAuthorize extends BaseAuthorize {
 	}
 
 	/**
-	 * Validate the url to the role(s)
+	 * validate the url to the role(s)
 	 * allows single or multi role based authorization
 	 *
-	 * @return boolean Success
+	 * @return bool Success
 	 */
 	public function validate($roles, $plugin, $controller, $action) {
 		$action = Inflector::underscore($action);
@@ -101,14 +100,6 @@ class TinyAuthorize extends BaseAuthorize {
 			# all user actions are accessable for logged in users
 			if (mb_strpos($action, $this->settings['adminPrefix']) !== 0) {
 				return true;
-			}
-		}
-		if (!empty($this->settings['allowAdmin']) && !empty($this->settings['adminRole'])) {
-			# all admin actions are accessable for logged in admins
-			if (mb_strpos($action, $this->settings['adminPrefix']) === 0) {
-				if (in_array((string)$this->settings['adminRole'], $roles)) {
-					return true;
-				}
 			}
 		}
 
@@ -158,12 +149,11 @@ class TinyAuthorize extends BaseAuthorize {
 	}
 
 	/**
-	 * Parse ini file and returns the allowed roles per action
+	 * parse ini file and returns the allowed roles per action
 	 * - uses cache for maximum performance
 	 * improved speed by several actions before caching:
 	 * - resolves role slugs to their primary key / identifier
 	 * - resolves wildcards to their verbose translation
-	 *
 	 * @return array Roles
 	 */
 	protected function _getAcl($path = null) {
@@ -186,9 +176,6 @@ class TinyAuthorize extends BaseAuthorize {
 		$availableRoles = Configure::read($this->settings['aclModel']);
 		if (!is_array($availableRoles)) {
 			$Model = $this->getModel();
-			if (!isset($Model->{$this->settings['aclModel']})) {
-				throw new CakeException('Missing relationship between User and Role.');
-			}
 			$availableRoles = $Model->{$this->settings['aclModel']}->find('list', array('fields'=>array('alias', 'id')));
 			Configure::write($this->settings['aclModel'], $availableRoles);
 		}
