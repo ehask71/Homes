@@ -36,11 +36,7 @@ class SettingsController extends AppController {
              2m-2.99m	 $2000 per month
              3m+	 $2500 per month
              */
-            $county = $this->ZipData->find('all',array(
-                'conditions' => array(
-                    'ZipData.state !=' => ''
-                )
-            ));
+            $county = $this->ZipData->query("SELECT * FROM zip_data ZipData WHERE ZipData.state != ''");
             
             foreach ($county AS $val){
                 echo $val['ZipData']['county'].' '.$val['ZipData']['PST045212'].'<br>';
