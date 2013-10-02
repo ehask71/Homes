@@ -11,7 +11,7 @@ class AccountController extends AppController {
     
     public function beforeFilter() {
 	parent::beforeFilter();
-        $this->Auth->allow('login', 'logout', 'register', 'forgetpwd', 'resetcode');
+        $this->Auth->allow();
     }
     
     public function index(){
