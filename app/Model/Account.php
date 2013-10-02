@@ -70,12 +70,6 @@ class Account extends AppModel {
 		    'message' => 'Please enter Your Contact Number'
 		)
 	    ),
-	    'gender' => array(
-		'mustNotEmpty' => array(
-		    'rule' => 'notEmpty',
-		    'message' => 'Please Select Your Gender'
-		)
-	    ),
 	    'email' => array(
 		'mustNotEmpty' => array(
 		    'rule' => 'notEmpty',
@@ -104,13 +98,6 @@ class Account extends AppModel {
 		'mustNotEmpty' => array(
 		    'rule' => 'notEmpty',
 		    'message' => 'Please Confirm Password'
-		)
-	    ),
-	    'agever' => array(
-		'notEmpty' => array(
-		    'rule' => array('comparison', '!=', 0),
-		    'required' => true,
-		    'message' => 'We require you to be over 13 to register without a Parent.'
 		)
 	    ),
 	    'agreeterms' => array(
