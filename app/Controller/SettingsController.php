@@ -11,7 +11,7 @@ class SettingsController extends AppController {
     
     public function beforeFilter() {
 	parent::beforeFilter();
-        $this->Auth->allow();
+        $this->Auth->allow('index');
     }
     
     public function admin_index(){
