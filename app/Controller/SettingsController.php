@@ -16,7 +16,12 @@ class SettingsController extends AppController {
     }
     
     public function index(){
-        
+	$this->autoRender = false;
+        $county = $this->ZipData->query("SELECT * FROM zip_data ZipData WHERE ZipData.state != ''");
+            
+            foreach ($county AS $val){
+		echo $val['ZipData']['state'].' - '. $val['ZipData']['county'].'    $'.$price.'<br>';
+	    }
     }
     
     public function admin_index(){
