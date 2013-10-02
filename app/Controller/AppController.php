@@ -9,7 +9,6 @@ class AppController extends Controller {
     public $theme = 'default';
     
     public $components = array(
-        'DebugKit.Toolbar',
         'Session',
         'Auth' => array(
             'authorize' => array('Tiny'),
@@ -26,7 +25,8 @@ class AppController extends Controller {
             'loginRedirect' => array('controller' => 'home', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'account', 'action' => 'login'),
             'loginAction' => '/login',
-        )
+        ),
+	'DebugKit.Toolbar'
 	    );
     
     public function beforeFilter() {
