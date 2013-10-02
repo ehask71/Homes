@@ -181,5 +181,17 @@ class AccountController extends AppController {
 	    $this->render('entercode');
 	}
     }
+    
+    public function isAuthorized($user) {
+	if ($user['role'] == 'admin') {
+	    return true;
+	}
+	if (in_array($this->action, array('edit', 'delete'))) {
+	    if ($user['id'] != $this->request->params['pass'][0]) {
+		return false;
+	    }
+	}
+	return true;
+    }
 }
 
