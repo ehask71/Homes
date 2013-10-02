@@ -38,8 +38,8 @@ class AccountController extends AppController {
 		    $this->RoleUser->addUserSite($userid);
 		    // Log the user in
 		    //$id = $this->Account->id;
-		    $this->request->data['User'] = array_merge($this->request->data['User'], array('id' => $userid));
-		    $this->Auth->login($this->request->data['User']);
+		    $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid));
+		    $this->Auth->login($this->request->data['Account']);
 		   
 		 
 
