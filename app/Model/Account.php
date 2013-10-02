@@ -4,6 +4,7 @@
  * @author Eric
  */
 App::uses('AppModel', 'Model');
+App::uses('AuthComponent', 'Controller/Component');
 
 class Account extends AppModel {
     public $primaryKey = 'id';
