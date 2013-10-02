@@ -113,3 +113,4 @@ CakeLog::config('error', array(
  */
 Configure::write('Authnet.apilogin','6VckCd8562vT');
 Configure::write('Authnet.txnkey','22Fk7S5srmm7B57r');
+Configure::write('Setupfee',3500);
