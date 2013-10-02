@@ -61,6 +61,7 @@ class AccountController extends AppController {
 	    if ($this->Auth->login()) {
 		$this->redirect($this->Auth->redirect());
 	    } else {
+                print_r($this->Auth);
 		$this->Session->setFlash('Your username or password was incorrect.');
 	    }
 	}
