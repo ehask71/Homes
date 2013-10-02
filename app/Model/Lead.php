@@ -25,7 +25,11 @@ class Lead extends AppModel {
             'email' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter an email')
+                    'message' => 'Please enter an email'),
+                'validEmailRule' => array(
+		    'rule' => 'email',
+		    'message' => 'Invalid email address'
+		)
             ),
             'phone' => array(
                 'mustNotEmpty' => array(
