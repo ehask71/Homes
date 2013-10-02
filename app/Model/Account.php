@@ -18,13 +18,6 @@ class Account extends AppModel {
 	    'unique' => 'keepExisting'
 	)
     );
-    public $hasMany = array(
-	'RoleUser' => array(
-	    'className' => 'RoleUser',
-	    'foreignKey' => 'user_id',
-	    'dependant' => true
-	)
-    );
     
     public function beforeSave($options = array()) {
 	if (isset($this->data[$this->alias]['password'])) {
