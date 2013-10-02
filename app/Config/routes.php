@@ -44,6 +44,9 @@
 	Router::connect('/register/billing-info', array('controller' => 'account', 'action' => 'billingprofile'));
 	Router::connect('/register/finish', array('controller' => 'account', 'action' => 'finshregistration'));
 	
+        // Login
+        Router::connect('/login', array('controller' => 'account', 'action' => 'login'));
+        Router::connect('/logout', array('controller' => 'account', 'action' => 'logout'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
