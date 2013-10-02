@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Test.Case.Console.Command.Task
  * @since         CakePHP(tm) v 1.3
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('ShellDispatcher', 'Console');
@@ -120,48 +120,6 @@ class FixtureTaskTest extends CakeTestCase {
 
 		$result = $this->Task->importOptions('Article');
 		$expected = array();
-		$this->assertEquals($expected, $result);
-	}
-
-/**
- * test importOptions with overwriting command line options.
- *
- * @return void
- */
-	public function testImportOptionsWithCommandLineOptions() {
-		$this->Task->params = array('schema' => true, 'records' => true);
-
-		$result = $this->Task->importOptions('Article');
-		$expected = array('schema' => 'Article', 'records' => true);
-		$this->assertEquals($expected, $result);
-	}
-
-/**
- * test importOptions with schema.
- *
- * @return void
- */
-	public function testImportOptionsWithSchema() {
-		$this->Task->params = array('schema' => true);
-		$this->Task->expects($this->at(0))->method('in')->will($this->returnValue('n'));
-		$this->Task->expects($this->at(1))->method('in')->will($this->returnValue('n'));
-
-		$result = $this->Task->importOptions('Article');
-		$expected = array('schema' => 'Article');
-		$this->assertEquals($expected, $result);
-	}
-
-/**
- * test importOptions with records.
- *
- * @return void
- */
-	public function testImportOptionsWithRecords() {
-		$this->Task->params = array('records' => true);
-		$this->Task->expects($this->at(0))->method('in')->will($this->returnValue('n'));
-
-		$result = $this->Task->importOptions('Article');
-		$expected = array('records' => true);
 		$this->assertEquals($expected, $result);
 	}
 
@@ -309,32 +267,6 @@ class FixtureTaskTest extends CakeTestCase {
 		$filename = '/my/path/CommentFixture.php';
 		$this->Task->expects($this->at(1))->method('createFile')
 			->with($filename, $this->stringContains("'comment' => 'First Comment for First Article'"));
-		$this->Task->expects($this->exactly(2))->method('createFile');
-
-		$this->Task->all();
-	}
-
-/**
- * test using all() with -schema
- *
- * @return void
- */
-	public function testAllWithSchemaImport() {
-		$this->Task->connection = 'test';
-		$this->Task->path = '/my/path/';
-		$this->Task->args = array('all');
-		$this->Task->params = array('schema' => true);
-
-		$this->Task->Model->expects($this->any())->method('listAll')
-			->will($this->returnValue(array('Articles', 'comments')));
-
-		$filename = '/my/path/ArticleFixture.php';
-		$this->Task->expects($this->at(0))->method('createFile')
-			->with($filename, $this->stringContains('public $import = array(\'model\' => \'Article\''));
-
-		$filename = '/my/path/CommentFixture.php';
-		$this->Task->expects($this->at(1))->method('createFile')
-			->with($filename, $this->stringContains('public $import = array(\'model\' => \'Comment\''));
 		$this->Task->expects($this->exactly(2))->method('createFile');
 
 		$this->Task->all();

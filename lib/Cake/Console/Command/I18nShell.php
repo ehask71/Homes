@@ -14,7 +14,7 @@
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 1.2.0.5669
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AppShell', 'Console/Command');
@@ -53,7 +53,7 @@ class I18nShell extends AppShell {
 
 		if ($this->command && !in_array($this->command, array('help'))) {
 			if (!config('database')) {
-				$this->out(__d('cake_console', 'Your database configuration was not found. Take a moment to create one.'));
+				$this->out(__d('cake_console', 'Your database configuration was not found. Take a moment to create one.'), true);
 				return $this->DbConfig->execute();
 			}
 		}
@@ -76,15 +76,16 @@ class I18nShell extends AppShell {
 		switch ($choice) {
 			case 'e':
 				$this->Extract->execute();
-				break;
+			break;
 			case 'i':
 				$this->initdb();
-				break;
+			break;
 			case 'h':
 				$this->out($this->OptionParser->help());
-				break;
+			break;
 			case 'q':
-				return $this->_stop();
+				exit(0);
+			break;
 			default:
 				$this->out(__d('cake_console', 'You have made an invalid selection. Please choose a command to execute by entering E, I, H, or Q.'));
 		}

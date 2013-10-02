@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Controller.Component
  * @since         CakePHP(tm) v 0.10.8.2156
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('Component', 'Controller');
@@ -233,7 +233,7 @@ class SecurityComponent extends Component {
 		);
 
 		if ($this->_action == $this->blackHoleCallback) {
-			return $this->blackHole($controller, 'auth');
+			return $this->blackhole($controller, 'auth');
 		}
 
 		if (!in_array($this->_action, (array)$this->unlockedActions) && $isPost && $isNotRequestAction) {

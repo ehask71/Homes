@@ -14,7 +14,7 @@
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 1.2
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AppShell', 'Console/Command');
@@ -267,7 +267,7 @@ class ViewTask extends BakeTask {
 		if (!class_exists($controllerClassName)) {
 			$file = $controllerClassName . '.php';
 			$this->err(__d('cake_console', "The file '%s' could not be found.\nIn order to bake a view, you'll need to first create the controller.", $file));
-			return $this->_stop();
+			$this->_stop();
 		}
 		$controllerObj = new $controllerClassName();
 		$controllerObj->plugin = $this->plugin;
@@ -334,9 +334,10 @@ class ViewTask extends BakeTask {
 		$looksGood = $this->in(__d('cake_console', 'Look okay?'), array('y', 'n'), 'y');
 		if (strtolower($looksGood) === 'y') {
 			$this->bake($action, ' ');
-			return $this->_stop();
+			$this->_stop();
+		} else {
+			$this->out(__d('cake_console', 'Bake Aborted.'));
 		}
-		$this->out(__d('cake_console', 'Bake Aborted.'));
 	}
 
 /**
@@ -434,15 +435,9 @@ class ViewTask extends BakeTask {
 		))->addOption('admin', array(
 			'help' => __d('cake_console', 'Set to only bake views for a prefix in Routing.prefixes'),
 			'boolean' => true
-		))->addOption('theme', array(
-			'short' => 't',
-			'help' => __d('cake_console', 'Theme to use when baking code.')
 		))->addOption('connection', array(
 			'short' => 'c',
 			'help' => __d('cake_console', 'The connection the connected model is on.')
-		))->addOption('force', array(
-			'short' => 'f',
-			'help' => __d('cake_console', 'Force overwriting existing files without prompting.')
 		))->addSubcommand('all', array(
 			'help' => __d('cake_console', 'Bake all CRUD action views for all controllers. Requires models and controllers to exist.')
 		))->epilog(__d('cake_console', 'Omitting all arguments and options will enter into an interactive mode.'));

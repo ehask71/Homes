@@ -15,16 +15,10 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Configure
  * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('IniReader', 'Configure');
 
-/**
- * Class IniReaderTest
- *
- * @package       Cake.Test.Case.Configure
- */
 class IniReaderTest extends CakeTestCase {
 
 /**

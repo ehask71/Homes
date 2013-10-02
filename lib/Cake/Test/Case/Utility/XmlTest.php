@@ -15,9 +15,8 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Utility
  * @since         CakePHP(tm) v 1.2.0.5432
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('Xml', 'Utility');
 App::uses('CakeTestModel', 'TestSuite/Fixture');
 
@@ -31,7 +30,7 @@ class XmlArticle extends CakeTestModel {
 /**
  * name property
  *
- * @var string
+ * @var string 'Article'
  */
 	public $name = 'Article';
 
@@ -58,7 +57,7 @@ class XmlUser extends CakeTestModel {
 /**
  * name property
  *
- * @var string
+ * @var string 'User'
  */
 	public $name = 'User';
 
@@ -188,21 +187,10 @@ class XmlTest extends CakeTestCase {
  *
  * @dataProvider invalidDataProvider
  * @expectedException XmlException
- * @return void
+ * return void
  */
 	public function testBuildInvalidData($value) {
 		Xml::build($value);
-	}
-
-/**
- * Test that building SimpleXmlElement with invalid XML causes the right exception.
- *
- * @expectedException XmlException
- * @return void
- */
-	public function testBuildInvalidDataSimpleXml() {
-		$input = '<derp';
-		$xml = Xml::build($input, array('return' => 'simplexml'));
 	}
 
 /**
@@ -375,19 +363,6 @@ XML;
 		$obj = Xml::fromArray($xml, 'attributes');
 		$xmlText = '<' . '?xml version="1.0" encoding="UTF-8"?><tags><tag id="1">defect</tag></tags>';
 		$this->assertXmlStringEqualsXmlString($xmlText, $obj->asXML());
-
-		$xml = array(
-			'tag' => array(
-				'@' => 0,
-				'@test' => 'A test'
-			)
-		);
-		$obj = Xml::fromArray($xml);
-		$xmlText = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<tag test="A test">0</tag>
-XML;
-		$this->assertXmlStringEqualsXmlString($xmlText, $obj->asXML());
 	}
 
 /**
@@ -425,87 +400,6 @@ XML;
 </Event>
 XML;
 		$this->assertXmlStringEqualsXmlString($expected, $obj->asXML());
-	}
-
-/**
- * testFromArrayPretty method
- *
- * @return void
- */
-	public function testFromArrayPretty() {
-		$xml = array(
-			'tags' => array(
-				'tag' => array(
-					array(
-						'id' => '1',
-						'name' => 'defect'
-					),
-					array(
-						'id' => '2',
-						'name' => 'enhancement'
-					)
-				)
-			)
-		);
-
-		$expected = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<tags><tag><id>1</id><name>defect</name></tag><tag><id>2</id><name>enhancement</name></tag></tags>
-
-XML;
-		$xmlResponse = Xml::fromArray($xml, array('pretty' => false));
-		$this->assertEquals($expected, $xmlResponse->asXML());
-
-		$expected = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<tags>
-  <tag>
-    <id>1</id>
-    <name>defect</name>
-  </tag>
-  <tag>
-    <id>2</id>
-    <name>enhancement</name>
-  </tag>
-</tags>
-
-XML;
-		$xmlResponse = Xml::fromArray($xml, array('pretty' => true));
-		$this->assertEquals($expected, $xmlResponse->asXML());
-
-				$xml = array(
-			'tags' => array(
-				'tag' => array(
-					array(
-						'id' => '1',
-						'name' => 'defect'
-					),
-					array(
-						'id' => '2',
-						'name' => 'enhancement'
-					)
-				)
-			)
-		);
-
-		$expected = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<tags><tag id="1" name="defect"/><tag id="2" name="enhancement"/></tags>
-
-XML;
-		$xmlResponse = Xml::fromArray($xml, array('pretty' => false, 'format' => 'attributes'));
-		$this->assertEquals($expected, $xmlResponse->asXML());
-
-		$expected = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<tags>
-  <tag id="1" name="defect"/>
-  <tag id="2" name="enhancement"/>
-</tags>
-
-XML;
-		$xmlResponse = Xml::fromArray($xml, array('pretty' => true, 'format' => 'attributes'));
-		$this->assertEquals($expected, $xmlResponse->asXML());
 	}
 
 /**
@@ -747,16 +641,6 @@ XML;
 			'root' => array(
 				'tag' => 'defect',
 				'cake:bug' => 1
-			)
-		);
-		$this->assertEquals($expected, Xml::toArray($obj));
-
-		$xml = '<tag type="myType">0</tag>';
-		$obj = Xml::build($xml);
-		$expected = array(
-			'tag' => array(
-				'@type' => 'myType',
-				'@' => 0
 			)
 		);
 		$this->assertEquals($expected, Xml::toArray($obj));

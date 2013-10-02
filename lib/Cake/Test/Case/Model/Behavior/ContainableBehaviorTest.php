@@ -15,7 +15,7 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Model.Behavior
  * @since         CakePHP(tm) v 1.2.0.5669
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('Model', 'Model');
@@ -3672,10 +3672,11 @@ class ContainableBehaviorTest extends CakeTestCase {
 		if (!is_array($Model)) {
 			$result = $Model->containments($contain);
 			return $this->_containments($result['models']);
-		}
-		$result = $Model;
-		foreach ($result as $i => $containment) {
-			$result[$i] = array_diff_key($containment, array('instance' => true));
+		} else {
+			$result = $Model;
+			foreach ($result as $i => $containment) {
+				$result[$i] = array_diff_key($containment, array('instance' => true));
+			}
 		}
 		return $result;
 	}

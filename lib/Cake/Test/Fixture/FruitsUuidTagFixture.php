@@ -15,15 +15,22 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Fixture
  * @since         CakePHP(tm) v 1.2.0.7953
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
- * Class FruitsUuidTagFixture
+ * Short description for class.
  *
  * @package       Cake.Test.Fixture
  */
 class FruitsUuidTagFixture extends CakeTestFixture {
+
+/**
+ * name property
+ *
+ * @var string 'FruitsUuidTag'
+ */
+	public $name = 'FruitsUuidTag';
 
 /**
  * fields property

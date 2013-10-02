@@ -14,7 +14,7 @@
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 1.3
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AppShell', 'Console/Command');
@@ -83,18 +83,8 @@ class FixtureTask extends BakeTask {
 		))->addOption('plugin', array(
 			'help' => __d('cake_console', 'CamelCased name of the plugin to bake fixtures for.'),
 			'short' => 'p',
-		))->addOption('schema', array(
-			'help' => __d('cake_console', 'Importing schema for fixtures rather than hardcoding it.'),
-			'short' => 's',
-			'boolean' => true
-		))->addOption('theme', array(
-			'short' => 't',
-			'help' => __d('cake_console', 'Theme to use when baking code.')
-		))->addOption('force', array(
-			'short' => 'f',
-			'help' => __d('cake_console', 'Force overwriting existing files without prompting.')
 		))->addOption('records', array(
-			'help' => __d('cake_console', 'Used with --count and <name>/all commands to pull [n] records from the live tables, where [n] is either --count or the default of 10.'),
+			'help' => __d('cake_console', 'Used with --count and <name>/all commands to pull [n] records from the live tables, where [n] is either --count or the default of 10'),
 			'short' => 'r',
 			'boolean' => true
 		))->epilog(__d('cake_console', 'Omitting all arguments and options will enter into an interactive mode.'));
@@ -134,14 +124,9 @@ class FixtureTask extends BakeTask {
 		$this->interactive = false;
 		$this->Model->interactive = false;
 		$tables = $this->Model->listAll($this->connection, false);
-
 		foreach ($tables as $table) {
 			$model = $this->_modelName($table);
-			$importOptions = array();
-			if (!empty($this->params['schema'])) {
-				$importOptions['schema'] = $model;
-			}
-			$this->bake($model, false, $importOptions);
+			$this->bake($model);
 		}
 	}
 
@@ -173,20 +158,11 @@ class FixtureTask extends BakeTask {
  */
 	public function importOptions($modelName) {
 		$options = array();
-
-		if (!empty($this->params['schema'])) {
+		$doSchema = $this->in(__d('cake_console', 'Would you like to import schema for this fixture?'), array('y', 'n'), 'n');
+		if ($doSchema === 'y') {
 			$options['schema'] = $modelName;
-		} else {
-			$doSchema = $this->in(__d('cake_console', 'Would you like to import schema for this fixture?'), array('y', 'n'), 'n');
-			if ($doSchema === 'y') {
-				$options['schema'] = $modelName;
-			}
 		}
-		if (!empty($this->params['records'])) {
-			$doRecords = 'y';
-		} else {
-			$doRecords = $this->in(__d('cake_console', 'Would you like to use record importing for this fixture?'), array('y', 'n'), 'n');
-		}
+		$doRecords = $this->in(__d('cake_console', 'Would you like to use record importing for this fixture?'), array('y', 'n'), 'n');
 		if ($doRecords === 'y') {
 			$options['records'] = true;
 		}
@@ -238,12 +214,12 @@ class FixtureTask extends BakeTask {
 		$this->_Schema = new CakeSchema();
 		$data = $this->_Schema->read(array('models' => false, 'connection' => $this->connection));
 		if (!isset($data['tables'][$useTable])) {
-			$this->error('Could not find your selected table ' . $useTable);
+			$this->err('Could not find your selected table ' . $useTable);
 			return false;
 		}
 
 		$tableInfo = $data['tables'][$useTable];
-		if ($modelImport === null) {
+		if (is_null($modelImport)) {
 			$schema = $this->_generateSchema($tableInfo);
 		}
 
@@ -328,7 +304,7 @@ class FixtureTask extends BakeTask {
 					case 'integer':
 					case 'float':
 						$insert = $i + 1;
-						break;
+					break;
 					case 'string':
 					case 'binary':
 						$isPrimaryUuid = (
@@ -343,22 +319,22 @@ class FixtureTask extends BakeTask {
 								$insert = substr($insert, 0, (int)$fieldInfo['length'] - 2);
 							}
 						}
-						break;
+					break;
 					case 'timestamp':
 						$insert = time();
-						break;
+					break;
 					case 'datetime':
 						$insert = date('Y-m-d H:i:s');
-						break;
+					break;
 					case 'date':
 						$insert = date('Y-m-d');
-						break;
+					break;
 					case 'time':
 						$insert = date('H:i:s');
-						break;
+					break;
 					case 'boolean':
 						$insert = 1;
-						break;
+					break;
 					case 'text':
 						$insert = "Lorem ipsum dolor sit amet, aliquet feugiat.";
 						$insert .= " Convallis morbi fringilla gravida,";
@@ -367,7 +343,7 @@ class FixtureTask extends BakeTask {
 						$insert .= " vestibulum massa neque ut et, id hendrerit sit,";
 						$insert .= " feugiat in taciti enim proin nibh, tempor dignissim, rhoncus";
 						$insert .= " duis vestibulum nunc mattis convallis.";
-						break;
+					break;
 				}
 				$record[$field] = $insert;
 			}

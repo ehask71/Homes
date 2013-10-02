@@ -15,9 +15,8 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Model
  * @since         CakePHP(tm) v 1.2.0.4206
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('DbAcl', 'Controller/Component/Acl');
 App::uses('AclNode', 'Model');
 
@@ -31,7 +30,7 @@ class DbAclNodeTestBase extends AclNode {
 /**
  * useDbConfig property
  *
- * @var string
+ * @var string 'test'
  */
 	public $useDbConfig = 'test';
 
@@ -51,9 +50,16 @@ class DbAclNodeTestBase extends AclNode {
 class DbAroTest extends DbAclNodeTestBase {
 
 /**
+ * name property
+ *
+ * @var string 'DbAroTest'
+ */
+	public $name = 'DbAroTest';
+
+/**
  * useTable property
  *
- * @var string
+ * @var string 'aros'
  */
 	public $useTable = 'aros';
 
@@ -73,9 +79,16 @@ class DbAroTest extends DbAclNodeTestBase {
 class DbAcoTest extends DbAclNodeTestBase {
 
 /**
+ * name property
+ *
+ * @var string 'DbAcoTest'
+ */
+	public $name = 'DbAcoTest';
+
+/**
  * useTable property
  *
- * @var string
+ * @var string 'acos'
  */
 	public $useTable = 'acos';
 
@@ -95,9 +108,16 @@ class DbAcoTest extends DbAclNodeTestBase {
 class DbPermissionTest extends CakeTestModel {
 
 /**
+ * name property
+ *
+ * @var string 'DbPermissionTest'
+ */
+	public $name = 'DbPermissionTest';
+
+/**
  * useTable property
  *
- * @var string
+ * @var string 'aros_acos'
  */
 	public $useTable = 'aros_acos';
 
@@ -124,9 +144,16 @@ class DbPermissionTest extends CakeTestModel {
 class DbAcoActionTest extends CakeTestModel {
 
 /**
+ * name property
+ *
+ * @var string 'DbAcoActionTest'
+ */
+	public $name = 'DbAcoActionTest';
+
+/**
  * useTable property
  *
- * @var string
+ * @var string 'aco_actions'
  */
 	public $useTable = 'aco_actions';
 
@@ -148,14 +175,14 @@ class DbAroUserTest extends CakeTestModel {
 /**
  * name property
  *
- * @var string
+ * @var string 'AuthUser'
  */
 	public $name = 'AuthUser';
 
 /**
  * useTable property
  *
- * @var string
+ * @var string 'auth_users'
  */
 	public $useTable = 'auth_users';
 

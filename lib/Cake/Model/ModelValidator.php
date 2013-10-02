@@ -4,7 +4,7 @@
  *
  * Provides the Model validation logic.
  *
- * PHP 5
+ * PHP versions 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -17,11 +17,10 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Model
  * @since         CakePHP(tm) v 2.2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('CakeValidationSet', 'Model/Validator');
-App::uses('Hash', 'Utility');
 
 /**
  * ModelValidator object encapsulates all methods related to data validations for a model
@@ -395,11 +394,11 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 		}
 		unset($fieldList);
 
-		if (empty($whitelist) || Hash::dimensions($whitelist) > 1) {
+		$validateList = array();
+		if (empty($whitelist)) {
 			return $this->_fields;
 		}
 
-		$validateList = array();
 		$this->validationErrors = array();
 		foreach ((array)$whitelist as $f) {
 			if (!empty($this->_fields[$f])) {

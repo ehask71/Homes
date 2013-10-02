@@ -15,16 +15,16 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.Test.TestApp.Model.Behavior
+ * @package       Cake.Test.test_app.Model.Behavior
  * @since         CakePHP(tm) v 1.2.0.5669
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
  * Behavior to allow for dynamic and atomic manipulation of a Model's associations used for a find call. Most useful for limiting
  * the amount of associations and data returned.
  *
- * @package       Cake.Test.TestApp.Model.Behavior
+ * @package       Cake.Test.test_app.Model.Behavior
  */
 class PersisterOneBehaviorBehavior extends ModelBehavior {
 }

@@ -16,9 +16,8 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Console
  * @since         CakePHP(tm) v 1.2.0.5012
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 $ds = DIRECTORY_SEPARATOR;
 $dispatcher = 'Cake' . $ds . 'Console' . $ds . 'ShellDispatcher.php';
 $found = false;
@@ -33,7 +32,7 @@ foreach ($paths as $path) {
 
 if (!$found) {
 	$rootInstall = dirname(dirname(dirname(__FILE__))) . $ds . $dispatcher;
-	$composerInstall = dirname(dirname(__FILE__)) . $ds . $dispatcher;
+	$composerInstall = dirname(dirname(__FILE__)) . $ds. $dispatcher;
 
 	if (file_exists($composerInstall)) {
 		include $composerInstall;

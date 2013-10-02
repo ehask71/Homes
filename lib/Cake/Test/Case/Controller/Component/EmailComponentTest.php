@@ -17,9 +17,8 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Controller.Component
  * @since         CakePHP(tm) v 1.2.0.5347
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('Controller', 'Controller');
 App::uses('EmailComponent', 'Controller/Component');
 App::uses('AbstractTransport', 'Network/Email');
@@ -94,6 +93,13 @@ class DebugCompTransport extends AbstractTransport {
 class EmailTestController extends Controller {
 
 /**
+ * name property
+ *
+ * @var string 'EmailTest'
+ */
+	public $name = 'EmailTest';
+
+/**
  * uses property
  *
  * @var mixed null
@@ -126,7 +132,7 @@ class EmailComponentTest extends CakeTestCase {
 /**
  * name property
  *
- * @var string
+ * @var string 'Email'
  */
 	public $name = 'Email';
 

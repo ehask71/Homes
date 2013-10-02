@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Controller.Component
  * @since         CakePHP(tm) v 1.2.0.4213
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('Component', 'Controller');
@@ -62,7 +62,7 @@ class CookieComponent extends Component {
  * $this->Cookie->path = '/';
  *
  * The path on the server in which the cookie will be available on.
- * If public $cookiePath is set to '/foo/', the cookie will only be available
+ * If  public $cookiePath is set to '/foo/', the cookie will only be available
  * within the /foo/ directory and all sub-directories such as /foo/bar/ of domain.
  * The default value is the entire domain.
  *
@@ -219,7 +219,7 @@ class CookieComponent extends Component {
 			$this->read();
 		}
 
-		if ($encrypt === null) {
+		if (is_null($encrypt)) {
 			$encrypt = true;
 		}
 		$this->_encrypted = $encrypt;
@@ -262,7 +262,7 @@ class CookieComponent extends Component {
 		if (empty($this->_values[$this->name])) {
 			$this->_values[$this->name] = array();
 		}
-		if ($key === null) {
+		if (is_null($key)) {
 			return $this->_values[$this->name];
 		}
 
@@ -387,20 +387,20 @@ class CookieComponent extends Component {
  * @return integer Unix timestamp
  */
 	protected function _expire($expires = null) {
-		if ($expires === null) {
+		$now = time();
+		if (is_null($expires)) {
 			return $this->_expires;
 		}
 		$this->_reset = $this->_expires;
+
 		if (!$expires) {
 			return $this->_expires = 0;
 		}
-		$now = new DateTime();
 
 		if (is_int($expires) || is_numeric($expires)) {
-			return $this->_expires = $now->format('U') + intval($expires);
+			return $this->_expires = $now + intval($expires);
 		}
-		$now->modify($expires);
-		return $this->_expires = $now->format('U');
+		return $this->_expires = strtotime($expires, $now);
 	}
 
 /**
@@ -421,7 +421,7 @@ class CookieComponent extends Component {
 			'httpOnly' => $this->httpOnly
 		));
 
-		if (!empty($this->_reset)) {
+		if (!is_null($this->_reset)) {
 			$this->_expires = $this->_reset;
 			$this->_reset = null;
 		}

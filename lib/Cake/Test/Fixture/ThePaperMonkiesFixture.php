@@ -15,15 +15,22 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Fixture
  * @since         CakePHP(tm) v 1.2.0.4667
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
- * Class ThePaperMonkiesFixture
+ * Short description for class.
  *
  * @package       Cake.Test.Fixture
  */
 class ThePaperMonkiesFixture extends CakeTestFixture {
+
+/**
+ * name property
+ *
+ * @var string 'ThePaperMonkies'
+ */
+	public $name = 'ThePaperMonkies';
 
 /**
  * fields property

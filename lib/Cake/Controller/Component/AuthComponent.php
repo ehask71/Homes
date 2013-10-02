@@ -17,7 +17,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Controller.Component
  * @since         CakePHP(tm) v 0.10.0.1076
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('Component', 'Controller');
@@ -157,9 +157,8 @@ class AuthComponent extends Component {
 	);
 
 /**
- * The session key name where the record of the current user is stored. Default
- * key is "Auth.User". If you are using only stateless authenticators set this
- * to false to ensure session is not started.
+ * The session key name where the record of the current user is stored. If
+ * unspecified, it will be "Auth.User".
  *
  * @var string
  */
@@ -174,7 +173,7 @@ class AuthComponent extends Component {
 	protected static $_user = array();
 
 /**
- * An URL (defined as a string or array) to the controller action that handles
+ * A URL (defined as a string or array) to the controller action that handles
  * logins. Defaults to `/users/login`
  *
  * @var mixed
@@ -189,7 +188,7 @@ class AuthComponent extends Component {
  * Normally, if a user is redirected to the $loginAction page, the location they
  * were redirected from will be stored in the session so that they can be
  * redirected back after a successful login. If this session value is not
- * set, redirectUrl() method will return the url specified in $loginRedirect.
+ * set, the user will be redirected to the page specified in $loginRedirect.
  *
  * @var mixed
  * @link http://book.cakephp.org/2.0/en/core-libraries/components/authentication.html#AuthComponent::$loginRedirect
@@ -211,16 +210,16 @@ class AuthComponent extends Component {
  * Error to display when user attempts to access an object or action to which they do not have
  * access.
  *
- * @var string|bool Error message or boolean false to suppress flash message
+ * @var string
  * @link http://book.cakephp.org/2.0/en/core-libraries/components/authentication.html#AuthComponent::$authError
  */
 	public $authError = null;
 
 /**
  * Controls handling of unauthorized access.
- * - For default value `true` unauthorized user is redirected to the referrer URL
+ * - For default value `true` unauthorized user is redirected to the referrer url
  *   or AuthComponent::$loginRedirect or '/'.
- * - If set to a string or array the value is used as an URL to redirect to.
+ * - If set to a string or array the value is used as an url to redirect to.
  * - If set to false a ForbiddenException exception is thrown instead of redirecting.
  *
  * @var mixed
@@ -295,13 +294,43 @@ class AuthComponent extends Component {
 		if (!$this->_setDefaults()) {
 			return false;
 		}
+		$request = $controller->request;
 
-		if ($this->_isAllowed($controller)) {
+		$url = '';
+
+		if (isset($request->url)) {
+			$url = $request->url;
+		}
+		$url = Router::normalize($url);
+		$loginAction = Router::normalize($this->loginAction);
+
+		if ($loginAction != $url && in_array($action, array_map('strtolower', $this->allowedActions))) {
+			return true;
+		}
+
+		if ($loginAction == $url) {
+			if (empty($request->data)) {
+				if (!$this->Session->check('Auth.redirect') && env('HTTP_REFERER')) {
+					$this->Session->write('Auth.redirect', $controller->referer(null, true));
+				}
+			}
 			return true;
 		}
 
 		if (!$this->_getUser()) {
-			return $this->_unauthenticated($controller);
+			if (!$request->is('ajax')) {
+				$this->flash($this->authError);
+				$this->Session->write('Auth.redirect', $request->here());
+				$controller->redirect($loginAction);
+				return false;
+			}
+			if (!empty($this->ajaxLogin)) {
+				$controller->viewPath = 'Elements';
+				echo $controller->render($this->ajaxLogin, $this->RequestHandler->ajaxLayout);
+				$this->_stop();
+				return false;
+			}
+			$controller->redirect(null, 403);
 		}
 
 		if (empty($this->authorize) || $this->isAuthorized($this->user())) {
@@ -312,94 +341,11 @@ class AuthComponent extends Component {
 	}
 
 /**
- * Checks whether current action is accessible without authentication.
- *
- * @param Controller $controller A reference to the instantiating controller object
- * @return boolean True if action is accessible without authentication else false
- */
-	protected function _isAllowed(Controller $controller) {
-		$action = strtolower($controller->request->params['action']);
-		if (in_array($action, array_map('strtolower', $this->allowedActions))) {
-			return true;
-		}
-		return false;
-	}
-
-/**
- * Handles unauthenticated access attempt. First the `unathenticated()` method
- * of the last authenticator in the chain will be called. The authenticator can
- * handle sending response or redirection as appropriate and return `true` to
- * indicate no furthur action is necessary. If authenticator returns null this
- * method redirects user to login action. If it's an ajax request and
- * $ajaxLogin is specified that element is rendered else a 403 http status code
- * is returned.
- *
- * @param Controller $controller A reference to the controller object.
- * @return boolean True if current action is login action else false.
- */
-	protected function _unauthenticated(Controller $controller) {
-		if (empty($this->_authenticateObjects)) {
-			$this->constructAuthenticate();
-		}
-		$auth = $this->_authenticateObjects[count($this->_authenticateObjects) - 1];
-		if ($auth->unauthenticated($this->request, $this->response)) {
-			return false;
-		}
-
-		if ($this->_isLoginAction($controller)) {
-			return true;
-		}
-
-		if (!$controller->request->is('ajax')) {
-			$this->flash($this->authError);
-			$this->Session->write('Auth.redirect', $controller->request->here(false));
-			$controller->redirect($this->loginAction);
-			return false;
-		}
-		if (!empty($this->ajaxLogin)) {
-			$controller->viewPath = 'Elements';
-			echo $controller->render($this->ajaxLogin, $this->RequestHandler->ajaxLayout);
-			$this->_stop();
-			return false;
-		}
-		$controller->redirect(null, 403);
-		return false;
-	}
-
-/**
- * Normalizes $loginAction and checks if current request url is same as login
- * action. If current url is same as login action, referrer url is saved in session
- * which is later accessible using redirectUrl().
- *
- * @param Controller $controller A reference to the controller object.
- * @return boolean True if current action is login action else false.
- */
-	protected function _isLoginAction(Controller $controller) {
-		$url = '';
-		if (isset($controller->request->url)) {
-			$url = $controller->request->url;
-		}
-		$url = Router::normalize($url);
-		$loginAction = Router::normalize($this->loginAction);
-
-		if ($loginAction == $url) {
-			if (empty($controller->request->data)) {
-				if (!$this->Session->check('Auth.redirect') && env('HTTP_REFERER')) {
-					$this->Session->write('Auth.redirect', $controller->referer(null, true));
-				}
-			}
-			return true;
-		}
-		return false;
-	}
-
-/**
  * Handle unauthorized access attempt
  *
  * @param Controller $controller A reference to the controller object
  * @return boolean Returns false
  * @throws ForbiddenException
- * @see AuthComponent::$unauthorizedRedirect
  */
 	protected function _unauthorized(Controller $controller) {
 		if ($this->unauthorizedRedirect === false) {
@@ -423,7 +369,7 @@ class AuthComponent extends Component {
 /**
  * Attempts to introspect the correct values for object properties.
  *
- * @return boolean True
+ * @return boolean
  */
 	protected function _setDefaults() {
 		$defaults = array(
@@ -431,7 +377,7 @@ class AuthComponent extends Component {
 			'authError' => __d('cake', 'You are not authorized to access that location.')
 		);
 		foreach ($defaults as $key => $value) {
-			if (!isset($this->{$key}) || $this->{$key} === true) {
+			if (empty($this->{$key})) {
 				$this->{$key} = $value;
 			}
 		}
@@ -495,7 +441,7 @@ class AuthComponent extends Component {
 				throw new CakeException(__d('cake_dev', 'Authorization adapter "%s" was not found.', $class));
 			}
 			if (!method_exists($className, 'authorize')) {
-				throw new CakeException(__d('cake_dev', 'Authorization objects must implement an %s method.', 'authorize()'));
+				throw new CakeException(__d('cake_dev', 'Authorization objects must implement an authorize method.'));
 			}
 			$settings = array_merge($global, (array)$settings);
 			$this->_authorizeObjects[] = new $className($this->_Collection, $settings);
@@ -647,12 +593,13 @@ class AuthComponent extends Component {
  * @link http://book.cakephp.org/2.0/en/core-libraries/components/authentication.html#accessing-the-logged-in-user
  */
 	public static function user($key = null) {
+		if (empty(self::$_user) && !CakeSession::check(self::$sessionKey)) {
+			return null;
+		}
 		if (!empty(self::$_user)) {
 			$user = self::$_user;
-		} elseif (self::$sessionKey && CakeSession::check(self::$sessionKey)) {
-			$user = CakeSession::read(self::$sessionKey);
 		} else {
-			return null;
+			$user = CakeSession::read(self::$sessionKey);
 		}
 		if ($key === null) {
 			return $user;
@@ -669,10 +616,8 @@ class AuthComponent extends Component {
 	protected function _getUser() {
 		$user = $this->user();
 		if ($user) {
-			$this->Session->delete('Auth.redirect');
 			return true;
 		}
-
 		if (empty($this->_authenticateObjects)) {
 			$this->constructAuthenticate();
 		}
@@ -683,7 +628,6 @@ class AuthComponent extends Component {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -699,16 +643,16 @@ class AuthComponent extends Component {
 	}
 
 /**
- * Get the URL a user should be redirected to upon login.
+ * Get the URL a use should be redirected to upon login.
  *
- * Pass an URL in to set the destination a user should be redirected to upon
+ * Pass a url in to set the destination a user should be redirected to upon
  * logging in.
  *
- * If no parameter is passed, gets the authentication redirect URL. The URL
+ * If no parameter is passed, gets the authentication redirect URL. The url
  * returned is as per following rules:
  *
- *  - Returns the normalized URL from session Auth.redirect value if it is
- *    present and for the same domain the current app is running on.
+ *  - Returns the session Auth.redirect value if it is present and for the same
+ *    domain the current app is running on.
  *  - If there is no session value and there is a $loginRedirect, the $loginRedirect
  *    value is returned.
  *  - If there is no session and no $loginRedirect, / is returned.
@@ -717,7 +661,7 @@ class AuthComponent extends Component {
  * @return string Redirect URL
  */
 	public function redirectUrl($url = null) {
-		if ($url !== null) {
+		if (!is_null($url)) {
 			$redir = $url;
 			$this->Session->write('Auth.redirect', $redir);
 		} elseif ($this->Session->check('Auth.redirect')) {
@@ -732,10 +676,7 @@ class AuthComponent extends Component {
 		} else {
 			$redir = '/';
 		}
-		if (is_array($redir)) {
-			return Router::url($redir + array('base' => false));
-		}
-		return $redir;
+		return Router::normalize($redir);
 	}
 
 /**
@@ -784,7 +725,7 @@ class AuthComponent extends Component {
 				throw new CakeException(__d('cake_dev', 'Authentication adapter "%s" was not found.', $class));
 			}
 			if (!method_exists($className, 'authenticate')) {
-				throw new CakeException(__d('cake_dev', 'Authentication objects must implement an %s method.', 'authenticate()'));
+				throw new CakeException(__d('cake_dev', 'Authentication objects must implement an authenticate method.'));
 			}
 			$settings = array_merge($global, (array)$settings);
 			$this->_authenticateObjects[] = new $className($this->_Collection, $settings);
@@ -800,10 +741,22 @@ class AuthComponent extends Component {
  *
  * @param string $password Password to hash
  * @return string Hashed password
- * @deprecated Since 2.4. Use Security::hash() directly or a password hasher object.
+ * @link http://book.cakephp.org/2.0/en/core-libraries/components/authentication.html#hashing-passwords
  */
 	public static function password($password) {
 		return Security::hash($password, null, true);
+	}
+
+/**
+ * Component shutdown. If user is logged in, wipe out redirect.
+ *
+ * @param Controller $controller Instantiating controller
+ * @return void
+ */
+	public function shutdown(Controller $controller) {
+		if ($this->loggedIn()) {
+			$this->Session->delete('Auth.redirect');
+		}
 	}
 
 /**
@@ -822,9 +775,6 @@ class AuthComponent extends Component {
  * @return void
  */
 	public function flash($message) {
-		if ($message === false) {
-			return;
-		}
 		$this->Session->setFlash($message, $this->flash['element'], $this->flash['params'], $this->flash['key']);
 	}
 

@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Utility
  * @since         CakePHP(tm) v 0.2.9
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('Folder', 'Utility');
@@ -395,7 +395,7 @@ class File {
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/file-folder.html#File::pwd
  */
 	public function pwd() {
-		if ($this->path === null) {
+		if (is_null($this->path)) {
 			$this->path = $this->Folder->slashTerm($this->Folder->pwd()) . $this->name;
 		}
 		return $this->path;
@@ -408,7 +408,11 @@ class File {
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/file-folder.html#File::exists
  */
 	public function exists() {
-		$this->clearStatCache();
+		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+			clearstatcache(true, $this->path);
+		} else {
+			clearstatcache();
+		}
 		return (file_exists($this->path) && is_file($this->path));
 	}
 
@@ -557,34 +561,12 @@ class File {
 		}
 		if (function_exists('finfo_open')) {
 			$finfo = finfo_open(FILEINFO_MIME);
-			$finfo = finfo_file($finfo, $this->pwd());
-			if (!$finfo) {
-				return false;
-			}
-			list($type, $charset) = explode(';', $finfo);
+			list($type, $charset) = explode(';', finfo_file($finfo, $this->pwd()));
 			return $type;
-		}
-		if (function_exists('mime_content_type')) {
+		} elseif (function_exists('mime_content_type')) {
 			return mime_content_type($this->pwd());
 		}
 		return false;
-	}
-
-/**
- * Clear PHP's internal stat cache
- *
- * For 5.3 onwards its possible to clear cache for just a single file. Passing true
- * will clear all the stat cache.
- *
- * @param boolean $all Clear all cache or not
- * @return void
- */
-	public function clearStatCache($all = false) {
-		if ($all === false && version_compare(PHP_VERSION, '5.3.0') >= 0) {
-			return clearstatcache(true, $this->path);
-		}
-
-		return clearstatcache();
 	}
 
 }

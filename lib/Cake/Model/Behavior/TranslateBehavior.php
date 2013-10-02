@@ -11,7 +11,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Model.Behavior
  * @since         CakePHP(tm) v 1.2.0.4525
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('ModelBehavior', 'Model');
@@ -417,7 +417,7 @@ class TranslateBehavior extends ModelBehavior {
 		}
 
 		unset($this->runtime[$Model->alias]['beforeValidate'], $this->runtime[$Model->alias]['beforeSave']);
-		$conditions = array('model' => $Model->name, 'foreign_key' => $Model->id);
+		$conditions = array('model' => $Model->alias, 'foreign_key' => $Model->id);
 		$RuntimeModel = $this->translateModel($Model);
 
 		if ($created) {
@@ -502,7 +502,7 @@ class TranslateBehavior extends ModelBehavior {
  */
 	public function afterDelete(Model $Model) {
 		$RuntimeModel = $this->translateModel($Model);
-		$conditions = array('model' => $Model->name, 'foreign_key' => $Model->id);
+		$conditions = array('model' => $Model->alias, 'foreign_key' => $Model->id);
 		$RuntimeModel->deleteAll($conditions);
 	}
 
@@ -513,7 +513,7 @@ class TranslateBehavior extends ModelBehavior {
  * @return mixed string or false
  */
 	protected function _getLocale(Model $Model) {
-		if (!isset($Model->locale) || $Model->locale === null) {
+		if (!isset($Model->locale) || is_null($Model->locale)) {
 			$I18n = I18n::getInstance();
 			$I18n->l10n->get(Configure::read('Config.language'));
 			$Model->locale = $I18n->l10n->locale;
@@ -588,7 +588,7 @@ class TranslateBehavior extends ModelBehavior {
 
 			$this->_removeField($Model, $field);
 
-			if ($association === null) {
+			if (is_null($association)) {
 				if ($reset) {
 					$this->runtime[$Model->alias]['fields'][] = $field;
 				} else {
@@ -611,7 +611,7 @@ class TranslateBehavior extends ModelBehavior {
 					}
 				}
 				$associations[$association] = array_merge($default, array('conditions' => array(
-					'model' => $Model->name,
+					'model' => $Model->alias,
 					$RuntimeModel->displayField => $field
 				)));
 			}
@@ -628,7 +628,6 @@ class TranslateBehavior extends ModelBehavior {
  *
  * @param Model $Model Model instance
  * @param string $field The field to update.
- * @return void
  */
 	protected function _removeField(Model $Model, $field) {
 		if (array_key_exists($field, $this->settings[$Model->alias])) {
@@ -677,7 +676,7 @@ class TranslateBehavior extends ModelBehavior {
 
 			$this->_removeField($Model, $field);
 
-			if ($association !== null && (isset($Model->hasMany[$association]) || isset($Model->__backAssociation['hasMany'][$association]))) {
+			if (!is_null($association) && (isset($Model->hasMany[$association]) || isset($Model->__backAssociation['hasMany'][$association]))) {
 				$associations[] = $association;
 			}
 		}

@@ -1,6 +1,6 @@
 <?php
 /**
- * TestPluginController used by Dispatcher test to test plugin shortcut URLs.
+ * TestPluginController used by Dispatcher test to test plugin shortcut urls.
  *
  * PHP 5
  *
@@ -13,15 +13,9 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
- * @package       Cake.Test.TestApp.Plugin.TestPlugin.Controller
+ * @package       Cake.Test.test_app.Plugin.TestPlugin.Controller
  * @since         CakePHP(tm) v 1.3
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-
-/**
- * Class TestPluginController
- *
- * @package       Cake.Test.TestApp.Plugin.TestPlugin.Controller
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 class TestPluginController extends TestPluginAppController {
 

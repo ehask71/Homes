@@ -14,7 +14,7 @@
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 1.2.0.5012
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AppShell', 'Console/Command');
@@ -82,12 +82,12 @@ class AclShell extends AppShell {
 			$out .= __d('cake_console', 'Current ACL Classname: %s', $class) . "\n";
 			$out .= "--------------------------------------------------\n";
 			$this->err($out);
-			return $this->_stop();
+			$this->_stop();
 		}
 
 		if ($this->command) {
 			if (!config('database')) {
-				$this->out(__d('cake_console', 'Your database configuration was not found. Take a moment to create one.'));
+				$this->out(__d('cake_console', 'Your database configuration was not found. Take a moment to create one.'), true);
 				$this->args = null;
 				return $this->DbConfig->execute();
 			}
@@ -179,9 +179,9 @@ class AclShell extends AppShell {
 		);
 		$this->Acl->{$class}->create();
 		if (!$this->Acl->{$class}->save($data)) {
-			$this->out(__d('cake_console', 'Error in setting new parent. Please make sure the parent node exists, and is not a descendant of the node specified.'));
+			$this->out(__d('cake_console', 'Error in setting new parent. Please make sure the parent node exists, and is not a descendant of the node specified.'), true);
 		} else {
-			$this->out(__d('cake_console', 'Node parent set to %s', $this->args[2]) . "\n");
+			$this->out(__d('cake_console', 'Node parent set to %s', $this->args[2]) . "\n", true);
 		}
 	}
 
@@ -237,9 +237,9 @@ class AclShell extends AppShell {
 		extract($this->_getParams());
 
 		if ($this->Acl->check($aro, $aco, $action)) {
-			$this->out(__d('cake_console', '%s is <success>allowed</success>.', $aroName));
+			$this->out(__d('cake_console', '%s is <success>allowed</success>.', $aroName), true);
 		} else {
-			$this->out(__d('cake_console', '%s is <error>not allowed</error>.', $aroName));
+			$this->out(__d('cake_console', '%s is <error>not allowed</error>.', $aroName), true);
 		}
 	}
 
@@ -252,9 +252,9 @@ class AclShell extends AppShell {
 		extract($this->_getParams());
 
 		if ($this->Acl->allow($aro, $aco, $action)) {
-			$this->out(__d('cake_console', 'Permission <success>granted</success>.'));
+			$this->out(__d('cake_console', 'Permission <success>granted</success>.'), true);
 		} else {
-			$this->out(__d('cake_console', 'Permission was <error>not granted</error>.'));
+			$this->out(__d('cake_console', 'Permission was <error>not granted</error>.'), true);
 		}
 	}
 
@@ -267,9 +267,9 @@ class AclShell extends AppShell {
 		extract($this->_getParams());
 
 		if ($this->Acl->deny($aro, $aco, $action)) {
-			$this->out(__d('cake_console', 'Permission denied.'));
+			$this->out(__d('cake_console', 'Permission denied.'), true);
 		} else {
-			$this->out(__d('cake_console', 'Permission was not denied.'));
+			$this->out(__d('cake_console', 'Permission was not denied.'), true);
 		}
 	}
 
@@ -282,9 +282,9 @@ class AclShell extends AppShell {
 		extract($this->_getParams());
 
 		if ($this->Acl->inherit($aro, $aco, $action)) {
-			$this->out(__d('cake_console', 'Permission inherited.'));
+			$this->out(__d('cake_console', 'Permission inherited.'), true);
 		} else {
-			$this->out(__d('cake_console', 'Permission was not inherited.'));
+			$this->out(__d('cake_console', 'Permission was not inherited.'), true);
 		}
 	}
 
@@ -377,7 +377,6 @@ class AclShell extends AppShell {
 				'help' => __d('cake_console', 'Create a new ACL node'),
 				'parser' => array(
 					'description' => __d('cake_console', 'Creates a new ACL object <node> under the parent'),
-					'epilog' => __d('cake_console', 'You can use `root` as the parent when creating nodes to create top level nodes.'),
 					'arguments' => array(
 						'type' => $type,
 						'parent' => array(

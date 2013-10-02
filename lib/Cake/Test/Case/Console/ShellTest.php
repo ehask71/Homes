@@ -17,7 +17,7 @@
  * @link          http://cakephp.org CakePHP Project
  * @package       Cake.Test.Case.Console.Command
  * @since         CakePHP v 1.2.0.7726
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('ShellDispatcher', 'Console');
@@ -208,32 +208,6 @@ class ShellTest extends CakeTestCase {
 		$this->assertTrue(isset($this->Shell->Comment));
 		$this->assertInstanceOf('Comment', $this->Shell->Comment);
 		$this->assertEquals('Comment', $this->Shell->modelClass);
-
-		App::build();
-	}
-
-/**
- * testLoadModel method
- *
- * @return void
- */
-	public function testLoadModel() {
-		App::build(array(
-			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
-			'Model' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Model' . DS)
-		), App::RESET);
-
-		$Shell = new TestMergeShell();
-		$this->assertEquals('Comment', $Shell->Comment->alias);
-		$this->assertInstanceOf('Comment', $Shell->Comment);
-		$this->assertEquals('Comment', $Shell->modelClass);
-
-		CakePlugin::load('TestPlugin');
-		$this->Shell->loadModel('TestPlugin.TestPluginPost');
-		$this->assertTrue(isset($this->Shell->TestPluginPost));
-		$this->assertInstanceOf('TestPluginPost', $this->Shell->TestPluginPost);
-		$this->assertEquals('TestPluginPost', $this->Shell->modelClass);
-		CakePlugin::unload('TestPlugin');
 
 		App::build();
 	}
@@ -855,7 +829,7 @@ TEXT;
 			array('types' => 'error'),
 		));
 		TestCakeLog::config('console', array(
-			'engine' => 'Console',
+			'engine' => 'ConsoleLog',
 			'stream' => 'php://stderr',
 			));
 		TestCakeLog::replace('console', $mock);

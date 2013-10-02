@@ -15,9 +15,8 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Network.Email
  * @since         CakePHP(tm) v 2.0.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('CakeEmail', 'Network/Email');
 App::uses('AbstractTransport', 'Network/Email');
 App::uses('DebugTransport', 'Network/Email');
@@ -34,7 +33,6 @@ class DebugTransportTest extends CakeTestCase {
  * @return void
  */
 	public function setUp() {
-		parent::setUp();
 		$this->DebugTransport = new DebugTransport();
 	}
 

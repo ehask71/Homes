@@ -17,9 +17,8 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Core
  * @since         CakePHP(tm) v 1.2.0.5432
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('PhpReader', 'Configure');
 
 /**
@@ -67,23 +66,6 @@ class ConfigureTest extends CakeTestCase {
 			unlink(TMP . 'cache' . DS . 'persistent' . DS . 'test.php');
 		}
 		Configure::drop('test');
-	}
-
-/**
- * Test to ensure bootrapping doesn't overwrite prior configs set under 'App' key
- * @return void
- */
-	public function testBootstrap() {
-		$expected = array(
-			'foo' => 'bar'
-		);
-		Configure::write('App', $expected);
-
-		Configure::bootstrap(true);
-		$result = Configure::read('App');
-
-		$this->assertEquals($expected['foo'], $result['foo']);
-		$this->assertFalse($result['base']);
 	}
 
 /**
@@ -464,7 +446,7 @@ class ConfigureTest extends CakeTestCase {
 /**
  * Test dumping only some of the data.
  *
- * @return void
+ * @return
  */
 	public function testDumpPartial() {
 		Configure::config('test_reader', new PhpReader(TMP));

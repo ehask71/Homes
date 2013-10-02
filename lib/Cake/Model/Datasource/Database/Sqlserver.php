@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Model.Datasource.Database
  * @since         CakePHP(tm) v 0.10.5.1790
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('DboSource', 'Model/Datasource');
@@ -117,17 +117,14 @@ class Sqlserver extends DboSource {
 	public function connect() {
 		$config = $this->config;
 		$this->connected = false;
-
-		$flags = array(
-			PDO::ATTR_PERSISTENT => $config['persistent'],
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-		);
-
-		if (!empty($config['encoding'])) {
-			$flags[PDO::SQLSRV_ATTR_ENCODING] = $config['encoding'];
-		}
-
 		try {
+			$flags = array(
+				PDO::ATTR_PERSISTENT => $config['persistent'],
+				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+			);
+			if (!empty($config['encoding'])) {
+				$flags[PDO::SQLSRV_ATTR_ENCODING] = $config['encoding'];
+			}
 			$this->_connection = new PDO(
 				"sqlsrv:server={$config['host']};Database={$config['database']}",
 				$config['login'],
@@ -135,11 +132,6 @@ class Sqlserver extends DboSource {
 				$flags
 			);
 			$this->connected = true;
-			if (!empty($config['settings'])) {
-				foreach ($config['settings'] as $key => $value) {
-					$this->_execute("SET $key $value");
-				}
-			}
 		} catch (PDOException $e) {
 			throw new MissingConnectionException(array(
 				'class' => get_class($this),
@@ -175,16 +167,17 @@ class Sqlserver extends DboSource {
 		if (!$result) {
 			$result->closeCursor();
 			return array();
-		}
-		$tables = array();
+		} else {
+			$tables = array();
 
-		while ($line = $result->fetch(PDO::FETCH_NUM)) {
-			$tables[] = $line[0];
-		}
+			while ($line = $result->fetch(PDO::FETCH_NUM)) {
+				$tables[] = $line[0];
+			}
 
-		$result->closeCursor();
-		parent::listSources($tables);
-		return $tables;
+			$result->closeCursor();
+			parent::listSources($tables);
+			return $tables;
+		}
 	}
 
 /**
@@ -320,8 +313,9 @@ class Sqlserver extends DboSource {
 				$result[] = $prepend . $fields[$i];
 			}
 			return $result;
+		} else {
+			return $fields;
 		}
-		return $fields;
 	}
 
 /**
@@ -390,9 +384,9 @@ class Sqlserver extends DboSource {
 			if (!strpos(strtolower($limit), 'top') || strpos(strtolower($limit), 'top') === 0) {
 				$rt = ' TOP';
 			}
-			$rt .= sprintf(' %u', $limit);
+			$rt .= ' ' . $limit;
 			if (is_int($offset) && $offset > 0) {
-				$rt = sprintf(' OFFSET %u ROWS FETCH FIRST %u ROWS ONLY', $offset, $limit);
+				$rt = ' OFFSET ' . intval($offset) . ' ROWS FETCH FIRST ' . intval($limit) . ' ROWS ONLY';
 			}
 			return $rt;
 		}
@@ -540,8 +534,10 @@ class Sqlserver extends DboSource {
 					";
 				} elseif (strpos($limit, 'FETCH') !== false) {
 					return "SELECT {$fields} FROM {$table} {$alias} {$joins} {$conditions} {$group} {$order} {$limit}";
+				} else {
+					return "SELECT {$limit} {$fields} FROM {$table} {$alias} {$joins} {$conditions} {$group} {$order}";
 				}
-				return "SELECT {$limit} {$fields} FROM {$table} {$alias} {$joins} {$conditions} {$group} {$order}";
+			break;
 			case "schema":
 				extract($data);
 
@@ -620,7 +616,7 @@ class Sqlserver extends DboSource {
 					continue;
 				}
 				$resultRow[$table][$column] = $row[$col];
-				if ($type === 'boolean' && $row[$col] !== null) {
+				if ($type === 'boolean' && !is_null($row[$col])) {
 					$resultRow[$table][$column] = $this->boolean($resultRow[$table][$column]);
 				}
 			}

@@ -16,7 +16,7 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html
  * @package       Cake.Error
  * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
@@ -36,12 +36,13 @@ class CakeBaseException extends RuntimeException {
 /**
  * Get/set the response header to be used
  *
+ * See also CakeResponse::header()
+ *
  * @param string|array $header. An array of header strings or a single header string
  *	- an associative array of "header name" => "header value"
  *	- an array of string headers is also accepted
- * @param string $value The header value.
+ * @param string $value. The header value.
  * @return array
- * @see CakeResponse::header()
  */
 	public function responseHeader($header = null, $value = null) {
 		if ($header) {
@@ -62,7 +63,7 @@ class CakeBaseException extends RuntimeException {
  *
  * @package       Cake.Error
  */
-if (!class_exists('HttpException', false)) {
+if (!class_exists('HttpException')) {
 	class HttpException extends CakeBaseException {
 	}
 }
@@ -78,7 +79,7 @@ class BadRequestException extends HttpException {
  * Constructor
  *
  * @param string $message If no message is given 'Bad Request' will be the message
- * @param integer $code Status code, defaults to 400
+ * @param string $code Status code, defaults to 400
  */
 	public function __construct($message = null, $code = 400) {
 		if (empty($message)) {
@@ -100,7 +101,7 @@ class UnauthorizedException extends HttpException {
  * Constructor
  *
  * @param string $message If no message is given 'Unauthorized' will be the message
- * @param integer $code Status code, defaults to 401
+ * @param string $code Status code, defaults to 401
  */
 	public function __construct($message = null, $code = 401) {
 		if (empty($message)) {
@@ -122,7 +123,7 @@ class ForbiddenException extends HttpException {
  * Constructor
  *
  * @param string $message If no message is given 'Forbidden' will be the message
- * @param integer $code Status code, defaults to 403
+ * @param string $code Status code, defaults to 403
  */
 	public function __construct($message = null, $code = 403) {
 		if (empty($message)) {
@@ -144,7 +145,7 @@ class NotFoundException extends HttpException {
  * Constructor
  *
  * @param string $message If no message is given 'Not Found' will be the message
- * @param integer $code Status code, defaults to 404
+ * @param string $code Status code, defaults to 404
  */
 	public function __construct($message = null, $code = 404) {
 		if (empty($message)) {
@@ -166,7 +167,7 @@ class MethodNotAllowedException extends HttpException {
  * Constructor
  *
  * @param string $message If no message is given 'Method Not Allowed' will be the message
- * @param integer $code Status code, defaults to 405
+ * @param string $code Status code, defaults to 405
  */
 	public function __construct($message = null, $code = 405) {
 		if (empty($message)) {
@@ -188,7 +189,7 @@ class InternalErrorException extends HttpException {
  * Constructor
  *
  * @param string $message If no message is given 'Internal Server Error' will be the message
- * @param integer $code Status code, defaults to 500
+ * @param string $code Status code, defaults to 500
  */
 	public function __construct($message = null, $code = 500) {
 		if (empty($message)) {
@@ -230,7 +231,7 @@ class CakeException extends CakeBaseException {
  *
  * @param string|array $message Either the string of the error message, or an array of attributes
  *   that are made available in the view, and sprintf()'d into CakeException::$_messageTemplate
- * @param integer $code The code of the error, is also the HTTP status code for the error.
+ * @param string $code The code of the error, is also the HTTP status code for the error.
  */
 	public function __construct($message, $code = 500) {
 		if (is_array($message)) {

@@ -15,7 +15,7 @@
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Cache.Engine
  * @since         CakePHP(tm) v 2.2
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('Cache', 'Cache');
@@ -26,7 +26,7 @@ App::uses('RedisEngine', 'Cache/Engine');
  *
  * @package       Cake.Test.Case.Cache.Engine
  */
-class RedisEngineTest extends CakeTestCase {
+class RegisEngineTest extends CakeTestCase {
 
 /**
  * setUp method
@@ -34,7 +34,6 @@ class RedisEngineTest extends CakeTestCase {
  * @return void
  */
 	public function setUp() {
-		parent::setUp();
 		$this->skipIf(!class_exists('Redis'), 'Redis is not installed or configured properly.');
 
 		$this->_cacheDisable = Configure::read('Cache.disable');
@@ -52,7 +51,6 @@ class RedisEngineTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		parent::tearDown();
 		Configure::write('Cache.disable', $this->_cacheDisable);
 		Cache::drop('');
 		Cache::drop('redis_groups');

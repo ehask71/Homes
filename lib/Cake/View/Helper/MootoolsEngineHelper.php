@@ -11,7 +11,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.View.Helper
  * @since         CakePHP(tm) v 1.3
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('JsBaseEngineHelper', 'View/Helper');
@@ -205,10 +205,10 @@ class MootoolsEngineHelper extends JsBaseEngineHelper {
 		switch ($name) {
 			case 'hide':
 				$effect = 'setStyle("display", "none")';
-				break;
+			break;
 			case 'show':
 				$effect = 'setStyle("display", "")';
-				break;
+			break;
 			case 'fadeIn':
 			case 'fadeOut':
 			case 'slideIn':
@@ -219,7 +219,7 @@ class MootoolsEngineHelper extends JsBaseEngineHelper {
 					$effect .= "set(\"$effectName\", {duration:$speed}).";
 				}
 				$effect .= "$effectName(\"$direction\")";
-				break;
+			break;
 		}
 		return $this->selection . '.' . $effect . ';';
 	}
@@ -308,7 +308,7 @@ class MootoolsEngineHelper extends JsBaseEngineHelper {
 	public function drop($options = array()) {
 		if (empty($options['drag'])) {
 			trigger_error(
-				__d('cake_dev', '%s requires a "drag" option to properly function'), 'MootoolsEngine::drop()', E_USER_WARNING
+				__d('cake_dev', 'MootoolsEngine::drop() requires a "drag" option to properly function'), E_USER_WARNING
 			);
 			return false;
 		}

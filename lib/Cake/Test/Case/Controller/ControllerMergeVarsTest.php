@@ -17,14 +17,14 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Controller
  * @since         CakePHP(tm) v 1.2.3
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('Controller', 'Controller');
 
 /**
  * Test case AppController
  *
+ * @package       Cake.Test.Case.Controller
  * @package       Cake.Test.Case.Controller
  */
 class MergeVarsAppController extends Controller {
@@ -59,6 +59,13 @@ class MergeVarComponent extends Object {
  * @package       Cake.Test.Case.Controller
  */
 class MergeVariablesController extends MergeVarsAppController {
+
+/**
+ * name
+ *
+ * @var string
+ */
+	public $name = 'MergeVariables';
 
 /**
  * uses
@@ -112,12 +119,20 @@ class MergeVarPluginAppController extends MergeVarsAppController {
 class MergePostsController extends MergeVarPluginAppController {
 
 /**
+ * name
+ *
+ * @var string
+ */
+	public $name = 'MergePosts';
+
+/**
  * uses
  *
  * @var array
  */
 	public $uses = array();
 }
+
 
 /**
  * Test Case for Controller Merging of Vars.
@@ -235,19 +250,4 @@ class ControllerMergeVarsTest extends CakeTestCase {
 
 		$this->assertFalse(isset($Controller->Session));
 	}
-
-/**
- * Ensure that $modelClass is correct even when Controller::$uses
- * has been iterated, eg: by a Component, or event handlers.
- *
- * @return void
- */
-	public function testMergeVarsModelClass() {
-		$Controller = new MergeVariablescontroller();
-		$Controller->uses = array('Test', 'TestAlias');
-		$lastModel = end($Controller->uses);
-		$Controller->constructClasses();
-		$this->assertEquals($Controller->uses[0], $Controller->modelClass);
-	}
-
 }

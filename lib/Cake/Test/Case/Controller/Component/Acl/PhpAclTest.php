@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Test.Case.Controller.Component.Acl
  * @since         CakePHP(tm) v 2.1
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AclComponent', 'Controller/Component');
@@ -29,9 +29,6 @@ class_exists('AclComponent');
  */
 class PhpAclTest extends CakeTestCase {
 
-/**
- * Setup
- */
 	public function setUp() {
 		parent::setUp();
 		Configure::write('Acl.classname', 'PhpAcl');
@@ -44,9 +41,6 @@ class PhpAclTest extends CakeTestCase {
 		));
 	}
 
-/**
- * Test role inheritance
- */
 	public function testRoleInheritance() {
 		$roles = $this->Acl->Aro->roles('User/peter');
 		$this->assertEquals(array('Role/accounting'), $roles[0]);
@@ -59,18 +53,12 @@ class PhpAclTest extends CakeTestCase {
 		$this->assertEquals(array('User/hardy'), $roles[3]);
 	}
 
-/**
- * Tst adding a role
- */
 	public function testAddRole() {
 		$this->assertEquals(array(array(PhpAro::DEFAULT_ROLE)), $this->Acl->Aro->roles('foobar'));
 		$this->Acl->Aro->addRole(array('User/foobar' => 'Role/accounting'));
 		$this->assertEquals(array(array('Role/accounting'), array('User/foobar')), $this->Acl->Aro->roles('foobar'));
 	}
 
-/**
- * Test resolving ARO
- */
 	public function testAroResolve() {
 		$this->Acl->Aro->map = array(
 			'User' => 'FooModel/nickname',

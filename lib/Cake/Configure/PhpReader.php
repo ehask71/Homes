@@ -14,7 +14,7 @@
  * @link          http://book.cakephp.org/2.0/en/development/configuration.html#loading-configuration-files CakePHP(tm) Configuration
  * @package       Cake.Configure
  * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
@@ -71,7 +71,7 @@ class PhpReader implements ConfigReaderInterface {
 
 		include $file;
 		if (!isset($config)) {
-			throw new ConfigureException(__d('cake_dev', 'No variable %s found in %s', '$config', $file));
+			throw new ConfigureException(__d('cake_dev', 'No variable $config found in %s', $file));
 		}
 		return $config;
 	}

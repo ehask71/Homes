@@ -17,7 +17,7 @@
  * @link          http://cakephp.org CakePHP Project
  * @package       Cake.Test.Case.Model.Behavior
  * @since         CakePHP v 1.2.0.4487
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AclBehavior', 'Model/Behavior');
@@ -26,12 +26,20 @@ App::uses('Aro', 'Model');
 App::uses('AclNode', 'Model');
 App::uses('DbAcl', 'Model');
 
+
 /**
  * Test Person class - self joined model
  *
  * @package       Cake.Test.Case.Model.Behavior
  */
 class AclPerson extends CakeTestModel {
+
+/**
+ * name property
+ *
+ * @var string
+ */
+	public $name = 'AclPerson';
 
 /**
  * useTable property
@@ -87,8 +95,9 @@ class AclPerson extends CakeTestModel {
 		}
 		if (!$motherId) {
 			return null;
+		} else {
+			return array('AclPerson' => array('id' => $motherId));
 		}
-		return array('AclPerson' => array('id' => $motherId));
 	}
 
 }
@@ -226,7 +235,6 @@ class AclBehaviorTest extends CakeTestCase {
  * @return void
  */
 	public function testSetup() {
-		parent::setUp();
 		$User = new AclUser();
 		$this->assertTrue(isset($User->Behaviors->Acl->settings['User']));
 		$this->assertEquals('requester', $User->Behaviors->Acl->settings['User']['type']);

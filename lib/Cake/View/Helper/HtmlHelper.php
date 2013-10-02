@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.View.Helper
  * @since         CakePHP(tm) v 0.9.1
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AppHelper', 'View/Helper');
@@ -98,8 +98,8 @@ class HtmlHelper extends AppHelper {
 		'ol' => '<ol%s>%s</ol>',
 		'li' => '<li%s>%s</li>',
 		'error' => '<div%s>%s</div>',
-		'javascriptblock' => '<script%s>%s</script>',
-		'javascriptstart' => '<script>',
+		'javascriptblock' => '<script type="text/javascript"%s>%s</script>',
+		'javascriptstart' => '<script type="text/javascript">',
 		'javascriptlink' => '<script type="text/javascript" src="%s"%s></script>',
 		'javascriptend' => '</script>'
 	);
@@ -289,8 +289,9 @@ class HtmlHelper extends AppHelper {
 
 		if (empty($options['block'])) {
 			return $out;
+		} else {
+			$this->_View->append($options['block'], $out);
 		}
-		$this->_View->append($options['block'], $out);
 	}
 
 /**
@@ -320,12 +321,11 @@ class HtmlHelper extends AppHelper {
  * ### Options
  *
  * - `escape` Set to false to disable escaping of title and attributes.
- * - `escapeTitle` Set to false to disable escaping of title. (Takes precedence over value of `escape`)
  * - `confirm` JavaScript confirmation message.
  *
  * @param string $title The content to be wrapped by <a> tags.
  * @param string|array $url Cake-relative URL or array of URL parameters, or external URL (starts with http://)
- * @param array $options Array of options and HTML attributes.
+ * @param array $options Array of HTML attributes.
  * @param string $confirmMessage JavaScript confirmation message.
  * @return string An `<a />` element.
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/html.html#HtmlHelper::link
@@ -341,10 +341,7 @@ class HtmlHelper extends AppHelper {
 			$escapeTitle = false;
 		}
 
-		if (isset($options['escapeTitle'])) {
-			$escapeTitle = $options['escapeTitle'];
-			unset($options['escapeTitle']);
-		} elseif (isset($options['escape'])) {
+		if (isset($options['escape'])) {
 			$escapeTitle = $options['escape'];
 		}
 
@@ -359,14 +356,15 @@ class HtmlHelper extends AppHelper {
 			unset($options['confirm']);
 		}
 		if ($confirmMessage) {
-			$options['onclick'] = $this->_confirm($confirmMessage, 'return true;', 'return false;', $options);
+			$confirmMessage = str_replace("'", "\'", $confirmMessage);
+			$confirmMessage = str_replace('"', '\"', $confirmMessage);
+			$options['onclick'] = "return confirm('{$confirmMessage}');";
 		} elseif (isset($options['default']) && !$options['default']) {
 			if (isset($options['onclick'])) {
-				$options['onclick'] .= ' ';
+				$options['onclick'] .= ' event.returnValue = false; return false;';
 			} else {
-				$options['onclick'] = '';
+				$options['onclick'] = 'event.returnValue = false; return false;';
 			}
-			$options['onclick'] .= 'event.returnValue = false; return false;';
 			unset($options['default']);
 		}
 		return sprintf($this->_tags['link'], $url, $this->_parseAttributes($options), $title);
@@ -387,43 +385,31 @@ class HtmlHelper extends AppHelper {
  *
  * Add the stylesheet to the `$scripts_for_layout` layout var:
  *
- * `$this->Html->css('styles.css', array('inline' => false));`
+ * `$this->Html->css('styles.css', null, array('inline' => false));`
  *
  * Add the stylesheet to a custom block:
  *
- * `$this->Html->css('styles.css', array('block' => 'layoutCss'));`
+ * `$this->Html->css('styles.css', null, array('block' => 'layoutCss'));`
  *
  * ### Options
  *
  * - `inline` If set to false, the generated tag will be appended to the 'css' block,
  *   and included in the `$scripts_for_layout` layout variable. Defaults to true.
- * - `block` Set the name of the block link/style tag will be appended to.
- *   This overrides the `inline` option.
+ * - `block` Set the name of the block link/style tag will be appended to. This overrides the `inline`
+ *   option.
  * - `plugin` False value will prevent parsing path as a plugin
- * - `rel` Defaults to 'stylesheet'. If equal to 'import' the stylesheet will be imported.
  * - `fullBase` If true the url will get a full address for the css file.
  *
  * @param string|array $path The name of a CSS style sheet or an array containing names of
  *   CSS stylesheets. If `$path` is prefixed with '/', the path will be relative to the webroot
  *   of your application. Otherwise, the path will be relative to your CSS path, usually webroot/css.
- * @param array $options Array of options and HTML arguments.
+ * @param string $rel Rel attribute. Defaults to "stylesheet". If equal to 'import' the stylesheet will be imported.
+ * @param array $options Array of HTML attributes.
  * @return string CSS <link /> or <style /> tag, depending on the type of link.
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/html.html#HtmlHelper::css
  */
-	public function css($path, $options = array()) {
-		if (!is_array($options)) {
-			$rel = $options;
-			$options = array();
-			if ($rel) {
-				$options['rel'] = $rel;
-			}
-			if (func_num_args() > 2) {
-				$options = func_get_arg(2) + $options;
-			}
-			unset($rel);
-		}
-
-		$options += array('block' => null, 'inline' => true, 'rel' => 'stylesheet');
+	public function css($path, $rel = null, $options = array()) {
+		$options += array('block' => null, 'inline' => true);
 		if (!$options['inline'] && empty($options['block'])) {
 			$options['block'] = __FUNCTION__;
 		}
@@ -432,7 +418,7 @@ class HtmlHelper extends AppHelper {
 		if (is_array($path)) {
 			$out = '';
 			foreach ($path as $i) {
-				$out .= "\n\t" . $this->css($i, $options);
+				$out .= "\n\t" . $this->css($i, $rel, $options);
 			}
 			if (empty($options['block'])) {
 				return $out . "\n";
@@ -443,36 +429,31 @@ class HtmlHelper extends AppHelper {
 		if (strpos($path, '//') !== false) {
 			$url = $path;
 		} else {
-			$url = $this->assetUrl($path, $options + array('pathPrefix' => Configure::read('App.cssBaseUrl'), 'ext' => '.css'));
-			$options = array_diff_key($options, array('fullBase' => null, 'pathPrefix' => null));
+			$url = $this->assetUrl($path, $options + array('pathPrefix' => CSS_URL, 'ext' => '.css'));
+			$options = array_diff_key($options, array('fullBase' => null));
 
 			if (Configure::read('Asset.filter.css')) {
-				$pos = strpos($url, Configure::read('App.cssBaseUrl'));
+				$pos = strpos($url, CSS_URL);
 				if ($pos !== false) {
-					$url = substr($url, 0, $pos) . 'ccss/' . substr($url, $pos + strlen(Configure::read('App.cssBaseUrl')));
+					$url = substr($url, 0, $pos) . 'ccss/' . substr($url, $pos + strlen(CSS_URL));
 				}
 			}
 		}
 
-		if ($options['rel'] == 'import') {
-			$out = sprintf(
-				$this->_tags['style'],
-				$this->_parseAttributes($options, array('rel', 'block'), '', ' '),
-				'@import url(' . $url . ');'
-			);
+		if ($rel === 'import') {
+			$out = sprintf($this->_tags['style'], $this->_parseAttributes($options, array('inline', 'block'), '', ' '), '@import url(' . $url . ');');
 		} else {
-			$out = sprintf(
-				$this->_tags['css'],
-				$options['rel'],
-				$url,
-				$this->_parseAttributes($options, array('rel', 'block'), '', ' ')
-			);
+			if (!$rel) {
+				$rel = 'stylesheet';
+			}
+			$out = sprintf($this->_tags['css'], $rel, $url, $this->_parseAttributes($options, array('inline', 'block'), '', ' '));
 		}
 
 		if (empty($options['block'])) {
 			return $out;
+		} else {
+			$this->_View->append($options['block'], $out);
 		}
-		$this->_View->append($options['block'], $out);
 	}
 
 /**
@@ -544,11 +525,11 @@ class HtmlHelper extends AppHelper {
 		$this->_includedScripts[$url] = true;
 
 		if (strpos($url, '//') === false) {
-			$url = $this->assetUrl($url, $options + array('pathPrefix' => Configure::read('App.jsBaseUrl'), 'ext' => '.js'));
-			$options = array_diff_key($options, array('fullBase' => null, 'pathPrefix' => null));
+			$url = $this->assetUrl($url, $options + array('pathPrefix' => JS_URL, 'ext' => '.js'));
+			$options = array_diff_key($options, array('fullBase' => null));
 
 			if (Configure::read('Asset.filter.js')) {
-				$url = str_replace(Configure::read('App.jsBaseUrl'), 'cjs/', $url);
+				$url = str_replace(JS_URL, 'cjs/', $url);
 			}
 		}
 		$attributes = $this->_parseAttributes($options, array('block', 'once'), ' ');
@@ -556,8 +537,9 @@ class HtmlHelper extends AppHelper {
 
 		if (empty($options['block'])) {
 			return $out;
+		} else {
+			$this->_View->append($options['block'], $out);
 		}
-		$this->_View->append($options['block'], $out);
 	}
 
 /**
@@ -578,7 +560,7 @@ class HtmlHelper extends AppHelper {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/html.html#HtmlHelper::scriptBlock
  */
 	public function scriptBlock($script, $options = array()) {
-		$options += array('type' => 'text/javascript', 'safe' => true, 'inline' => true);
+		$options += array('safe' => true, 'inline' => true);
 		if ($options['safe']) {
 			$script = "\n" . '//<![CDATA[' . "\n" . $script . "\n" . '//]]>' . "\n";
 		}
@@ -592,8 +574,9 @@ class HtmlHelper extends AppHelper {
 
 		if (empty($options['block'])) {
 			return $out;
+		} else {
+			$this->_View->append($options['block'], $out);
 		}
-		$this->_View->append($options['block'], $out);
 	}
 
 /**
@@ -691,8 +674,9 @@ class HtmlHelper extends AppHelper {
 				}
 			}
 			return implode($separator, $out);
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 /**
@@ -800,7 +784,7 @@ class HtmlHelper extends AppHelper {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/html.html#HtmlHelper::image
  */
 	public function image($path, $options = array()) {
-		$path = $this->assetUrl($path, $options + array('pathPrefix' => Configure::read('App.imageBaseUrl')));
+		$path = $this->assetUrl($path, $options + array('pathPrefix' => IMAGES_URL));
 		$options = array_diff_key($options, array('fullBase' => null, 'pathPrefix' => null));
 
 		if (!isset($options['alt'])) {
@@ -912,12 +896,12 @@ class HtmlHelper extends AppHelper {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/html.html#HtmlHelper::tag
  */
 	public function tag($name, $text = null, $options = array()) {
-		if (empty($name)) {
-			return $text;
-		}
-		if (isset($options['escape']) && $options['escape']) {
+		if (is_array($options) && isset($options['escape']) && $options['escape']) {
 			$text = h($text);
 			unset($options['escape']);
+		}
+		if (!is_array($options)) {
+			$options = array('class' => $options);
 		}
 		if ($text === null) {
 			$tag = 'tagstart';
@@ -1040,7 +1024,7 @@ class HtmlHelper extends AppHelper {
  * - `tag` Type of media element to generate, either "audio" or "video".
  * 	If tag is not provided it's guessed based on file's mime type.
  * - `text` Text to include inside the audio/video tag
- * - `pathPrefix` Path prefix to use for relative URLs, defaults to 'files/'
+ * - `pathPrefix` Path prefix to use for relative urls, defaults to 'files/'
  * - `fullBase` If provided the src attribute will get a full address including domain name
  *
  * @param string|array $path Path to the video file, relative to the webroot/{$options['pathPrefix']} directory.
@@ -1100,7 +1084,7 @@ class HtmlHelper extends AppHelper {
 		}
 
 		if (isset($options['poster'])) {
-			$options['poster'] = $this->assetUrl($options['poster'], array('pathPrefix' => Configure::read('App.imageBaseUrl')) + $options);
+			$options['poster'] = $this->assetUrl($options['poster'], array('pathPrefix' => IMAGES_URL) + $options);
 		}
 		$text = $options['text'];
 

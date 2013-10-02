@@ -15,16 +15,23 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Test.Fixture
  * @since         CakePHP(tm) v 1.2.0.6879 //Correct version number as needed**
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
- * Class NodeFixture
+ * Short description for file.
  *
  * @package       Cake.Test.Fixture
  * @since         CakePHP(tm) v 1.2.0.6879 //Correct version number as needed**
  */
 class NodeFixture extends CakeTestFixture {
+
+/**
+ * name property
+ *
+ * @var string 'Node'
+ */
+	public $name = 'Node';
 
 /**
  * fields property

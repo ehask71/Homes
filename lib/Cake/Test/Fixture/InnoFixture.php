@@ -15,15 +15,22 @@
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Fixture
  * @since         CakePHP(tm) v 2.2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
- * Class InnoFixture
+ * Short description for class.
  *
  * @package       Cake.Test.Fixture
  */
 class InnoFixture extends CakeTestFixture {
+
+/**
+ * name property
+ *
+ * @var string 'Article'
+ */
+	public $name = 'Inno';
 
 /**
  * fields property

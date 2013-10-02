@@ -15,9 +15,8 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Utility
  * @since         CakePHP(tm) v 1.2.0.4206
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('File', 'Utility');
 App::uses('Folder', 'Utility');
 
@@ -217,19 +216,19 @@ class FileTest extends CakeTestCase {
 		$this->assertTrue(is_resource($this->File->handle));
 
 		$result = $this->File->offset();
-		$expected = 0;
-		$this->assertSame($expected, $result);
+		$expecting = 0;
+		$this->assertSame($result, $expecting);
 
 		$data = file_get_contents(__FILE__);
 		$success = $this->File->offset(5);
-		$expected = substr($data, 5, 3);
+		$expecting = substr($data, 5, 3);
 		$result = $this->File->read(3);
 		$this->assertTrue($success);
-		$this->assertEquals($expected, $result);
+		$this->assertEquals($expecting, $result);
 
 		$result = $this->File->offset();
-		$expected = 5 + 3;
-		$this->assertSame($expected, $result);
+		$expecting = 5 + 3;
+		$this->assertSame($result, $expecting);
 	}
 
 /**
@@ -543,7 +542,7 @@ class FileTest extends CakeTestCase {
 /**
  * getTmpFile method
  *
- * @param boolean $paintSkip
+ * @param bool $paintSkip
  * @return void
  */
 	protected function _getTmpFile($paintSkip = true) {

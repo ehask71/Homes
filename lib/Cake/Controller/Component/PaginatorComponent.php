@@ -15,9 +15,8 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Controller.Component
  * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('Component', 'Controller');
 App::uses('Hash', 'Utility');
 
@@ -121,8 +120,7 @@ class PaginatorComponent extends Component {
  * @param Model|string $object Model to paginate (e.g: model instance, or 'Model', or 'Model.InnerModel')
  * @param string|array $scope Additional find conditions to use while paginating
  * @param array $whitelist List of allowed fields for ordering. This allows you to prevent ordering
- *   on non-indexed, or undesirable columns. See PaginatorComponent::validateSort() for additional details
- *   on how the whitelisting and sort field validation works.
+ *   on non-indexed, or undesirable columns.
  * @return array Model query results
  * @throws MissingModelException
  * @throws NotFoundException
@@ -214,9 +212,6 @@ class PaginatorComponent extends Component {
 		$pageCount = intval(ceil($count / $limit));
 		$requestedPage = $page;
 		$page = max(min($page, $pageCount), 1);
-		if ($requestedPage > $page) {
-			throw new NotFoundException();
-		}
 
 		$paging = array(
 			'page' => $page,
@@ -238,6 +233,10 @@ class PaginatorComponent extends Component {
 			(array)$this->Controller->request['paging'],
 			array($object->alias => $paging)
 		);
+
+		if ($requestedPage > $page) {
+			throw new NotFoundException();
+		}
 
 		if (
 			!in_array('Paginator', $this->Controller->helpers) &&
@@ -352,9 +351,6 @@ class PaginatorComponent extends Component {
  * You can use the whitelist parameter to control which columns/fields are available for sorting.
  * This helps prevent users from ordering large result sets on un-indexed values.
  *
- * Any columns listed in the sort whitelist will be implicitly trusted. You can use this to sort
- * on synthetic columns, or columns added in custom find operations that may not exist in the schema.
- *
  * @param Model $object The model being paginated.
  * @param array $options The pagination options being used for this request.
  * @param array $whitelist The list of columns that can be used for sorting. If empty all keys are allowed.
@@ -374,11 +370,9 @@ class PaginatorComponent extends Component {
 
 		if (!empty($whitelist) && isset($options['order']) && is_array($options['order'])) {
 			$field = key($options['order']);
-			$inWhitelist = in_array($field, $whitelist, true);
-			if (!$inWhitelist) {
+			if (!in_array($field, $whitelist)) {
 				$options['order'] = null;
 			}
-			return $options;
 		}
 
 		if (!empty($options['order']) && is_array($options['order'])) {
@@ -389,11 +383,10 @@ class PaginatorComponent extends Component {
 				if (strpos($key, '.') !== false) {
 					list($alias, $field) = explode('.', $key);
 				}
-				$correctAlias = ($object->alias == $alias);
 
-				if ($correctAlias && $object->hasField($field)) {
-					$order[$object->alias . '.' . $field] = $value;
-				} elseif ($correctAlias && $object->hasField($key, true)) {
+				if ($object->hasField($field)) {
+					$order[$alias . '.' . $field] = $value;
+				} elseif ($object->hasField($key, true)) {
 					$order[$field] = $value;
 				} elseif (isset($object->{$alias}) && $object->{$alias}->hasField($field, true)) {
 					$order[$alias . '.' . $field] = $value;
@@ -401,9 +394,7 @@ class PaginatorComponent extends Component {
 			}
 			$options['order'] = $order;
 		}
-		if (empty($options['order']) && !empty($object->order)) {
-			$options['order'] = $object->order;
-		}
+
 		return $options;
 	}
 

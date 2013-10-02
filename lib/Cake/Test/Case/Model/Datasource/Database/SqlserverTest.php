@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Test.Case.Model.Datasource.Database
  * @since         CakePHP(tm) v 1.2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('Model', 'Model');
@@ -116,6 +116,13 @@ class SqlserverTestDb extends Sqlserver {
 class SqlserverTestModel extends CakeTestModel {
 
 /**
+ * name property
+ *
+ * @var string 'SqlserverTestModel'
+ */
+	public $name = 'SqlserverTestModel';
+
+/**
  * useTable property
  *
  * @var bool false
@@ -180,6 +187,13 @@ class SqlserverTestModel extends CakeTestModel {
  * @package       Cake.Test.Case.Model.Datasource.Database
  */
 class SqlserverClientTestModel extends CakeTestModel {
+
+/**
+ * name property
+ *
+ * @var string 'SqlserverAssociatedTestModel'
+ */
+	public $name = 'SqlserverClientTestModel';
 
 /**
  * useTable property
@@ -266,7 +280,6 @@ class SqlserverTest extends CakeTestCase {
  *
  */
 	public function setUp() {
-		parent::setUp();
 		$this->Dbo = ConnectionManager::getDataSource('test');
 		if (!($this->Dbo instanceof Sqlserver)) {
 			$this->markTestSkipped('Please configure the test datasource to use SQL Server.');
@@ -281,7 +294,6 @@ class SqlserverTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		parent::tearDown();
 		unset($this->Dbo);
 		unset($this->model);
 	}

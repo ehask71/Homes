@@ -16,7 +16,7 @@
  * @link          http://www.cakephp.org
  * @package       Cake.Test.Fixture
  * @since         1.2
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
@@ -25,6 +25,13 @@
  * @package       Cake.Test.Fixture
  */
 class AdFixture extends CakeTestFixture {
+
+/**
+ * name property
+ *
+ * @var string 'Ad'
+ */
+	public $name = 'Ad';
 
 /**
  * fields property

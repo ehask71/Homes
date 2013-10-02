@@ -4,7 +4,7 @@
  *
  * DBO-backed object data model, for mapping database tables to Cake objects.
  *
- * PHP 5
+ * PHP versions 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -17,7 +17,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Model
  * @since         CakePHP(tm) v 0.10.0.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('ClassRegistry', 'Utility');
@@ -95,6 +95,7 @@ class Model extends Object implements CakeEventListener {
  * Holds physical schema/database name for this model. Automatically set during Model creation.
  *
  * @var string
+ * @access public
  */
 	public $schemaName = null;
 
@@ -464,8 +465,8 @@ class Model extends Object implements CakeEventListener {
  * - `limit`: The maximum number of associated rows you want returned.
  * - `offset`: The number of associated rows to skip over (given the current
  *   conditions and order) before fetching and associating.
- * - `finderQuery`, A complete SQL query CakePHP
- *   can use to fetch associated model records. This should
+ * - `finderQuery`, `deleteQuery`, `insertQuery`: A complete SQL query CakePHP
+ *   can use to fetch, delete, or create new associated model records. This should
  *   be used in situations that require very custom results.
  *
  * @var array
@@ -555,7 +556,7 @@ class Model extends Object implements CakeEventListener {
 		'belongsTo' => array('className', 'foreignKey', 'conditions', 'fields', 'order', 'counterCache'),
 		'hasOne' => array('className', 'foreignKey', 'conditions', 'fields', 'order', 'dependent'),
 		'hasMany' => array('className', 'foreignKey', 'conditions', 'fields', 'order', 'limit', 'offset', 'dependent', 'exclusive', 'finderQuery', 'counterQuery'),
-		'hasAndBelongsToMany' => array('className', 'joinTable', 'with', 'foreignKey', 'associationForeignKey', 'conditions', 'fields', 'order', 'limit', 'offset', 'unique', 'finderQuery')
+		'hasAndBelongsToMany' => array('className', 'joinTable', 'with', 'foreignKey', 'associationForeignKey', 'conditions', 'fields', 'order', 'limit', 'offset', 'unique', 'finderQuery', 'deleteQuery', 'insertQuery')
 	);
 
 /**
@@ -947,7 +948,7 @@ class Model extends Object implements CakeEventListener {
  * unbound models that are not made permanent will reset with the next call to Model::find()
  *
  * @param array $params Set of bindings to unbind (indexed by binding type)
- * @param boolean $reset Set to false to make the unbinding permanent
+ * @param boolean $reset  Set to false to make the unbinding permanent
  * @return boolean Success
  * @link http://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#creating-and-destroying-associations-on-the-fly
  */
@@ -1057,34 +1058,34 @@ class Model extends Object implements CakeEventListener {
 				switch ($key) {
 					case 'fields':
 						$data = '';
-						break;
+					break;
 
 					case 'foreignKey':
 						$data = (($type === 'belongsTo') ? Inflector::underscore($assocKey) : Inflector::singularize($this->table)) . '_id';
-						break;
+					break;
 
 					case 'associationForeignKey':
 						$data = Inflector::singularize($this->{$class}->table) . '_id';
-						break;
+					break;
 
 					case 'with':
 						$data = Inflector::camelize(Inflector::singularize($this->{$type}[$assocKey]['joinTable']));
 						$dynamicWith = true;
-						break;
+					break;
 
 					case 'joinTable':
 						$tables = array($this->table, $this->{$class}->table);
-						sort($tables);
+						sort ($tables);
 						$data = $tables[0] . '_' . $tables[1];
-						break;
+					break;
 
 					case 'className':
 						$data = $class;
-						break;
+					break;
 
 					case 'unique':
 						$data = true;
-						break;
+					break;
 				}
 				$this->{$type}[$assocKey][$key] = $data;
 			}
@@ -1254,11 +1255,11 @@ class Model extends Object implements CakeEventListener {
 			isset($data['meridian']) &&
 			!empty($data['hour']) &&
 			$data['hour'] != 12 &&
-			$data['meridian'] === 'pm'
+			'pm' == $data['meridian']
 		) {
 			$data['hour'] = $data['hour'] + 12;
 		}
-		if (isset($data['hour']) && isset($data['meridian']) && $data['hour'] == 12 && $data['meridian'] === 'am') {
+		if (isset($data['hour']) && isset($data['meridian']) && $data['hour'] == 12 && 'am' == $data['meridian']) {
 			$data['hour'] = '00';
 		}
 		if ($type === 'time') {
@@ -1498,17 +1499,6 @@ class Model extends Object implements CakeEventListener {
 	}
 
 /**
- * This function is a convenient wrapper class to create(false) and, as the name suggests, clears the id, data, and validation errors.
- *
- * @return always boolean TRUE upon success
- * @see Model::create()
- */
-	public function clear() {
-		$this->create(false);
-		return true;
-	}
-
-/**
  * Returns a list of fields from the database, and sets the current model
  * data (Model::$data) with the record found.
  *
@@ -1586,8 +1576,7 @@ class Model extends Object implements CakeEventListener {
  * @param mixed $value Value of the field
  * @param boolean|array $validate Either a boolean, or an array.
  *   If a boolean, indicates whether or not to validate before saving.
- *   If an array, allows control of 'validate', 'callbacks' and 'counterCache' options.
- *   See Model::save() for details of each options.
+ *   If an array, allows control of 'validate' and 'callbacks' options.
  * @return boolean See Model::save()
  * @see Model::save()
  * @link http://book.cakephp.org/2.0/en/models/saving-your-data.html#model-savefield-string-fieldname-string-fieldvalue-validate-false
@@ -1616,17 +1605,13 @@ class Model extends Object implements CakeEventListener {
  *   - fieldList: An array of fields you want to allow for saving.
  *   - callbacks: Set to false to disable callbacks. Using 'before' or 'after'
  *      will enable only those callbacks.
- *   - `counterCache`: Boolean to control updating of counter caches (if any)
  *
  * @param array $fieldList List of fields to allow to be saved
  * @return mixed On success Model::$data if its not empty or true, false on failure
  * @link http://book.cakephp.org/2.0/en/models/saving-your-data.html
  */
 	public function save($data = null, $validate = true, $fieldList = array()) {
-		$defaults = array(
-			'validate' => true, 'fieldList' => array(),
-			'callbacks' => true, 'counterCache' => true
-		);
+		$defaults = array('validate' => true, 'fieldList' => array(), 'callbacks' => true);
 		$_whitelist = $this->whitelist;
 		$fields = array();
 
@@ -1637,10 +1622,9 @@ class Model extends Object implements CakeEventListener {
 		}
 
 		if (!empty($options['fieldList'])) {
+			$this->whitelist = $options['fieldList'];
 			if (!empty($options['fieldList'][$this->alias]) && is_array($options['fieldList'][$this->alias])) {
 				$this->whitelist = $options['fieldList'][$this->alias];
-			} elseif (Hash::dimensions($options['fieldList']) < 2) {
-				$this->whitelist = $options['fieldList'];
 			}
 		} elseif ($options['fieldList'] === null) {
 			$this->whitelist = array();
@@ -1678,14 +1662,13 @@ class Model extends Object implements CakeEventListener {
 		}
 
 		$db = $this->getDataSource();
-		$now = time();
 
 		foreach ($dateFields as $updateCol) {
 			if ($this->hasField($updateCol) && !in_array($updateCol, $fields)) {
 				$default = array('formatter' => 'date');
 				$colType = array_merge($default, $db->columns[$this->getColumnType($updateCol)]);
 				if (!array_key_exists('format', $colType)) {
-					$time = $now;
+					$time = strtotime('now');
 				} else {
 					$time = call_user_func($colType['formatter'], $colType['format']);
 				}
@@ -1765,7 +1748,7 @@ class Model extends Object implements CakeEventListener {
 				}
 			}
 
-			if ($success && $options['counterCache'] && !empty($this->belongsTo)) {
+			if ($success && !empty($this->belongsTo)) {
 				$this->updateCounterCache($cache, $created);
 			}
 		}
@@ -2046,9 +2029,7 @@ class Model extends Object implements CakeEventListener {
  *       'AssociatedModel' => array('field', 'otherfield')
  *   )
  *   }}}
- * - `deep`: See saveMany/saveAssociated
- * - `callbacks`: See Model::save()
- * - `counterCache`: See Model::save()
+ * - `deep`: see saveMany/saveAssociated
  *
  * @param array $data Record data to save. This can be either a numerically-indexed array (for saving multiple
  *     records of the same type), or an array indexed by association name.
@@ -2084,8 +2065,6 @@ class Model extends Object implements CakeEventListener {
  *   Should be set to false if database/table does not support transactions.
  * - `fieldList`: Equivalent to the $fieldList parameter in Model::save()
  * - `deep`: If set to true, all associated data will be saved as well.
- * - `callbacks`: See Model::save()
- * - `counterCache`: See Model::save()
  *
  * @param array $data Record data to save. This should be a numerically-indexed array
  * @param array $options Options to use when saving record data, See $options above.
@@ -2199,8 +2178,6 @@ class Model extends Object implements CakeEventListener {
  *   )
  *   }}}
  * - `deep`: If set to true, not only directly associated data is saved, but deeper nested associated data as well.
- * - `callbacks`: See Model::save()
- * - `counterCache`: See Model::save()
  *
  * @param array $data Record data to save. This should be an array indexed by association name.
  * @param array $options Options to use when saving record data, See $options above.
@@ -2303,7 +2280,7 @@ class Model extends Object implements CakeEventListener {
 							$validationErrors[$association] = $this->{$association}->validationErrors;
 						}
 						$return[$association] = $validates;
-						break;
+					break;
 					case 'hasMany':
 						foreach ($values as $i => $value) {
 							if (isset($values[$i][$association])) {
@@ -2319,7 +2296,7 @@ class Model extends Object implements CakeEventListener {
 							$validates = false;
 						}
 						$return[$association] = $_return;
-						break;
+					break;
 				}
 			}
 		}
@@ -2361,10 +2338,7 @@ class Model extends Object implements CakeEventListener {
 			$options['fieldList'][$this->alias][] = $key;
 			return $options;
 		}
-		if (!empty($options['fieldList']) &&
-			is_array($options['fieldList']) &&
-			Hash::dimensions($options['fieldList']) < 2
-		) {
+		if (!empty($options['fieldList']) && is_array($options['fieldList'])) {
 			$options['fieldList'][] = $key;
 		}
 		return $options;
@@ -2475,7 +2449,7 @@ class Model extends Object implements CakeEventListener {
 			return;
 		}
 		if (!empty($this->__backAssociation)) {
-			$savedAssociations = $this->__backAssociation;
+			$savedAssociatons = $this->__backAssociation;
 			$this->__backAssociation = array();
 		}
 
@@ -2511,8 +2485,8 @@ class Model extends Object implements CakeEventListener {
 				}
 			}
 		}
-		if (isset($savedAssociations)) {
-			$this->__backAssociation = $savedAssociations;
+		if (isset($savedAssociatons)) {
+			$this->__backAssociation = $savedAssociatons;
 		}
 	}
 
@@ -2715,38 +2689,10 @@ class Model extends Object implements CakeEventListener {
 		$this->id = $this->getID();
 
 		$query = $this->buildQuery($type, $query);
-		if ($query === null) {
+		if (is_null($query)) {
 			return null;
 		}
 
-		return $this->_readDataSource($type, $query);
-	}
-
-/**
- * Read from the datasource
- *
- * Model::_readDataSource() is used by all find() calls to read from the data source and can be overloaded to allow
- * caching of datasource calls.
- *
- * {{{
- * protected function _readDataSource($type, $query) {
- * 		$cacheName = md5(json_encode($query));
- * 		$cache = Cache::read($cacheName, 'cache-config-name');
- * 		if ($cache !== false) {
- * 			return $cache;
- * 		}
- *
- * 		$results = parent::_readDataSource($type, $query);
- * 		Cache::write($cacheName, $results, 'cache-config-name');
- * 		return $results;
- * }
- * }}}
- *
- * @param string $type Type of find operation (all / first / count / neighbors / list / threaded)
- * @param array $query Option fields (conditions / fields / joins / limit / offset / order / page / group / callbacks)
- * @return array
- */
-	protected function _readDataSource($type, $query) {
 		$results = $this->getDataSource()->read($this, $query);
 		$this->resetAssociations();
 
@@ -2755,6 +2701,10 @@ class Model extends Object implements CakeEventListener {
 		}
 
 		$this->findQueryType = null;
+
+		if ($type === 'all') {
+			return $results;
+		}
 
 		if ($this->findMethods[$type] === true) {
 			return $this->{'_find' . ucfirst($type)}('after', $query, $results);
@@ -2778,7 +2728,7 @@ class Model extends Object implements CakeEventListener {
 			(array)$query
 		);
 
-		if ($this->findMethods[$type] === true) {
+		if ($type !== 'all' && $this->findMethods[$type] === true) {
 			$query = $this->{'_find' . ucfirst($type)}('before', $query);
 		}
 
@@ -2804,23 +2754,6 @@ class Model extends Object implements CakeEventListener {
 		}
 
 		return $query;
-	}
-
-/**
- * Handles the before/after filter logic for find('all') operations. Only called by Model::find().
- *
- * @param string $state Either "before" or "after"
- * @param array $query
- * @param array $results
- * @return array
- * @see Model::find()
- */
-	protected function _findAll($state, $query, $results = array()) {
-		if ($state === 'before') {
-			return $query;
-		} elseif ($state === 'after') {
-			return $results;
-		}
 	}
 
 /**

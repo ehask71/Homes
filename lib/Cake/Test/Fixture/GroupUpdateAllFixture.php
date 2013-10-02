@@ -15,15 +15,17 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Fixture
  * @since         CakePHP(tm) v 1.2.0.4667
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
- * Class GroupUpdateAllFixture
+ * Short description for class.
  *
  * @package       Cake.Test.Fixture
  */
 class GroupUpdateAllFixture extends CakeTestFixture {
+
+	public $name = 'GroupUpdateAll';
 
 	public $table = 'group_update_all';
 

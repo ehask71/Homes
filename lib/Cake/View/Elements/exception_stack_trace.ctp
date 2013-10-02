@@ -15,11 +15,9 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.View.Elements
  * @since         CakePHP(tm) v 1.3
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('Debugger', 'Utility');
-
 ?>
 <h3>Stack Trace</h3>
 <ul class="cake-stack-trace">
@@ -57,10 +55,10 @@ App::uses('Debugger', 'Utility');
 			'<a href="#" onclick="traceToggle(event, \'trace-args-%s\')">%s(%s)</a> ',
 			$i,
 			$called,
-			h(implode(', ', $args))
+			implode(', ', $args)
 		);
 		$arguments = sprintf('<div id="trace-args-%s" class="cake-code-dump" style="display: none;"><pre>', $i);
-		$arguments .= h(implode("\n", $params));
+		$arguments .= implode("\n", $params);
 		$arguments .= '</pre></div>';
 	endif;
 	echo $excerpt;

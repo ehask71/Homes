@@ -15,7 +15,7 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Fixture
  * @since         CakePHP(tm) v 1.2.0.4667
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
@@ -24,6 +24,8 @@
  * @package       Cake.Test.Fixture
  */
 class CounterCacheUserNonstandardPrimaryKeyFixture extends CakeTestFixture {
+
+	public $name = 'CounterCacheUserNonstandardPrimaryKey';
 
 	public $fields = array(
 		'uid' => array('type' => 'integer', 'key' => 'primary'),

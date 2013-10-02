@@ -15,7 +15,7 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Controller.Component
  * @since         CakePHP(tm) v 1.2.0.5435
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('SecurityComponent', 'Controller/Component');
@@ -46,6 +46,13 @@ class TestSecurityComponent extends SecurityComponent {
  * @package       Cake.Test.Case.Controller.Component
  */
 class SecurityTestController extends Controller {
+
+/**
+ * name property
+ *
+ * @var string 'SecurityTest'
+ */
+	public $name = 'SecurityTest';
 
 /**
  * components property
@@ -1092,7 +1099,7 @@ class SecurityComponentTest extends CakeTestCase {
  * the params.
  *
  * @return void
- * @see https://cakephp.lighthouseapp.com/projects/42648/tickets/68
+ * @see http://cakephp.lighthouseapp.com/projects/42648/tickets/68
  */
 	public function testSettingTokenForRequestAction() {
 		$this->Controller->Security->startup($this->Controller);
@@ -1109,7 +1116,7 @@ class SecurityComponentTest extends CakeTestCase {
  * test that blackhole doesn't delete the _Token session key so repeat data submissions
  * stay blackholed.
  *
- * @link https://cakephp.lighthouseapp.com/projects/42648/tickets/214
+ * @link http://cakephp.lighthouseapp.com/projects/42648/tickets/214
  * @return void
  */
 	public function testBlackHoleNotDeletingSessionInformation() {

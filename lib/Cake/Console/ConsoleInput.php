@@ -15,9 +15,8 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Console
  * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 /**
  * Object wrapper for interacting with stdin
  *
@@ -48,18 +47,6 @@ class ConsoleInput {
  */
 	public function read() {
 		return fgets($this->_input);
-	}
-
-/**
- * Checks if data is available on the stream
- *
- * @param integer $timeout An optional time to wait for data
- * @return bool True for data available, false otherwise
- */
-	public function dataAvailable($timeout = 0) {
-		$readFds = array($this->_input);
-		$readyFds = stream_select($readFds, $writeFds, $errorFds, $timeout);
-		return ($readyFds > 0);
 	}
 
 }

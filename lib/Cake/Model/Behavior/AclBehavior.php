@@ -17,9 +17,8 @@
  * @link          http://cakephp.org CakePHP Project
  * @package       Cake.Model.Behavior
  * @since         CakePHP v 1.2.0.4487
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('ModelBehavior', 'Model');
 App::uses('AclNode', 'Model');
 App::uses('Hash', 'Utility');
@@ -65,7 +64,7 @@ class AclBehavior extends ModelBehavior {
 			$model->{$type} = ClassRegistry::init($type);
 		}
 		if (!method_exists($model, 'parentNode')) {
-			trigger_error(__d('cake_dev', 'Callback %s not defined in %s', 'parentNode()', $model->alias), E_USER_WARNING);
+			trigger_error(__d('cake_dev', 'Callback parentNode() not defined in %s', $model->alias), E_USER_WARNING);
 		}
 	}
 

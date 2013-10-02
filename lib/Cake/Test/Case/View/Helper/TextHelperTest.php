@@ -15,17 +15,12 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.View.Helper
  * @since         CakePHP(tm) v 1.2.0.4206
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('View', 'View');
 App::uses('TextHelper', 'View/Helper');
 
-/**
- * Class TextHelperTestObject
- *
- * @package       Cake.Test.Case.View.Helper
- */
 class TextHelperTestObject extends TextHelper {
 
 	public function attach(StringMock $string) {
@@ -40,8 +35,6 @@ class TextHelperTestObject extends TextHelper {
 
 /**
  * StringMock class
- *
- * @package       Cake.Test.Case.View.Helper
  */
 class StringMock {
 }
@@ -169,17 +162,6 @@ class TextHelperTest extends CakeTestCase {
 
 		$text = 'This is a <b>test</b> text with URL http://www.cakephp.org';
 		$expected = 'This is a <b>test</b> text with URL <a href="http://www.cakephp.org">http://www.cakephp.org</a>';
-		$result = $this->Text->autoLink($text, array('escape' => false));
-		$this->assertEquals($expected, $result);
-
-		$text = 'test <ul>
-		<li>lorem: http://example.org?some</li>
-		<li>ipsum: http://othersite.com/abc</li>
-		</ul> test';
-		$expected = 'test <ul>
-		<li>lorem: <a href="http://example.org?some">http://example.org?some</a></li>
-		<li>ipsum: <a href="http://othersite.com/abc">http://othersite.com/abc</a></li>
-		</ul> test';
 		$result = $this->Text->autoLink($text, array('escape' => false));
 		$this->assertEquals($expected, $result);
 	}
@@ -315,18 +297,6 @@ class TextHelperTest extends CakeTestCase {
 	}
 
 /**
- * Test autoLinkUrls with query strings.
- *
- * @return void
- */
-	public function testAutoLinkUrlsQueryString() {
-		$text = 'Text with a partial http://www.cakephp.org?product_id=123&foo=bar link';
-		$expected = 'Text with a partial <a href="http://www.cakephp.org?product_id=123&amp;foo=bar">http://www.cakephp.org?product_id=123&amp;foo=bar</a> link';
-		$result = $this->Text->autoLinkUrls($text);
-		$this->assertEquals($expected, $result);
-	}
-
-/**
  * testAutoLinkEmails method
  *
  * @return void
@@ -361,60 +331,6 @@ class TextHelperTest extends CakeTestCase {
 	public function testAutoLinkEmailInvalid() {
 		$result = $this->Text->autoLinkEmails('this is a myaddress@gmx-de test');
 		$expected = 'this is a myaddress@gmx-de test';
-		$this->assertEquals($expected, $result);
-	}
-
-/**
- * testAutoParagraph method
- *
- * @return void
- */
-	public function testAutoParagraph() {
-		$text = 'This is a test text';
-		$expected = <<<TEXT
-<p>This is a test text</p>
-
-TEXT;
-		$result = $this->Text->autoParagraph($text);
-		$text = 'This is a <br/> <BR> test text';
-		$expected = <<<TEXT
-<p>This is a </p>
-<p> test text</p>
-
-TEXT;
-		$result = $this->Text->autoParagraph($text);
-		$this->assertEquals($expected, $result);
-		$result = $this->Text->autoParagraph($text);
-		$text = 'This is a <BR id="test"/><br class="test"> test text';
-		$expected = <<<TEXT
-<p>This is a </p>
-<p> test text</p>
-
-TEXT;
-		$result = $this->Text->autoParagraph($text);
-		$this->assertEquals($expected, $result);
-		$text = <<<TEXT
-This is a test text.
-This is a line return.
-TEXT;
-		$expected = <<<TEXT
-<p>This is a test text.<br />
-This is a line return.</p>
-
-TEXT;
-		$result = $this->Text->autoParagraph($text);
-		$this->assertEquals($expected, $result);
-		$text = <<<TEXT
-This is a test text.
-
-This is a new line.
-TEXT;
-		$expected = <<<TEXT
-<p>This is a test text.</p>
-<p>This is a new line.</p>
-
-TEXT;
-		$result = $this->Text->autoParagraph($text);
 		$this->assertEquals($expected, $result);
 	}
 

@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.View.Helper
  * @since         CakePHP(tm) v 1.0.0.2277
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AppHelper', 'View/Helper');
@@ -67,8 +67,7 @@ class CacheHelper extends AppHelper {
  * Parses the view file and stores content for cache file building.
  *
  * @param string $viewFile
- * @param string $output The output for the file.
- * @return string Updated content.
+ * @return void
  */
 	public function afterRenderFile($viewFile, $output) {
 		if ($this->_enabled()) {
@@ -308,7 +307,7 @@ class CacheHelper extends AppHelper {
 
 		$file .= '
 				$request = unserialize(base64_decode(\'' . base64_encode(serialize($this->request)) . '\'));
-				$response->type(\'' . $this->_View->response->type() . '\');
+				$response = new CakeResponse();
 				$controller = new ' . $this->_View->name . 'Controller($request, $response);
 				$controller->plugin = $this->plugin = \'' . $this->_View->plugin . '\';
 				$controller->helpers = $this->helpers = unserialize(base64_decode(\'' . base64_encode(serialize($this->_View->helpers)) . '\'));

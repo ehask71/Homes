@@ -17,7 +17,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Controller
  * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AppController', 'Controller');
@@ -30,6 +30,13 @@ App::uses('AppController', 'Controller');
  * @package       Cake.Controller
  */
 class CakeErrorController extends AppController {
+
+/**
+ * Controller name
+ *
+ * @var string
+ */
+	public $name = 'CakeError';
 
 /**
  * Uses Property

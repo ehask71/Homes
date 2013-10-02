@@ -12,18 +12,13 @@
  *
  * @copyright	  Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link		  http://cakephp.org CakePHP(tm) Project
- * @package		  Cake.Test.TestApp.Routing.Filter
+ * @package		  Cake.Test.test_app.Routing.Filter
  * @since		  CakePHP(tm) v 2.2
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license		  MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('DispatcherFilter', 'Routing');
 
-/**
- * Class Test2DispatcherFilter
- *
- * @package		  Cake.Test.TestApp.Routing.Filter
- */
 class Test2DispatcherFilter extends DispatcherFilter {
 
 	public function beforeDispatch(CakeEvent $event) {

@@ -15,9 +15,8 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.TestSuite
  * @since         CakePHP(tm) v 1.2.0.4667
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('DboSource', 'Model/Datasource');
 App::uses('Model', 'Model');
 App::uses('CakeTestFixture', 'TestSuite/Fixture');
@@ -70,6 +69,7 @@ class CakeTestFixtureTestFixture extends CakeTestFixture {
  * StringFieldsTestFixture class
  *
  * @package       Cake.Test.Case.TestSuite
+ * @subpackage    cake.cake.tests.cases.libs
  */
 class StringsTestFixture extends CakeTestFixture {
 
@@ -110,6 +110,7 @@ class StringsTestFixture extends CakeTestFixture {
 		array('email' => 'jane.doe@email.com', 'name' => 'Jane Doe', 'age' => 30)
 	);
 }
+
 
 /**
  * CakeTestFixtureImportFixture class
@@ -152,6 +153,7 @@ class CakeTestFixtureDefaultImportFixture extends CakeTestFixture {
  * FixtureImportTestModel class
  *
  * @package       Cake.Test.Case.TestSuite
+ * @package       Cake.Test.Case.TestSuite
  */
 class FixtureImportTestModel extends Model {
 
@@ -174,6 +176,7 @@ class FixturePrefixTest extends Model {
 	public $useDbConfig = 'test';
 }
 
+
 /**
  * Test case for CakeTestFixture
  *
@@ -187,7 +190,6 @@ class CakeTestFixtureTest extends CakeTestCase {
  * @return void
  */
 	public function setUp() {
-		parent::setUp();
 		$methods = array_diff(get_class_methods('DboSource'), array('enabled'));
 		$methods[] = 'connect';
 
@@ -203,7 +205,6 @@ class CakeTestFixtureTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		parent::tearDown();
 		unset($this->criticDb);
 		$this->db->config = $this->_backupConfig;
 	}

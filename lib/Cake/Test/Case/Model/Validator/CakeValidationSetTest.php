@@ -15,7 +15,7 @@
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Model.Validator
  * @since         CakePHP(tm) v 2.2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('CakeValidationSet', 'Model/Validator');
@@ -26,16 +26,6 @@ App::uses('CakeValidationSet', 'Model/Validator');
  * @package       Cake.Test.Case.Model.Validator
  */
 class CakeValidationSetTest extends CakeTestCase {
-
-/**
- * override locale to the default (eng).
- *
- * @return void
- */
-	public function setUp() {
-		parent::setUp();
-		Configure::write('Config.language', 'eng');
-	}
 
 /**
  * testValidate method

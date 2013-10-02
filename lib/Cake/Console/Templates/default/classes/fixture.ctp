@@ -17,11 +17,10 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Console.Templates.default.classes
  * @since         CakePHP(tm) v 1.3
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
-echo "<?php\n";
 ?>
+<?php echo '<?php' . "\n"; ?>
 /**
  * <?php echo $model; ?>Fixture
  *

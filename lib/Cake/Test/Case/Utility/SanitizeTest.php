@@ -15,9 +15,8 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Utility
  * @since         CakePHP(tm) v 1.2.0.5428
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('Sanitize', 'Utility');
 
 /**
@@ -28,9 +27,16 @@ App::uses('Sanitize', 'Utility');
 class SanitizeDataTest extends CakeTestModel {
 
 /**
+ * name property
+ *
+ * @var string 'SanitizeDataTest'
+ */
+	public $name = 'SanitizeDataTest';
+
+/**
  * useTable property
  *
- * @var string
+ * @var string 'data_tests'
  */
 	public $useTable = 'data_tests';
 }
@@ -43,9 +49,16 @@ class SanitizeDataTest extends CakeTestModel {
 class SanitizeArticle extends CakeTestModel {
 
 /**
+ * name property
+ *
+ * @var string 'Article'
+ */
+	public $name = 'SanitizeArticle';
+
+/**
  * useTable property
  *
- * @var string
+ * @var string 'articles'
  */
 	public $useTable = 'articles';
 }
@@ -271,12 +284,12 @@ class SanitizeTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 
 		$string = "x' AND 1=(SELECT COUNT(*) FROM users); --";
-		$expected = 'xAND1SELECTCOUNTFROMusers';
+		$expected = "xAND1SELECTCOUNTFROMusers";
 		$result = Sanitize::paranoid($string);
 		$this->assertEquals($expected, $result);
 
 		$string = "x'; DROP TABLE members; --";
-		$expected = 'xDROPTABLEmembers';
+		$expected = "xDROPTABLEmembers";
 		$result = Sanitize::paranoid($string);
 		$this->assertEquals($expected, $result);
 	}

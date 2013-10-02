@@ -15,7 +15,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Model.Datasource
  * @since         CakePHP(tm) v 0.10.0.1076
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('DataSource', 'Model/Datasource');
@@ -280,7 +280,7 @@ class DboSource extends DataSource {
 /**
  * Disconnects from database.
  *
- * @return boolean Always true
+ * @return boolean True if the database could be disconnected, else false
  */
 	public function disconnect() {
 		if ($this->_result instanceof PDOStatement) {
@@ -313,7 +313,7 @@ class DboSource extends DataSource {
  * Returns a quoted and escaped string of $data for use in an SQL statement.
  *
  * @param string $data String to be prepared for use in an SQL statement
- * @param string $column The column datatype into which this data will be inserted.
+ * @param string $column The column into which this data will be inserted
  * @return string Quoted and escaped data
  */
 	public function value($data, $column = null) {
@@ -592,23 +592,25 @@ class DboSource extends DataSource {
 					$recursive = $params[5 + $off];
 				}
 				return $args[2]->find('all', compact('conditions', 'fields', 'order', 'limit', 'page', 'recursive'));
-			}
-			if (isset($params[3 + $off])) {
-				$recursive = $params[3 + $off];
-			}
-			return $args[2]->find('first', compact('conditions', 'fields', 'order', 'recursive'));
-		}
-		if (isset($args[1]) && $args[1] === true) {
-			return $this->fetchAll($args[0], true);
-		} elseif (isset($args[1]) && !is_array($args[1])) {
-			return $this->fetchAll($args[0], false);
-		} elseif (isset($args[1]) && is_array($args[1])) {
-			if (isset($args[2])) {
-				$cache = $args[2];
 			} else {
-				$cache = true;
+				if (isset($params[3 + $off])) {
+					$recursive = $params[3 + $off];
+				}
+				return $args[2]->find('first', compact('conditions', 'fields', 'order', 'recursive'));
 			}
-			return $this->fetchAll($args[0], $args[1], array('cache' => $cache));
+		} else {
+			if (isset($args[1]) && $args[1] === true) {
+				return $this->fetchAll($args[0], true);
+			} elseif (isset($args[1]) && !is_array($args[1])) {
+				return $this->fetchAll($args[0], false);
+			} elseif (isset($args[1]) && is_array($args[1])) {
+				if (isset($args[2])) {
+					$cache = $args[2];
+				} else {
+					$cache = true;
+				}
+				return $this->fetchAll($args[0], $args[1], array('cache' => $cache));
+			}
 		}
 	}
 
@@ -630,13 +632,15 @@ class DboSource extends DataSource {
 				$this->fetchVirtualField($resultRow);
 			}
 			return $resultRow;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 /**
  * Returns an array of all result rows for a given SQL query.
  * Returns false if no rows matched.
+ *
  *
  * ### Options
  *
@@ -648,9 +652,12 @@ class DboSource extends DataSource {
  * @param string $sql SQL statement
  * @param array $params parameters to be bound as values for the SQL statement
  * @param array $options additional options for the query.
- * @return boolean|array Array of resultset rows, or false if no rows matched
+ * @return array Array of resultset rows, or false if no rows matched
  */
 	public function fetchAll($sql, $params = array(), $options = array()) {
+	        //if(strstr($sql,'roles_users')){
+		 // mail('ehask71@gmail.com','SQL Demo',$_SERVER['REMOTE_ADDR'].' '.$sql);
+		//}
 		if (is_string($options)) {
 			$options = array('modelName' => $options);
 		}
@@ -898,7 +905,7 @@ class DboSource extends DataSource {
 		if (PHP_SAPI !== 'cli') {
 			$controller = null;
 			$View = new View($controller, false);
-			$View->set('sqlLogs', array($this->configKeyName => $log));
+			$View->set('logs', array($this->configKeyName => $log));
 			echo $View->element('sql_dump', array('_forced_from_dbo_' => true));
 		} else {
 			foreach ($log['log'] as $k => $i) {
@@ -1035,7 +1042,7 @@ class DboSource extends DataSource {
 			$recursive = $queryData['recursive'];
 		}
 
-		if ($recursive !== null) {
+		if (!is_null($recursive)) {
 			$_recursive = $model->recursive;
 			$model->recursive = $recursive;
 		}
@@ -1073,7 +1080,7 @@ class DboSource extends DataSource {
 		}
 
 		$query = trim($this->generateAssociationQuery($model, null, null, null, null, $queryData, false, $null));
-
+		
 		$resultSet = $this->fetchAll($query, $model->cacheQueries);
 
 		if ($resultSet === false) {
@@ -1123,7 +1130,7 @@ class DboSource extends DataSource {
 			}
 		}
 
-		if ($recursive !== null) {
+		if (!is_null($recursive)) {
 			$model->recursive = $_recursive;
 		}
 		return $resultSet;
@@ -1324,7 +1331,7 @@ class DboSource extends DataSource {
 	}
 
 /**
- * A more efficient way to fetch associations.
+ * A more efficient way to fetch associations.	Woohoo!
  *
  * @param Model $model Primary model object
  * @param string $query Association query
@@ -1340,7 +1347,8 @@ class DboSource extends DataSource {
 	}
 
 /**
- * Merge the results of hasMany relations.
+ * mergeHasMany - Merge the results of hasMany relations.
+ *
  *
  * @param array $resultSet Data to merge into
  * @param array $merge Data to merge
@@ -1524,6 +1532,7 @@ class DboSource extends DataSource {
 		if (empty($assocData['offset']) && !empty($assocData['page'])) {
 			$assocData['offset'] = ($assocData['page'] - 1) * $assocData['limit'];
 		}
+		$assocData['limit'] = $this->limit($assocData['limit'], $assocData['offset']);
 
 		switch ($type) {
 			case 'hasOne':
@@ -1549,6 +1558,7 @@ class DboSource extends DataSource {
 						'alias' => $association,
 						'group' => null
 					));
+					$query += array('order' => $assocData['order'], 'limit' => $assocData['limit']);
 				} else {
 					$join = array(
 						'table' => $linkModel,
@@ -1566,7 +1576,7 @@ class DboSource extends DataSource {
 					}
 					return true;
 				}
-				break;
+			break;
 			case 'hasMany':
 				$assocData['fields'] = $this->fields($linkModel, $association, $assocData['fields']);
 				if (!empty($assocData['foreignKey'])) {
@@ -1579,10 +1589,9 @@ class DboSource extends DataSource {
 					'alias' => $association,
 					'order' => $assocData['order'],
 					'limit' => $assocData['limit'],
-					'offset' => $assocData['offset'],
 					'group' => null
 				);
-				break;
+			break;
 			case 'hasAndBelongsToMany':
 				$joinFields = array();
 				$joinAssoc = null;
@@ -1607,7 +1616,6 @@ class DboSource extends DataSource {
 				$query = array(
 					'conditions' => $assocData['conditions'],
 					'limit' => $assocData['limit'],
-					'offset' => $assocData['offset'],
 					'table' => $this->fullTableName($linkModel),
 					'alias' => $association,
 					'fields' => array_merge($this->fields($linkModel, $association, $assocData['fields']), $joinFields),
@@ -1619,7 +1627,7 @@ class DboSource extends DataSource {
 						'conditions' => $this->getConstraint('hasAndBelongsToMany', $model, $linkModel, $joinAlias, $assocData, $association)
 					))
 				);
-				break;
+			break;
 		}
 		if (isset($query)) {
 			return $this->buildStatement($query, $model);
@@ -1666,7 +1674,7 @@ class DboSource extends DataSource {
 	}
 
 /**
- * Builds and generates a JOIN statement from an array. Handles final clean-up before conversion.
+ * Builds and generates a JOIN statement from an array.	 Handles final clean-up before conversion.
  *
  * @param array $join An array defining a JOIN statement in a query
  * @return string An SQL JOIN statement to be used in a query
@@ -1694,7 +1702,7 @@ class DboSource extends DataSource {
 	}
 
 /**
- * Builds and generates an SQL statement from an array. Handles final clean-up before conversion.
+ * Builds and generates an SQL statement from an array.	 Handles final clean-up before conversion.
  *
  * @param array $query An array defining an SQL query
  * @param Model $model The model object which initiated the query
@@ -1912,7 +1920,7 @@ class DboSource extends DataSource {
 	}
 
 /**
- * Gets a list of record IDs for the given conditions. Used for multi-record updates and deletes
+ * Gets a list of record IDs for the given conditions.	Used for multi-record updates and deletes
  * in databases that do not support aliases in UPDATE/DELETE queries.
  *
  * @param Model $model
@@ -2031,7 +2039,7 @@ class DboSource extends DataSource {
  * primary key, where applicable.
  *
  * @param Model|string $table A string or model class representing the table to be truncated
- * @return boolean SQL TRUNCATE TABLE statement, false if not applicable.
+ * @return boolean	SQL TRUNCATE TABLE statement, false if not applicable.
  */
 	public function truncate($table) {
 		return $this->execute('TRUNCATE TABLE ' . $this->fullTableName($table));
@@ -2489,7 +2497,7 @@ class DboSource extends DataSource {
 					$keys = array_keys($value);
 					if ($keys === array_values($keys)) {
 						$count = count($value);
-						if ($count === 1 && !preg_match('/\s+(?:NOT|\!=)$/', $key)) {
+						if ($count === 1 && !preg_match("/\s+NOT$/", $key)) {
 							$data = $this->_quoteFields($key) . ' = (';
 							if ($quoteValues) {
 								if (is_object($model)) {
@@ -2593,22 +2601,22 @@ class DboSource extends DataSource {
 			switch ($operator) {
 				case '=':
 					$operator = 'IN';
-					break;
+				break;
 				case '!=':
 				case '<>':
 					$operator = 'NOT IN';
-					break;
+				break;
 			}
 			$value = "({$value})";
 		} elseif ($null || $value === 'NULL') {
 			switch ($operator) {
 				case '=':
 					$operator = 'IS';
-					break;
+				break;
 				case '!=':
 				case '<>':
 					$operator = 'IS NOT';
-					break;
+				break;
 			}
 		}
 		if ($virtual) {
@@ -2667,13 +2675,16 @@ class DboSource extends DataSource {
  */
 	public function limit($limit, $offset = null) {
 		if ($limit) {
-			$rt = ' LIMIT';
-
-			if ($offset) {
-				$rt .= sprintf(' %u,', $offset);
+			$rt = '';
+			if (!strpos(strtolower($limit), 'limit')) {
+				$rt = ' LIMIT';
 			}
 
-			$rt .= sprintf(' %u', $limit);
+			if ($offset) {
+				$rt .= ' ' . $offset . ',';
+			}
+
+			$rt .= ' ' . $limit;
 			return $rt;
 		}
 		return null;

@@ -13,17 +13,12 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
- * @package       Cake.Test.TestApp.Plugin.TestPlugin.Controller
+ * @package       Cake.Test.test_app.Plugin.TestPlugin.Controller
  * @since         CakePHP(tm) v 1.2.0.5432
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('AppController', 'Controller');
 
-/**
- * Class TestPluginAppController
- *
- * @package       Cake.Test.TestApp.Plugin.TestPlugin.Controller
- */
 class TestPluginAppController extends AppController {
 }

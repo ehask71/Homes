@@ -15,7 +15,7 @@
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Cache.Engine
  * @since         CakePHP(tm) v 1.2.0.5434
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 App::uses('Cache', 'Cache');
@@ -35,10 +35,6 @@ class ApcEngineTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->skipIf(!function_exists('apc_store'), 'Apc is not installed or configured properly.');
-
-		if (php_sapi_name() === 'cli') {
-			$this->skipIf(!ini_get('apc.enable_cli'), 'APC is not enabled for the CLI.');
-		}
 
 		$this->_cacheDisable = Configure::read('Cache.disable');
 		Configure::write('Cache.disable', false);

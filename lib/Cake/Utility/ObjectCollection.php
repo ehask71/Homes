@@ -9,7 +9,7 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
@@ -225,7 +225,7 @@ abstract class ObjectCollection {
 		}
 		foreach ($name as $object => $objectPriority) {
 			if (isset($this->_loaded[$object])) {
-				if ($objectPriority === null) {
+				if (is_null($objectPriority)) {
 					$objectPriority = $this->defaultPriority;
 				}
 				$this->_loaded[$object]->settings['priority'] = $objectPriority;
@@ -272,7 +272,7 @@ abstract class ObjectCollection {
  *   returns an array of currently-attached objects
  * @return mixed If $name is specified, returns the boolean status of the corresponding object.
  *    Otherwise, returns an array of all attached objects.
- * @deprecated Will be removed in 3.0. Use loaded instead.
+ * @deprecated Use loaded instead.
  */
 	public function attached($name = null) {
 		return $this->loaded($name);

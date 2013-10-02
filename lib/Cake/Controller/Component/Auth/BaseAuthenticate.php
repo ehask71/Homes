@@ -11,9 +11,8 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 App::uses('Security', 'Utility');
 App::uses('Hash', 'Utility');
 
@@ -33,9 +32,6 @@ abstract class BaseAuthenticate {
  *    i.e. `array('User.is_active' => 1).`
  * - `recursive` The value of the recursive key passed to find(). Defaults to 0.
  * - `contain` Extra models to contain and store in session.
- * - `passwordHasher` Password hasher class. Can be a string specifying class name
- *    or an array containing `className` key, any other keys will be passed as
- *    settings to the class. Defaults to 'Simple'.
  *
  * @var array
  */
@@ -48,7 +44,6 @@ abstract class BaseAuthenticate {
 		'scope' => array(),
 		'recursive' => 0,
 		'contain' => null,
-		'passwordHasher' => 'Simple'
 	);
 
 /**
@@ -57,13 +52,6 @@ abstract class BaseAuthenticate {
  * @var ComponentCollection
  */
 	protected $_Collection;
-
-/**
- * Password hasher instance.
- *
- * @var AbstractPasswordHasher
- */
-	protected $_passwordHasher;
 
 /**
  * Constructor
@@ -79,87 +67,48 @@ abstract class BaseAuthenticate {
 /**
  * Find a user record using the standard options.
  *
- * The $username parameter can be a (string)username or an array containing
- * conditions for Model::find('first'). If the $password param is not provided
- * the password field will be present in returned array.
+ * The $conditions parameter can be a (string)username or an array containing conditions for Model::find('first'). If
+ * the password field is not included in the conditions the password will be returned.
  *
- * Input passwords will be hashed even when a user doesn't exist. This
- * helps mitigate timing attacks that are attempting to find valid usernames.
- *
- * @param string|array $username The username/identifier, or an array of find conditions.
- * @param string $password The password, only used if $username param is string.
- * @return boolean|array Either false on failure, or an array of user data.
+ * @param Mixed $conditions The username/identifier, or an array of find conditions.
+ * @param Mixed $password The password, only use if passing as $conditions = 'username'.
+ * @return Mixed Either false on failure, or an array of user data.
  */
-	protected function _findUser($username, $password = null) {
+	protected function _findUser($conditions, $password = null) {
 		$userModel = $this->settings['userModel'];
 		list(, $model) = pluginSplit($userModel);
 		$fields = $this->settings['fields'];
 
-		if (is_array($username)) {
-			$conditions = $username;
-		} else {
+		if (!is_array($conditions)) {
+			if (!$password) {
+				return false;
+			}
+			$username = $conditions;
 			$conditions = array(
-				$model . '.' . $fields['username'] => $username
+				$model . '.' . $fields['username'] => $username,
+				$model . '.' . $fields['password'] => $this->_password($password),
 			);
 		}
-
 		if (!empty($this->settings['scope'])) {
 			$conditions = array_merge($conditions, $this->settings['scope']);
 		}
-
 		$result = ClassRegistry::init($userModel)->find('first', array(
 			'conditions' => $conditions,
 			'recursive' => $this->settings['recursive'],
 			'contain' => $this->settings['contain'],
 		));
-		if (empty($result[$model])) {
-			$this->passwordHasher()->hash($password);
+		if (empty($result) || empty($result[$model])) {
 			return false;
 		}
-
 		$user = $result[$model];
-		if ($password) {
-			if (!$this->passwordHasher()->check($password, $user[$fields['password']])) {
-				return false;
-			}
+		if (
+			isset($conditions[$model . '.' . $fields['password']]) ||
+			isset($conditions[$fields['password']])
+		) {
 			unset($user[$fields['password']]);
 		}
-
 		unset($result[$model]);
 		return array_merge($user, $result);
-	}
-
-/**
- * Return password hasher object
- *
- * @return AbstractPasswordHasher Password hasher instance
- * @throws CakeException If password hasher class not found or
- *   it does not extend AbstractPasswordHasher
- */
-	public function passwordHasher() {
-		if ($this->_passwordHasher) {
-			return $this->_passwordHasher;
-		}
-
-		$config = array();
-		if (is_string($this->settings['passwordHasher'])) {
-			$class = $this->settings['passwordHasher'];
-		} else {
-			$class = $this->settings['passwordHasher']['className'];
-			$config = $this->settings['passwordHasher'];
-			unset($config['className']);
-		}
-		list($plugin, $class) = pluginSplit($class, true);
-		$className = $class . 'PasswordHasher';
-		App::uses($className, $plugin . 'Controller/Component/Auth');
-		if (!class_exists($className)) {
-			throw new CakeException(__d('cake_dev', 'Password hasher class "%s" was not found.', $class));
-		}
-		if (!is_subclass_of($className, 'AbstractPasswordHasher')) {
-			throw new CakeException(__d('cake_dev', 'Password hasher must extend AbstractPasswordHasher class.'));
-		}
-		$this->_passwordHasher = new $className($config);
-		return $this->_passwordHasher;
 	}
 
 /**
@@ -168,7 +117,6 @@ abstract class BaseAuthenticate {
  *
  * @param string $password The plain text password.
  * @return string The hashed form of the password.
- * @deprecated Since 2.4. Use a PasswordHasher class instead.
  */
 	protected function _password($password) {
 		return Security::hash($password, null, true);
@@ -205,17 +153,6 @@ abstract class BaseAuthenticate {
  */
 	public function getUser(CakeRequest $request) {
 		return false;
-	}
-
-/**
- * Handle unauthenticated access attempt.
- *
- * @param CakeRequest $request A request object.
- * @param CakeResponse $response A response object.
- * @return mixed Either true to indicate the unauthenticated request has been
- *  dealt with and no more action is required by AuthComponent or void (default).
- */
-	public function unauthenticated(CakeRequest $request, CakeResponse $response) {
 	}
 
 }

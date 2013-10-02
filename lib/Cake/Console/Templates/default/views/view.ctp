@@ -14,11 +14,11 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Console.Templates.default.views
  * @since         CakePHP(tm) v 1.2.0.5234
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
 <div class="<?php echo $pluralVar; ?> view">
-<h2><?php echo "<?php echo __('{$singularHumanName}'); ?>"; ?></h2>
+<h2><?php echo "<?php  echo __('{$singularHumanName}'); ?>"; ?></h2>
 	<dl>
 <?php
 foreach ($fields as $field) {
@@ -94,6 +94,7 @@ if (empty($associations['hasAndBelongsToMany'])) {
 	$associations['hasAndBelongsToMany'] = array();
 }
 $relations = array_merge($associations['hasMany'], $associations['hasAndBelongsToMany']);
+$i = 0;
 foreach ($relations as $alias => $details):
 	$otherSingularVar = Inflector::variable($alias);
 	$otherPluralHumanName = Inflector::humanize($details['controller']);
@@ -111,7 +112,9 @@ foreach ($relations as $alias => $details):
 		<th class="actions"><?php echo "<?php echo __('Actions'); ?>"; ?></th>
 	</tr>
 <?php
-echo "\t<?php foreach (\${$singularVar}['{$alias}'] as \${$otherSingularVar}): ?>\n";
+echo "\t<?php
+		\$i = 0;
+		foreach (\${$singularVar}['{$alias}'] as \${$otherSingularVar}): ?>\n";
 		echo "\t\t<tr>\n";
 			foreach ($details['fields'] as $field) {
 				echo "\t\t\t<td><?php echo \${$otherSingularVar}['{$field}']; ?></td>\n";

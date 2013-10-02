@@ -14,9 +14,8 @@
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 /**
  * Object wrapper for outputting information from a shell application.
  * Can be connected to any stream resource that can be used with fopen()
@@ -141,7 +140,6 @@ class ConsoleOutput {
 		'success' => array('text' => 'green'),
 		'comment' => array('text' => 'blue'),
 		'question' => array('text' => 'magenta'),
-		'notice' => array('text' => 'cyan')
 	);
 
 /**
