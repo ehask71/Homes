@@ -9,7 +9,7 @@ echo $this->Form->input('address2');
 echo $this->Form->input('city');
 echo $this->Form->input('state');
 echo $this->Form->input('zip');
-echo $this->Form->input('country',array('type'=>'select','options'=>$countries,'style'=>'chzn-select'));
+echo $this->Form->input('country',array('type'=>'select','options'=>array('US'=>'United States'),'style'=>'chzn-select'));
 echo $this->Form->input('phone',array('type'=>'text'));
 echo $this->Form->input('birthdate',array('id'=>'birthDate','label'=>'Your Birthdate','minYear'=>'1950','maxYear'=>date('Y')));
 echo $this->Form->input('gender',array('type'=>'radio','options'=>array('m','f')));
