@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
 class AccountController extends AppController {
     
     public $name = 'Account';
+    public $uses = array('Account');
     
     public function beforeFilter() {
 	parent::beforeFilter();
@@ -15,7 +16,14 @@ class AccountController extends AppController {
     }
     
     public function index(){
-        
+        $this->autoRender = false;
+        $account = $this->Account->find('first',array(
+            'conditions' => array(
+                'Account.email' => 'ehask71@gmail.com'
+            )
+        ));
+        echo '<pre>';
+        print_r($account);
     }
     
     public function register(){
