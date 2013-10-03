@@ -1,6 +1,6 @@
 <h2>Sell</h2>
 <?php 
-echo $this->Form->create('Lead');
+echo $this->Form->create('Lead',array('novalidate'=>true));
 echo $this->Form->input('firstname',array(
     'label'=> 'First Name'
 ));
