@@ -15,12 +15,12 @@ class Lead extends AppModel {
             'firstname' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter players first name')
+                    'message' => 'Please enter first name')
             ),
             'lastname' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter players last name')
+                    'message' => 'Please enter last name')
             ),
             'email' => array(
                 'mustNotEmpty' => array(
