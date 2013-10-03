@@ -39,8 +39,10 @@ class HomeController extends AppController {
 	    } else {
 		// From the Sell Page Insert the Lead
                 if($this->Lead->validateLead()){
-                    $this->Session->setFlash('Saved');
-		    $this->redirect('/');
+		    if($this->Lead->save($this->request->data)){
+			$this->Session->setFlash('Saved');
+			$this->redirect('/');
+		    }
                 } else {
                     $this->Session->setFlash('Unable To Save');
                 }
