@@ -10,7 +10,8 @@ class Lead extends AppModel {
 
     public $primaryKey = 'id';
 
-    public $validate = array(
+    public function validateLead() {
+        $validate1 = array(
             'firstname' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
@@ -82,6 +83,9 @@ class Lead extends AppModel {
             ),
         );
 
+        $this->validate = $validate1;
+        return $this->validates();
+    }
 
 }
 
