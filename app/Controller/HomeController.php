@@ -9,6 +9,7 @@ class HomeController extends AppController {
     
     public $name = 'Home';
     public $uses = array('ZipCodes','Lead');
+    public $helpers = array('Html', 'Form', 'Session');
     
     public function beforeFilter() {
 	parent::beforeFilter();
