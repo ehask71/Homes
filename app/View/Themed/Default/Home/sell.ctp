@@ -48,7 +48,7 @@ echo $this->Form->input('propertytype',array(
     'label'=> 'Property Type','options'=>  Configure::read('PropertyTypes')
 ));
 echo $this->Form->input('askingprice',array(
-    'label'=> 'Asking Price'
+    'label'=> 'Asking Price','options'=>  Configure::read('AskingPrice')
 ));
 echo $this->Form->input('reason',array(
     'label'=> 'Reason For Selling'
