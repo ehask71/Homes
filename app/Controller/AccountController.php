@@ -59,7 +59,7 @@ class AccountController extends AppController {
                         CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code.' '.$cimresponse->customerProfileId.' '.$cimresponse->customerPaymentProfileIdList->numericString);
                     }
                     //echo $cimresponse->__toString();
-                    CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code);
+                    CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code.' '.$cimresponse->customerProfileId.' '.$cimresponse->customerPaymentProfileIdList->numericString);
 		    // Assign a Role
 		    $this->loadModel('RoleUser');
 		    $this->RoleUser->addUserSite($userid);
