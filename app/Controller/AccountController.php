@@ -64,16 +64,24 @@ class AccountController extends AppController {
                     CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code.' '.$cimresponse->customerProfileId.' '.$cimresponse->customerPaymentProfileIdList->numericString);
 		    // Assign a Role
 		    $this->loadModel('RoleUser');
-		    $this->RoleUser->addUserSite($userid);
+		    $roleuser = $this->RoleUser->addUserSite($userid);
 		    // Log the user in
 		    //$id = $this->Account->id;
-		    $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid));
+		    $role = array();
+		    $role[] = array(
+			'id'=>2,
+			'alias'=>'member',
+			'RolesUser' => array(
+			    'id' => $roleuser,
+			    'user_id' => $userid,
+			    'role_id' => 2
+			)
+		    );
+		    $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid,'Role'=>$role));
 		    $this->Auth->login($this->request->data['Account']);
 		   
-		 
-
 		    $this->Session->setFlash('The user has been saved');
-		    $this->redirect(array('controller' => 'home', 'action' => 'index'));
+		    $this->redirect('/register/select-counties');
 		} else {
 		    $this->Session->setFlash('The user could not be saved. Please, try again.');
 		}
