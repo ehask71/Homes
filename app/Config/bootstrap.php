@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is loaded automatically by the app/webroot/index.php file after core.php
  *
@@ -23,7 +24,6 @@
  * @since         CakePHP(tm) v 0.10.8.2117
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 
@@ -52,7 +52,6 @@ Cache::config('default', array('engine' => 'File'));
  * ));
  *
  */
-
 /**
  * Custom Inflector rules, can be set to correctly pluralize or singularize table, model, controller names or whatever other
  * string is passed to the inflection functions
@@ -61,7 +60,6 @@ Cache::config('default', array('engine' => 'File'));
  * Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
  *
  */
-
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
  * Uncomment one of the lines below, as you need. make sure you read the documentation on CakePlugin to use more
@@ -81,16 +79,16 @@ CakePlugin::load('DebugKit');
  * Feel free to remove or add filters as you see fit for your application. A few examples:
  *
  * Configure::write('Dispatcher.filters', array(
- *		'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.
- *		'MyPlugin.MyFilter', // will use MyFilter class from the Routing/Filter package in MyPlugin plugin.
+ * 		'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.
+ * 		'MyPlugin.MyFilter', // will use MyFilter class from the Routing/Filter package in MyPlugin plugin.
  * 		array('callable' => $aFunction, 'on' => 'before', 'priority' => 9), // A valid PHP callback type to be called on beforeDispatch
- *		array('callable' => $anotherMethod, 'on' => 'after'), // A valid PHP callback type to be called on afterDispatch
+ * 		array('callable' => $anotherMethod, 'on' => 'after'), // A valid PHP callback type to be called on afterDispatch
  *
  * ));
  */
 Configure::write('Dispatcher.filters', array(
-	'AssetDispatcher',
-	'CacheDispatcher'
+    'AssetDispatcher',
+    'CacheDispatcher'
 ));
 
 /**
@@ -98,19 +96,117 @@ Configure::write('Dispatcher.filters', array(
  */
 App::uses('CakeLog', 'Log');
 CakeLog::config('debug', array(
-	'engine' => 'FileLog',
-	'types' => array('notice', 'info', 'debug'),
-	'file' => 'debug',
+    'engine' => 'FileLog',
+    'types' => array('notice', 'info', 'debug'),
+    'file' => 'debug',
 ));
 CakeLog::config('error', array(
-	'engine' => 'FileLog',
-	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
-	'file' => 'error',
+    'engine' => 'FileLog',
+    'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
+    'file' => 'error',
 ));
 
 /**
  *   Config Section
  */
-Configure::write('Authnet.apilogin','6VckCd8562vT');
-Configure::write('Authnet.txnkey','22Fk7S5srmm7B57r');
-Configure::write('Setupfee',3500);
+Configure::write('Authnet.apilogin', '6VckCd8562vT');
+Configure::write('Authnet.txnkey', '22Fk7S5srmm7B57r');
+Configure::write('Setupfee', 3500);
+
+Configure::write('States', array(
+    'AL' => "Alabama",
+    'AK' => "Alaska",
+    'AZ' => "Arizona",
+    'AR' => "Arkansas",
+    'CA' => "California",
+    'CO' => "Colorado",
+    'CT' => "Connecticut",
+    'DE' => "Delaware",
+    'DC' => "District Of Columbia",
+    'FL' => "Florida",
+    'GA' => "Georgia",
+    'HI' => "Hawaii",
+    'ID' => "Idaho",
+    'IL' => "Illinois",
+    'IN' => "Indiana",
+    'IA' => "Iowa",
+    'KS' => "Kansas",
+    'KY' => "Kentucky",
+    'LA' => "Louisiana",
+    'ME' => "Maine",
+    'MD' => "Maryland",
+    'MA' => "Massachusetts",
+    'MI' => "Michigan",
+    'MN' => "Minnesota",
+    'MS' => "Mississippi",
+    'MO' => "Missouri",
+    'MT' => "Montana",
+    'NE' => "Nebraska",
+    'NV' => "Nevada",
+    'NH' => "New Hampshire",
+    'NJ' => "New Jersey",
+    'NM' => "New Mexico",
+    'NY' => "New York",
+    'NC' => "North Carolina",
+    'ND' => "North Dakota",
+    'OH' => "Ohio",
+    'OK' => "Oklahoma",
+    'OR' => "Oregon",
+    'PA' => "Pennsylvania",
+    'RI' => "Rhode Island",
+    'SC' => "South Carolina",
+    'SD' => "South Dakota",
+    'TN' => "Tennessee",
+    'TX' => "Texas",
+    'UT' => "Utah",
+    'VT' => "Vermont",
+    'VA' => "Virginia",
+    'WA' => "Washington",
+    'WV' => "West Virginia",
+    'WI' => "Wisconsin",
+    'WY' => "Wyoming"));
+
+Configure::write('Bedrooms',array(
+    '0'=>'0',
+    '1'=>'1',
+    '2'=>'2',
+    '3'=>'3',
+    '4'=>'4',
+    '5'=>'5',
+    '6'=>'6',
+    '7'=>'7',
+    '8+'=>'8+'
+));
+
+Configure::write('Bathrooms',array(
+    '0'=>'0',
+    '1'=>'1',
+    '1.5'=>'1.5',
+    '2'=>'2',
+    '2.5'=>'2.5',
+    '3'=>'3',
+    '3.5'=>'3.5',
+    '4'=>'4',
+    '4.5'=>'4.5',
+    '5'=>'5',
+    '5.5'=>'5.5',
+    '6'=>'6',
+    '6'=>'6',
+    '7'=>'7',
+    '7'=>'7',
+    '8+'=>'8+'
+));
+
+Configure::write('PropertyTypes',array(
+    'Single Family' => 'Single Family',
+    'Multi-Family' => 'Multi-Family',
+    'TownHouse' => 'TownHouse',
+    'Condo' => 'Condo',
+    'Triplex' => 'Triplex',
+    'Duplex' => 'Duplex',
+    'Mobile Home' => 'Mobile Home',
+    'Mobile w/ Land' => 'Mobile w/ Land',
+    'Timeshare' => 'Timeshare',
+    'Land Only' => 'Land Only',
+    'Other' => 'Other'
+));
