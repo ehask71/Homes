@@ -44,7 +44,7 @@ class AuthNetXmlComponent extends Component {
             'profile' => array(
 		'merchantCustomerId' => Configure::read('SitePrefix').$data['id'],
 		'email' => $data['email'],
-		'paymentProfiles' => array(
+		/*'paymentProfiles' => array(
 			'billTo' => array(
                             'firstName' => $data['firstname'],
                             'lastName' => $data['lastname'],
@@ -58,9 +58,10 @@ class AuthNetXmlComponent extends Component {
                             'creditCard' => array(
                                 'cardNumber' => $data['ccnum'],
                                 'expirationDate' => $data['ccexpyr'].'-'.$data['ccexpmnth'],
+                                'cardCode' => $data['cvv']
                             ),
 			),
-		),
+		),*/
             ),
             'validationMode' => 'liveMode'
 	));
