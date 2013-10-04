@@ -216,6 +216,7 @@ Configure::write('PropertyTypes', array(
 ));
 
 Configure::write('AskingPrice', array(
+    '' => 'Select Range',
     'below $25,000.00' => 'below $25,000.00',
     '$25,000.00 - $50,000.00' => '$25,000.00 - $50,000.00',
     '$50,000.00 - $75,000.00' => '$50,000.00 - $75,000.00',
