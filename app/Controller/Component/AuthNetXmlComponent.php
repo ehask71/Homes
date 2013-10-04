@@ -65,5 +65,7 @@ class AuthNetXmlComponent extends Component {
             ),
             'validationMode' => 'liveMode'
 	));
+        
+        return $xml;
     }
 }
