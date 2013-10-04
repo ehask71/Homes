@@ -33,4 +33,36 @@ class AuthNetXmlComponent extends Component {
         
     }
     
+    
+    public function payment_profile_create($profileid,$data){
+        
+    }
+    
+    public function customer_profile_request($data){
+        $xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), AuthnetXML::USE_DEVELOPMENT_SERVER);
+        $xml->createCustomerProfileRequest(array(
+            'profile' => array(
+		'merchantCustomerId' => Configure::read('SitePrefix').$data['id'],
+		'email' => $data['email'],
+		'paymentProfiles' => array(
+			'billTo' => array(
+                            'firstName' => $data['firstname'],
+                            'lastName' => $data['lastname'],
+                            'address' => $data['address'],
+                            'city' => $data['city'],
+                            'state' => $data['state'],
+                            'zip' => $data['zip'],
+                            'phoneNumber' => $data['phone']
+			),
+			'payment' => array(
+                            'creditCard' => array(
+                                'cardNumber' => $data['ccnum'],
+                                'expirationDate' => $data['ccexpyr'].'-'.$data['ccexpmnth'],
+                            ),
+			),
+		),
+            ),
+            'validationMode' => 'liveMode'
+	));
+    }
 }
