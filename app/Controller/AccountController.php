@@ -55,9 +55,10 @@ class AccountController extends AppController {
                         $update['authnet_profile'] = $cimresponse->customerProfileId;
                         $this->Account->save($update);
                     } else {
-                        echo $cimresponse->__toString();
+                        //echo $cimresponse->__toString();
                         CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code);
                     }
+                    echo $cimresponse->__toString();
                     CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code);
 		    // Assign a Role
 		    $this->loadModel('RoleUser');
