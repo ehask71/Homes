@@ -19,7 +19,7 @@ class RoleUser extends AppModel {
 	    'role_id' => ($roleid != 0)?$roleid:$this->defaultRoleId
 	));
 	if($this->save($data)){
-	    return true;
+	    return $this->getLastInsertID();
 	}
 	return false;
     }
