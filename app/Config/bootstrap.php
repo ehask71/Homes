@@ -114,6 +114,7 @@ Configure::write('Authnet.txnkey', '22Fk7S5srmm7B57r');
 Configure::write('Setupfee', 3500);
 
 Configure::write('States', array(
+    '' => 'Select State',
     'AL' => "Alabama",
     'AK' => "Alaska",
     'AZ' => "Arizona",
@@ -167,6 +168,7 @@ Configure::write('States', array(
     'WY' => "Wyoming"));
 
 Configure::write('Bedrooms',array(
+    '' => 'Choose',
     '0'=>'0',
     '1'=>'1',
     '2'=>'2',
@@ -179,6 +181,7 @@ Configure::write('Bedrooms',array(
 ));
 
 Configure::write('Bathrooms',array(
+    '' => 'Choose',
     '0'=>'0',
     '1'=>'1',
     '1.5'=>'1.5',
@@ -198,6 +201,7 @@ Configure::write('Bathrooms',array(
 ));
 
 Configure::write('PropertyTypes',array(
+    '' => 'Select Type',
     'Single Family' => 'Single Family',
     'Multi-Family' => 'Multi-Family',
     'TownHouse' => 'TownHouse',
