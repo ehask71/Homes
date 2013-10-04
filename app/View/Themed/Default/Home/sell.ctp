@@ -26,17 +26,17 @@ echo $this->Form->input('city',array(
     'label'=> 'City'
 ));
 echo $this->Form->input('state',array(
-    'label'=> 'State'
+    'label'=> 'State','options'=>  Configure::read('States')
 ));
 echo $this->Form->input('zip',array(
     'label'=> 'Zip Code'
 ));
 
 echo $this->Form->input('bedrooms',array(
-    'label'=> 'Bedrooms'
+    'label'=> 'Bedrooms','options'=>  Configure::read('Bedrooms')
 ));
 echo $this->Form->input('bathrooms',array(
-    'label'=> 'Bathrooms'
+    'label'=> 'Bathrooms','options'=>  Configure::read('Bathrooms')
 ));
 echo $this->Form->input('occupied',array(
     'label'=> 'Is The Property Occupied?','type' => 'checkbox'
@@ -45,7 +45,7 @@ echo $this->Form->input('listed',array(
     'label'=> 'Listed With A Realtor?'
 ));
 echo $this->Form->input('propertytype',array(
-    'label'=> 'Property Type'
+    'label'=> 'Property Type','options'=>  Configure::read('PropertyTypes')
 ));
 echo $this->Form->input('askingprice',array(
     'label'=> 'Asking Price'
