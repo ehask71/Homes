@@ -3,7 +3,7 @@
  * CakePHP AuthNetXmlComponent
  * @author Eric
  */
-App::import('Vendor', 'Facebook', array('file' => 'Authnet' . DS . 'AuthNetXML.class.php'));
+App::import('Vendor', 'Authnet', array('file' => 'Authnet' . DS . 'AuthNetXML.class.php'));
 class AuthNetXmlComponent extends Component {
 
     public $components = array();
