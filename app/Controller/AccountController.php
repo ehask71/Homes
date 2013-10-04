@@ -52,8 +52,8 @@ class AccountController extends AppController {
 		    $cimresponse = $this->AuthNetXml->customer_profile_request($data);
                     if(!$cimresponse->isError()){
                         CakeLog::write('debug','CIM success');
-                        $update['id'] = $userid;
-                        $update['authnet_profile'] = $cimresponse->customerProfileId;
+                        $update['Account']['id'] = $userid;
+                        $update['Account']['authnet_profile'] = $cimresponse->customerProfileId;
                         $this->Account->save($update);
                     } else {
                         //echo $cimresponse->__toString();
