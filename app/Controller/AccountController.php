@@ -58,7 +58,7 @@ class AccountController extends AppController {
                         //echo $cimresponse->__toString();
                         CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code.print_r($cimresponse->messages,1));
                     }
-                    echo $cimresponse->__toString();
+                    //echo $cimresponse->__toString();
                     CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code);
 		    // Assign a Role
 		    $this->loadModel('RoleUser');
