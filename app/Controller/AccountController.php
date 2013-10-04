@@ -56,7 +56,7 @@ class AccountController extends AppController {
                         $this->Account->save($update);
                     } else {
                         //echo $cimresponse->__toString();
-                        CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code.print_r($cimresponse->messages,1));
+                        CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code.' '.$cimresponse->customerProfileId);
                     }
                     //echo $cimresponse->__toString();
                     CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code);
