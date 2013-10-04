@@ -9,7 +9,9 @@ class AccountController extends AppController {
     
     public $name = 'Account';
     public $uses = array('Account');
-    
+    public $components = array('AuthNetXml');
+
+
     public function beforeFilter() {
 	parent::beforeFilter();
         $this->Auth->allow('register','login','logout','forgotpwd');
@@ -32,7 +34,15 @@ class AccountController extends AppController {
 	    if ($this->Account->accountValidate()) {
 		if ($this->Account->save($this->request->data)) {
 		    $userid = $this->Account->getLastInsertID();
-		    
+                    // Create Profile on Auth.Net
+                    $data['id'] = $userid;
+                    $data['email'] = $this->request->data['Account']['email'];
+		    $cimresponse = $this->AuthNetXml->customer_profile_request($data);
+                    if(!$cimresponse->isError()){
+                        $update['id'] = $userid;
+                        $update['authnet_profile'] = $cimresponse->customerProfileId;
+                        $this->Account->save($update);
+                    }
 		    // Assign a Role
 		    $this->loadModel('RoleUser');
 		    $this->RoleUser->addUserSite($userid);
