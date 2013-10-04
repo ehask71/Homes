@@ -32,5 +32,5 @@ class AuthNetXmlComponent extends Component {
     public function beforeRedirect($controller, $url, $status = null, $exit = true) {
         
     }
-
+    
 }
