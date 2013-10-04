@@ -45,7 +45,7 @@ class AccountController extends AppController {
                     } else {
                         CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code);
                     }
-                    
+                    CakeLog::write('debug', $cimresponse->messages->resultCode.' '.$cimresponse->messages->message->code);
 		    // Assign a Role
 		    $this->loadModel('RoleUser');
 		    $this->RoleUser->addUserSite($userid);
