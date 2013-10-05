@@ -51,10 +51,10 @@ class AccountController extends AppController {
 		    $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid, 'Role' => $role));
 		    $this->Auth->login($this->request->data['Account']);
 
-		    $this->Session->setFlash('The user has been saved');
+		    $this->Session->setFlash(__('Account Created.'));
 		    $this->redirect('/register/select-counties');
 		} else {
-		    $this->Session->setFlash('The user could not be saved. Please, try again.');
+		    $this->Session->setFlash(__('There was a problem. Please, try again.'));
 		}
 	    }
 	}
