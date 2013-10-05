@@ -62,7 +62,9 @@ class AccountController extends AppController {
 
     // Registration Step 2
     public function selectcounties() {
-	
+	if($this->request->is('post')){
+	    
+	}
     }
 
     // Billing Profile
