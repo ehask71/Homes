@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
 class AccountController extends AppController {
 
     public $name = 'Account';
-    public $uses = array('Account');
+    public $uses = array('Account','Lead','Transaction');
     public $components = array('AuthNetXml');
 
     public function beforeFilter() {
@@ -18,14 +18,12 @@ class AccountController extends AppController {
     }
 
     public function index() {
-	$this->autoRender = false;
-	$account = $this->Account->find('first', array(
-	    'conditions' => array(
-		'Account.email' => 'ehask71@gmail.com'
-	    )
-		));
-	echo '<pre>';
-	print_r($account);
+	$this->Paginator->settings = array(
+	    'conditions' => array('Lead.user_id' => $this->Auth->user('id')),
+	    'limit' => 20
+	);
+	$data = $this->Paginator->paginate('Lead');
+	$this->set(compact('data'));
     }
 
     public function register() {
@@ -124,7 +122,7 @@ class AccountController extends AppController {
     public function editbilling(){
 	
     }
-
+    
     public function history() {
 	$this->Paginator->settings = array(
 	    'conditions' => array('Transaction.user_id' => $this->Auth->user('id')),
