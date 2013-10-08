@@ -120,6 +120,10 @@ class AccountController extends AppController {
 	));
 	$this->request->data = $prof;
     }
+    
+    public function editbilling(){
+	
+    }
 
     public function history() {
 	$this->Paginator->settings = array(
