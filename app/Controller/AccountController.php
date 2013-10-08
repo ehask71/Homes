@@ -62,7 +62,7 @@ class AccountController extends AppController {
 
     // Registration Step 2
     public function selectcounties() {
-	if($this->request->is('post')){
+	if ($this->request->is('post')) {
 	    
 	}
     }
@@ -101,6 +101,20 @@ class AccountController extends AppController {
 
     public function finshregistration() {
 	
+    }
+
+    // Start Profile Stuff
+    public function edit() {
+	
+    }
+
+    public function history() {
+	$this->Paginator->settings = array(
+	    'conditions' => array('Transaction.user_id' => $this->Auth->user('id')),
+	    'limit' => 20
+	);
+	$data = $this->Paginator->paginate('Transaction');
+	$this->set(compact('data'));
     }
 
     public function login() {
