@@ -105,7 +105,20 @@ class AccountController extends AppController {
 
     // Start Profile Stuff
     public function edit() {
-	
+	if($this->request->is('post')){
+	    if($this->Account->accountValidate()){
+		if($this->Account->save($this->request->data)){
+		    $this->Session->setFlash(__('Profile Updated'));
+		    $this->redirect('/account/edit');
+		}
+	    }
+	}
+	$prof = $this->Account->find('first',array(
+	    'conditions' => array(
+		'Account.id' => $this->Auth->user('id')
+	    )
+	));
+	$this->request->data = $prof;
     }
 
     public function history() {
