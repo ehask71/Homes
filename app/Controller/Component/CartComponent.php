@@ -28,7 +28,7 @@ class CartComponent extends Component {
 
 //////////////////////////////////////////////////
 
-	public function add($id, $quantity = 1,$player=FALSE,$season=FALSE) {
+	public function add($id) {
 
 		if(!is_numeric($quantity)) {
 			$quantity = 1;
@@ -51,24 +51,6 @@ class CartComponent extends Component {
 				'Products.id' => $id
 			)
 		));
-                
-		$cartitems = $this->Session->read('Shop.OrderItem');
-		if(count($cartitems)>0){
-                    $pl = array();
-		    foreach ($cartitems AS $item){
-                        if($player & $season){
-                            if(!in_array($player, $pl)){
-                                $pl[] = $player;
-                            } else {
-                                // Duplicate
-                                return false;
-                            }
-                        }
-			if($item['product_id'] == $id){
-			    $quantity = (int)$item['quantity'] + 1;
-			}
-		    }
-		}
 		
 		if(empty($product)) {
 			return false;
@@ -76,14 +58,10 @@ class CartComponent extends Component {
 
 		$data['product_id'] = $product['Products']['id'];
 		$data['name'] = $product['Products']['name'];
-		$data['weight'] = $product['Products']['weight'];
 		$data['price'] = $product['Products']['price'];
-		$data['quantity'] = $quantity;
 		$data['subtotal'] = sprintf('%01.2f', $product['Products']['price'] * $quantity);
-		$data['totalweight'] = sprintf('%01.2f', $product['Products']['weight'] * $quantity);
 		$data['Product'] = $product['Products'];
-                $data['player_id'] = ($player)?$player:0;
-                $data['season_id'] = (int)($season)?$season:0;
+
               /*  if($player){
                     $this->Session->write('Shop.OrderItem.'.$player.'.' . $id, $data);
                 } else {*/
@@ -94,12 +72,8 @@ class CartComponent extends Component {
 		$this->Cart = ClassRegistry::init('Cart');
 
 		$cartdata['Cart']['sessionid'] = $this->Session->id();
-		$cartdata['Cart']['quantity'] = $quantity;
 		$cartdata['Cart']['product_id'] = $product['Products']['id'];
-                $cartdata['Cart']['player_id'] = ($player)?$player:0;
 		$cartdata['Cart']['name'] = $product['Products']['name'];
-		$cartdata['Cart']['weight'] = $product['Products']['weight'];
-		$cartdata['Cart']['weight_total'] = sprintf('%01.2f', $product['Products']['weight'] * $quantity);
 		$cartdata['Cart']['price'] = $product['Products']['price'];
                 
 		$cartdata['Cart']['subtotal'] = sprintf('%01.2f', $product['Products']['price'] * $quantity);
