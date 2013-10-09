@@ -62,11 +62,8 @@ class CartComponent extends Component {
 		$data['subtotal'] = sprintf('%01.2f', $product['Products']['price'] * $quantity);
 		$data['Product'] = $product['Products'];
 
-              /*  if($player){
-                    $this->Session->write('Shop.OrderItem.'.$player.'.' . $id, $data);
-                } else {*/
-                    $this->Session->write('Shop.OrderItem.' . $id, $data);
-                //}
+                $this->Session->write('Shop.OrderItem.' . $id, $data);
+
 		$this->Session->write('Shop.Order.shop', 1);
 
 		$this->Cart = ClassRegistry::init('Cart');
@@ -130,15 +127,12 @@ class CartComponent extends Component {
 
 		if (count($shop['OrderItem']) > 0) {
 			foreach ($shop['OrderItem'] as $item) {
-				$quantity += $item['quantity'];
-				$weight += $item['totalweight'];
+				$quantity += 1;
 				$subtotal += $item['subtotal'];
 				$total += $item['subtotal'];
 				$order_item_count++;
 			}
 			$d['order_item_count'] = $order_item_count;
-			$d['quantity'] = $quantity;
-			$d['weight'] = sprintf('%01.2f', $weight);
 			$d['subtotal'] = sprintf('%01.2f', $subtotal);
 			$d['total'] = sprintf('%01.2f', $total);
 			$this->Session->write('Shop.Order', $d + $shop['Order']);
@@ -146,7 +140,6 @@ class CartComponent extends Component {
 		}
 		else {
 			$d['quantity'] = 0;
-			$d['weight'] = 0;
 			$d['subtotal'] = 0;
 			$d['total'] = 0;
 			$this->Session->write('Shop.Order', $d + $shop['Order']);
