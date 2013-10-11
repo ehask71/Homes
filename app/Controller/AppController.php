@@ -10,7 +10,7 @@ class AppController extends Controller {
     
     public $components = array(
         'Session',
-	'RequestHandlerComponent',
+	'RequestHandler',
         'Auth' => array(
             'authorize' => array('Tiny'),
             'authenticate' => array(
