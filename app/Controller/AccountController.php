@@ -265,5 +265,9 @@ class AccountController extends AppController {
 	}
 	return true;
     }
+    
+    public function gc(){
+	
+    }
 
 }
