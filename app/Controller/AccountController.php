@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
 class AccountController extends AppController {
 
     public $name = 'Account';
-    public $uses = array('Account','Lead','Transaction');
+    public $uses = array('Account', 'Lead', 'Transaction', 'ZipData');
     public $components = array('AuthNetXml');
 
     public function beforeFilter() {
@@ -62,8 +62,10 @@ class AccountController extends AppController {
     public function selectcounties() {
 	if ($this->request->is('post')) {
 	    
+	} else {
+	    $this->request->data['Account']['state'] = 'FL';
+	    $this->request->data['Account']['counties'] = $this->ZipData->getCountiesByState('FL', true);
 	}
-	
     }
 
     // Billing Profile
@@ -104,26 +106,26 @@ class AccountController extends AppController {
 
     // Start Profile Stuff
     public function edit() {
-	if($this->request->is('post')){
-	    if($this->Account->accountValidate()){
-		if($this->Account->save($this->request->data)){
+	if ($this->request->is('post')) {
+	    if ($this->Account->accountValidate()) {
+		if ($this->Account->save($this->request->data)) {
 		    $this->Session->setFlash(__('Profile Updated'));
 		    $this->redirect('/account/edit');
 		}
 	    }
 	}
-	$prof = $this->Account->find('first',array(
+	$prof = $this->Account->find('first', array(
 	    'conditions' => array(
 		'Account.id' => $this->Auth->user('id')
 	    )
 	));
 	$this->request->data = $prof;
     }
-    
-    public function editbilling(){
+
+    public function editbilling() {
 	
     }
-    
+
     public function history() {
 	$this->Paginator->settings = array(
 	    'conditions' => array('Transaction.user_id' => $this->Auth->user('id')),
@@ -157,7 +159,7 @@ class AccountController extends AppController {
 		'conditions' => array(
 		    'Account.email' => $this->request->data['Account']['email']
 		)
-		    ));
+	    ));
 	    if (count($account) > 0) {
 		$data['id'] = $account['Account']['id'];
 		$data['reset_code'] = md5($this->request->data['Account']['email'] . date('Y-m-d h:i:s'));
@@ -194,7 +196,7 @@ class AccountController extends AppController {
 		    'conditions' => array(
 			'Account.reset_code' => $this->request->data['Account']['code']
 		    )
-			));
+		));
 	    }
 	    if (isset($this->request->data['Account']['password']) && isset($this->request->data['Account']['confirm_password']) && isset($this->request->data['Account']['rstcode'])) {
 		// We are restting the passwd
@@ -203,7 +205,7 @@ class AccountController extends AppController {
 			'conditions' => array(
 			    'Account.reset_code' => $this->request->data['Account']['rstcode']
 			)
-			    ));
+		    ));
 
 		    $data['id'] = $account['Account']['id'];
 		    $data['password'] = $this->request->data['Account']['password'];
@@ -240,7 +242,7 @@ class AccountController extends AppController {
 		'conditions' => array(
 		    'Account.reset_code' => $this->request->query['code']
 		)
-		    ));
+	    ));
 	}
 
 	if (count($account) > 0) {
@@ -264,4 +266,3 @@ class AccountController extends AppController {
     }
 
 }
-
