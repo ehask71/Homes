@@ -11,7 +11,7 @@ $cakeDescription = __('HO Brands: Homes');
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
+		echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
 		echo $this->Html->css('style');
 
 		echo $this->fetch('meta');
