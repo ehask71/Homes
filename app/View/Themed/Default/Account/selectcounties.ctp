@@ -8,7 +8,7 @@
 	</tr>
 	<tr>
 	    <td>
-		<?php echo $this->Form->input('counties', array('label' => 'Select your Counties', 'id' => 'counties', 'multiple' => 'multiple', 'type' => 'select')); ?>
+		<?php echo $this->Form->input('counties', array('label' => 'Select your Counties', 'id' => 'counties', 'multiple' => 'multiple', 'type' => 'select','options'=>$cty)); ?>
 	    </td>
 	</tr>
     </table>
