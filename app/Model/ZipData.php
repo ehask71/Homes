@@ -27,7 +27,7 @@ class ZipData extends AppModel {
 	if($select && is_array($data)){
 	    $return = array();
 	    foreach ($data AS $row){
-		$return[$row['ZipData']['fips']] = $row['ZipData']['county'];
+		$return[$row['ZipData']['id']] = $row['ZipData']['county'];
 	    }
 	} else {
 	    return $data;
