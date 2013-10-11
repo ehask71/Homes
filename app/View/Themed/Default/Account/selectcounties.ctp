@@ -29,7 +29,11 @@
 		},
 		dataType: "json",
 		success: function(sys) {
-
+		    var html = '';
+		    $.each(sys.counties,function(key,val){
+			html += '<option value="'+key+'">'+val+'</option>';
+		    });
+		    $('#counties').html(html);
 		}
 	    });
 	}
