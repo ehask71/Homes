@@ -17,7 +17,23 @@ class ZipData extends AppModel {
         )
     );
     
-    
+    public function getCountiesByState($state,$select=false){
+	$data = $this->find('all',array(
+	   'conditions' => array(
+	       'ZipData.state' => $state
+	   ) 
+	));
+	
+	if($select && is_array($data)){
+	    $return = array();
+	    foreach ($data AS $row){
+		$return[$row['ZipData']['fips']] = $row['ZipData']['county'];
+	    }
+	} else {
+	    return $data;
+	}
+    }
+
     public function getPricing($pop){
 	/*
              0-49,999	 $300 per month
