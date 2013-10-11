@@ -268,10 +268,10 @@ class AccountController extends AppController {
     
     public function gc(){
 	if($this->request->query['st'] != ''){
-	    $rtn = $this->ZipData->getCountiesByState($this->request->query['st'], true);
+	    $counties = $this->ZipData->getCountiesByState($this->request->query['st'], true);
 	    
-	    $this->set(compact('rtn'));
-	    $this->set('_serialize', array('rtn'));
+	    $this->set(compact('counties'));
+	    $this->set('_serialize', array('counties'));
 	}
     }
 
