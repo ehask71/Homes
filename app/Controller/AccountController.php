@@ -271,6 +271,7 @@ class AccountController extends AppController {
 	    $rtn = $this->ZipData->getCountiesByState($this->request->query['st'], true);
 	    
 	    $this->set(compact('rtn'));
+	    $this->set('_serialize', array('rtn'));
 	}
     }
 
