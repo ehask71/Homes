@@ -27,7 +27,7 @@ class ZipData extends AppModel {
 	if($select && is_array($data)){
 	    $return = array();
 	    foreach ($data AS $row){
-		$return[$row['ZipData']['id']] = '$'.$row['ZipData']['price']."\t".$row['ZipData']['county'];
+		$return[$row['ZipData']['id']] = '$'.$row['ZipData']['price']."\t\t".$row['ZipData']['county'];
 	    }
 	    
 	    return $return;
