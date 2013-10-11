@@ -267,7 +267,11 @@ class AccountController extends AppController {
     }
     
     public function gc(){
-	
+	if($this->request->query['st'] != ''){
+	    $rtn = $this->ZipData->getCountiesByState($this->request->query['st'], true);
+	    
+	    $this->set(compact('rtn'));
+	}
     }
 
 }
