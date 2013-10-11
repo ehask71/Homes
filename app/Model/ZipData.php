@@ -29,6 +29,8 @@ class ZipData extends AppModel {
 	    foreach ($data AS $row){
 		$return[$row['ZipData']['id']] = $row['ZipData']['county'];
 	    }
+	    
+	    return $return;
 	} else {
 	    return $data;
 	}
