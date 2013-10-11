@@ -23,7 +23,7 @@
 	if (st != '') {
 	    $.ajax({
 		type: "GET",
-		url: '/account/gc',
+		url: '/account/gc.json',
 		data: {
 		    st: st,
 		},
