@@ -16,22 +16,22 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-    }
+    });
 
-    function fetchCounties(){
-    var st = $('#state').val();
-    if (st != '') {
-	$.ajax({
-	    type: "GET",
-	    url: '/account/gc',
-	    data: {
-		st: st,
-	    },
-	    dataType: "json",
-	    success: function(sys) {
-		
-	    }
-	});
+    function fetchCounties() {
+	var st = $('#state').val();
+	if (st != '') {
+	    $.ajax({
+		type: "GET",
+		url: '/account/gc',
+		data: {
+		    st: st,
+		},
+		dataType: "json",
+		success: function(sys) {
+
+		}
+	    });
 	}
     }
 </script>
