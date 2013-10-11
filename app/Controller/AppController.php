@@ -25,7 +25,7 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'account', 'action' => 'login'),
             'loginAction' => '/login',
         ),
-	'DebugKit.Toolbar'
+	//'DebugKit.Toolbar'
 	    );
     
     public function beforeFilter() {
