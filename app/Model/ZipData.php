@@ -19,6 +19,7 @@ class ZipData extends AppModel {
     
     public function getCountiesByState($state,$select=false){
 	$data = $this->find('all',array(
+	   'recursive' => -1,
 	   'conditions' => array(
 	       'ZipData.state' => $state
 	   ) 
