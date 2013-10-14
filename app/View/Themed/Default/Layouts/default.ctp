@@ -12,7 +12,10 @@ $cakeDescription = __('HO Brands: Homes');
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+		echo $this->Html->script('bootstrap.min');
+		echo $this->Html->css('bootstrap-responsive.min');
 		echo $this->Html->css('style');
+		
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
