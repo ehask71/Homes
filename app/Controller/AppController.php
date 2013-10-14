@@ -5,7 +5,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
     public $viewClass = 'Theme';
-    public $theme = 'default';
+    public $theme = 'twitterbootstrap';
     public $helpers = array(
 	'Session',
 	'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
