@@ -81,7 +81,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     echo $this->Html->script('bootstrap-carousel.js');
     echo $this->Html->script('bootstrap-typeahead.js');
     ?>
-    
-	<?php echo $this->element('sql_dump'); ?>
+
   </body>
 </html>
