@@ -14,9 +14,9 @@
           <li><a href="#contact">Contact</a></li>
 	  <li><?php
 	if ($loggedIn) {
-	    echo $this->Html->link('LOGOUT', array('controller' => 'account', 'action' => 'logout'));
+	    echo $this->Html->link('Logout', array('controller' => 'account', 'action' => 'logout'));
 	} else {
-	    echo $this->Html->link('LOGIN', array('controller' => 'account', 'action' => 'login'));
+	    echo $this->Html->link('Login', array('controller' => 'account', 'action' => 'login'));
 	}
 	?></li>
         </ul>
