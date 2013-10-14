@@ -12,6 +12,13 @@
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
+	  <li><?php
+	if ($loggedIn) {
+	    echo $this->Html->link('LOGOUT', array('controller' => 'account', 'action' => 'logout'));
+	} else {
+	    echo $this->Html->link('LOGIN', array('controller' => 'account', 'action' => 'login'));
+	}
+	?></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
