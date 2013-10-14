@@ -40,5 +40,5 @@
     }
 </script>
 <pre>
-    <?php print_r($userinfo); print_r($cty) ?>
+    <?php print_r($userinfo);?>
 </pre>
