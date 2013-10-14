@@ -52,7 +52,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
   <body>
 	
-	<?php echo $this->element('navbar'); ?>
+	<?php echo $this->element('navbar',array('loggedIn'=>$loggedIn)); ?>
 
     <div class="container">
 		<?php echo $this->Session->flash(); ?>
