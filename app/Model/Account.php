@@ -51,7 +51,7 @@ class Account extends AppModel {
             'state' => array(
 		'mustNotEmpty' => array(
 		    'rule' => 'notEmpty',
-		    'message' => 'Please Enter your State')
+		    'message' => 'Please Select Your State')
 	    ),
 	    'zip' => array(
 		'mustNotEmpty' => array(
