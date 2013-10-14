@@ -38,6 +38,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	echo $this->Html->css('bootstrap-responsive');
 	
 	echo $this->fetch('css');
+	echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 	echo $this->fetch('script');
 ?>
 
@@ -67,7 +68,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <?php 
-    echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
     echo $this->Html->script('bootstrap-transition.js');
     echo $this->Html->script('bootstrap-alert.js');
     echo $this->Html->script('bootstrap-modal.js');
