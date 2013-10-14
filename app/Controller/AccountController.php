@@ -65,7 +65,7 @@ class AccountController extends AppController {
 	} else {
 	    $this->request->data['state'] = 'FL';
 	    $this->request->data['counties'] = $this->ZipData->getCountiesByState('FL', true);
-	    $this->set('cty',$this->ZipData->getCountiesByState('FL', true));
+	    //$this->set('cty',$this->ZipData->getCountiesByState('FL', true));
 	}
     }
 
