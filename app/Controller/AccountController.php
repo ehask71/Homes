@@ -52,6 +52,7 @@ class AccountController extends AppController {
 
     public function editbilling($id) {
 	if($id != ''){
+	    $data = array();
 	    
 	} else {
 	    $this->Session->setFlash(__('Missing Billing Profile'));
