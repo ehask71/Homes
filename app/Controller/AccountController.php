@@ -50,8 +50,13 @@ class AccountController extends AppController {
 	
     }
 
-    public function editbilling() {
-	
+    public function editbilling($id) {
+	if($id != ''){
+	    
+	} else {
+	    $this->Session->setFlash(__('Missing Billing Profile'));
+	    $this->redirect('/account/');
+	}
     }
 
     public function history() {
