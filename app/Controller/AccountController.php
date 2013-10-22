@@ -17,6 +17,9 @@ class AccountController extends AppController {
 	$this->Auth->allow('register', 'login', 'logout', 'forgotpwd');
     }
 
+    /**
+     *  Profile Related Functions
+     */
     public function index() {
 	$this->Paginator->settings = array(
 	    'conditions' => array('Lead.user_id' => $this->Auth->user('id')),
@@ -26,6 +29,55 @@ class AccountController extends AppController {
 	$this->set(compact('data'));
     }
 
+    public function edit() {
+	if ($this->request->is('post')) {
+	    if ($this->Account->accountValidate()) {
+		if ($this->Account->save($this->request->data)) {
+		    $this->Session->setFlash(__('Profile Updated'));
+		    $this->redirect('/account/edit');
+		}
+	    }
+	}
+	$prof = $this->Account->find('first', array(
+	    'conditions' => array(
+		'Account.id' => $this->Auth->user('id')
+	    )
+	));
+	$this->request->data = $prof;
+    }
+
+    public function billingprofiles() {
+	
+    }
+
+    public function editbilling() {
+	
+    }
+
+    public function history() {
+	$this->Paginator->settings = array(
+	    'conditions' => array('Transaction.user_id' => $this->Auth->user('id')),
+	    'limit' => 20
+	);
+	$data = $this->Paginator->paginate('Transaction');
+	$this->set(compact('data'));
+    }
+
+    public function properties() {
+	
+    }
+
+    public function addproperty() {
+	
+    }
+
+    public function editproperty() {
+	
+    }
+
+    /**
+     * Registration Process
+     */
     public function register() {
 	if ($this->request->is('post')) {
 	    $this->Account->set($this->data);
@@ -66,7 +118,7 @@ class AccountController extends AppController {
 	    $counties = $this->ZipData->getCountiesByState('FL', true);
 	    $this->request->data['state'] = 'FL';
 	    $this->request->data['counties'] = $counties;
-	    $this->set('cty',$counties);
+	    $this->set('cty', $counties);
 	}
     }
 
@@ -105,38 +157,14 @@ class AccountController extends AppController {
     public function finshregistration() {
 	
     }
-
-    // Start Profile Stuff
-    public function edit() {
-	if ($this->request->is('post')) {
-	    if ($this->Account->accountValidate()) {
-		if ($this->Account->save($this->request->data)) {
-		    $this->Session->setFlash(__('Profile Updated'));
-		    $this->redirect('/account/edit');
-		}
-	    }
-	}
-	$prof = $this->Account->find('first', array(
-	    'conditions' => array(
-		'Account.id' => $this->Auth->user('id')
-	    )
-	));
-	$this->request->data = $prof;
-    }
-
-    public function editbilling() {
-	
-    }
-
-    public function history() {
-	$this->Paginator->settings = array(
-	    'conditions' => array('Transaction.user_id' => $this->Auth->user('id')),
-	    'limit' => 20
-	);
-	$data = $this->Paginator->paginate('Transaction');
-	$this->set(compact('data'));
-    }
-
+    /**
+     *  End Registration Process Actions
+     */
+    
+    
+    /**
+     *   Helper Functions
+     */
     public function login() {
 	if ($this->request->is('post')) {
 	    if ($this->Auth->login()) {
@@ -266,11 +294,11 @@ class AccountController extends AppController {
 	}
 	return true;
     }
-    
-    public function gc(){
-	if($this->request->query['st'] != ''){
+
+    public function gc() {
+	if ($this->request->query['st'] != '') {
 	    $counties = $this->ZipData->getCountiesByState($this->request->query['st'], true);
-	    
+
 	    $this->set(compact('counties'));
 	    $this->set('_serialize', array('counties'));
 	}
