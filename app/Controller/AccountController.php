@@ -58,7 +58,7 @@ class AccountController extends AppController {
 		    'payment' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard'],
 		);
 		
-		//print_r($xml);
+		print_r($xml['AuthnetXMLresponse_xml']);
 		$this->set('profile',$profile);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
