@@ -103,11 +103,13 @@ class AccountController extends AppController {
 		if($this->Account->save($update)){
 		    $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
 		    $this->Session->setFlash(__('Billing Profile Created'));
-		    $this->redirect('/account/billingprofiles/');
+		    $this->redirect('/account/createbillingprofile/');
 		}
 	    } else {
 		//echo $cimresponse->__toString();
 		CakeLog::write('debug', $cimresponse->messages->resultCode . ' ' . $cimresponse->messages->message->code . ' ' . $cimresponse->customerProfileId . ' ' . $cimresponse->customerPaymentProfileIdList->numericString);
+		$this->Session->setFlash(__('Billing Profile Created'));
+		$this->redirect('/account/billingprofiles/');
 	    }
 	}
     }
