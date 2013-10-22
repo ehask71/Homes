@@ -100,7 +100,11 @@ class AccountController extends AppController {
 		$update['Account']['id'] = $this->Auth->user('id');
 		$update['Account']['authnet_profile'] = $cimresponse->customerProfileId;
 		$this->Account->create();
-		$this->Account->save($update);
+		if($this->Account->save($update)){
+		    $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
+		    $this->Session->setFlash(__('Billing Profile Created'));
+		    $this->redirect('/account/billingprofiles/');
+		}
 	    } else {
 		//echo $cimresponse->__toString();
 		CakeLog::write('debug', $cimresponse->messages->resultCode . ' ' . $cimresponse->messages->message->code . ' ' . $cimresponse->customerProfileId . ' ' . $cimresponse->customerPaymentProfileIdList->numericString);
