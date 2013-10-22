@@ -51,23 +51,15 @@ class AccountController extends AppController {
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
+		$xml = json_decode(json_encode((array) $cimresponse), 1);
 		$profile = array(
-		    'id' => $cimresponse->profile->customerProfileId,
-		    'billto' => array(
-			'firstname' => $cimresponse->profile->paymentProfiles->billTo->firstName,
-			'lastname' => $cimresponse->profile->paymentProfiles->billTo->lastName,
-			'address' => $cimresponse->profile->paymentProfiles->billTo->address,
-			'city' => $cimresponse->profile->paymentProfiles->billTo->city,
-			'state' => $cimresponse->profile->paymentProfiles->billTo->state,
-			'zip' => $cimresponse->profile->paymentProfiles->billTo->zip,
-			'phone' => $cimresponse->profile->paymentProfiles->billTo->phoneNumber
-		    ),
+		    'id' => $xml['AuthnetXMLresponse_xml']['profile']['customerProfileId'],
+		    'billto' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['billTo'],
 		    'payment' => array(
-			'creditcard' => $cimresponse->profile->paymentProfiles->payment->creditCard->cardNumber,
-			'expiration' => $cimresponse->profile->paymentProfiles->payment->creditCard->expirationDate
+			'creditcard' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard']['cardNumber'],
+			'expiration' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard']['expirationDate']
 		    )
 		);
-		$profile = json_decode(json_encode((array) $cimresponse), 1);
 		$this->set('profile',$profile);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
