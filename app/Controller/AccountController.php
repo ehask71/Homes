@@ -61,6 +61,9 @@ class AccountController extends AppController {
 		echo "<pre>";
 		print_r($xml);
 		echo "</pre>";
+		foreach ($xml AS $k=>$v){
+		    echo $k."<br>";
+		}
 		$this->set('profile',$profile);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
