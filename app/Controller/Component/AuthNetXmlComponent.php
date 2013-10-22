@@ -7,10 +7,13 @@ App::import('Vendor', 'Authnet', array('file' => 'Authnet' . DS . 'AuthNetXml.cl
 class AuthNetXmlComponent extends Component {
 
     public $components = array();
+    
+    public $xml = null;
 
     public function __construct(\ComponentCollection $collection, $settings = array()) {
         $this->controller = $collection->getController();
         parent::__construct($collection, $settings);
+	$this->xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), AuthnetXML::USE_DEVELOPMENT_SERVER);
     }
 
     public function initialize($controller) {
@@ -38,7 +41,7 @@ class AuthNetXmlComponent extends Component {
         
     }
     
-    public function customer_profile_request($data){
+    public function create_customer_profile_request($data){
         $xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), AuthnetXML::USE_DEVELOPMENT_SERVER);
         $xml->createCustomerProfileRequest(array(
             'profile' => array(
@@ -67,5 +70,13 @@ class AuthNetXmlComponent extends Component {
 	));
         
         return $xml;
+    }
+    
+    public function get_customer_profile($data){
+	$this->xml->getCustomerProfileRequest(array(
+	    'customerProfileId' => $data['customerProfileId']
+	));
+	
+	return $this->xml;
     }
 }
