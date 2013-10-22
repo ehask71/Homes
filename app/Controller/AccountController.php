@@ -60,8 +60,9 @@ class AccountController extends AppController {
 			'expiration' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard']['expirationDate']
 		    )
 		);
-		print_r($xml);
-		$this->set('profile',$profile);
+		
+		//print_r($xml);
+		$this->set('profile',$xml);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
 		$this->redirect('/account/');
