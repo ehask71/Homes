@@ -58,9 +58,8 @@ class AccountController extends AppController {
 		    //'payment' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard'],
 		);
 		
-		/*echo "<pre>";
-		print$xml;
-		echo "</pre>";*/
+		echo "<pre>";
+		echo $xml['AuthnetXMLresponse_xml']['profile']['customerPaymentProfileId'].' <-- $xml["AuthnetXMLresponse_xml"]["profile"]["customerPaymentProfileId"]';
 		foreach ($xml AS $k=>$v){
                     echo "Var Dump:";
 		    var_dump($k);
@@ -70,6 +69,8 @@ class AccountController extends AppController {
 			$profile = $v;
 		    }
 		}
+                echo "</pre>";
+		
 		$this->set('profile',$xml);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
