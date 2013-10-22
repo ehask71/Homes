@@ -27,7 +27,8 @@ echo $this->Form->input('expmnth',array('label' => 'Exp Month','options'=>array(
     '11'=>'11',
     '12'=>'12')));
 echo $this->Form->input('expyear',array('label' => 'Exp Year','options'=>$years));
-echo $this->Form->input('cardholder',array('label' => 'Name on Card'));
+echo $this->Form->input('firstname',array('label' => 'First Name','value'=>$userinfo['firstname']));
+echo $this->Form->input('lastname',array('label' => 'Last Name','value'=>$userinfo['lastname']));
 echo $this->Form->input('name',array('label' => 'Name This Profile (for your records)',
 	'value'=>'bpf_'.substr($userinfo['firstname'],0,1).$userinfo['lastname'].date('is')
 ));
