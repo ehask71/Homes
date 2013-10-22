@@ -1,3 +1,3 @@
 <pre>
-    <?php print_r($cim);?>
+    <?php print_r($profile);?>
 </pre>
