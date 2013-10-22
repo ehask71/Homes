@@ -62,10 +62,10 @@ class AccountController extends AppController {
 		echo $xml['AuthnetXMLresponse_xml']['profile']['customerPaymentProfileId'].' <-- $xml["AuthnetXMLresponse_xml"]["profile"]["customerPaymentProfileId"]';
 		echo "<br><br>";
                 foreach ($xml AS $k=>$v){
-                    echo "<b>Var Dump: $k</b>";
+                    echo "<b>Var Dump $k</b>:<br>";
 		    var_dump($k)."<br>";
                     echo "<b>Print_r</b>:<br>";
-		    print_r($v);
+		    print_r($v)."<br>";
 		    if($k == 'AuthnetXMLresponse_xml'){
 			$profile = $v;
 		    }
