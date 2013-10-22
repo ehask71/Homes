@@ -59,7 +59,7 @@ class AccountController extends AppController {
 		);
 		
 		echo "<pre>";
-		print_r($xml);
+		var_dump($xml);
 		echo "</pre>";
 		foreach ($xml AS $k=>$v){
 		    echo $k."<br>";
