@@ -29,7 +29,7 @@ echo $this->Form->input('expmnth',array('label' => 'Exp Month','options'=>array(
 echo $this->Form->input('expyear',array('label' => 'Exp Year','options'=>$years));
 echo $this->Form->input('cardholder',array('label' => 'Name on Card'));
 echo $this->Form->input('name',array('label' => 'Name This Profile (for your records)',
-	'value'=>'bpf_'.substr($this->Auth->user('firstname'),0,1).$this->Auth->user('lastname').date('is')
+	'value'=>'bpf_'.substr($userinfo['firstname'],0,1).$userinfo['lastname'].date('is')
 ));
 echo $this->Form->input('billing_company',array('label' => 'Company'));
 echo $this->Form->input('billing_address',array('label' => 'Address'));
