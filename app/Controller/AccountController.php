@@ -62,6 +62,7 @@ class AccountController extends AppController {
 		echo $xml['AuthnetXMLresponse'];
 		echo "</pre>";*/
 		foreach ($xml AS $k=>$v){
+		    var_dump($k);
 		    if($k == 'AuthnetXMLresponse_xml'){
 			$profile = $v;
 		    }
