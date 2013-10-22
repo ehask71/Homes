@@ -51,8 +51,10 @@ class AccountController extends AppController {
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
-		$this->set('cim','');
-		print_r($cimresponse);
+		$xml   = simplexml_load_string($cimresponse->profile, 'SimpleXMLElement', LIBXML_NOCDATA);
+		$array = json_decode(json_encode((array)$xml), TRUE);
+		$this->set('cim',$array);
+		//print_r($cimresponse);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
 		$this->redirect('/account/');
