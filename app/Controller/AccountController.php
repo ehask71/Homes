@@ -49,7 +49,7 @@ class AccountController extends AppController {
     public function billingprofiles() {
 	if($this->Auth->user('authnet_profile') != ''){
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
-	    $cimresponse = $this->AuthNetXml->customer_profile_request($data);
+	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
 		
 	    } else {
@@ -58,7 +58,7 @@ class AccountController extends AppController {
 	} else {
 	    // No Billing Profile
 	    $this->Session->setFlash(__('Please Create A Billing Profile'));
-	    $this->redirect('/account/newbillingprofile/');
+	    $this->redirect('/account/createbillingprofile/');
 	}
     }
 
@@ -69,6 +69,37 @@ class AccountController extends AppController {
 	} else {
 	    $this->Session->setFlash(__('Missing Billing Profile'));
 	    $this->redirect('/account/');
+	}
+    }
+    
+    public function createbillingprofile(){
+	if ($this->request->is('post')) {
+	    // Billing Profile
+	    $data['id'] = $this->Auth->user('id');
+	    $data['email'] = $this->request->data['Account']['email'];
+	    $data['firstname'] = $this->request->data['Account']['firstname'];
+	    $data['lastname'] = $this->request->data['Account']['lastname'];
+	    $data['address'] = $this->request->data['Account']['address'];
+	    $data['city'] = $this->request->data['Account']['city'];
+	    $data['state'] = $this->request->data['Account']['state'];
+	    $data['zip'] = $this->request->data['Account']['zip'];
+	    $data['phone'] = $this->request->data['Account']['phone'];
+	    $data['ccnum'] = '4111111111111111';
+	    $data['ccexpyr'] = '2014';
+	    $data['ccexpmnth'] = '11';
+	    $data['cvv'] = '123';
+
+	    $cimresponse = $this->AuthNetXml->create_customer_profile_request($data);
+	    if (!$cimresponse->isError()) {
+		CakeLog::write('debug', 'CIM success');
+		$update['Account']['id'] = $this->Auth->user('id');
+		$update['Account']['authnet_profile'] = $cimresponse->customerProfileId;
+		$this->Account->create();
+		$this->Account->save($update);
+	    } else {
+		//echo $cimresponse->__toString();
+		CakeLog::write('debug', $cimresponse->messages->resultCode . ' ' . $cimresponse->messages->message->code . ' ' . $cimresponse->customerProfileId . ' ' . $cimresponse->customerPaymentProfileIdList->numericString);
+	    }
 	}
     }
 
