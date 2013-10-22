@@ -58,11 +58,13 @@ class AccountController extends AppController {
 		    'payment' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard'],
 		);
 		
-		echo "<pre>";
+		/*echo "<pre>";
 		echo $xml['AuthnetXMLresponse'];
-		echo "</pre>";
+		echo "</pre>";*/
 		foreach ($xml AS $k=>$v){
-		    echo $k."<br>";
+		    if($k == 'AuthnetXMLresponse_xml'){
+			$profile = $v;
+		    }
 		}
 		$this->set('profile',$profile);
 	    } else {
