@@ -67,6 +67,7 @@ class AccountController extends AppController {
 			'expiration' => $cimresponse->profile->paymentProfiles->payment->creditCard->expirationDate
 		    )
 		);
+		$profile = json_decode(json_encode((array) simplexml_load_string($cimresponse->profile)), 1);
 		$this->set('profile',$profile);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
