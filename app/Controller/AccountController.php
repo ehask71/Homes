@@ -108,7 +108,7 @@ class AccountController extends AppController {
 	    } else {
 		//echo $cimresponse->__toString();
 		CakeLog::write('debug', $cimresponse->messages->resultCode . ' ' . $cimresponse->messages->message->code . ' ' . $cimresponse->customerProfileId . ' ' . $cimresponse->customerPaymentProfileIdList->numericString);
-		$this->Session->setFlash(__('Billing Profile Created'));
+		$this->Session->setFlash(__('Error Creating The Billing Profile'));
 		$this->redirect('/account/billingprofiles/');
 	    }
 	}
