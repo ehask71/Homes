@@ -59,7 +59,7 @@ class AccountController extends AppController {
 		);
 		
 		echo "<pre>";
-		var_dump($xml);
+		echo $xml['AuthnetXMLresponse'];
 		echo "</pre>";
 		foreach ($xml AS $k=>$v){
 		    echo $k."<br>";
