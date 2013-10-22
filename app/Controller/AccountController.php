@@ -53,22 +53,24 @@ class AccountController extends AppController {
 	    if (!$cimresponse->isError()) {
 		$xml = json_decode(json_encode((array) $cimresponse), 1);
 		$profile = array(
-		    'id' => $xml['AuthnetXMLresponse_xml']['profile']['customerPaymentProfileId'],
-		    'billto' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['billTo'],
-		    'payment' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard'],
+		   // 'id' => $xml['AuthnetXMLresponse_xml']['profile']['customerPaymentProfileId'],
+		    //'billto' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['billTo'],
+		    //'payment' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard'],
 		);
 		
 		/*echo "<pre>";
-		echo $xml['AuthnetXMLresponse'];
+		print$xml;
 		echo "</pre>";*/
 		foreach ($xml AS $k=>$v){
+                    echo "Var Dump:";
 		    var_dump($k);
+                    echo "Print_r":
 		    print_r($v);
 		    if($k == 'AuthnetXMLresponse_xml'){
 			$profile = $v;
 		    }
 		}
-		$this->set('profile',$profile);
+		$this->set('profile',$xml);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
 		$this->redirect('/account/');
