@@ -51,10 +51,23 @@ class AccountController extends AppController {
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
-		$xml   = simplexml_load_string($cimresponse, 'SimpleXMLElement', LIBXML_NOCDATA);
-		$array = json_decode(json_encode((array)$xml), TRUE);
-		$this->set('cim',$array);
-		print_r($cimresponse);
+		$profile = array(
+		    'id' => $cimresponse->profile->customerProfileId,
+		    'billto' => array(
+			'firstname' => $cimresponse->profile->paymentProfiles->billTo->firstName,
+			'lastname' => $cimresponse->profile->paymentProfiles->billTo->lastName,
+			'address' => $cimresponse->profile->paymentProfiles->billTo->address,
+			'city' => $cimresponse->profile->paymentProfiles->billTo->city,
+			'state' => $cimresponse->profile->paymentProfiles->billTo->state,
+			'zip' => $cimresponse->profile->paymentProfiles->billTo->zip,
+			'phone' => $cimresponse->profile->paymentProfiles->billTo->phoneNumber
+		    ),
+		    'payment' => array(
+			'creditcard' => $cimresponse->profile->paymentProfiles->payment->creditCard->cardNumber,
+			'expiration' => $cimresponse->profile->paymentProfiles->payment->creditCard->expirationDate
+		    )
+		);
+		$this->set('profile',$profile);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
 		$this->redirect('/account/');
