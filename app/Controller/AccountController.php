@@ -73,6 +73,10 @@ class AccountController extends AppController {
     }
     
     public function createbillingprofile(){
+	if($this->Auth->user('authnet_profile') != ''){
+	    $this->Session->setFlash(__('Profile Exists!'));
+	    $this->redirect('/account/editbilling/');
+	}
 	if ($this->request->is('post')) {
 	    // Billing Profile
 	    $data['id'] = $this->Auth->user('id');
@@ -92,6 +96,7 @@ class AccountController extends AppController {
 	    $cimresponse = $this->AuthNetXml->create_customer_profile_request($data);
 	    if (!$cimresponse->isError()) {
 		CakeLog::write('debug', 'CIM success');
+		$update = array();
 		$update['Account']['id'] = $this->Auth->user('id');
 		$update['Account']['authnet_profile'] = $cimresponse->customerProfileId;
 		$this->Account->create();
