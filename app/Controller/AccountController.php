@@ -80,14 +80,14 @@ class AccountController extends AppController {
 	if ($this->request->is('post')) {
 	    // Billing Profile
 	    $data['id'] = $this->Auth->user('id');
-	    $data['email'] = $this->request->data['Account']['email'];
-	    $data['firstname'] = $this->request->data['Account']['firstname'];
-	    $data['lastname'] = $this->request->data['Account']['lastname'];
-	    $data['address'] = $this->request->data['Account']['address'];
-	    $data['city'] = $this->request->data['Account']['city'];
-	    $data['state'] = $this->request->data['Account']['state'];
-	    $data['zip'] = $this->request->data['Account']['zip'];
-	    $data['phone'] = $this->request->data['Account']['phone'];
+	    $data['email'] = $this->request->data['Payment']['email'];
+	    $data['firstname'] = $this->request->data['Payment']['firstname'];
+	    $data['lastname'] = $this->request->data['Payment']['lastname'];
+	    $data['address'] = $this->request->data['Payment']['address'];
+	    $data['city'] = $this->request->data['Payment']['city'];
+	    $data['state'] = $this->request->data['Payment']['state'];
+	    $data['zip'] = $this->request->data['Payment']['zip'];
+	    $data['phone'] = $this->request->data['Payment']['phone'];
 	    $data['ccnum'] = '4111111111111111';
 	    $data['ccexpyr'] = '2014';
 	    $data['ccexpmnth'] = '11';
