@@ -47,7 +47,7 @@ class AccountController extends AppController {
     }
 
     public function billingprofiles() {
-	if($this->Auth->user('authnet_profile') != ''){
+	if($this->Auth->user('authnet_profile') != 0){
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
@@ -73,7 +73,7 @@ class AccountController extends AppController {
     }
     
     public function createbillingprofile(){
-	if($this->Auth->user('authnet_profile') != ''){
+	if($this->Auth->user('authnet_profile') != 0){
 	    $this->Session->setFlash(__('Profile Exists!'));
 	    $this->redirect('/account/editbilling/');
 	}
