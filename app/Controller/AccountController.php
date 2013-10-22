@@ -80,7 +80,7 @@ class AccountController extends AppController {
 	if ($this->request->is('post')) {
 	    // Billing Profile
 	    $data['id'] = $this->Auth->user('id');
-	    $data['email'] = $this->request->data['Payment']['billing_email'];
+	    $data['email'] = $this->Auth->user('email');
 	    $data['firstname'] = $this->request->data['Payment']['firstname'];
 	    $data['lastname'] = $this->request->data['Payment']['lastname'];
 	    $data['address'] = $this->request->data['Payment']['billing_address'];
