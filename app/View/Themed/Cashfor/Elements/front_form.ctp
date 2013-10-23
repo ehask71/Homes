@@ -6,6 +6,7 @@ echo $this->Form->create(NULL, array(
         'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
         'div' => array('class' => 'control-group'),
         'label' => array('class' => 'control-label'),
+	'input' => array('class' => 'span12'),
         'between' => '<div class="controls">',
         'after' => '</div>',
         'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
