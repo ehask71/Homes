@@ -23,10 +23,11 @@ class HomeController extends AppController {
     public function sell(){
         if($this->request->is('post')){
 	    // From the Index
-	    if(isset($this->request->data['ZipCodes']['fzip']) && isset($this->request->data['ZipCodes']['fname']) && isset($this->request->data['ZipCodes']['femail'])){
+	    if(isset($this->request->data['ZipCodes']['fzip']) && isset($this->request->data['ZipCodes']['ffname']) && isset($this->request->data['ZipCodes']['femail'])){
 		$zipinfo = $this->ZipCodes->getZipInfo($this->request->data['ZipCodes']['fzip']);
 		$data = array('Lead' => array(
-		    'firstname' => $this->request->data['ZipCodes']['fname'],
+		    'firstname' => $this->request->data['ZipCodes']['ffname'],
+		    'firstname' => $this->request->data['ZipCodes']['flname'],
 		    'email' => $this->request->data['ZipCodes']['femail'],
 		    'phone' => $this->request->data['ZipCodes']['fphone'],
 		    'zip' => $this->request->data['ZipCodes']['fzip'],
