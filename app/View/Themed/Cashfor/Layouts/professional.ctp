@@ -88,12 +88,12 @@
                     <div class="span2">
                         <ul id="footer-nav">
                             <li><a href="/" title="Return to Cash for Homes Home Page">Home</a></li>
-                            <li><a href="sell.php" title="Sell with Cash for Homes Page">Sell</a></li>
-                            <li><a href="buy.php" title="Buy with Cash for Homes Page">Buy</a></li>
-                            <li><a href="why-us.php" title="Why work with Cash for Homes Page">Why Us?</a></li>
-                            <li><a href="contact.php" title="Contact Cash for Homes Page">Contact</a></li>
-                            <li><a href="tos.php" title="Cash for Homes terms of Service Page">Terms of Service</a></li>
-                            <li><a href="privacy.php" title="Cash for Homes Privacy Statement Page">Privacy Policy</a></li>
+                            <li><a href="/sell" title="Sell with Cash for Homes Page">Sell</a></li>
+                            <li><a href="/buy" title="Buy with Cash for Homes Page">Buy</a></li>
+                            <li><a href="/why" title="Why work with Cash for Homes Page">Why Us?</a></li>
+                            <li><a href="/contact" title="Contact Cash for Homes Page">Contact</a></li>
+                            <li><a href="/tos" title="Cash for Homes terms of Service Page">Terms of Service</a></li>
+                            <li><a href="/privacy" title="Cash for Homes Privacy Statement Page">Privacy Policy</a></li>
                         </ul>
                     </div>
                     <div class="span7">
