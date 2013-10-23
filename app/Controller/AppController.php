@@ -46,7 +46,7 @@ class AppController extends Controller {
 	    $this->layout = 'admin';
 	}
 	if(isset($this->params['prefix']) && $this->params['prefix'] == 'professionals'){
-	    $this->layout = 'professtionals';
+	    $this->layout = 'professional';
 	}
 	$this->set('userinfo', $this->Auth->user());
 	$this->set('loggedIn', $this->Auth->loggedIn());
