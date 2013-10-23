@@ -77,6 +77,6 @@ class AuthNetXmlComponent extends Component {
 	    'customerProfileId' => $data['customerProfileId']
 	));
 	
-	return $this->xml;
+	return $this->xml->response_xml;
     }
 }
