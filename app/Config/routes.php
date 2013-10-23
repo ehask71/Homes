@@ -39,10 +39,10 @@
         Router::connect('/buy/:county-:state',array('controller'=>'home','action'=>'buy'),array('county'=>'[a-zA-Z0-9_-]+','state'=>'[a-zA-Z0-9_-]+'));
 
 	// Registration Flow
-	Router::connect('/register/personal-info', array('controller' => 'account', 'action' => 'register'));
-	Router::connect('/register/select-counties', array('controller' => 'account', 'action' => 'selectcounties'));
-	Router::connect('/register/billing-info', array('controller' => 'account', 'action' => 'billingprofile'));
-	Router::connect('/register/finish', array('controller' => 'account', 'action' => 'finshregistration'));
+	Router::connect('/register/personal-info', array('controller' => 'registration', 'action' => 'register'));
+	Router::connect('/register/select-counties', array('controller' => 'registration', 'action' => 'select'));
+	Router::connect('/register/billing-info', array('controller' => 'registration', 'action' => 'billing'));
+	Router::connect('/register/finish', array('controller' => 'registration', 'action' => 'finsh'));
 	
         // Login
         Router::connect('/login', array('controller' => 'account', 'action' => 'login'));
