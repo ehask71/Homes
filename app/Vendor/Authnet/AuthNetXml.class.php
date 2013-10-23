@@ -43,7 +43,7 @@ class AuthnetXML {
     private $ch;
     private $login;
     private $response;
-    private $response_xml;
+    public $response_xml;
     private $results;
     private $transkey;
     private $url;
