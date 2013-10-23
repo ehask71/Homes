@@ -61,7 +61,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $this->fetch('content'); ?>
 		<hr>
 		<footer>
-        	<p>&copy; Company 2012</p>
+                    <p>&copy; <?php echo Configure::read('Copyright');?></p>
       	</footer>
     </div> <!-- /container -->
 
