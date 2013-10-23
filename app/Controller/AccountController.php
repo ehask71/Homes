@@ -118,11 +118,11 @@ class AccountController extends AppController {
     }
 
     public function professionals_history() {
-	$this->Paginator->settings = array(
+	$this->paginate = array(
 	    'conditions' => array('Transaction.user_id' => $this->Auth->user('id')),
 	    'limit' => 20
 	);
-	$data = $this->Paginator->paginate('Transaction');
+	$data = $this->paginate('Transaction');
 	$this->set(compact('data'));
     }
 
