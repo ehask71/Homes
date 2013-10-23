@@ -45,6 +45,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		    <ul class="nav nav-list">
 			<li class="nav-header">Navigation</li>
 			<li><?php echo $this->Html->link('Leads', '/professionals/account/');?></li>
+			<li><?php echo $this->Html->link('Properties', '/professionals/account/properties');?></li>
+			<li class="divider"></li>
+			<li><?php echo $this->Html->link('Profile', '/professionals/account/edit');?></li>
+			<li><?php echo $this->Html->link('Billing', '/professionals/account/billingprofile');?></li>
+			<li><?php echo $this->Html->link('History', '/professionals/account/history');?></li>
 		    </ul>
 		</div>
 		<?php echo $this->fetch('content'); ?>
