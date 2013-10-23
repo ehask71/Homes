@@ -65,9 +65,11 @@
         <!-- start body -->
         <div class="container-fluid" id="home-wrapper">
             <div class="row-fluid" id="home-content">
-                <?php echo $this->Session->flash(); ?>
-                <?php echo $this->Session->flash('auth'); ?>
-                <?php echo $this->fetch('content'); ?>
+                <div class="non-fluid">
+                    <?php echo $this->Session->flash(); ?>
+                    <?php echo $this->Session->flash('auth'); ?>
+                    <?php echo $this->fetch('content'); ?>
+                </div>
             </div>
         </div>
         <!-- start footer -->
