@@ -3,7 +3,7 @@ echo $this->Form->create(NULL, array(
     'url' => '/sell',
     'class' => 'form-horizontal',
     'inputDefaults' => array(
-        'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+        //'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
         'div' => array('class' => 'control-group'),
         'label' => array('class' => 'control-label'),
 	'class' => array('class' => 'span12'),
