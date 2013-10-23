@@ -9,11 +9,12 @@ class AuthNetXmlComponent extends Component {
     public $components = array();
     
     public $xml = null;
+    
+    private $server = AuthnetXML::USE_DEVELOPMENT_SERVER;
 
     public function __construct(\ComponentCollection $collection, $settings = array()) {
         $this->controller = $collection->getController();
         parent::__construct($collection, $settings);
-	$this->xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), AuthnetXML::USE_DEVELOPMENT_SERVER);
     }
 
     public function initialize($controller) {
@@ -42,7 +43,7 @@ class AuthNetXmlComponent extends Component {
     }
     
     public function create_customer_profile_request($data){
-        $xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), AuthnetXML::USE_DEVELOPMENT_SERVER);
+        $xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), $this->server);
         $xml->createCustomerProfileRequest(array(
             'profile' => array(
 		'merchantCustomerId' => Configure::read('SitePrefix').$data['id'],
@@ -73,10 +74,11 @@ class AuthNetXmlComponent extends Component {
     }
     
     public function get_customer_profile($data){
-	$var = $this->xml->getCustomerProfileRequest(array(
+        $xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), $this->server);
+	$xml->getCustomerProfileRequest(array(
 	    'customerProfileId' => $data['customerProfileId']
 	));
 	
-	return $var;
+	return $xml;
     }
 }
