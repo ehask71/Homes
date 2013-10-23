@@ -56,7 +56,7 @@ class AccountController extends AppController {
 		$profile = $cimresponse->__get('profile');
 		
 		echo "<pre>";
-		echo $xml['customerPaymentProfileId'].' <-- $xml["AuthnetXMLresponse_xml"]["customerPaymentProfileId"]';
+		echo $xml['customerPaymentProfileId'].' <-- $xml["customerPaymentProfileId"]';
 		echo "<br><br>";
                 print_r($xml);
                 var_dump($xml);
