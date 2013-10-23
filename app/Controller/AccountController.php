@@ -72,7 +72,7 @@ class AccountController extends AppController {
 		}
                 echo "</pre>";
 		
-		$this->set('profile',$xml);
+		$this->set('profile',$profile);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
 		$this->redirect('/account/');
