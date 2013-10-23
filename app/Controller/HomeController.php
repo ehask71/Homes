@@ -17,7 +17,7 @@ class HomeController extends AppController {
     }
     
     public function index(){
-        
+        $this->layout = 'index';
     }
     
     public function sell(){
