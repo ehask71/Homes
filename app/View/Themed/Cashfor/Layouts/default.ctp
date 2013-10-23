@@ -103,7 +103,7 @@
 			<div class="span12">
 				<ul id="as-seen">
 					<li class="hdr">AS SEEN ON:</li>
-					<li><img src="images/aso-tv.png" alt="Cash for Homes As seen on TV" /></li>
+					<li><?php echo $this->Html->image('/images/aso-tv.png',array('alt'=>"Cash for Homes As seen on TV"));?></li>
 				</ul>
 			</div>
 		</div>
