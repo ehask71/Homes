@@ -42,7 +42,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $this->Session->flash('auth'); ?>
 	<div class="row">
 		<div class="span3">
-	    
+		    <ul class="nav nav-list">
+			<li class="nav-header">Navigation</li>
+			<li><?php echo $this->Html->link('Leads', '/professionals/account/');?></li>
+		    </ul>
 		</div>
 		<?php echo $this->fetch('content'); ?>
 	</div>
