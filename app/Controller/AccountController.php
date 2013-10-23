@@ -66,7 +66,7 @@ class AccountController extends AppController {
 		    var_dump($k)."<br>";
                     echo "<b>Print_r</b>:<br>";
 		    print_r($v)."<br><br>";
-		    if(trim($k) == 'AuthnetXMLresponse_xml'){
+		    if(trim($k) == '"AuthnetXMLresponse_xml"'){
 			$profile = $v;
 		    }
 		}
