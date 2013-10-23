@@ -51,16 +51,8 @@ class AccountController extends AppController {
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
-		$xml = json_decode(json_encode((array) $cimresponse->__get('profile')), 1);
                 //echo $cimresponse->customerPaymentProfileId;
 		$profile = $cimresponse->__get('profile');
-		
-		echo "<pre>";
-		echo $xml['customerPaymentProfileId'].' <-- $xml["customerPaymentProfileId"]';
-		echo "<br><br>";
-                print_r($xml);
-                var_dump($xml);
-                echo "</pre>";
 		
 		$this->set('profile',$profile);
 	    } else {
