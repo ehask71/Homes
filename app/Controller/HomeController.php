@@ -27,7 +27,7 @@ class HomeController extends AppController {
 		$zipinfo = $this->ZipCodes->getZipInfo($this->request->data['ZipCodes']['fzip']);
 		$data = array('Lead' => array(
 		    'firstname' => $this->request->data['ZipCodes']['ffname'],
-		    'firstname' => $this->request->data['ZipCodes']['flname'],
+		    'lastname' => $this->request->data['ZipCodes']['flname'],
 		    'email' => $this->request->data['ZipCodes']['femail'],
 		    'phone' => $this->request->data['ZipCodes']['fphone'],
 		    'zip' => $this->request->data['ZipCodes']['fzip'],
