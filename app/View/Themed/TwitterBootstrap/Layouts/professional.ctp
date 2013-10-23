@@ -40,10 +40,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <div class="container">
 		<?php echo $this->Session->flash(); ?>
 		<?php echo $this->Session->flash('auth'); ?>
+	<div class="row">
 		<div class="span3">
 	    
 		</div>
 		<?php echo $this->fetch('content'); ?>
+	</div>
 		<hr>
 		<footer>
                     <p>&copy; <?php echo Configure::read('Copyright');?></p>
