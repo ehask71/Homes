@@ -57,8 +57,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <div class="container">
 		<?php echo $this->Session->flash(); ?>
 		<?php echo $this->Session->flash('auth'); ?>
-                <?php echo $this->fetch('sidebar'); ?>
 		<?php echo $this->fetch('content'); ?>
+                <?php echo $this->fetch('sidebar'); ?>
 		<hr>
 		<footer>
                     <p>&copy; <?php echo Configure::read('Copyright');?></p>
