@@ -51,7 +51,7 @@ class AccountController extends AppController {
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
-                //echo $cimresponse->customerPaymentProfileId;
+                echo $cimresponse->profile->customerPaymentProfileId;
 		$profile = $cimresponse->__get('profile');
 		
 		$this->set('profile',$profile);
