@@ -137,6 +137,10 @@ class AccountController extends AppController {
     public function professionals_editproperty() {
 	
     }
+    
+    public function professionals_logout() {
+	$this->redirect($this->Auth->logout());
+    }
         
     /**
      *   Helper Functions
@@ -158,7 +162,7 @@ class AccountController extends AppController {
     public function logout() {
 	$this->redirect($this->Auth->logout());
     }
-
+    
     public function forgetpwd() {
 	if ($this->request->is('post')) {
 	    $account = $this->Account->find('first', array(
