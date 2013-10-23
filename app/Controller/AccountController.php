@@ -5,7 +5,7 @@
  * @author Eric
  */
 App::uses('AppController', 'Controller');
-
+App::import('Vendor', 'Authnet', array('file' => 'Authnet' . DS . 'AuthNetXml.class.php'));
 class AccountController extends AppController {
 
     public $name = 'Account';
@@ -73,7 +73,7 @@ class AccountController extends AppController {
 		}
                 print_r($xml);
                 var_dump($xml);
-                print_r($cimresponse->response_xml);
+                print_r($cimresponse);
                 echo "</pre>";
 		
 		$this->set('profile',$profile);
