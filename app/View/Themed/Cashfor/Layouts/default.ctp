@@ -64,7 +64,7 @@
         </div>
         <!-- start body -->
         <div class="container-fluid" id="home-wrapper">
-            <div class="row-fluid" id="home-content">
+            <div class="row-fluid">
                 <div class="non-fluid">
                     <?php echo $this->Session->flash(); ?>
                     <?php echo $this->Session->flash('auth'); ?>
