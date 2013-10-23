@@ -83,10 +83,10 @@
 						<div id="works-wrapper">
 							<div id="works-content">
 							<ul id="how-it-works-content">
-                                                            <li><?php echo $this->Html->image('images/hiw-step-1.png', array('alt'=>"Enter your basic information",'width'=>"280"));?></li>
-								<li><?php echo $this->Html->image('images/hiw-step-2.png', array('alt'=>"We'll visit your home",'width'=>"280"));?></li>
-								<li><?php echo $this->Html->image('images/hiw-step-3.png', array('alt'=>"We'll make you a cash offer", 'width'=>"280"));?></li>
-								<li><?php echo $this->Html->image('images/hiw-step-4.png', array('alt'=>"Accept our offer and get your cash",'width'=>"280"));?></li>
+                                                            <li><?php echo $this->Html->image('/images/hiw-step-1.png', array('alt'=>"Enter your basic information",'width'=>"280"));?></li>
+								<li><?php echo $this->Html->image('/images/hiw-step-2.png', array('alt'=>"We'll visit your home",'width'=>"280"));?></li>
+								<li><?php echo $this->Html->image('/images/hiw-step-3.png', array('alt'=>"We'll make you a cash offer", 'width'=>"280"));?></li>
+								<li><?php echo $this->Html->image('/images/hiw-step-4.png', array('alt'=>"Accept our offer and get your cash",'width'=>"280"));?></li>
 							</ul>
 							</div>
 						</div>
