@@ -73,10 +73,10 @@ class AuthNetXmlComponent extends Component {
     }
     
     public function get_customer_profile($data){
-	$this->xml->getCustomerProfileRequest(array(
+	$var = $this->xml->getCustomerProfileRequest(array(
 	    'customerProfileId' => $data['customerProfileId']
 	));
 	
-	return $this->xml;
+	return $var;
     }
 }
