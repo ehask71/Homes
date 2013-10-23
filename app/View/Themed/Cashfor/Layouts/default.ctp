@@ -19,7 +19,7 @@
 				<div id="re-investors">
 					<span>Real Estate Investors</span>
 					<div id="re-wrapper">
-					<a href="signin.php" id="re-signin" title="Real Estate Investors Sign in Link"><span>Sign In</span></a><a href="register.php" id="re-register" title="Real Estate Investors Register Link"><span>Register</span></a>
+					<a href="/login" id="re-signin" title="Real Estate Investors Sign in Link"><span>Sign In</span></a><a href="/register/personal-info" id="re-register" title="Real Estate Investors Register Link"><span>Register</span></a>
 					</div>
 				</div>
 			</div>
@@ -48,12 +48,12 @@
 							<div class="nav-collapse">  
 								<ul class="nav">
 								  <li>
-									<a href="#" class="nav-home"><span>Home</span></a>
+									<a href="/" class="nav-home"><span>Home</span></a>
 								  </li>
-								  <li><a href="#" class="nav-sell"><span>Sell</span></a></li>
-								  <li><a href="#" class="nav-buy"><span>Buy</span></a></li>
-								  <li><a href="#" class="nav-why"><span>Why Us</span></a></li>
-								  <li><a href="#" class="nav-contact"><span>Contact</span></a></li>
+								  <li><a href="/sell" class="nav-sell"><span>Sell</span></a></li>
+								  <li><a href="/buy" class="nav-buy"><span>Buy</span></a></li>
+								  <li><a href="/why" class="nav-why"><span>Why Us</span></a></li>
+								  <li><a href="/contact" class="nav-contact"><span>Contact</span></a></li>
 								</ul>
 							</div>
 						</div>
