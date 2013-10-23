@@ -71,47 +71,7 @@
 					<div id="form-container">
 						<div id="form-wrapper">
 							<div id="form-content">
-								<form id="bmh-form" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-									<div class="control-group">
-										<label class="control-label" for="firstname">First Name</label>
-										<div class="controls">
-											<input type="text" class="span12" name="firstname" id="first-name" >
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="lastname">Last Name</label>
-										<div class="controls">
-											<input type="text" class="span12" name="lastname" id="last-name">
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="phone">Phone</label>
-										<div class="controls">
-											<input type="text" class="span12" name="phone" id="phone" >
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="email">Email</label>
-										<div class="controls">
-											<input type="text" class="span12" name="email" id="email" >
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="address">Address</label>
-										<div class="controls">
-											<input type="text" class="span12" name="address" id="address" >
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="zipcode">Zip Code</label>
-										<div class="controls">
-											<input type="text" class="span12" name="zipcode" id="zip-code">
-										</div>
-									</div>
-									<div class="btn-group">
-										<button type="submit" name="submit" class="big-btn"><span>Submit</span></button>
-									</div>
-								</form>
+								<?=$this->element('front_form');?>
 							</div>
 						</div>
 						
