@@ -1,0 +1,322 @@
+body{
+	font-family:  Arial, sans-serif;
+}
+#logo{
+	background: transparent url('../images/logo.jpg') left top no-repeat;
+	min-height:70px;
+}
+#re-investors{
+	background-color: #5EAB1F;
+	text-align: center;
+	height: 54px;
+	color: #FFF;
+	padding: 12px 0px 2px 0px;
+	font-family: 'Open Sans',Arial, sans-serif;
+	font-weight: 700;
+}
+#re-wrapper{
+	width: 201px;
+	margin:0 auto;
+}
+#re-signin,#re-register{
+	min-height: 25px;
+	min-width:100px;
+	display:inline-block;
+	margin: 8px 0px;
+	padding: 0;
+}
+#re-signin span,#re-register span{
+	position: absolute;
+	left: -9999px;
+}
+#re-signin{
+	background: transparent url('../images/re-signin.jpg') left top no-repeat;
+	
+}
+
+#re-register{
+	background: transparent url('../images/re-register.jpg') left top no-repeat;
+}
+#rf-lean{
+	background-color: #32312A;
+	height: 35px;
+
+}
+#tel-number{
+	font-size: 3em;
+	color: #F14B15;
+	font-family: 'Oswald', Arial, sans-serif;
+	margin: 25px 0px;
+	text-align: center;
+}
+
+.navbar-inner{
+	background-color: #eff0eb !important;
+	background-image: none !important;
+	border: none;
+	background-position: none;
+	background-repeat: none;
+	border-radius: none;
+	-moz-border-radius: none;
+	-webkit-border-radius: none;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	
+}
+.navbar{
+	margin-bottom: 0;
+}
+.navbar .nav > li > a{
+	padding: 10px 22px 8px 40px;
+	font-size: 32px;
+	font-family: 'Open Sans' Arial, sans-serif;
+	font-weight: 700;
+}
+.navbar .nav > li > a span{
+	margin: 0;
+	display: inline-block;
+	padding: 0 0 8px 0;
+	border-bottom: 2px solid #5eab1f;
+}
+.navbar .nav > li > a:hover span{
+	border-bottom: 2px solid #32312A;
+}
+.navbar .btn-navbar, .navbar .btn-navbar:hover, .navbar .btn-navbar:focus, .navbar .btn-navbar:active, .navbar .btn-navbar.active, .navbar .btn-navbar.disabled, .navbar .btn-navbar[disabled]{
+	color: #5eab1f;
+    background-color: #e3e5dc;
+}
+.nav-home{
+	background: transparent url('../images/nav-home.png') left center no-repeat;
+}
+.nav-sell{
+	background: transparent url('../images/nav-sell.png') left center no-repeat;
+}
+.nav-buy{
+	background: transparent url('../images/nav-buy.png') left center no-repeat;
+}
+.nav-why{
+	background: transparent url('../images/nav-why.png') left center no-repeat;
+}
+.nav-contact{
+	background: transparent url('../images/nav-contact.png') left center no-repeat;
+}
+#hdr-cta{
+	margin: 0px auto;
+	font-family: 'Open Sans', Arial, sans-serif;
+	max-width: 1170px;
+	width: 100%;
+}
+#hdr-inner-cta{
+	color: #FFF;
+	text-align: justify;
+	margin: 0 auto;
+	line-height: 31px;
+	width: 100%;
+	letter-spacing: .07em;
+}
+
+#home-wrapper{
+	background: transparent url('../images/bg-gray-liner.jpg') left top repeat;
+}
+#home-content{
+	background: transparent url('../images/home-bg.jpg') center top no-repeat;
+	min-height: 530px;
+}
+#howitworks{
+	background: transparent url('../images/howitworks.png') center top no-repeat;
+	width: auto;
+	min-height: 45px;
+	min-width: 100%;
+	margin: 10px auto 5px;
+}
+#howitworks span{
+	position: absolute;
+	left: -9999px;
+}
+#buymyhome{
+	background: transparent url('../images/buymyhome.png') center top no-repeat;
+	width: auto;
+	min-height: 45px;
+	min-width: 100%;
+	margin: 10px auto 5px;
+}
+#buymyhome span{
+	position: absolute;
+	left: -9999px;
+}
+
+.non-fluid{
+	max-width: 1170px;
+	float:none;
+	margin: 0 auto;
+}
+#form-container{
+	background-color: #868A7C;
+	filter:alpha(opacity=43); /* IE */
+	background-color: rgb(134,138,124);
+	background-color: rgba(134,138,124, 0.43);
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	box-shadow: 1px 1px 3px #555;
+	-moz-box-shadow: 1px 1px 3px #555;
+	-webkit-box-shadow:1px 1px 3px #555;
+	margin: 0 0 20px 0;
+}
+#form-wrapper{
+	padding: 8px;
+}
+#form-wrapper label{
+	color: #FFF;
+	text-align: left;
+	font-size: 1.5em;
+	letter-spacing: .073em;
+}
+.btn-group{
+	text-align: center;
+	width: 100%;
+}
+#form-wrapper .big-btn{
+	width: 267px;
+	height: 44px;
+	background: transparent url('../images/lrg-submit.png') left top no-repeat;
+	border: none;
+	text-align: center;
+	margin: 0 auto;
+}
+#form-wrapper  input[type=text]{
+	border: 1px solid #000;
+	font-size: 1.5em;
+	padding: 20px 0px;
+}
+#form-wrapper .form-horizontal .control-group {
+	margin-bottom: 15px;
+}
+.big-btn span{
+	position: absolute;
+	left: -9999px;
+}
+
+ul#how-it-works-content{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 auto;
+}
+ul#how-it-works-content li{
+	margin: o auto;
+	text-align: center;
+}
+
+#as-seen{
+	list-style-type: none;
+	margin: 10px 0px;
+	padding: 0px:
+}
+#as-seen li{
+	float: left;
+	min-width: 10%;
+	vertical-align: middle;
+}
+#as-seen li.hdr{
+	font-size: 20px;
+	padding: 25px 10px 20px 0px;
+}
+h4.lined{
+	position: relative;
+	font-weight: 400;
+	font-family: 'Open Sans', Arial,sans-serif;
+	text-align:center;
+	margin: 10px 0px;
+	border-bottom: 1px solid #CCC;
+}
+h4.lined span{
+	display: inline-block;
+	background-color: #eff0eb;
+	padding: 4px 8px;
+	margin: 0px 0px -20px 0px;
+}
+blockquote{
+	background: transparent url("../images/blockquote.png") center top no-repeat;
+	padding: 110px 0px 0px 0px;
+	font-style: italic;
+	font-size: 1.1em;
+	font-family: "Times New Roman", Times, serif;
+	line-height: 1.4em;
+}
+.q-signature{
+	color: #D14213;
+	font-size: .9em;
+	text-align: right;
+}
+.q-location{
+		font-style: italic;
+		font-size: .7em;
+		text-align:right;
+		
+}
+
+#footer-wrapper{
+	background-color: #5EAB1F;
+	padding: 20px 0px 0px;
+	min-height: 196px;
+	margin-top: 35px;
+	color: #FEFEFE;
+	line-height: 1.4em;
+	font-size: .9em;
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+#footer-wrapper a{
+	color: #FEFEFE;
+}
+#footer-wrapper ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+#footer-wrapper ul li{
+	line-height: 1.4em;
+	min-height: 26px;
+}
+#footer-address{
+	padding: 0px 0px 0px 32px;
+	background: transparent url("../images/ftr-address.png") left top no-repeat;
+}
+#footer-phone{
+	padding: 0px 0px 0px 32px;
+	background: transparent url("../images/ftr-phone.png") left top no-repeat;
+}
+#footer-email{
+	padding: 0px 0px 0px 32px;
+	background: transparent url("../images/ftr-email.png") left top no-repeat;
+}
+#copyright{
+	text-align: right;
+	font-size: .7em;
+	margin: 35px 0px 50px 0px;
+}
+/* Media Queries */
+@media (max-width: 980px) {
+	#hdr-inner-cta{
+		font-size: 24px !important;
+		text-align: center;
+	}
+	.non-fluid{
+		max-width: 980;
+		float:none;
+		margin: 0 auto;
+	}
+	
+}
+
+@media (max-width: 768px){
+	#hdr-inner-cta{
+		font-size: 16px !important;
+		text-align: center;
+	}
+	.non-fluid{
+		max-width: 980;
+		float:none;
+		margin: 0 auto;
+	}
+}
