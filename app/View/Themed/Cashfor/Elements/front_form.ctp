@@ -11,11 +11,11 @@ echo $this->Form->create(NULL, array(
         'after' => '</div>',
         'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
     )));
-echo $this->Form->input('ffname',array('label' => 'Firstname','class' => 'control-label'));
-echo $this->Form->input('flname',array('label' => 'Lastname','class' => 'control-label'));
-echo $this->Form->input('fphone',array('label' => 'Phone','class' => 'control-label'));
-echo $this->Form->input('femail',array('label' => 'Email','class' => 'control-label'));
-echo $this->Form->input('fzip',array('label' => 'Zip','class' => 'control-label'));
-echo $this->Form->input('faddress',array('label' => 'Address','class' => 'control-label'));
+echo $this->Form->input('ffname',array('label' => array('text'=>'Firstname','class' => 'control-label')));
+echo $this->Form->input('flname',array('label' => array('text'=>'Lastname','class' => 'control-label')));
+echo $this->Form->input('fphone',array('label' => array('text'=>'Phone','class' => 'control-label')));
+echo $this->Form->input('femail',array('label' => array('text'=>'Email','class' => 'control-label')));
+echo $this->Form->input('fzip',array('label' => array('text'=>'Zip','class' => 'control-label')));
+echo $this->Form->input('faddress',array('label' => array('text'=>'Address','class' => 'control-label')));
 echo $this->Form->end('SUBMIT');
 ?>
