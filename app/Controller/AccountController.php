@@ -53,11 +53,7 @@ class AccountController extends AppController {
 	    if (!$cimresponse->isError()) {
 		$xml = json_decode(json_encode((array) $cimresponse), 1);
                 //echo $cimresponse->customerPaymentProfileId;
-		$profile = array(
-		   // 'id' => $xml['AuthnetXMLresponse_xml']['profile']['customerPaymentProfileId'],
-		    //'billto' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['billTo'],
-		    //'payment' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['payment']['creditCard'],
-		);
+		$profile = $cimresponse->__get('profile');
 		
 		echo "<pre>";
 		echo $xml[AuthnetXMLresponse_xml]['profile']['customerPaymentProfileId'].' <-- $xml["AuthnetXMLresponse_xml"]["profile"]["customerPaymentProfileId"]';
@@ -67,9 +63,6 @@ class AccountController extends AppController {
 		    var_dump($k)."<br>";
                     echo "<b>Print_r</b>:<br>";
 		    print_r($v)."<br><br>";
-		    if(trim($k) == '"AuthnetXMLresponse_xml"'){
-			$profile = $v;
-		    }
 		}
                 print_r($xml);
                 var_dump($xml);
