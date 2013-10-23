@@ -27,7 +27,7 @@ class AppController extends Controller {
 		    'recursive' => 1,
 		)),
 	    'loginRedirect' => array('controller' => 'home', 'action' => 'index'),
-	    'logoutRedirect' => array('controller' => 'account', 'action' => 'login'),
+	    'logoutRedirect' => array('prefix'=>'','controller' => 'account', 'action' => 'login'),
 	    'loginAction' => '/login',
 	    'flash' => array(
 		'element' => 'alert',
@@ -42,6 +42,12 @@ class AppController extends Controller {
     );
 
     public function beforeFilter() {
+	if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
+	    $this->layout = 'admin';
+	}
+	if(isset($this->params['prefix']) && $this->params['prefix'] == 'professionals'){
+	    $this->layout = 'professional';
+	}
 	$this->set('userinfo', $this->Auth->user());
 	$this->set('loggedIn', $this->Auth->loggedIn());
     }

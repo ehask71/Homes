@@ -20,21 +20,21 @@ class AccountController extends AppController {
     /**
      *  Profile Related Functions
      */
-    public function index() {
-	$this->Paginator->settings = array(
+    public function professionals_index() {
+	$this->paginate = array(
 	    'conditions' => array('Lead.user_id' => $this->Auth->user('id')),
 	    'limit' => 20
 	);
-	$data = $this->Paginator->paginate('Lead');
+	$data = $this->paginate('Lead');
 	$this->set(compact('data'));
     }
 
-    public function edit() {
+    public function professionals_edit() {
 	if ($this->request->is('post')) {
 	    if ($this->Account->accountValidate()) {
 		if ($this->Account->save($this->request->data)) {
 		    $this->Session->setFlash(__('Profile Updated'));
-		    $this->redirect('/account/edit');
+		    $this->redirect('/professionals/account/edit');
 		}
 	    }
 	}
@@ -46,7 +46,7 @@ class AccountController extends AppController {
 	$this->request->data = $prof;
     }
 
-    public function billingprofiles() {
+    public function professionals_billingprofile() {
 	if($this->Auth->user('authnet_profile') != 0){
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
@@ -56,29 +56,29 @@ class AccountController extends AppController {
 		$this->set('profile',$profile);
 	    } else {
 		$this->Session->setFlash(__('No Billing Profiles Found!'));
-		$this->redirect('/account/');
+		$this->redirect('/professionals/account/');
 	    }
 	} else {
 	    // No Billing Profile
 	    $this->Session->setFlash(__('Please Create A Billing Profile'));
-	    $this->redirect('/account/createbillingprofile/');
+	    $this->redirect('/professionals/account/createbilling/');
 	}
     }
 
-    public function editbilling($id) {
+    public function professionals_editbilling($id) {
 	if($id != ''){
 	    $data = array();
 	    
 	} else {
 	    $this->Session->setFlash(__('Missing Billing Profile'));
-	    $this->redirect('/account/');
+	    $this->redirect('/professionals/account/');
 	}
     }
     
-    public function createbillingprofile(){
+    public function professionals_createbilling(){
 	if($this->Auth->user('authnet_profile') != 0){
 	    $this->Session->setFlash(__('Profile Exists!'));
-	    $this->redirect('/account/editbilling/');
+	    $this->redirect('/professionals/account/editbilling/');
 	}
 	if ($this->request->is('post')) {
 	    // Billing Profile
@@ -106,125 +106,42 @@ class AccountController extends AppController {
 		if($this->Account->save($update)){
 		    $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
 		    $this->Session->setFlash(__('Billing Profile Created'));
-		    $this->redirect('/account/createbillingprofile/');
+		    $this->redirect('/professionals/account/');
 		}
 	    } else {
 		//echo $cimresponse->__toString();
 		CakeLog::write('debug', $cimresponse->messages->resultCode . ' ' . $cimresponse->messages->message->code . ' ' . $cimresponse->customerProfileId . ' ' . $cimresponse->customerPaymentProfileIdList->numericString);
 		$this->Session->setFlash(__('Error Creating The Billing Profile'));
-		$this->redirect('/account/billingprofiles/');
+		$this->redirect('/professionals/account/billingprofile/');
 	    }
 	}
     }
 
-    public function history() {
-	$this->Paginator->settings = array(
+    public function professionals_history() {
+	$this->paginate = array(
 	    'conditions' => array('Transaction.user_id' => $this->Auth->user('id')),
 	    'limit' => 20
 	);
-	$data = $this->Paginator->paginate('Transaction');
+	$data = $this->paginate('Transaction');
 	$this->set(compact('data'));
     }
 
-    public function properties() {
+    public function professionals_properties() {
 	
     }
 
-    public function addproperty() {
+    public function professionals_addproperty() {
 	
     }
 
-    public function editproperty() {
+    public function professionals_editproperty() {
 	
     }
-
-    /**
-     * Registration Process
-     */
-    public function register() {
-	if ($this->request->is('post')) {
-	    $this->Account->set($this->data);
-	    if ($this->Account->accountValidate()) {
-		if ($this->Account->save($this->request->data)) {
-		    $userid = $this->Account->getLastInsertID();
-		    // Assign a Role
-		    $this->loadModel('RoleUser');
-		    $roleuser = $this->RoleUser->addUserSite($userid);
-		    // Log the user in
-		    $role = array();
-		    $role[] = array(
-			'id' => 2,
-			'alias' => 'member',
-			'RolesUser' => array(
-			    'id' => $roleuser,
-			    'user_id' => $userid,
-			    'role_id' => 2
-			)
-		    );
-		    $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid, 'Role' => $role));
-		    $this->Auth->login($this->request->data['Account']);
-
-		    $this->Session->setFlash(__('Account Created.'));
-		    $this->redirect('/register/select-counties');
-		} else {
-		    $this->Session->setFlash(__('There was a problem. Please, try again.'));
-		}
-	    }
-	}
-    }
-
-    // Registration Step 2
-    public function selectcounties() {
-	if ($this->request->is('post')) {
-	    
-	} else {
-	    $counties = $this->ZipData->getCountiesByState('FL', true);
-	    $this->request->data['state'] = 'FL';
-	    $this->request->data['counties'] = $counties;
-	    $this->set('cty', $counties);
-	}
-    }
-
-    // Billing Profile
-    public function billingprofile() {
-	if ($this->request->is('post')) {
-	    // Billing Profile
-	    $data['id'] = $this->Auth->user('id');
-	    $data['email'] = $this->request->data['Account']['email'];
-	    $data['firstname'] = $this->request->data['Account']['firstname'];
-	    $data['lastname'] = $this->request->data['Account']['lastname'];
-	    $data['address'] = $this->request->data['Account']['address'];
-	    $data['city'] = $this->request->data['Account']['city'];
-	    $data['state'] = $this->request->data['Account']['state'];
-	    $data['zip'] = $this->request->data['Account']['zip'];
-	    $data['phone'] = $this->request->data['Account']['phone'];
-	    $data['ccnum'] = '4111111111111111';
-	    $data['ccexpyr'] = '2014';
-	    $data['ccexpmnth'] = '11';
-	    $data['cvv'] = '123';
-
-	    $cimresponse = $this->AuthNetXml->create_customer_profile_request($data);
-	    if (!$cimresponse->isError()) {
-		CakeLog::write('debug', 'CIM success');
-		$update['Account']['id'] = $this->Auth->user('id');
-		$update['Account']['authnet_profile'] = $cimresponse->customerProfileId;
-		$this->Account->create();
-		$this->Account->save($update);
-	    } else {
-		//echo $cimresponse->__toString();
-		CakeLog::write('debug', $cimresponse->messages->resultCode . ' ' . $cimresponse->messages->message->code . ' ' . $cimresponse->customerProfileId . ' ' . $cimresponse->customerPaymentProfileIdList->numericString);
-	    }
-	}
-    }
-
-    public function finshregistration() {
-	
-    }
-    /**
-     *  End Registration Process Actions
-     */
     
-    
+    public function professionals_logout() {
+	$this->redirect($this->Auth->logout());
+    }
+        
     /**
      *   Helper Functions
      */
@@ -245,7 +162,7 @@ class AccountController extends AppController {
     public function logout() {
 	$this->redirect($this->Auth->logout());
     }
-
+    
     public function forgetpwd() {
 	if ($this->request->is('post')) {
 	    $account = $this->Account->find('first', array(
