@@ -42,6 +42,12 @@ class AppController extends Controller {
     );
 
     public function beforeFilter() {
+	if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
+	    $this->layout = 'admin';
+	}
+	if(isset($this->params['prefix']) && $this->params['prefix'] == 'professionals'){
+	    $this->layout = 'professtionals';
+	}
 	$this->set('userinfo', $this->Auth->user());
 	$this->set('loggedIn', $this->Auth->loggedIn());
     }
