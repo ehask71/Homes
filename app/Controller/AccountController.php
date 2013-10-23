@@ -46,7 +46,7 @@ class AccountController extends AppController {
 	$this->request->data = $prof;
     }
 
-    public function billingprofiles() {
+    public function billingprofile() {
 	if($this->Auth->user('authnet_profile') != 0){
 	    $data['customerProfileId'] = $this->Auth->user('authnet_profile');
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
@@ -61,7 +61,7 @@ class AccountController extends AppController {
 	} else {
 	    // No Billing Profile
 	    $this->Session->setFlash(__('Please Create A Billing Profile'));
-	    $this->redirect('/account/createbillingprofile/');
+	    $this->redirect('/account/createbilling/');
 	}
     }
 
@@ -75,7 +75,7 @@ class AccountController extends AppController {
 	}
     }
     
-    public function createbillingprofile(){
+    public function createbilling(){
 	if($this->Auth->user('authnet_profile') != 0){
 	    $this->Session->setFlash(__('Profile Exists!'));
 	    $this->redirect('/account/editbilling/');
@@ -106,13 +106,13 @@ class AccountController extends AppController {
 		if($this->Account->save($update)){
 		    $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
 		    $this->Session->setFlash(__('Billing Profile Created'));
-		    $this->redirect('/account/createbillingprofile/');
+		    $this->redirect('/account/index/');
 		}
 	    } else {
 		//echo $cimresponse->__toString();
 		CakeLog::write('debug', $cimresponse->messages->resultCode . ' ' . $cimresponse->messages->message->code . ' ' . $cimresponse->customerProfileId . ' ' . $cimresponse->customerPaymentProfileIdList->numericString);
 		$this->Session->setFlash(__('Error Creating The Billing Profile'));
-		$this->redirect('/account/billingprofiles/');
+		$this->redirect('/account/billingprofile/');
 	    }
 	}
     }
