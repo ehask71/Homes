@@ -21,11 +21,11 @@ class AccountController extends AppController {
      *  Profile Related Functions
      */
     public function index() {
-	$this->Paginator->settings = array(
+	$this->paginate = array(
 	    'conditions' => array('Lead.user_id' => $this->Auth->user('id')),
 	    'limit' => 20
 	);
-	$data = $this->Paginator->paginate('Lead');
+	$data = $this->paginate('Lead');
 	$this->set(compact('data'));
     }
 
