@@ -52,7 +52,7 @@ class AccountController extends AppController {
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
                 //echo $cimresponse->customerPaymentProfileId;
-		$profile = (array)$cimresponse->__get('profile');
+		$profile = $cimresponse->__get('profile');
 		
 		$this->set('profile',$profile);
 	    } else {
