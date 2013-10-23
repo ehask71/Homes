@@ -70,6 +70,7 @@ class AccountController extends AppController {
 			$profile = $v;
 		    }
 		}
+                print_r($xml);
                 echo "</pre>";
 		
 		$this->set('profile',$profile);
