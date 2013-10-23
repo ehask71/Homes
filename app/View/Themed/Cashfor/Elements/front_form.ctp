@@ -11,10 +11,11 @@ echo $this->Form->create(NULL, array(
         'after' => '</div>',
         'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
     )));
-echo $this->Form->input('fname');
-echo $this->Form->input('fphone');
-echo $this->Form->input('femail');
-echo $this->Form->input('fzip');
-echo $this->Form->input('faddress');
+echo $this->Form->input('ffname',array('label' => 'Firstname'));
+echo $this->Form->input('flname',array('label' => 'Lastname'));
+echo $this->Form->input('fphone',array('label' => 'Phone'));
+echo $this->Form->input('femail',array('label' => 'Email'));
+echo $this->Form->input('fzip',array('label' => 'Zip'));
+echo $this->Form->input('faddress',array('label' => 'Address'));
 echo $this->Form->end('SUBMIT');
 ?>
