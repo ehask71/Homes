@@ -60,7 +60,6 @@ class AccountController extends AppController {
 		echo "<br><br>";
                 print_r($xml);
                 var_dump($xml);
-                print_r($cimresponse);
                 echo "</pre>";
 		
 		$this->set('profile',$profile);
