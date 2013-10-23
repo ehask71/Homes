@@ -73,7 +73,7 @@ class AccountController extends AppController {
 		}
                 print_r($xml);
                 var_dump($xml);
-                print_r($cimresponse);
+                print_r($cimresponse->response_xml);
                 echo "</pre>";
 		
 		$this->set('profile',$profile);
