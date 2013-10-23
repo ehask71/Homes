@@ -1,5 +1,5 @@
 body{
-	font-family:  Arial, sans-serif;
+	font-family:  Arial, sans-serif !important;
 }
 #logo{
 	background: transparent url('../images/logo.jpg') left top no-repeat;
