@@ -52,7 +52,7 @@ class AccountController extends AppController {
 	    $cimresponse = $this->AuthNetXml->get_customer_profile($data);
 	    if (!$cimresponse->isError()) {
 		$xml = json_decode(json_encode((array) $cimresponse), 1);
-                echo $cimresponse->customerPaymentProfileId;
+                //echo $cimresponse->customerPaymentProfileId;
 		$profile = array(
 		   // 'id' => $xml['AuthnetXMLresponse_xml']['profile']['customerPaymentProfileId'],
 		    //'billto' => $xml['AuthnetXMLresponse_xml']['profile']['paymentProfiles']['billTo'],
@@ -73,6 +73,7 @@ class AccountController extends AppController {
 		}
                 print_r($xml);
                 var_dump($xml);
+                print_r($cimresponse);
                 echo "</pre>";
 		
 		$this->set('profile',$profile);
