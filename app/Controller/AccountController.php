@@ -139,7 +139,8 @@ class AccountController extends AppController {
     }
     
     public function professionals_logout() {
-	$this->redirect($this->Auth->logout());
+        $this->Auth->logout();
+	$this->redirect('/login');
     }
         
     /**
@@ -160,7 +161,8 @@ class AccountController extends AppController {
     }
 
     public function logout() {
-	$this->redirect($this->Auth->logout());
+	$this->Auth->logout();
+	$this->redirect('/login');
     }
     
     public function forgetpwd() {
