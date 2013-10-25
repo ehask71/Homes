@@ -78,6 +78,7 @@
                                 <li><?php echo $this->Html->link('Profile', '/professionals/account/edit'); ?></li>
                                 <li><?php echo $this->Html->link('Billing', '/professionals/account/billingprofile'); ?></li>
                                 <li><?php echo $this->Html->link('History', '/professionals/account/history'); ?></li>
+                                <li><?php echo $this->Html->link('Logout', '/professionals/account/logout'); ?></li>
                             </ul>
                         </div>
                         <?php echo $this->fetch('content'); ?>
