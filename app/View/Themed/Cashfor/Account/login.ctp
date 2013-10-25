@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="span3 offset5">
+    <div class="span4 offset4">
         <h2>Login</h2>
         <?php
         echo $this->Form->create(null, array(
