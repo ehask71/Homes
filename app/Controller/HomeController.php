@@ -68,7 +68,7 @@ class HomeController extends AppController {
 	
     }
     
-    public function tos(){
+    public function terms(){
 	
     }
     
