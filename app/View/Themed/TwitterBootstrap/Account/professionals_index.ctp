@@ -1,4 +1,4 @@
-<div class="span9">
+<div class="span10">
 <h2>Leads</h2>
 <table class="table table-striped table-bordered table-condensed">
     <thead>
