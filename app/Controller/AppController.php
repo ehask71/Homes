@@ -27,7 +27,7 @@ class AppController extends Controller {
 		    'recursive' => 1,
 		)),
 	    'loginRedirect' => array('controller' => 'account', 'action' => 'index','professionals' => true),
-	    'logoutRedirect' => array('controller' => 'account', 'action' => 'login'),
+	    'logoutRedirect' => array('/login'),
 	    'loginAction' => '/login',
 	    'flash' => array(
 		'element' => 'alert',
