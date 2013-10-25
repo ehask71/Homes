@@ -26,8 +26,8 @@ class AppController extends Controller {
 		    ),
 		    'recursive' => 1,
 		)),
-	    'loginRedirect' => array('prefix'=>'professionals','controller' => 'account', 'action' => 'index'),
-	    'logoutRedirect' => array('prefix'=>'','controller' => 'account', 'action' => 'login'),
+	    'loginRedirect' => array('controller' => 'account', 'action' => 'professionals_index'),
+	    'logoutRedirect' => array('controller' => 'account', 'action' => 'login'),
 	    'loginAction' => '/login',
 	    'flash' => array(
 		'element' => 'alert',
