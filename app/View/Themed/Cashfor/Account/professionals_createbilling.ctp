@@ -1,3 +1,6 @@
+<div class="span10">
+    <div class="row">
+	<div class="span6">
 <h2>Payment Info</h2>
 <?php
 $year = date('Y');
@@ -41,3 +44,6 @@ echo $this->Form->input('phone',array('label' => 'Phone'));
 echo $this->Form->input('comments',array('label' => 'Comment'));
 echo $this->Form->end('Finish Registration');
 ?>
+	</div>
+    </div>
+</div>
