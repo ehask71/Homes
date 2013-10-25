@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="span4 offset4">
+    <div class="span4 offset4" style="padding-top: 50px;padding-bottom: 50px;">
         <div id="form-container">
             <div id="form-wrapper">
                 <div id="form-content">
