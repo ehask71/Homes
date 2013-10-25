@@ -32,11 +32,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <![endif]-->
 
   </head>
-
   <body>
 	
-	<?php echo $this->element('navbar',array('loggedIn'=>$loggedIn)); ?>
-
+    <?php echo $this->element('navbar',array('loggedIn'=>$loggedIn)); ?>
     <div class="container">
 		<?php echo $this->Session->flash(); ?>
 		<?php echo $this->Session->flash('auth'); ?>
