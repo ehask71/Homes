@@ -52,7 +52,7 @@
                                         </li>
                                         <li><a href="/sell" class="nav-sell"><span>Sell</span></a></li>
                                         <li><a href="/buy" class="nav-buy"><span>Buy</span></a></li>
-                                        <li><a href="/why" class="nav-why"><span>Why Us</span></a></li>
+                                        <li><a href="/why-us" class="nav-why"><span>Why Us</span></a></li>
                                         <li><a href="/contact" class="nav-contact"><span>Contact</span></a></li>
                                     </ul>
                                 </div>
@@ -81,7 +81,7 @@
                             <li><a href="/" title="Return to Cash for Homes Home Page">Home</a></li>
                             <li><a href="/sell" title="Sell with Cash for Homes Page">Sell</a></li>
                             <li><a href="/buy.php" title="Buy with Cash for Homes Page">Buy</a></li>
-                            <li><a href="/why" title="Why work with Cash for Homes Page">Why Us?</a></li>
+                            <li><a href="/why-us" title="Why work with Cash for Homes Page">Why Us?</a></li>
                             <li><a href="/contact" title="Contact Cash for Homes Page">Contact</a></li>
                             <li><a href="/tos" title="Cash for Homes terms of Service Page">Terms of Service</a></li>
                             <li><a href="/privacy" title="Cash for Homes Privacy Statement Page">Privacy Policy</a></li>
