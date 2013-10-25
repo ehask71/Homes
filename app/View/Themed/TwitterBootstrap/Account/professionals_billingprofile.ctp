@@ -8,3 +8,4 @@
     <?php print_r($profile);?>
 </pre>
 </div>
+<!-- New -->
