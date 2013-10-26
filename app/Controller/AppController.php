@@ -51,5 +51,22 @@ class AppController extends Controller {
 	$this->set('userinfo', $this->Auth->user());
 	$this->set('loggedIn', $this->Auth->loggedIn());
     }
+    
+    public function beforeRender() {
+        parent::beforeRender();
+        
+        // Load Popular Counties
+        $route = Router::parse(Router::url( $this->here(), true ));
+        if(!isset($route['prefix'])){
+            $this->loadModel('ZipData');
+            $popd = $this->ZipData->popularCounties();
+            $pop = '';
+            foreach($popd AS $v){
+                $pop .= '<a href="/buy/'.$v['ZipData']['slug'].'">'.$v['ZipData']['county'].','.$v['ZipData']['state'].'</a>&nbsp;';
+            }
+            $this->set('popular_counties',$pop);
+        }
+        
+    }
 
 }
