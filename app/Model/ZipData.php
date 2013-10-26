@@ -76,7 +76,7 @@ class ZipData extends AppModel {
             county,
             state 
             FROM 
-            `zip_data` WHERE `price` != 0.00 ORDER BY `PST045212` DESC LIMIT 20");
+            `zip_data` AS ZipData WHERE `ZipData`.`price` != 0.00 ORDER BY `ZipData`.`PST045212` DESC LIMIT 20");
         
         return $data;
     }
