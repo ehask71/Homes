@@ -56,7 +56,7 @@ class AppController extends Controller {
         parent::beforeRender();
         
         // Load Popular Counties
-        $route = Router::parse(Router::url( $this->here(), true ));
+        $route = Router::parse(Router::url( NULL, true ));
         if(!isset($route['prefix'])){
             $this->loadModel('ZipData');
             $popd = $this->ZipData->popularCounties();
