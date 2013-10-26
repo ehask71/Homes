@@ -69,6 +69,16 @@ class ZipData extends AppModel {
 	
 	return $price;
     }
-
+    
+    public function popularCounties(){
+        $data = $this->query("SELECT 
+            CONCAT(REPLACE(county,' ','_'),'-',state) AS slug,
+            county,
+            state 
+            FROM 
+            `zip_data` WHERE `price` != 0.00 ORDER BY `PST045212` DESC LIMIT 20");
+        
+        return $data;
+    }
 }
 
