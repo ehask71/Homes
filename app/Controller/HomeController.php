@@ -60,7 +60,8 @@ class HomeController extends AppController {
     public function buy(){
 	// Check for Slug Params
         if(isset($this->request->params['county']) && isset($this->request->params['state'])){
-            $this->set('slug',$this->request->params['county'].'-'.$this->request->params['state']);
+            $this->set('county',  str_replace('_', ' ',$this->request->params['county']));
+            $this->set('state',$this->request->params['state']);
         }
     }
     
