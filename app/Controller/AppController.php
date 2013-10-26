@@ -62,7 +62,7 @@ class AppController extends Controller {
             $popd = $this->ZipData->popularCounties();
             $pop = '';
             foreach($popd AS $v){
-                $pop .= '<a href="/buy/'.$v['ZipData']['slug'].'">'.$v['ZipData']['county'].','.$v['ZipData']['state'].'</a>&nbsp;';
+                $pop .= '<a href="/buy/'.$v['slug'].'">'.$v['county'].','.$v['state'].'</a>&nbsp;';
             }
             $this->set('popular_counties',$pop);
         }
