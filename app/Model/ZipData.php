@@ -79,7 +79,7 @@ class ZipData extends AppModel {
             state 
             FROM 
             `zip_data` AS ZipData WHERE `ZipData`.`price` != 0.00 ORDER BY `ZipData`.`PST045212` DESC LIMIT 20");
-            Cache::write('popularCounties', $result, 'short');
+            Cache::write('popularCounties', $data, 'short');
         }
 
         return $data;
