@@ -60,9 +60,6 @@ class AppController extends Controller {
         if(!isset($route['prefix'])){
             $this->loadModel('ZipData');
             $popd = $this->ZipData->popularCounties();
-            echo '<pre>';
-            print_r($popd);
-            echo '</pre>';
             $pop = '';
             foreach($popd AS $v){
                 $pop .= '<a href="/buy/'.$v[0]['slug'].'">'.$v['ZipData']['county'].','.$v['ZipData']['state'].'</a>&nbsp;';
