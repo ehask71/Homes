@@ -89,7 +89,7 @@
                     </div>
                     <div class="span7">
                         <div class="footer-text">
-                            <?php echo $this->fetch('footer_counties');?> 
+                            <?php if(isset($popular_counties)){echo $popular_counties;}?> 
                         </div>
                     </div>
                     <div class="span3">
