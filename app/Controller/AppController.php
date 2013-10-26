@@ -59,7 +59,7 @@ class AppController extends Controller {
         $route = Router::parse(Router::url( NULL, true ));
         if(!isset($route['prefix'])){
             $this->loadModel('ZipData');
-            $popd = $this->ZipData->popularCounties();
+            $popd = shuffle($this->ZipData->popularCounties());
             $pop = '';
             foreach($popd AS $v){
                 $pop .= '<a href="/buy/'.$v[0]['slug'].'">'.$v['ZipData']['county'].','.$v['ZipData']['state'].'</a>&nbsp;';
