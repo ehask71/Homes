@@ -65,7 +65,7 @@ class AppController extends Controller {
             echo '</pre>';
             $pop = '';
             foreach($popd AS $v){
-                $pop .= '<a href="/buy/'.$v['slug'].'">'.$v['county'].','.$v['state'].'</a>&nbsp;';
+                $pop .= '<a href="/buy/'.$v[0]['slug'].'">'.$v['ZipData']['county'].','.$v['ZipData']['state'].'</a>&nbsp;';
             }
             $this->set('popular_counties',$pop);
         }
