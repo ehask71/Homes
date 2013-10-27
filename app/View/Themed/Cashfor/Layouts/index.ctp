@@ -16,12 +16,7 @@
 			<div class="span5" id="logo"></div>
 			<div class="span4" id="tel-number">800.225.CASH</div>
 			<div class="span3" id="investors">
-				<div id="re-investors">
-					<span>Real Estate Investors</span>
-					<div id="re-wrapper">
-					<a href="/login" id="re-signin" title="Real Estate Investors Sign in Link"><span>Sign In</span></a><a href="/register/personal-info" id="re-register" title="Real Estate Investors Register Link"><span>Register</span></a>
-					</div>
-				</div>
+				<?php echo $this->element('loginbox', array('loggedIn'=>$loggedIn));?>
 			</div>
 		</div>
 	</div>
