@@ -1,3 +1,5 @@
+<div class='row'>
+    <div class='span6'>
 <h2>Sell</h2>
 <?php 
 echo $this->Form->create('Lead',array(
@@ -31,3 +33,5 @@ echo $this->Form->input('reason',array('label' => array('text' => 'Reason For Se
 echo $this->Form->input('comments',array('label' => array('text' => 'Comments', 'class' => 'control-label')));
 echo $this->Form->end('Submit');
 ?>
+    </div>
+</div>
