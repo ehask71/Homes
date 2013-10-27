@@ -1,5 +1,14 @@
 <h2>Select Your Counties</h2>
-<form method="post" onsubmit="">
+<?php echo $this->Form->create(null,array(
+            'inputDefaults' => array(
+                'div' => 'control-group',
+                'label' => array(
+                    'class' => 'control-label'
+                ),
+                'wrapInput' => 'controls'
+            ),
+            'class' => 'well form-horizontal'
+        ));?>
     <table>
 	<tr>
 	    <td>
