@@ -1,6 +1,6 @@
 <?php if ($loggedIn) { ?>
     <div id="re-investors">
-        <span>Hello <?php echo $this->Auth->user('firstname');?></span>
+        <span>Hello <?php echo $user['firstname'];?></span>
         <div id="re-wrapper">
             <a href="/professionals/account" id="re-signin" title="Real Estate Investors Sign in Link"><span>Account</span></a><a href="/logout" id="re-register" title="Real Estate Investors Register Link"><span>Sign Out</span></a>
         </div>
