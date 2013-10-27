@@ -16,7 +16,7 @@
 			<div class="span5" id="logo"></div>
 			<div class="span4" id="tel-number">800.225.CASH</div>
 			<div class="span3" id="investors">
-				<?php echo $this->element('loginbox', array('loggedIn'=>$loggedIn));?>
+				<?php echo $this->element('loginbox', array('loggedIn'=>$loggedIn,'user'=>$userinfo));?>
 			</div>
 		</div>
 	</div>
