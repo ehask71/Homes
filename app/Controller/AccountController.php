@@ -136,6 +136,17 @@ class AccountController extends AppController {
             }
         }
     }
+    
+    public function professionals_addcounty(){
+	if($this->request->is('post')){
+	    
+	}
+    }
+    
+    public function professionals_confirm(){
+	
+    }
+
 
     public function professionals_history() {
         $this->paginate = array(
