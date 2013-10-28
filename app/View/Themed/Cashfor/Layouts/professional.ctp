@@ -16,12 +16,7 @@
                 <div class="span5" id="logo"></div>
                 <div class="span4" id="tel-number">800.225.CASH</div>
                 <div class="span3" id="investors">
-                    <div id="re-investors">
-                        <span>Real Estate Investors</span>
-                        <div id="re-wrapper">
-                            <a href="/login" id="re-signin" title="Real Estate Investors Sign in Link"><span>Sign In</span></a><a href="/register/personal-info" id="re-register" title="Real Estate Investors Register Link"><span>Register</span></a>
-                        </div>
-                    </div>
+                    <?php echo $this->element('loginbox', array('loggedIn'=>$loggedIn,'user'=>$userinfo));?>
                 </div>
             </div>
         </div>
@@ -52,7 +47,7 @@
                                         </li>
                                         <li><a href="/sell" class="nav-sell"><span>Sell</span></a></li>
                                         <li><a href="/buy" class="nav-buy"><span>Buy</span></a></li>
-                                        <li><a href="/why" class="nav-why"><span>Why Us</span></a></li>
+                                        <li><a href="/why-us" class="nav-why"><span>Why Us</span></a></li>
                                         <li><a href="/contact" class="nav-contact"><span>Contact</span></a></li>
                                     </ul>
                                 </div>
@@ -69,7 +64,7 @@
                     <?php echo $this->Session->flash(); ?>
                     <?php echo $this->Session->flash('auth'); ?>
                     <div class="row">
-                        <div class="span3">
+                        <div class="span2">
                             <ul class="nav nav-list">
                                 <li class="nav-header">Navigation</li>
                                 <li><?php echo $this->Html->link('Leads', '/professionals/account/'); ?></li>
@@ -78,6 +73,7 @@
                                 <li><?php echo $this->Html->link('Profile', '/professionals/account/edit'); ?></li>
                                 <li><?php echo $this->Html->link('Billing', '/professionals/account/billingprofile'); ?></li>
                                 <li><?php echo $this->Html->link('History', '/professionals/account/history'); ?></li>
+                                <li><?php echo $this->Html->link('Logout', '/professionals/account/logout'); ?></li>
                             </ul>
                         </div>
                         <?php echo $this->fetch('content'); ?>
@@ -94,7 +90,7 @@
                             <li><a href="/" title="Return to Cash for Homes Home Page">Home</a></li>
                             <li><a href="/sell" title="Sell with Cash for Homes Page">Sell</a></li>
                             <li><a href="/buy" title="Buy with Cash for Homes Page">Buy</a></li>
-                            <li><a href="/why" title="Why work with Cash for Homes Page">Why Us?</a></li>
+                            <li><a href="/why-us" title="Why work with Cash for Homes Page">Why Us?</a></li>
                             <li><a href="/contact" title="Contact Cash for Homes Page">Contact</a></li>
                             <li><a href="/tos" title="Cash for Homes terms of Service Page">Terms of Service</a></li>
                             <li><a href="/privacy" title="Cash for Homes Privacy Statement Page">Privacy Policy</a></li>
@@ -102,7 +98,7 @@
                     </div>
                     <div class="span7">
                         <div class="footer-text">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                            <?php if(isset($popular_counties)){echo $popular_counties;}?> 
                         </div>
                     </div>
                     <div class="span3">

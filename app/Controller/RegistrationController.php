@@ -18,7 +18,7 @@ class RegistrationController extends AppController {
     }
 
     public function index() {
-	
+	$this->redirect('/register/personal-info');
     }
 
     /**

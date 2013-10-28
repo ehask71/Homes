@@ -26,8 +26,8 @@ class AppController extends Controller {
 		    ),
 		    'recursive' => 1,
 		)),
-	    'loginRedirect' => array('controller' => 'home', 'action' => 'index'),
-	    'logoutRedirect' => array('prefix'=>'','controller' => 'account', 'action' => 'login'),
+	    'loginRedirect' => array('controller' => 'account', 'action' => 'index','professionals' => true),
+	    'logoutRedirect' => array('/login'),
 	    'loginAction' => '/login',
 	    'flash' => array(
 		'element' => 'alert',
@@ -50,6 +50,24 @@ class AppController extends Controller {
 	}
 	$this->set('userinfo', $this->Auth->user());
 	$this->set('loggedIn', $this->Auth->loggedIn());
+    }
+    
+    public function beforeRender() {
+        parent::beforeRender();
+        
+        // Load Popular Counties
+        $route = Router::parse(Router::url( NULL, true ));
+        if(!isset($route['prefix'])){
+            $this->loadModel('ZipData');
+            $popd = $this->ZipData->popularCounties();
+            //$popd = shuffle($popd);
+            $pop = '';
+            foreach($popd AS $v){
+                $pop .= '<a href="/buy/'.$v[0]['slug'].'">'.$v['ZipData']['county'].','.$v['ZipData']['state'].'</a>&nbsp;';
+            }
+            $this->set('popular_counties',$pop);
+        }
+        
     }
 
 }

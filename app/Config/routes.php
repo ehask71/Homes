@@ -31,7 +31,7 @@
 	Router::connect('/contact', array('controller' => 'home', 'action' => 'contact'));
 	Router::connect('/why-us', array('controller' => 'home', 'action' => 'why'));
 	Router::connect('/privacy', array('controller' => 'home', 'action' => 'privacy'));
-	Router::connect('/terms', array('controller' => 'home', 'action' => 'terms'));
+	Router::connect('/tos', array('controller' => 'home', 'action' => 'terms'));
 	Router::connect('/sitemap', array('controller' => 'seo', 'action' => 'sitemap'));
 	Router::connect('/robots.txt', array('controller' => 'seo', 'action' => 'robots'));
 	Router::connect('/sell', array('controller' => 'home', 'action' => 'sell'));
