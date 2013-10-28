@@ -18,22 +18,26 @@ body{
 	width: 201px;
 	margin:0 auto;
 }
-#re-signin,#re-register{
+#re-signin,#re-register,#re-account,#re-signout{
 	min-height: 25px;
 	min-width:100px;
 	display:inline-block;
 	margin: 8px 0px;
 	padding: 0;
 }
-#re-signin span,#re-register span{
+#re-signin span,#re-register,#re-account,#re-signout span{
 	position: absolute;
 	left: -9999px;
 }
 #re-signin{
-	background: transparent url('../images/re-signin.jpg') left top no-repeat;
-	
+	background: transparent url('../images/re-signin.jpg') left top no-repeat;	
 }
-
+#re-account{
+	background: transparent url('../images/re-account.jpg') left top no-repeat;
+}
+#re-signout{
+	background: transparent url('../images/re-signout.jpg') left top no-repeat;
+}
 #re-register{
 	background: transparent url('../images/re-register.jpg') left top no-repeat;
 }
