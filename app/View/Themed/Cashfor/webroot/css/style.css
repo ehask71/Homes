@@ -18,14 +18,14 @@ body{
 	width: 201px;
 	margin:0 auto;
 }
-#re-signin,#re-register,#re-account,#re-signout{
+#re-signin,#re-register,#re-account,#re-signout {
 	min-height: 25px;
 	min-width:100px;
 	display:inline-block;
 	margin: 8px 0px;
 	padding: 0;
 }
-#re-signin span,#re-register,#re-account,#re-signout span{
+#re-signin span,#re-register span,#re-account span,#re-signout span{
 	position: absolute;
 	left: -9999px;
 }
