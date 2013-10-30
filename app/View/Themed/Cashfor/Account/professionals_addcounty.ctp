@@ -26,7 +26,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('#counties > option').live('click', function() {
+    /*$('#counties > option').live('click', function() {
 	var title = $(this).attr('title');
 	var val = $(this).attr('value');
 	var exists = false;
@@ -43,7 +43,7 @@
 
     $('#second > li').live('click', function() {
 	$(this).remove();
-    });
+    });*/
 
 
     function fetchCounties() {
