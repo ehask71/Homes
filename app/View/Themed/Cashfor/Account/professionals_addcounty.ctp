@@ -1,7 +1,7 @@
 <?php $this->Html->scriptStart(array('block' => 'scriptBottom')); ?> 
 $(document).ready(function() {
     $('#counties > option').on('click', function() {
-	var title = $(this).attr('title');
+	var title = $(this).val();
 	var val = $(this).attr('value');
 	var exists = false;
 	$('#selectedcounties > li').each(function() {
