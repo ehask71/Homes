@@ -129,5 +129,6 @@
         </div>		
         <?php echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'); ?>
         <?php echo $this->Html->script('bootstrap'); ?>
+	<?php echo $this->fetch('scriptBottom');?>
     </body>
 </html>
