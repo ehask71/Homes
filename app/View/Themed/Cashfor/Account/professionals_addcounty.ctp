@@ -1,6 +1,6 @@
 <?php $this->Html->scriptStart(array('block' => 'scriptBottom')); ?> 
 $(document).ready(function() {
-    $('#counties > option').live('click', function() {
+    $('#counties > option').on('click', function() {
 	var title = $(this).attr('title');
 	var val = $(this).attr('value');
 	var exists = false;
@@ -15,7 +15,7 @@ $(document).ready(function() {
 	}
     });
 
-    $('#second > li').live('click', function() {
+    $('#second > li').on('click', function() {
 	$(this).remove();
     });
 });
