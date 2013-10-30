@@ -20,32 +20,31 @@
 	</div>
 	<div class="span6">
 	    <ul id="selectedcounties">
-		
+
 	    </ul>
 	</div>
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
-	$('#counties > option').live('click',function() {
-	    var title = $(this).attr('title');
-	    var val = $(this).attr('value');
-	    var exists = false;
-	    $('#selectedcounties > li').each(function() {
-		if (this.value == val) {
-		    exists = true;
-		    return false;
-		}
-	    });
-	    if (!exists) {
-		$('#selectedcounties').append('<li value="' + val + '">' + title + '</li>');
+    $('#counties > option').live('click', function() {
+	var title = $(this).attr('title');
+	var val = $(this).attr('value');
+	var exists = false;
+	$('#selectedcounties > li').each(function() {
+	    if (this.value == val) {
+		exists = true;
+		return false;
 	    }
 	});
-
-	$('#second > li').live('click', function() {
-	    $(this).remove();
-	});
+	if (!exists) {
+	    $('#selectedcounties').append('<li value="' + val + '">' + title + '</li>');
+	}
     });
+
+    $('#second > li').live('click', function() {
+	$(this).remove();
+    });
+
 
     function fetchCounties() {
 	var st = $('#state').val();
