@@ -15,7 +15,7 @@ $(document).ready(function() {
 	}
     });
 
-    $('#second > li').on('click', function() {
+    $('#selectedcounties > li').on('click', function() {
 	$(this).remove();
     });
 });
