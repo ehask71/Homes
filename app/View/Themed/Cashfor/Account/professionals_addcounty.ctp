@@ -1,3 +1,25 @@
+<?php $this->Html->scriptStart(array('block' => 'scriptBottom')); ?> 
+$(document).ready(function() {
+    $('#counties > option').live('click', function() {
+	var title = $(this).attr('title');
+	var val = $(this).attr('value');
+	var exists = false;
+	$('#selectedcounties > li').each(function() {
+	    if (this.value == val) {
+		exists = true;
+		return false;
+	    }
+	});
+	if (!exists) {
+	    $('#selectedcounties').append('<li value="' + val + '">' + title + '</li>');
+	}
+    });
+
+    $('#second > li').live('click', function() {
+	$(this).remove();
+    });
+});
+<?php $this->Html->scriptEnd();?>
 <div class="span10">
     <div class="row">
 	<div class="span6">
@@ -26,26 +48,6 @@
     </div>
 </div>
 <script type="text/javascript">
-    /*$('#counties > option').live('click', function() {
-	var title = $(this).attr('title');
-	var val = $(this).attr('value');
-	var exists = false;
-	$('#selectedcounties > li').each(function() {
-	    if (this.value == val) {
-		exists = true;
-		return false;
-	    }
-	});
-	if (!exists) {
-	    $('#selectedcounties').append('<li value="' + val + '">' + title + '</li>');
-	}
-    });
-
-    $('#second > li').live('click', function() {
-	$(this).remove();
-    });*/
-
-
     function fetchCounties() {
 	var st = $('#state').val();
 	if (st != '') {
@@ -66,8 +68,4 @@
 	    });
 	}
     }
-    
-    $(document).ready(function() {
-	
-    });
 </script>
