@@ -11,6 +11,9 @@ $(document).ready(function() {
 	    }
 	});
 	if (!exists) {
+            $.post("/registration/cartadd",{id:val},function(data){
+            $('#debug').html(JSON.toString(data));
+            });
 	    $('#selectedcounties').append('<li value="' + val + '">' + title + '</li>');
 	}
     });
@@ -44,6 +47,7 @@ $(document).ready(function() {
 	    <ul id="selectedcounties">
 
 	    </ul>
+            <div id="debug"></div>
 	</div>
     </div>
 </div>
