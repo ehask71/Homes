@@ -10,7 +10,7 @@ class RegistrationController extends AppController {
 
     public $name = 'Registration';
     public $uses = array('Account', 'Transaction', 'ZipData');
-    public $components = array('AuthNetXml');
+    public $components = array('AuthNetXml','Cart');
 
     public function beforeFilter() {
 	parent::beforeFilter();
@@ -107,4 +107,8 @@ class RegistrationController extends AppController {
     /**
      *  End Registration Process Actions
      */
+    
+    public function cart(){
+        
+    }
 }
