@@ -125,7 +125,7 @@ class CartComponent extends Component {
 		$total = 0;
 		$order_item_count = 0;
 
-		if (count($shop['OrderItem']) > 0) {
+		if (count(@$shop['OrderItem']) > 0) {
 			foreach ($shop['OrderItem'] as $item) {
 				$quantity += 1;
 				$subtotal += $item['subtotal'];
@@ -135,14 +135,14 @@ class CartComponent extends Component {
 			$d['order_item_count'] = $order_item_count;
 			$d['subtotal'] = sprintf('%01.2f', $subtotal);
 			$d['total'] = sprintf('%01.2f', $total);
-			$this->Session->write('Shop.Order', $d + $shop['Order']);
+			$this->Session->write('Shop.Order', $d + @$shop['Order']);
 			return true;
 		}
 		else {
 			$d['quantity'] = 0;
 			$d['subtotal'] = 0;
 			$d['total'] = 0;
-			$this->Session->write('Shop.Order', $d + $shop['Order']);
+			$this->Session->write('Shop.Order', $d + @$shop['Order']);
 			return false;
 		}
 	}
