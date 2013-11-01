@@ -117,4 +117,10 @@ class RegistrationController extends AppController {
         $this->set('cart',$this->Session->read('Shop.Order'));
         $this->set('_serialize', array('cart'));
     }
+    
+    public function cartclear(){
+        $this->Cart->clear();
+        $this->set('cart',$this->Session->read('Shop.Order'));
+        $this->set('_serialize', array('cart'));
+    }
 }
