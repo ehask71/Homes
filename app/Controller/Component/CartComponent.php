@@ -128,7 +128,7 @@ class CartComponent extends Component {
 
 		if (count(@$shop['OrderItem']) > 0) {
 			foreach ($shop['OrderItem'] as $item) {
-                                $items[] = $item;
+                                $items[$item['product_id']] = $item;
 				$quantity += 1;
 				$subtotal += $item['subtotal'];
 				$total += $item['subtotal'];
