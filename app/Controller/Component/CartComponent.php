@@ -51,7 +51,7 @@ class CartComponent extends Component {
 				'ZipData.id' => $id
 			)
 		));
-		
+		mail('ehask71@gmail.com','Product',print_r($product,1));
 		if(empty($product)) {
 			return false;
 		}
@@ -119,6 +119,7 @@ class CartComponent extends Component {
 
 	public function cart() {
 		$shop = (array)$this->Session->read('Shop');
+                $items = array();
 		$quantity = 0;
 		$weight = 0;
 		$subtotal = 0;
@@ -127,6 +128,7 @@ class CartComponent extends Component {
 
 		if (count(@$shop['OrderItem']) > 0) {
 			foreach ($shop['OrderItem'] as $item) {
+                                $items[] = $item;
 				$quantity += 1;
 				$subtotal += $item['subtotal'];
 				$total += $item['subtotal'];
