@@ -19,18 +19,26 @@ $(document).ready(function() {
     });
 
     $('#selectedcounties').on('click','li', function() {
+	var pid = $(this).val();
 	$(this).remove();
+	$.post("/registration/cartremove.json",{id:pid},function(data){
+	    $('#carttotal').html('$'+data.cart.Order.total);
+	});
+	getCart();
     });
     
     $(function(){
-	$.get("/registration/cartadd.json",function(data){
-	    $('#carttotal').html('$'+data.cart.Order.total);
-	    $.each(data.cart.OrderItem,function(i,item){
-		$('#selectedcounties').append('<li value="' + item.product_id + '">$' + item.price +' '+ item.name  + '</li>');
-	    });
-	});
+	getCart();
     });
 });
+function getCart(){
+    $.get("/registration/cartadd.json",function(data){
+	$('#carttotal').html('$'+data.cart.Order.total);
+	$.each(data.cart.OrderItem,function(i,item){
+	    $('#selectedcounties').append('<li value="' + item.product_id + '">$' + item.price +' '+ item.name  + '</li>');
+	});
+    });
+}
 <?php $this->Html->scriptEnd();?>
 <div class="span10">
     <div class="row">
