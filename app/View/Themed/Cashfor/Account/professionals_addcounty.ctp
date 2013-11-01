@@ -12,7 +12,11 @@ $(document).ready(function() {
 	});
 	if (!exists) {
             $.post("/registration/cartadd.json",{id:val},function(data){
-            $('#debug').html(JSON.toString(data));
+		if(data.cart.Order.total != null){
+		    $('#carttotal').html('$'+data.cart.Order.total);
+		} else {
+		    $('#carttotal').html('$0.00');
+		}
             });
 	    $('#selectedcounties').append('<li value="' + val + '">' + title + '</li>');
 	}
