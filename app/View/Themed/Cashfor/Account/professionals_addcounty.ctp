@@ -22,7 +22,11 @@ $(document).ready(function() {
 	var pid = $(this).val();
 	$(this).remove();
 	$.post("/registration/cartremove.json",{id:pid},function(data){
-	    $('#carttotal').html('$'+data.cart.Order.total);
+	    if(data.cart.Order.total != null){
+		$('#carttotal').html('$'+data.cart.Order.total);
+	    } else {
+		$('#carttotal').html('$0.00');
+	    }
 	});
     });
     
@@ -32,7 +36,11 @@ $(document).ready(function() {
 });
 function getCart(){
     $.get("/registration/cartadd.json",function(data){
-	$('#carttotal').html('$'+data.cart.Order.total);
+	if(data.cart.Order.total != null){
+	   $('#carttotal').html('$'+data.cart.Order.total);
+	} else {
+	    $('#carttotal').html('$0.00');
+	}
 	$.each(data.cart.OrderItem,function(i,item){
 	    $('#selectedcounties').append('<li value="' + item.product_id + '">$' + item.price +' '+ item.name  + '</li>');
 	});
