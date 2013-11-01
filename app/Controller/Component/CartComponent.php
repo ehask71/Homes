@@ -150,7 +150,7 @@ class CartComponent extends Component {
 //////////////////////////////////////////////////
 
 	public function clear() {
-		ClassRegistry::init('Cart')->deleteAll(array('Cart.sessionid' => $this->Session->id()), false);
+		ClassRegistry::init('Cart')->deleteAll(array('Cart.session_id' => $this->Session->id()), false);
 		$this->Session->delete('Shop');
 	}
 
