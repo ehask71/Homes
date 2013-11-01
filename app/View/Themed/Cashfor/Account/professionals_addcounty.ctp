@@ -21,6 +21,15 @@ $(document).ready(function() {
     $('#selectedcounties').on('click','li', function() {
 	$(this).remove();
     });
+    
+    $(function(){
+	$.get("/registration/cartadd.json",function(data){
+	    $('#carttotal').html('$'+data.cart.Order.total);
+	    $.each(data.cart.OrderItem,function(i,item){
+		$('#selectedcounties').append('<li value="' + item.product_id + '">$' + item.price +' '+ item.name  + '</li>');
+	    });
+	});
+    });
 });
 <?php $this->Html->scriptEnd();?>
 <div class="span10">
@@ -44,9 +53,11 @@ $(document).ready(function() {
 
 	</div>
 	<div class="span6">
+	    <h2>Selected Counties</h2>
 	    <ul id="selectedcounties">
 
 	    </ul>
+	    Total:<span id="carttotal">$0.00</span>
             <div id="debug"></div>
 	</div>
     </div>
