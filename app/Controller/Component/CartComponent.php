@@ -68,7 +68,7 @@ class CartComponent extends Component {
 
 		$this->Cart = ClassRegistry::init('Cart');
 
-		$cartdata['Cart']['sessionid'] = $this->Session->id();
+		$cartdata['Cart']['session_id'] = $this->Session->id();
 		$cartdata['Cart']['product_id'] = $product['ZipData']['id'];
 		$cartdata['Cart']['name'] = $product['ZipData']['county'].' '.$product['ZipData']['state'];
 		$cartdata['Cart']['price'] = $product['ZipData']['price'];
