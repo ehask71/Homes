@@ -114,6 +114,7 @@ class RegistrationController extends AppController {
             $this->Cart->add($this->request->data['id']);
         }
         $this->Cart->cart();
-        echo json_encode($this->Session->read('Shop.Order'));
+        $this->set('cart',$this->Session->read('Shop.Order'));
+        $this->set('_serialize', array('cart'));
     }
 }
