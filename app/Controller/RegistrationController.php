@@ -14,7 +14,7 @@ class RegistrationController extends AppController {
 
     public function beforeFilter() {
 	parent::beforeFilter();
-	$this->Auth->allow('register','cartadd','cartclear');
+	$this->Auth->allow('register','cartadd','cartclear','cartremove');
     }
 
     public function index() {
@@ -112,6 +112,15 @@ class RegistrationController extends AppController {
         //$this->autoRender = false;
         if($this->request->is('post')){
             $this->Cart->add($this->request->data['id']);
+        }
+        $this->set('cart',$this->Session->read('Shop'));
+        $this->set('_serialize', array('cart'));
+    }
+    
+    public function cartremove(){
+        //$this->autoRender = false;
+        if($this->request->is('post')){
+            $this->Cart->remove($this->request->data['id']);
         }
         $this->set('cart',$this->Session->read('Shop'));
         $this->set('_serialize', array('cart'));
