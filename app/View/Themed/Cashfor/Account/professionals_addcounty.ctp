@@ -24,7 +24,6 @@ $(document).ready(function() {
 	$.post("/registration/cartremove.json",{id:pid},function(data){
 	    $('#carttotal').html('$'+data.cart.Order.total);
 	});
-	getCart();
     });
     
     $(function(){
