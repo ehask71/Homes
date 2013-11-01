@@ -109,6 +109,7 @@ class RegistrationController extends AppController {
      */
     
     public function cartadd(){
+        $this->autoRender = false;
         if($this->request->is('post')){
             $this->Cart->add($this->request->data['id']);
         }
