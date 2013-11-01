@@ -142,7 +142,7 @@ class CartComponent extends Component {
 			$d['quantity'] = 0;
 			$d['subtotal'] = 0;
 			$d['total'] = 0;
-			$this->Session->write('Shop.Order', array_merge($d,$shop['Order']));
+			$this->Session->write('Shop.Order', array_merge($d,(array)@$shop['Order']));
 			return false;
 		}
 	}
