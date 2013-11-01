@@ -45,10 +45,10 @@ class CartComponent extends Component {
 			return;
 		}
 
-		$product = $this->controller->Products->find('first', array(
+		$product = $this->controller->ZipData->find('first', array(
 			'recursive' => -1,
 			'conditions' => array(
-				'Products.id' => $id
+				'ZipData.id' => $id
 			)
 		));
 		
@@ -56,11 +56,11 @@ class CartComponent extends Component {
 			return false;
 		}
 
-		$data['product_id'] = $product['Products']['id'];
-		$data['name'] = $product['Products']['name'];
-		$data['price'] = $product['Products']['price'];
-		$data['subtotal'] = sprintf('%01.2f', $product['Products']['price'] * $quantity);
-		$data['Product'] = $product['Products'];
+		$data['product_id'] = $product['ZipData']['id'];
+		$data['name'] = $product['ZipData']['county'].' '.$product['ZipData']['state'];
+		$data['price'] = $product['ZipData']['price'];
+		$data['subtotal'] = sprintf('%01.2f', $product['ZipData']['price'] * $quantity);
+		$data['Product'] = $product['ZipData'];
 
                 $this->Session->write('Shop.OrderItem.' . $id, $data);
 
@@ -69,17 +69,17 @@ class CartComponent extends Component {
 		$this->Cart = ClassRegistry::init('Cart');
 
 		$cartdata['Cart']['sessionid'] = $this->Session->id();
-		$cartdata['Cart']['product_id'] = $product['Products']['id'];
-		$cartdata['Cart']['name'] = $product['Products']['name'];
-		$cartdata['Cart']['price'] = $product['Products']['price'];
+		$cartdata['Cart']['product_id'] = $product['ZipData']['id'];
+		$cartdata['Cart']['name'] = $product['ZipData']['county'].' '.$product['ZipData']['state'];
+		$cartdata['Cart']['price'] = $product['ZipData']['price'];
                 
-		$cartdata['Cart']['subtotal'] = sprintf('%01.2f', $product['Products']['price'] * $quantity);
+		$cartdata['Cart']['subtotal'] = sprintf('%01.2f', $product['ZipData']['price'] * $quantity);
 
 		$existing = $this->Cart->find('first', array(
 			'recursive' => -1,
 			'conditions' => array(
 				'Cart.sessionid' => $this->Session->id(),
-				'Cart.product_id' => $product['Products']['id'],
+				'Cart.product_id' => $product['ZipData']['id'],
 			)
 		));
 		if($existing) {
