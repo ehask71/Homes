@@ -119,7 +119,6 @@ class CartComponent extends Component {
 
 	public function cart() {
 		$shop = (array)$this->Session->read('Shop');
-                $items = array();
 		$quantity = 0;
 		$weight = 0;
 		$subtotal = 0;
@@ -128,7 +127,6 @@ class CartComponent extends Component {
 
 		if (count(@$shop['OrderItem']) > 0) {
 			foreach ($shop['OrderItem'] as $item) {
-                                $items[$item['product_id']] = $item;
 				$quantity += 1;
 				$subtotal += $item['subtotal'];
 				$total += $item['subtotal'];
