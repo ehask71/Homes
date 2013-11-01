@@ -113,7 +113,6 @@ class RegistrationController extends AppController {
         if($this->request->is('post')){
             $this->Cart->add($this->request->data['id']);
         }
-        $this->Cart->cart();
         $this->set('cart',$this->Session->read('Shop'));
         $this->set('_serialize', array('cart'));
     }
