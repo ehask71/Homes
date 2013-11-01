@@ -83,7 +83,7 @@ class CartComponent extends Component {
 			)
 		));
 		if($existing) {
-			$cartdata['Cart']['id'] = $existing['Cart']['id'];
+			$cartdata['Cart']['id'] = @$existing['Cart']['id'];
 		} else {
 			$this->Cart->create();
 		}
