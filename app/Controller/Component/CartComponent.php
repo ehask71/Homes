@@ -51,7 +51,7 @@ class CartComponent extends Component {
 				'ZipData.id' => $id
 			)
 		));
-		mail('ehask71@gmail.com','Product',print_r($product,1));
+		//mail('ehask71@gmail.com','Product',print_r($product,1));
 		if(empty($product)) {
 			return false;
 		}
