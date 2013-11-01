@@ -11,7 +11,7 @@ class AccountController extends AppController {
 
     public $name = 'Account';
     public $uses = array('Account', 'Lead', 'Transaction', 'ZipData');
-    public $components = array('AuthNetXml');
+    public $components = array('AuthNetXml','Cart');
 
     public function beforeFilter() {
         parent::beforeFilter();
