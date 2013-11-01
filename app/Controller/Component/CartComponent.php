@@ -135,14 +135,14 @@ class CartComponent extends Component {
 			$d['order_item_count'] = $order_item_count;
 			$d['subtotal'] = sprintf('%01.2f', $subtotal);
 			$d['total'] = sprintf('%01.2f', $total);
-			$this->Session->write('Shop.Order', array_merge($d,(array)@$shop['Order']));
+			$this->Session->write('Shop.Order', $d + (array)@$shop['Order']);
 			return true;
 		}
 		else {
 			$d['quantity'] = 0;
 			$d['subtotal'] = 0;
 			$d['total'] = 0;
-			$this->Session->write('Shop.Order', array_merge($d,(array)@$shop['Order']));
+			$this->Session->write('Shop.Order', $d + (array)@$shop['Order']);
 			return false;
 		}
 	}
