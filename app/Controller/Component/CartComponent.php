@@ -103,7 +103,7 @@ class CartComponent extends Component {
 
 			ClassRegistry::init('Cart')->deleteAll(
 				array(
-					'Cart.sessionid' => $this->Session->id(),
+					'Cart.session_id' => $this->Session->id(),
 					'Cart.product_id' => $id,
 				),
 				false
