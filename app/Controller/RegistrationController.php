@@ -109,10 +109,11 @@ class RegistrationController extends AppController {
      */
     
     public function cartadd(){
-        $this->autoRender = false;
+        //$this->autoRender = false;
         if($this->request->is('post')){
             $this->Cart->add($this->request->data['id']);
         }
+        $this->Cart->cart();
         echo json_encode($this->Session->read('Shop.Order'));
     }
 }
