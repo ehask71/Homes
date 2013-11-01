@@ -71,6 +71,7 @@
                                 <li><?php echo $this->Html->link('Properties', '/professionals/account/properties'); ?></li>
                                 <li class="divider"></li>
                                 <li><?php echo $this->Html->link('Profile', '/professionals/account/edit'); ?></li>
+                                <li><?php echo $this->Html->link('Purchase', '/professionals/account/addcounty'); ?></li>
                                 <li><?php echo $this->Html->link('Billing', '/professionals/account/billingprofile'); ?></li>
                                 <li><?php echo $this->Html->link('History', '/professionals/account/history'); ?></li>
                                 <li><?php echo $this->Html->link('Logout', '/professionals/account/logout'); ?></li>
