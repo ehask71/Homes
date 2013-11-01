@@ -118,7 +118,7 @@ class CartComponent extends Component {
 //////////////////////////////////////////////////
 
 	public function cart() {
-		$shop = $this->Session->read('Shop');
+		$shop = (array)$this->Session->read('Shop');
 		$quantity = 0;
 		$weight = 0;
 		$subtotal = 0;
