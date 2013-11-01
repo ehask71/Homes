@@ -28,7 +28,7 @@ class CartComponent extends Component {
 
 //////////////////////////////////////////////////
 
-	public function add($id) {
+	public function add($id,$quantity=1) {
 
 		if(!is_numeric($quantity)) {
 			$quantity = 1;
@@ -78,7 +78,7 @@ class CartComponent extends Component {
 		$existing = $this->Cart->find('first', array(
 			'recursive' => -1,
 			'conditions' => array(
-				'Cart.sessionid' => $this->Session->id(),
+				'Cart.session_id' => $this->Session->id(),
 				'Cart.product_id' => $product['ZipData']['id'],
 			)
 		));
