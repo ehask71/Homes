@@ -14,7 +14,7 @@ class RegistrationController extends AppController {
 
     public function beforeFilter() {
 	parent::beforeFilter();
-	$this->Auth->allow('register','cartadd');
+	$this->Auth->allow('register','cartadd','cartclear');
     }
 
     public function index() {
