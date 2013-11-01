@@ -14,7 +14,7 @@ class RegistrationController extends AppController {
 
     public function beforeFilter() {
 	parent::beforeFilter();
-	$this->Auth->allow('register');
+	$this->Auth->allow('register','cartadd');
     }
 
     public function index() {
@@ -108,7 +108,10 @@ class RegistrationController extends AppController {
      *  End Registration Process Actions
      */
     
-    public function cart(){
-        
+    public function cartadd(){
+        if($this->request->is('post')){
+            $this->Cart->add($this->request->data['id']);
+        }
+        echo json_encode($this->Session->read('Shop.Order'));
     }
 }
