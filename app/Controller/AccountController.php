@@ -167,7 +167,9 @@ class AccountController extends AppController {
     }
 
     public function professionals_addproperty() {
-        
+        if ($this->request->is('post')) {
+            
+        }
     }
 
     public function professionals_editproperty() {
