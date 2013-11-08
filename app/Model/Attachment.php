@@ -24,12 +24,8 @@ class Attachment extends AppModel {
     );
    
     public $belongsTo = array(
-        'Post' => array(
-            'className' => 'Post',
-            'foreignKey' => 'foreign_key',
-        ),
-        'Message' => array(
-            'className' => 'Message',
+        'Properties' => array(
+            'className' => 'Properties',
             'foreignKey' => 'foreign_key',
         ),
     );
