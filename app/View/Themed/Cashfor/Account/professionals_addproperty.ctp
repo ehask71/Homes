@@ -34,7 +34,7 @@ $script = "$( document ).ready(function() {
     });
     
 function appendNew(data){
-    eval(data);
-    $('#thumbview').prepend('<li class=\"span4\"><div class=\"thumbnail\"><img src=\"'+data.path+data.file+'\" alt=\"'+data.file+'\"><div class=\"caption\"><h3>'+data.file+'</h3><p>Description</p><p align=\"center\"><a href=\"javascript:void(0);\" class=\"btn btn-primary btn-block\">Open</a></p></div></div></li>');
+    var obj = JSON.parse(data);
+    $('#thumbview').prepend('<li class=\"span4\"><div class=\"thumbnail\"><img src=\"'+obj.data.path+obj.data.file+'\" alt=\"'+obj.data.file+'\"><div class=\"caption\"><h3>'+obj.data.file+'</h3><p>Description</p><p align=\"center\"><a href=\"javascript:void(0);\" class=\"btn btn-primary btn-block\">Open</a></p></div></div></li>');
 }";
 $this->Html->scriptBlock($script, array('block'=>'scriptBottom'));
