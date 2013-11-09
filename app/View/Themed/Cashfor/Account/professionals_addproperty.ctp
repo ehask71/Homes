@@ -13,7 +13,7 @@ $timestamp = time();
 $script = "$( document ).ready(function() {
     $('#propimg').uploadify({
         'swf': '/uploadify.swf',
-        'uploader': '/upload/index.json/".CakeSession::id()."',
+        'uploader': '/upload/index.json?ses=".CakeSession::id()."',
         'formData': {
                     'timestamp' : '".$timestamp."',
                     'token'     : '".md5('cashfor2013HO' . $timestamp)."'
