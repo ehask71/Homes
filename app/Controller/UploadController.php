@@ -22,8 +22,8 @@ class UploadController extends AppController {
 
     public function index() {
         $this->autoRender = false;
-        $verifyToken = md5('unique_salt' . $_POST['timestamp']);
-        if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
+        //$verifyToken = md5('unique_salt' . $_POST['timestamp']);
+        if (!empty($_FILES) /*&& $_POST['token'] == $verifyToken*/) {
             $tempFile = $_FILES['Filedata']['tmp_name'];
             $targetPath = WEBROOT_DIR . DS . 'files';
             $targetFile = rtrim($targetPath, DS) . DS . $_FILES['Filedata']['name'];
