@@ -21,7 +21,7 @@ class UploadController extends AppController {
     }
 
     public function index() {
-        $this->autoRender = false;
+        $rtn = array();
         $verifyToken = md5('cashfor2013HO' . $_POST['timestamp']);
         if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
             // Validate the file type
@@ -36,11 +36,16 @@ class UploadController extends AppController {
 
             if (in_array($fileParts['extension'], $fileTypes)) {
                 move_uploaded_file($tempFile, $targetFile);
-                echo '1';
+                $rtn = array(
+                    'file' => $filename,
+                    'path' => DS . APP_DIR . DS . WEBROOT_DIR . DS . 'files' . DS,
+                );
             } else {
-                echo 'Invalid file type.';
+                $rtn = array('error'=>'Invalid file type.');
             }
         }
+        $this->set('data',$rtn);
+        $this->set('_serialize', array('data'));
     }
 
 }
