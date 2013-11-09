@@ -12,7 +12,7 @@ $this->Html->script('/js/jquery.uploadify.min.js', array('block' => 'scriptBotto
 $script = "$( document ).ready(function() {
     $('#propimg').uploadify({
         'swf': '/uploadify.swf',
-        'uploader': '/upload/".CakeSession::id()."',
+        'uploader': '/upload/index/".CakeSession::id()."',
         'folder': '/app/webroot/files',
         'cancelImg': '/img/cancel.png',
         'multi': true,
