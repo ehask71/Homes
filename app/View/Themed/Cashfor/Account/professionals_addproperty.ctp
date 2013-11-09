@@ -13,6 +13,10 @@ $script = "$( document ).ready(function() {
     $('#propimg').uploadify({
         'swf': '/uploadify.swf',
         'uploader': '/upload/index/".CakeSession::id()."',
+        'formData': {
+                    'timestamp' : '".$timestamp."',
+                    'token'     : '".md5('cashfor2013HO' . time())."'
+                },
         'multi': true,
         'height': 40,
         'width': 150
