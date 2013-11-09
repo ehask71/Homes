@@ -14,7 +14,7 @@ class UploadController extends AppController {
 
     public function beforeFilter() {
         if ($this->action == 'index') {
-            CakeSession::id($_GET['ses']);
+            CakeSession::id(@$_GET['ses']);
             CakeSession::start();
         }
         parent::beforeFilter();
@@ -22,8 +22,8 @@ class UploadController extends AppController {
 
     public function index() {
         $rtn = array();
-        $verifyToken = md5('cashfor2013HO' . $_POST['timestamp']);
-        if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
+        $verifyToken = md5('cashfor2013HO' . @$_POST['timestamp']);
+        if (!empty($_FILES) && @$_POST['token'] == $verifyToken) {
             // Validate the file type
             $fileTypes = array('jpg', 'jpeg', 'gif', 'png'); // File extensions
             $fileParts = pathinfo($_FILES['Filedata']['name']);
