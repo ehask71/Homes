@@ -10,9 +10,9 @@ $this->Html->script('/js/jquery.uploadify.min.js', array('block' => 'scriptBotto
 </div>
 <?php 
 $script = "$( document ).ready(function() {
-    $('#propimg').fileUpload({
-        'uploader': '/uploadify.swf',
-        'script': '/upload/".CakeSession::id()."',
+    $('#propimg').uploadify({
+        'swf': '/uploadify.swf',
+        'uploader': '/upload/".CakeSession::id()."',
         'folder': '/app/webroot/files',
         'cancelImg': '/img/cancel.png',
         'multi': true
