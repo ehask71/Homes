@@ -13,8 +13,6 @@ $script = "$( document ).ready(function() {
     $('#propimg').uploadify({
         'swf': '/uploadify.swf',
         'uploader': '/upload/index/".CakeSession::id()."',
-        'folder': '/app/webroot/files',
-        'cancelImg': '/img/cancel.png',
         'multi': true,
         'height': 40,
         'width': 150
