@@ -27,6 +27,7 @@ $script = "$( document ).ready(function() {
         'height': 40,
         'width': 150,
         'onUploadSuccess' : function(file, data, response) {
+            console.log(response);
             appendNew(data);
         }
     });
