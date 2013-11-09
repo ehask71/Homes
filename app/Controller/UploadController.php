@@ -13,13 +13,15 @@ class UploadController extends AppController {
     public $uses = array();
 
     public function beforeFilter() {
-        if (isset($this->params['session_id'])) {
-            $this->Session->id($this->params['session_id']);
+        if ($this->action == 'index') {
+            CakeSession::id($this->params['pass'][0]);
+            CakeSession::start();
         }
         parent::beforeFilter();
     }
 
     public function index() {
+        $this->autoRender = false;
         $targetFolder = '/uploads'; // Relative to the root
 
         $verifyToken = md5('unique_salt' . $_POST['timestamp']);
