@@ -30,8 +30,10 @@ class UploadController extends AppController {
             // Rename 
             $tempFile = $_FILES['Filedata']['tmp_name'];
             $targetPath = ROOT . DS . APP_DIR . DS . WEBROOT_DIR . DS . 'files';
-            $targetFile = rtrim($targetPath, DS) . DS . $_FILES['Filedata']['name'];
-            echo $_FILES['Filedata']['name'];
+            
+            $filename = $this->Auth->user('id').'_'.md5(time().$_FILES['Filedata']['name']).'.'.$fileParts['extension'];
+            $targetFile = rtrim($targetPath, DS) . DS . $filename;
+
             if (in_array($fileParts['extension'], $fileTypes)) {
                 move_uploaded_file($tempFile, $targetFile);
                 echo '1';
