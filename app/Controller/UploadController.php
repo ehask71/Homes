@@ -17,7 +17,6 @@ class UploadController extends AppController {
             $this->Session->id($this->params['session_id']);
         }
         parent::beforeFilter();
-        $this->Auth->allow();
     }
 
     public function index() {
