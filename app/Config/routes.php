@@ -37,7 +37,10 @@
 	Router::connect('/sell', array('controller' => 'home', 'action' => 'sell'));
         Router::connect('/buy',array('controller'=>'home','action'=>'buy'));
         Router::connect('/buy/:county-:state',array('controller'=>'home','action'=>'buy'),array('county'=>'[a-zA-Z0-9_-]+','state'=>'[a-zA-Z0-9_-]+'));
-
+        
+        //Uploads
+        Router::connect('/uplodifyck.php',array('controller'=>'upload','action'=>'index'));
+        
 	// Registration Flow
 	Router::connect('/register/personal-info', array('controller' => 'registration', 'action' => 'register'));
 	Router::connect('/register/select-counties', array('controller' => 'registration', 'action' => 'select'));
