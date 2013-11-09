@@ -35,6 +35,6 @@ $script = "$( document ).ready(function() {
     
 function appendNew(data){
     var obj = JSON.parse(data);
-    $('#thumbview').prepend('<li class=\"span4\"><div class=\"thumbnail\"><img src=\"'+obj.data.path+obj.data.file+'\" alt=\"'+obj.data.file+'\"><div class=\"caption\"><small>'+obj.data.file+'</small><p align=\"center\"><a href=\"javascript:void(0);\" class=\"btn btn-primary btn-block\">Open</a></p></div></div></li>');
+    $('#thumbview').prepend('<li class=\"span4 clearfix\"><div class=\"thumbnail\"><img src=\"'+obj.data.path+obj.data.file+'\" alt=\"'+obj.data.file+'\"><div class=\"caption\"><small>'+obj.data.file+'</small><p align=\"center\"><a href=\"javascript:void(0);\" class=\"btn btn-primary btn-block\">Open</a></p></div></div></li>');
 }";
 $this->Html->scriptBlock($script, array('block'=>'scriptBottom'));
