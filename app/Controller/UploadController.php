@@ -22,14 +22,11 @@ class UploadController extends AppController {
 
     public function index() {
         $this->autoRender = false;
-        $targetFolder = '/uploads'; // Relative to the root
-
         $verifyToken = md5('unique_salt' . $_POST['timestamp']);
-
         if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
             $tempFile = $_FILES['Filedata']['tmp_name'];
-            $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-            $targetFile = rtrim($targetPath, '/') . '/' . $_FILES['Filedata']['name'];
+            $targetPath = WEBROOT_DIR . DS . 'files';
+            $targetFile = rtrim($targetPath, DS) . DS . $_FILES['Filedata']['name'];
 
             // Validate the file type
             $fileTypes = array('jpg', 'jpeg', 'gif', 'png'); // File extensions
