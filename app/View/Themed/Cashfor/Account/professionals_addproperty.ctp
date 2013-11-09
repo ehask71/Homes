@@ -15,7 +15,9 @@ $script = "$( document ).ready(function() {
         'uploader': '/upload/".CakeSession::id()."',
         'folder': '/app/webroot/files',
         'cancelImg': '/img/cancel.png',
-        'multi': true
+        'multi': true,
+        'height': 40,
+        'width': 150
     });
     });";
 $this->Html->scriptBlock($script, array('block'=>'scriptBottom'));
