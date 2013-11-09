@@ -25,7 +25,7 @@ class UploadController extends AppController {
         //$verifyToken = md5('unique_salt' . $_POST['timestamp']);
         if (!empty($_FILES) /*&& $_POST['token'] == $verifyToken*/) {
             $tempFile = $_FILES['Filedata']['tmp_name'];
-            $targetPath = ROOT . APP_DIR . DS . WEBROOT_DIR . DS . 'files';
+            $targetPath = ROOT . DS . APP_DIR . DS . WEBROOT_DIR . DS . 'files';
             $targetFile = rtrim($targetPath, DS) . DS . $_FILES['Filedata']['name'];
 
             // Validate the file type
