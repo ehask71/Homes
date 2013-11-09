@@ -8,14 +8,14 @@ $this->Html->script('/js/jquery.uploadify.min.js', array('block' => 'scriptBotto
         </div>
     </div>
 </div>
-<script type="text/javascript">
-   $( document ).ready(function() {
+<?php 
+$script = "$( document ).ready(function() {
     $('#propimg').fileUpload({
         'uploader': '/uploadify.swf',
-        'script': '/upload/<?php echo CakeSession::id();?>',
+        'script': '/upload/".CakeSession::id()."',
         'folder': '/app/webroot/files',
         'cancelImg': '/img/cancel.png',
         'multi': true
     });
-    });
-</script>
+    });";
+$this->Html->scriptBlock($script, array('block'=>'scriptBottom'));
