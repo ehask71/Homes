@@ -14,7 +14,7 @@ class UploadController extends AppController {
 
     public function beforeFilter() {
         if ($this->action == 'index') {
-            CakeSession::id($this->params['pass'][0]);
+            CakeSession::id($_GET['ses']);
             CakeSession::start();
         }
         parent::beforeFilter();
