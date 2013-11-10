@@ -31,10 +31,10 @@ class UploadController extends AppController {
             $tempFile = $_FILES['Filedata']['tmp_name'];
             $targetPath = ROOT . DS . APP_DIR . DS . WEBROOT_DIR . DS . 'files';
             
-            $filename = $this->Auth->user('id').'_'.md5(time().$_FILES['Filedata']['name']).'.'.$fileParts['extension'];
+            $filename = $this->Auth->user('id').'_'.md5(time().$_FILES['Filedata']['name']).'.'.strtolower($fileParts['extension']);
             $targetFile = rtrim($targetPath, DS) . DS . $filename;
 
-            if (in_array($fileParts['extension'], $fileTypes)) {
+            if (in_array(strtolower($fileParts['extension']), $fileTypes)) {
                 move_uploaded_file($tempFile, $targetFile);
                 $rtn = array(
                     'file' => $filename,
