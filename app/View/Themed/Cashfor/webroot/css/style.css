@@ -299,6 +299,15 @@ blockquote{
 	font-size: .7em;
 	margin: 35px 0px 50px 0px;
 }
+
+/* Thumbnails For Property Upload */
+.thumbnails li{
+    max-width: 23%;
+    float: left;
+    margin: 0px 20px 20px 0px;
+    list-style-type: none;
+}
+
 /* Media Queries */
 @media (max-width: 980px) {
 	#hdr-inner-cta{
