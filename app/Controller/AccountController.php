@@ -32,7 +32,7 @@ class AccountController extends AppController {
 
     public function professionals_edit() {
         if ($this->request->is('post')) {
-            if ($this->Account->accountValidate()) {
+            if ($this->Account->accountValidateEdit()) {
                 if ($this->Account->save($this->request->data)) {
                     $this->Session->setFlash(__('Profile Updated'), 'alert', array(
                         'plugin' => 'BoostCake',
