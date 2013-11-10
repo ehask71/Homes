@@ -25,5 +25,6 @@
     <?php echo $this->Form->submit('Update Profile', array(
 			'class' => 'btn'
 		));?>
+    <?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
     <?php echo $this->Form->end(); ?>
 </div>
