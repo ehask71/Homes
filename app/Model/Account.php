@@ -112,6 +112,70 @@ class Account extends AppModel {
 	$this->validate = $validate1;
 	return $this->validates();
     }
+    
+    public function accountValidateEdit() {
+	$validate1 = array(
+	    'firstname' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please enter your First Name')
+	    ),
+	    'lastname' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please enter your Last Name')
+	    ),
+            'address' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please Enter your Address')
+	    ),
+            'city' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please Enter your City')
+	    ),
+            'state' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please Select Your State')
+	    ),
+	    'zip' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please Enter your Zip/Postal Code')
+	    ),
+	    'country' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please Select Your Country'
+		)
+	    ),
+            'phone' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please enter Your Contact Number'
+		)
+	    ),
+	    'email' => array(
+		'mustNotEmpty' => array(
+		    'rule' => 'notEmpty',
+		    'message' => 'Please Enter Your Email'
+		),
+		'validEmailRule' => array(
+		    'rule' => 'email',
+		    'message' => 'Invalid email address'
+		),
+		'uniqueEmailRule' => array(
+		    'rule' => 'isUnique',
+		    'message' => 'Email already registered'
+		)
+	    )
+	);
+
+	$this->validate = $validate1;
+	return $this->validates();
+    }
 
     function checkpasswords() {
 	if (strcmp($this->data['Account']['password'], $this->data['Account']['confirm_password']) == 0) {
