@@ -16,7 +16,7 @@
                 <div class="span5" id="logo"></div>
                 <div class="span4" id="tel-number">800.225.CASH</div>
                 <div class="span3" id="investors">
-                    <?php echo $this->element('loginbox', array('loggedIn'=>$loggedIn,'user'=>$userinfo));?>
+                    <?php echo $this->element('loginbox', array('loggedIn' => $loggedIn, 'user' => $userinfo)); ?>
                 </div>
             </div>
         </div>
@@ -63,22 +63,20 @@
                 <div class="non-fluid">
                     <?php echo $this->Session->flash(); ?>
                     <?php echo $this->Session->flash('auth'); ?>
-                    <div class="row">
-                        <div class="span2">
-                            <ul class="nav nav-list">
-                                <li class="nav-header">Navigation</li>
-                                <li><?php echo $this->Html->link('Leads', '/professionals/account/'); ?></li>
-                                <li><?php echo $this->Html->link('Properties', '/professionals/account/properties'); ?></li>
-                                <li class="divider"></li>
-                                <li><?php echo $this->Html->link('Profile', '/professionals/account/edit'); ?></li>
-                                <li><?php echo $this->Html->link('Purchase', '/professionals/account/addcounty'); ?></li>
-                                <li><?php echo $this->Html->link('Billing', '/professionals/account/billingprofile'); ?></li>
-                                <li><?php echo $this->Html->link('History', '/professionals/account/history'); ?></li>
-                                <li><?php echo $this->Html->link('Logout', '/professionals/account/logout'); ?></li>
-                            </ul>
-                        </div>
-                        <?php echo $this->fetch('content'); ?>
+                    <div class="span2">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Navigation</li>
+                            <li><?php echo $this->Html->link('Leads', '/professionals/account/'); ?></li>
+                            <li><?php echo $this->Html->link('Properties', '/professionals/account/properties'); ?></li>
+                            <li class="divider"></li>
+                            <li><?php echo $this->Html->link('Profile', '/professionals/account/edit'); ?></li>
+                            <li><?php echo $this->Html->link('Purchase', '/professionals/account/addcounty'); ?></li>
+                            <li><?php echo $this->Html->link('Billing', '/professionals/account/billingprofile'); ?></li>
+                            <li><?php echo $this->Html->link('History', '/professionals/account/history'); ?></li>
+                            <li><?php echo $this->Html->link('Logout', '/professionals/account/logout'); ?></li>
+                        </ul>
                     </div>
+                    <?php echo $this->fetch('content'); ?>
                 </div>
             </div>
         </div>
@@ -99,7 +97,9 @@
                     </div>
                     <div class="span7">
                         <div class="footer-text">
-                            <?php if(isset($popular_counties)){echo $popular_counties;}?> 
+                            <?php if (isset($popular_counties)) {
+                                echo $popular_counties;
+                            } ?> 
                         </div>
                     </div>
                     <div class="span3">
@@ -129,7 +129,7 @@
             </div>
         </div>		
         <?php echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'); ?>
-        <?php echo $this->Html->script('bootstrap'); ?>
-	<?php echo $this->fetch('scriptBottom');?>
+<?php echo $this->Html->script('bootstrap'); ?>
+<?php echo $this->fetch('scriptBottom'); ?>
     </body>
 </html>
