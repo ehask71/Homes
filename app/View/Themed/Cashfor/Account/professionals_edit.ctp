@@ -1,5 +1,4 @@
 <div class="span10">
-    <h3>Profile</h3>
     <?php
     echo $this->Form->create('Account', array(
         'inputDefaults' => array(
@@ -12,6 +11,8 @@
         'class' => 'well form-horizontal'
     ));
     ?>
+    <fieldset> 
+	<legend>Edit Profile</legend>
     <?php echo $this->Form->input('firstname', array('label' => 'Firstname')); ?>
     <?php echo $this->Form->input('lastname', array('label' => 'Lastname')); ?>
     <?php echo $this->Form->input('email', array('label' => 'Email')); ?>
@@ -26,5 +27,6 @@
 			'class' => 'btn'
 		));?>
     <?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
+    </fieldset>
     <?php echo $this->Form->end(); ?>
 </div>
