@@ -38,7 +38,7 @@ class HomeController extends AppController {
 		));
                 $this->loadModel('Tmplead');
                 if($this->Tmplead->save($data)){
-                    $data['tmplead'] = $this->Tmplead->getLastInsertID();
+                    $data['Lead']['tmplead'] = $this->Tmplead->getLastInsertID();
                 }
 		$this->request->data = $data;
 		
