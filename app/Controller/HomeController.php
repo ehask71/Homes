@@ -37,9 +37,11 @@ class HomeController extends AppController {
 		    'address' => $this->request->data['ZipCodes']['faddress']
 		));
                 $this->loadModel('Tmplead');
+                $data['Tmplead'] = $data['Lead'];
                 if($this->Tmplead->save($data)){
                     $data['Lead']['tmplead'] = $this->Tmplead->getLastInsertID();
                 }
+                unset($data['Tmplead']);
 		$this->request->data = $data;
 		
 	    } else {
