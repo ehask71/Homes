@@ -17,6 +17,7 @@ class HomeController extends AppController {
     }
     
     public function index(){
+        
         $this->layout = 'index';
     }
     
@@ -35,12 +36,21 @@ class HomeController extends AppController {
 		    'state' => (isset($zipinfo['ZipCodes']['State']))?$zipinfo['ZipCodes']['State']:'',
 		    'address' => $this->request->data['ZipCodes']['faddress']
 		));
+                $this->loadModel('Tmplead');
+                if($this->Tmplead->save($data)){
+                    $data['tmplead'] = $this->Tmplead->getLastInsertID();
+                }
 		$this->request->data = $data;
 		
 	    } else {
 		// From the Sell Page Insert the Lead
                 if($this->Lead->validateLead()){
+                    $tmplead = ($this->request->data['Lead']['tmplead'] != '')?$this->request->data['Lead']['tmplead']:0;
+                    unset($this->request->data['Lead']['tmplead']);
 		    if($this->Lead->save($this->request->data)){
+                        if($tmplead != 0){
+                            $this->loadModel('Tmplead');
+                        }
 			$this->Session->setFlash('Saved');
 			$this->redirect('/');
 		    }
