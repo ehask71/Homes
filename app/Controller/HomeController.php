@@ -53,7 +53,7 @@ class HomeController extends AppController {
                         if($tmplead != 0){
                             $this->loadModel('Tmplead');
                             $data['Tmplead']['id'] = $tmplead;
-                            $this->Tmplead->delete($data);
+                            $this->Tmplead->delete($tmplead);
                         }
 			$this->Session->setFlash('Saved');
 			$this->redirect('/');
