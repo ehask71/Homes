@@ -31,6 +31,7 @@ echo $this->Form->input('propertytype',array('label' => array('text' => 'Propert
 echo $this->Form->input('askingprice',array('label' => array('text' => 'Asking Price', 'class' => 'control-label'),'options'=>  Configure::read('AskingPrice')));
 echo $this->Form->input('reason',array('label' => array('text' => 'Reason For Selling', 'class' => 'control-label')));
 echo $this->Form->input('comments',array('label' => array('text' => 'Comments', 'class' => 'control-label')));
+echo $this->Form->input('tmplead',array('type' =>'hidden'));
 echo $this->Form->end('Submit');
 ?>
     </div>
