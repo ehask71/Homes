@@ -1,0 +1,331 @@
+
+/* 
+    Created on : Nov 12, 2013, 10:09:04 AM
+    Author     : Rob
+*/
+
+body{
+    background-color: #FEFEFE;
+    font-size: 16px;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    color: #393833;
+    line-height: 1.7em;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+.container{
+     margin: 0px auto 0px;
+     
+}
+#content-wrapper-top{
+    border: 5px solid #000;
+    border-bottom: none;
+    -border-radius: 12px 12px 0 0;
+    -moz-border-radius: 12px 12px 0 0;
+    -webkit-border-radius: 12px 12px 0 0;
+    background: #FAC72D url('../img/container-bg-tile.png') left top repeat-x;
+    box-shadow: 0px 0px 10px #515151;
+    margin-top: 25px;
+    min-height: 171px;
+}
+#content-wrapper-mid{
+    border: 5px solid #000;
+    border-top: none;
+    -border-radius: 0 0 12px 12px ;
+    -moz-border-radius: 0 0 12px 12px;
+    -webkit-border-radius: 0 0 12px 12px;
+    background: #FFF;
+    
+    
+}
+#logo{
+    background: transparent url('../img/logo.png') 25px 35px no-repeat;
+    width: 100%;
+    height: 100%;
+    min-height: 160px;
+    margin: 0px;
+}
+#logo span{
+    position: absolute;
+    left: -9999px;
+    display: block;
+}
+
+#investor-login{
+    background-color: #000;
+    width: 200px;
+    color: #FFF;
+    position: relative;
+    border-radius: 0px 0px 8px 8px;
+    padding: 0px 0px 6px 15px;
+    font-size: .9em;
+    text-align: left !important;
+    left: 30%;
+}
+#investor-login:before{
+    background: transparent url('../img/knockout-left.jpg') right top no-repeat;
+    width: 8px;
+    height: 9px;
+    content: ' ';
+    display: block;
+    margin-left: -22px;
+    position:  absolute;
+    top:0px;
+}
+#investor-login:after{
+    background: transparent url('../img/knockout-right.jpg') right top no-repeat;
+    width: 8px;
+    height: 9px;
+    content: ' ';
+    display: block;
+    right: -7px;
+    top:0px;
+    position: absolute;
+}
+#investor-login span{
+    display:inline-block;
+    margin-right: 11px;
+}
+#investor-login a{
+    color:#FFF;
+}
+#investor-login a:hover{
+    text-decoration: underline;
+}
+#investor-login a.signup{
+    color:#FAC72D;
+}
+
+#main-content{
+    background-color: #FFF;
+   
+}
+#main-content div:first-of-type{
+     margin-left: 0px;
+}
+#primary-cta{
+    padding: 14px 0px 4px 0px;
+    background: transparent url('../img/callout-lrg.jpg') center 12px no-repeat;
+    min-height: 71px;
+    position: relative;
+}
+#primary-cta img{
+    position: absolute;
+    left: -999px;
+}
+
+#video-container{
+    position: relative;
+    padding-bottom: 54%;
+    padding-top: 12px; height: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+#video-container iframe,
+#video-container object,
+#video-container embed {
+    position: absolute;
+    top: 0;
+    
+    width: 99%;
+    height: 99%;
+}
+
+#form-wrapper{
+    padding: 0px 12px;
+}
+.form-container{
+    border: 1px solid #80B20C;
+    border-radius: 6px;
+    -mov-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    background-color: #8AAC4F;
+    min-height: 160px;
+    max-width: 99%;
+    padding: 12px;
+}
+.form-container input[type=text], select{
+    margin: 3px 6px 6px 6px;
+}
+.form-container .clearfix{
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+}
+.big-green-offer{
+  clear:both; 
+  width: 170px;
+  height: 48px;
+  border: none;
+  background: transparent url('../img/get-offer.png') left top no-repeat;
+}
+.big-green-offer span{
+    position: absolute;
+    left:-9999px;
+    
+}
+.cta-cf4{
+    text-align: center;
+    
+}
+.cta-cf4 img{
+    max-width: 100%;
+}
+.watch-video-cta{
+    text-align: center;
+}
+.bigwhite{
+    text-align: center;
+    line-height: 2.5em;
+    color: #FFF;
+    text-shadow: 1px 1px 3px #515151;
+}
+.pushright{
+    float:right; 
+}
+
+p.justified{
+    padding: 12px;
+    text-align: justify;
+}
+
+#as-seen{
+    padding: 12px;
+    text-align: justify;
+}
+#as-seen img{
+    max-width: 100%;
+}
+h3.lined{
+    position: relative;
+}
+h3.lined span{
+    display: block;
+    text-align: center;
+    color: #3C3835;
+    font-size: 1.9em;
+    margin: 0 auto;
+    max-width: 550px;
+    position: relative;
+    background-color: #FFF;
+    z-index: 1001;
+    font-weight: normal;
+}
+h3.lined span+hr{
+    position: relative;
+    top: -20px;
+    z-index: 999;
+}
+
+.testimonial{
+    padding: 20px 20px 0px 20px;
+    font-size: .9em;
+    line-height: 1.5em;
+    font-style: italic;
+}
+.testimonial:before, .testimonial:after{
+    content: '"';
+    font-size: 2.3em;
+    line-height: .1em;
+    vertical-align: text-bottom;
+    color: #ADABA0;
+    font-family: Georgia, Times, "Times New Roman", "Times", serif;
+    font-style: initial;
+}
+.testimonial+div{
+    line-height: .9em;
+   text-align: right;
+   padding: 0px 12px 12px 0px;
+   border-bottom: 1px solid #CCC;
+}
+.test-name{
+    
+    line-height: .9em;
+    color: #A93129;
+    font-size: .8em;
+}
+.test-city{
+    font-size: .7em;
+}
+
+.non-fluid{
+	max-width: 1170px;
+	float:none;
+	margin: 0 auto;
+}
+.hdr{
+    font-size: 20px;
+    padding: 5px 10px 5px 0px;
+}
+#footer-wrapper{
+	background-color: #F3BD1C;
+	padding: 20px 0px 0px;
+	min-height: 196px;
+	margin-top: 35px;
+	color: #515151;
+	line-height: 1.1em;
+	font-size: .9em;
+	
+}
+#footer-wrapper a{
+	color: #515151;
+}
+#footer-wrapper ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+#footer-wrapper ul li{
+	line-height: 1.4em;
+	min-height: 26px;
+}
+#footer-address{
+	padding: 0px 0px 0px 32px;
+	background: transparent url("../img/ftr-address.png") left top no-repeat;
+}
+#footer-phone{
+	padding: 0px 0px 0px 32px;
+	background: transparent url("../img/ftr-phone.png") left top no-repeat;
+}
+#footer-email{
+	padding: 0px 0px 0px 32px;
+	background: transparent url("../img/ftr-email.png") left top no-repeat;
+}
+#copyright{
+	text-align: right;
+	font-size: .7em;
+	margin: 35px 0px 50px 0px;
+}
+/* Media Queries */
+@media (max-width: 979px){
+    #logo{
+        background-position-x: center;
+    }
+    .pushright{
+        float:none;
+        
+    }
+    #primary-cta{
+        padding: 14px 0px 4px 0px;
+        background: transparent url('../img/callout-med.jpg') center 12px no-repeat;
+        background-size: 100% auto;
+        min-height: 71px;
+    }
+}
+
+@media (max-width: 748px){
+    #primary-cta{
+        padding: 4px 0px 4px 0px;
+        background: none;
+        min-height: 71px;
+        text-align: center;
+    }
+    #primary-cta img{
+        position: relative;
+        left: 0px;
+        max-width: 100%;
+    }
+}
