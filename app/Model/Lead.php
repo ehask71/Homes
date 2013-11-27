@@ -27,9 +27,9 @@ class Lead extends AppModel {
                     'rule' => 'notEmpty',
                     'message' => 'Please enter an email'),
                 'validEmailRule' => array(
-		    'rule' => 'email',
-		    'message' => 'Invalid email address'
-		)
+                    'rule' => 'email',
+                    'message' => 'Invalid email address'
+                )
             ),
             'phone' => array(
                 'mustNotEmpty' => array(
@@ -87,5 +87,19 @@ class Lead extends AppModel {
         return $this->validates();
     }
 
-}
+    public function chartLast15() {
+        $last15 = $this->Lead->query("SELECT  DATE(created) date, COUNT(id) totalCount
+                FROM leads Lead
+                GROUP BY DATE(created) ORDER BY date desc");
+        $last = array();
+        $last['label'] = 'Last 15 Days';
+        if (count($last15[0]) > 0) {
+            foreach($last15[0] AS $data){
+                $last['data'][] = array($data['date'],$data['totalCount']);
+            }
+        }
+        
+        return json_encode($last);
+    }
 
+}
