@@ -50,6 +50,10 @@
         // Login
         Router::connect('/login', array('controller' => 'account', 'action' => 'login'));
         Router::connect('/logout', array('controller' => 'account', 'action' => 'logout'));
+        
+        //Admin
+        Router::connect('/admin/dashboard', array('controller' => 'home', 'action' => 'dashboard','prefix'=>'admin'));
+        
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
