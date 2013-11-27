@@ -93,7 +93,7 @@ class Lead extends AppModel {
                 WHERE DATE(created) BETWEEN DATE_SUB( CURDATE() , INTERVAL 15 DAY ) AND CURDATE() 
                 GROUP BY DATE(created) ORDER BY date desc");
         $last = array();
-        $last['label'] = 'Last 15 Days';
+        $last['label'] = 'Leads Last 15 Days';
         if (count($last15) > 0) {
             foreach($last15 AS $data){
                 $last['data'][] = array( (int)$data[0]['date'],(int)$data[0]['totalCount']);
