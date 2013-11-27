@@ -75,6 +75,8 @@
                             <li><?php echo $this->Html->link('History', '/professionals/account/history'); ?></li>
                             <li><?php echo $this->Html->link('Logout', '/professionals/account/logout'); ?></li>
                         </ul>
+                        <?php
+                          echo '<pre>'.print_r($userinfo).'</pre>';?>
                     </div>
                     <?php echo $this->fetch('content'); ?>
                 </div>
