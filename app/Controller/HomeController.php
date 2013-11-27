@@ -91,4 +91,12 @@ class HomeController extends AppController {
 	
     }
     
+    // Admin 
+    public function admin_index(){
+        $this->redirect('/admin/dashboard');
+    }
+    
+    public function admin_dashboard(){
+        
+    }
 }
