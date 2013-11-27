@@ -4,10 +4,10 @@
 
         <!-- start: Meta -->
         <meta charset="utf-8">
-        <title>Metro Admin Template - Metro UI Style Bootstrap Admin Template</title>
-        <meta name="description" content="Metro Admin Template.">
-        <meta name="author" content="Åukasz Holeczek">
-        <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <title><?php echo Configure::read('Sitename');?></title>
+        <meta name="description" content="">
+        <meta name="author" content="High Octane Brands">
+        <meta name="keyword" content="">
         <!-- end: Meta -->
 
         <!-- start: Mobile Specific -->
