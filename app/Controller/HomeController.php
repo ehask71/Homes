@@ -100,6 +100,11 @@ class HomeController extends AppController {
         $last15 = $this->Lead->query("SELECT  DATE(created) date, COUNT(id) totalCount
                 FROM leads Lead
                 GROUP BY DATE(created)");
-        mail('ehask71@gmail.com','Last count',print_r($last15,1));
+        if(count($last15)>0){
+            $last15 = json_encode($last15[0]);
+        }
+        $this->set('last15',$last15);
+        
+        //mail('ehask71@gmail.com','Last count',print_r($last15,1));
     }
 }
