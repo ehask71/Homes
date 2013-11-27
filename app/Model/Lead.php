@@ -98,16 +98,6 @@ class Lead extends AppModel {
                 $last['data'][] = array( (int)$data['date'],(int)$data['totalCount']);
             }
         }
-        $last['lines'] = array(
-            'show'=> true,
-            'fill'=> false,
-            'lineWidth'=>2
-        );
-        $last['xaxis'] = array(
-            'mode'=>'time',
-            'minTickSize'=> array(1, "day"),
-            'timeformat'=>'%Y/%m/%d'
-        );
         return json_encode($last);
     }
 
