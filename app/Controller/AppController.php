@@ -8,7 +8,7 @@ class AppController extends Controller {
     public $theme = 'cashfor';
     public $helpers = array(
 	'Session',
-        'Auth',
+        'AuthHelper',
 	'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
 	'Form' => array('className' => 'BoostCake.BoostCakeForm'),
 	'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
