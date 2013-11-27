@@ -87,12 +87,11 @@ class Lead extends AppModel {
         return $this->validates();
     }
 
-    public function chartLast15() {
+    public function chartLast15day() {
         $last15 = $this->query("SELECT UNIX_TIMESTAMP(DATE(created))*1000 date, COUNT(id) totalCount
                 FROM leads Lead
                 WHERE DATE(created) BETWEEN DATE_SUB( CURDATE() , INTERVAL 15 DAY ) AND CURDATE() 
                 GROUP BY DATE(created) ORDER BY date desc");
-        mail('ehask71@gmail.com','Last count',print_r($last15,1));
         $last = array();
         $last['label'] = 'Last 15 Days';
         if (count($last15) > 0) {
@@ -100,7 +99,6 @@ class Lead extends AppModel {
                 $last['data'][] = array( (int)$data[0]['date'],(int)$data[0]['totalCount']);
             }
         }
-        mail('ehask71@gmail.com','Last count',print_r($last,1));
         return json_encode($last);
     }
 
