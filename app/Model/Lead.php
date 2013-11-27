@@ -88,8 +88,9 @@ class Lead extends AppModel {
     }
 
     public function chartLast15() {
-        $last15 = $this->query("SELECT  UNIX_TIMESTAMP(DATE(created))*1000 date, COUNT(id) totalCount
+        $last15 = $this->query("SELECT UNIX_TIMESTAMP(DATE(created))*1000 date, COUNT(id) totalCount
                 FROM leads Lead
+                WHERE DATE(created) BETWEEN DATE_SUB( CURDATE() , INTERVAL 15 DAY ) AND CURDATE() 
                 GROUP BY DATE(created) ORDER BY date desc");
         $last = array();
         $last['label'] = 'Last 15 Days';
