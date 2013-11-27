@@ -27,6 +27,7 @@ var options2 = {
     legend: {
         show: true
     },
+    points: { show:true},
     lines: {
         show:true,
         fill: false,
