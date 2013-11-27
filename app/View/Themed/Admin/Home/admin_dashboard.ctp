@@ -28,7 +28,9 @@ var options2 = {
         show: true
     },
     lines: {
-        show:true
+        show:true,
+        fill: false,
+	lineWidth: 2 
     },
     colors: ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.6)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)"],
     xaxis: {ticks:15, tickDecimals: 0, color: "rgba(255,255,255,0.8)",mode:"time",timeformat:"%Y/%m/%d"},
