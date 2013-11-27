@@ -126,6 +126,7 @@ Cache::config('long', array(
  *   Config Section
  */
 Configure::write('Copyright','HO Brands 2013');
+Configure::write('Sitename','CashForHomes');
 Configure::write('SitePrefix','CFH');
 Configure::write('Authnet.apilogin', '6VckCd8562vT');
 Configure::write('Authnet.txnkey', '22Fk7S5srmm7B57r');
