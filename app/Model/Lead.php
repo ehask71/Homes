@@ -88,7 +88,7 @@ class Lead extends AppModel {
     }
 
     public function chartLast15() {
-        $last15 = $this->Lead->query("SELECT  DATE(created) date, COUNT(id) totalCount
+        $last15 = $this->query("SELECT  DATE(created) date, COUNT(id) totalCount
                 FROM leads Lead
                 GROUP BY DATE(created) ORDER BY date desc");
         $last = array();
