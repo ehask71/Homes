@@ -98,7 +98,11 @@ class Lead extends AppModel {
                 $last['data'][] = array($data['date'],$data['totalCount']);
             }
         }
-        
+        $last['lines'] = array(
+            'show'=> true,
+            'fill'=> false,
+            'lineWidth'=>2
+        );
         return json_encode($last);
     }
 
