@@ -88,14 +88,14 @@ class Lead extends AppModel {
     }
 
     public function chartLast15() {
-        $last15 = $this->query("SELECT  DATE(created) date, COUNT(id) totalCount
+        $last15 = $this->query("SELECT  UNIX_TIMESTAMP(DATE(created))*1000 date, COUNT(id) totalCount
                 FROM leads Lead
                 GROUP BY DATE(created) ORDER BY date desc");
         $last = array();
         $last['label'] = 'Last 15 Days';
         if (count($last15[0]) > 0) {
             foreach($last15[0] AS $data){
-                $last['data'][] = array((strtotime($data['date'].' UTC')*1000),(int)$data['totalCount']);
+                $last['data'][] = array( (int)$data['date'],(int)$data['totalCount']);
             }
         }
         $last['lines'] = array(
@@ -103,7 +103,7 @@ class Lead extends AppModel {
             'fill'=> false,
             'lineWidth'=>2
         );
-        $last['yaxis'] = array(
+        $last['xaxis'] = array(
             'mode'=>'time',
             'minTickSize'=> array(1, "day"),
             'timeformat'=>'%Y/%m/%d'
