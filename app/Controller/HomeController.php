@@ -97,6 +97,9 @@ class HomeController extends AppController {
     }
     
     public function admin_dashboard(){
-        
+        $last15 = $this->Lead->query("SELECT  DATE(created), COUNT(id) totalCount
+                FROM leads Lead
+                GROUP BY DATE(created)");
+        mail('ehask71@gmail.com','Last count',print_r($last15,1));
     }
 }
