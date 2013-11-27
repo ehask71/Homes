@@ -132,6 +132,10 @@ Configure::write('Authnet.apilogin', '6VckCd8562vT');
 Configure::write('Authnet.txnkey', '22Fk7S5srmm7B57r');
 Configure::write('Setupfee', 3500);
 
+Configure::write('Roles',array(
+   'admin'=>1,'member'=>2 
+));
+
 Configure::write('States', array(
     '' => 'Select State',
     'AL' => "Alabama",
