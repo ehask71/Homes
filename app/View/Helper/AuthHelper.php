@@ -44,7 +44,7 @@ class AuthHelper extends AppHelper {
         
     }
 
-    public static function roles() {
+    public function roles() {
         $roles = AuthComponent::user('Role');
         if (!is_array($roles)) {
             return $roles;
@@ -55,11 +55,11 @@ class AuthHelper extends AppHelper {
         return $roles;
     }
 
-    public static function hasRole($ownRole, $providedRoles = null) {
+    public function hasRole($ownRole, $providedRoles = null) {
         if ($providedRoles !== null) {
             $roles = $providedRoles;
         } else {
-            $roles = self::roles();
+            $roles = $this->roles();
         }
         if (is_array($roles)) {
             if (in_array($ownRole, $roles)) {
