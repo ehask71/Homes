@@ -95,9 +95,9 @@ class Lead extends AppModel {
         mail('ehask71@gmail.com','Last count',print_r($last15,1));
         $last = array();
         $last['label'] = 'Last 15 Days';
-        if (count($last15[0]) > 0) {
-            foreach($last15[0] AS $data){
-                $last['data'][] = array( (int)$data['date'],(int)$data['totalCount']);
+        if (count($last15) > 0) {
+            foreach($last15 AS $data){
+                $last['data'][] = array( (int)$data[0]['date'],(int)$data[0]['totalCount']);
             }
         }
         mail('ehask71@gmail.com','Last count',print_r($last,1));
