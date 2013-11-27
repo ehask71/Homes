@@ -95,7 +95,7 @@ class Lead extends AppModel {
         $last = array();
         $last['label'] = 'Last 15 Days';
         if (count($last15[0]) > 0) {
-            foreach($last15[0] AS $data){
+            foreach($last15 AS $data){
                 $last['data'][] = array( (int)$data['date'],(int)$data['totalCount']);
             }
         }
