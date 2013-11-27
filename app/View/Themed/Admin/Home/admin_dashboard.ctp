@@ -32,6 +32,6 @@ var options2 = {
     yaxis: {ticks:5, tickDecimals: 0, color: "rgba(255,255,255,0.8)" }
 }
 
-$.plot('#leads-chart',<?php echo $last15; ?>,options);
+$.plot('#leads-chart',[<?php echo $last15; ?>],options);
 });
 <?php $this->Html->scriptEnd(); ?>
