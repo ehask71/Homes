@@ -105,7 +105,7 @@ class Lead extends AppModel {
         );
         $last['yaxis'] = array(
             'mode'=>'time',
-            'minTickSize'=> array(1, "year"),
+            'minTickSize'=> array(1, "day"),
             'timeformat'=>'%Y/%m/%d'
         );
         return json_encode($last);
