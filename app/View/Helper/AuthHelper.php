@@ -20,7 +20,7 @@
  * CakePHP AuthHelper
  * @author EricMain
  */
-class Auth extends AppHelper {
+class AuthHelper extends AppHelper {
 
     public $helpers = array();
 
