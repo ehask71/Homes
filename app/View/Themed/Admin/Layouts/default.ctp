@@ -197,6 +197,7 @@
 
             echo $this->Html->script('custom');
             echo $this->Html->script('sitescripts');
+            echo $this->fetch('script');
             ?>
             <!-- end: JavaScript-->
 
