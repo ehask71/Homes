@@ -18,23 +18,20 @@ tickDecimals:0,
 tickSize: 1
 }
 };
-$.plot('#leads-chart',<?php echo $last15; ?>,
-{
-    lines: { 
-                show: true, 
-                fill: false,
-		lineWidth: 2 
-    },
+
+var options2 = {
     grid: { hoverable: true, 
         clickable: true, 
         tickColor: "rgba(255,255,255,0.05)",
         borderWidth: 0},
     legend: {
-        show: false
+        show: true
     },	
     colors: ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.6)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)"],
     xaxis: {ticks:15, tickDecimals: 0, color: "rgba(255,255,255,0.8)" },
     yaxis: {ticks:5, tickDecimals: 0, color: "rgba(255,255,255,0.8)" }
-});
+}
+
+$.plot('#leads-chart',<?php echo $last15; ?>,options);
 });
 <?php $this->Html->scriptEnd(); ?>
