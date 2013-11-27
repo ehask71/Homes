@@ -196,6 +196,7 @@
             echo $this->Html->script('retina');
 
             echo $this->Html->script('custom');
+            echo $this->Html->script('sitescripts');
             ?>
             <!-- end: JavaScript-->
 
