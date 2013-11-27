@@ -95,13 +95,16 @@ class Lead extends AppModel {
         $last['label'] = 'Last 15 Days';
         if (count($last15[0]) > 0) {
             foreach($last15[0] AS $data){
-                $last['data'][] = array($data['date'],(int)$data['totalCount']);
+                $last['data'][] = array((strtotime($data['date'])*1000),(int)$data['totalCount']);
             }
         }
         $last['lines'] = array(
             'show'=> true,
             'fill'=> false,
             'lineWidth'=>2
+        );
+        $last['yaxis'] = array(
+            'mode'=>'time'
         );
         return json_encode($last);
     }
