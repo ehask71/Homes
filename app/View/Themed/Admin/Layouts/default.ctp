@@ -30,20 +30,13 @@
                 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <?php echo $this->Html->css('css/ie'); ?>
         <![endif] -->
-
         <!--[if IE 9]>
         <?php echo $this->Html->css('ie9'); ?>
         <![endif]-->
-
         <!-- start: Favicon -->
         <link rel="shortcut icon" href="img/favicon.ico">
         <!-- end: Favicon -->
-
-
-
-
     </head>
-
     <body>
         <!-- start: Header -->
         <div class="navbar">
@@ -141,7 +134,9 @@
                         </li>
                         <li><a href="#">Dashboard</a></li>
                     </ul>
-
+                    <?php echo $this->Session->flash(); ?>
+                    <?php echo $this->Session->flash('auth'); ?>
+                    <?php echo $this->fetch('content'); ?>
                 </div><!--/#content.span10-->
             </div><!--/fluid-row-->
 
