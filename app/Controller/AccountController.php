@@ -12,7 +12,11 @@ class AccountController extends AppController {
     public $name = 'Account';
     public $uses = array('Account', 'Lead', 'Transaction', 'ZipData');
     public $components = array('AuthNetXml','Cart');
-
+    public $paginate = array(
+        'Account' => array(
+            'limit' => 50
+        )
+    );
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('register', 'login', 'logout', 'forgotpwd');
@@ -321,6 +325,13 @@ class AccountController extends AppController {
             $this->set(compact('counties'));
             $this->set('_serialize', array('counties'));
         }
+    }
+    
+    // Admin
+    public function admin_users(){
+        $this->Paginator->settings = $this->paginate;
+        $users = $this->Paginator->paginate('Account');
+        $this->set('data',$users);
     }
 
 }
