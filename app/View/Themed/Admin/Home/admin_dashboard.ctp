@@ -29,7 +29,7 @@ var options2 = {
     },
     lines: {
         show:true
-    }
+    },
     colors: ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.6)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)"],
     xaxis: {ticks:15, tickDecimals: 0, color: "rgba(255,255,255,0.8)",mode:"time",timeformat:"%Y/%m/%d",minTickSize:[1,"day"] },
     yaxis: {ticks:5, tickDecimals: 0, color: "rgba(255,255,255,0.8)" }
