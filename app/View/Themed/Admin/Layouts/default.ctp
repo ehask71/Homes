@@ -164,6 +164,7 @@
             echo $this->Html->script('jquery.flot.pie');
             echo $this->Html->script('jquery.flot.stack');
             echo $this->Html->script('jquery.flot.resize.min');
+            echo $this->Html->script('jquery.flot.time');
 
             echo $this->Html->script('jquery.chosen.min');
 
