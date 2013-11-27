@@ -74,7 +74,7 @@
                             <li><?php echo $this->Html->link('Billing', '/professionals/account/billingprofile'); ?></li>
                             <li><?php echo $this->Html->link('History', '/professionals/account/history'); ?></li>
                             <li><?php echo $this->Html->link('Logout', '/professionals/account/logout'); ?></li>
-                            <?php if($this->Auth::hasRole(Configure::read('Roles.admin'))){
+                            <?php if($this->Auth->hasRole(Configure::read('Roles.admin'))){
                                 echo '<li>'.$this->Html->link('Admin', '/admin/dashboard').'</li>';
                             }?>
                         </ul>
