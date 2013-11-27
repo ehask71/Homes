@@ -6,3 +6,18 @@
         &nbsp;
     </div>
 </div>
+<?php $this->Html->scriptStart(array('inline' => false)); ?>
+$(document).ready(function(){
+var options = {
+    lines: {
+        show:true
+    },
+    points: { show:true},
+    xaxis:{
+        tickDecimals:0,
+        tickSize: 1
+    }
+};
+$.plot('#leads-chart',<?php echo $last15;?>,options);
+});
+<?php $this->Html->scriptEnd(); ?>
