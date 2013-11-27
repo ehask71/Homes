@@ -18,7 +18,7 @@ tickDecimals:0,
 tickSize: 1
 }
 };
-$.plot($('#leads-chart'),<?php echo $last15; ?>,
+$.plot('#leads-chart',<?php echo $last15; ?>,
 {
     grid: { hoverable: true, 
         clickable: true, 
