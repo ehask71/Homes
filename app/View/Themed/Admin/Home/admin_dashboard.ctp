@@ -20,6 +20,11 @@ tickSize: 1
 };
 $.plot('#leads-chart',<?php echo $last15; ?>,
 {
+    lines: { 
+                show: true, 
+                fill: false,
+		lineWidth: 2 
+    },
     grid: { hoverable: true, 
         clickable: true, 
         tickColor: "rgba(255,255,255,0.05)",
