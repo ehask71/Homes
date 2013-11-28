@@ -13,18 +13,26 @@
                 ),
                 'class' => 'well form-horizontal'
             ));
-            
-            echo $this->Form->input('firstname');
-            echo $this->Form->input('lastname');
-            echo $this->Form->input('email');
-            echo $this->Form->input('address');
-            echo $this->Form->input('address2');
-            echo $this->Form->input('city');
-            echo $this->Form->input('state',array('options'=>  Configure::read('States')));
-            echo $this->Form->input('zip');
-            echo $this->Form->input('country',array('options'=>  Configure::read('Countries')));
-            echo $this->Form->input('phone');
             ?>
+            <fieldset>
+                <?php
+                echo $this->Form->input('id',array('type'=>'hidden'));
+                echo $this->Form->input('firstname');
+                echo $this->Form->input('lastname');
+                echo $this->Form->input('email');
+                echo $this->Form->input('address');
+                echo $this->Form->input('address2');
+                echo $this->Form->input('city');
+                echo $this->Form->input('state', array('options' => Configure::read('States')));
+                echo $this->Form->input('zip');
+                echo $this->Form->input('country', array('options' => Configure::read('Countries')));
+                echo $this->Form->input('phone');
+                ?>
+                <div class="form-actions">
+                    <?php echo $this->Form->submit('Save', array('class' => 'btn btn-primary')); ?>
+                </div>
+            </fieldset>
+            <?php echo $this->Form->end(); ?>
         </div>
     </div>
 </div>
