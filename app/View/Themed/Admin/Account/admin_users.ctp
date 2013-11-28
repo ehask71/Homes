@@ -21,7 +21,7 @@
                                     <td><?php echo $user['Account']['firstname'] . ' ' . $user['Account']['lastname']; ?></td>
                                     <td><?php echo $user['Account']['created']; ?></td>
                                     <td><?php echo ucfirst($user['Account']['is_active']); ?></td>
-                                    <td></td>
+                                    <td><a href="/admin/account/edit/<?php echo $user['Account']['id'];?>" class="btn btn-mini btn-danger">Edit</button></a></td>
                                 </tr>
                                 <?php
                             }
