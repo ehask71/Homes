@@ -13,7 +13,7 @@
                     foreach ($lastusers AS $user) {
                         ?>
                 <li class="<?php echo $colors[$i];?>">
-                    <a href="#"><img class="avatar" src="<?= $this->Html->image('/img/avatar-placeholder.jpg');?>"/> </a>
+                    <a href="#"><?= $this->Html->image('/img/avatar-placeholder.jpg',array('class'=>'avatar'));?></a>
                     <strong>Name:</strong> <?php echo $user['Account']['firstname'].' '.$user['Account']['lastname'];?><br/>
                     <strong>Since:</strong> <?php echo $user['Account']['created'];?><br/>
                     <strong>Active:</strong> <?php echo $user['Account']['is_active'];?>
