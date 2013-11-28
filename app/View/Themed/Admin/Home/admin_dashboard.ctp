@@ -3,7 +3,7 @@
     <div class="span8 widget blue">
         <div id="leads-chart" style="height: 282px"></div>
     </div>
-    <div class="span4 box green">
+    <div class="span4 box black">
         <div class="box-header">Last 5 Members</div>
         <div class="box-content">
             <ul class="dashboard-list metro">
