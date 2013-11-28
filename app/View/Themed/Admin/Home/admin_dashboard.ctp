@@ -9,15 +9,16 @@
             <ul class="dashboard-list metro">
                 <?php if (count($lastusers) > 0) {
                     $colors = array('green','red','yellow','blue');
+                    $i=0;
                     foreach ($lastusers AS $user) {
                         ?>
-                <li class="<?php echo $colors[rand(0, 3)];?>">
+                <li class="<?php echo $colors[$i];?>">
                     <a href="#"></a>
-                    <strong>Name:</strong><?php echo $user['Account']['firstname'].' '.$user['Account']['lastname'];?><br/>
-                    <strong>Since:</strong><?php echo $user['Account']['created'];?><br/>
-                    <strong>Active:</strong><?php echo $user['Account']['is_active'];?>
+                    <strong>Name:</strong> <?php echo $user['Account']['firstname'].' '.$user['Account']['lastname'];?><br/>
+                    <strong>Since:</strong> <?php echo $user['Account']['created'];?><br/>
+                    <strong>Active:</strong> <?php echo $user['Account']['is_active'];?>
                 </li>
-                     <?php }
+                     <?php $i++;if($i==4){$i=0;}}
                 } ?>
             </ul>
         </div>
