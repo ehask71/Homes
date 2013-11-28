@@ -107,7 +107,7 @@
                 <div id="content" class="span10">
 
                     <?php
-                    echo $this->Html->getCrumbs(' > ', array(
+                    echo $this->Html->getCrumbsList(array('class'=>'breadcrumb'), array(
                         'text' => '<i class="icon-home"></i>
                             <a href="/admin/dashboard">Home</a> 
                             <i class="icon-angle-right"></i>',
@@ -115,14 +115,14 @@
                         'escape' => false
                     ));
                     ?>
-                    <ul class="breadcrumb">
+                    <!--<ul class="breadcrumb">
                         <li>
                             <i class="icon-home"></i>
                             <a href="index.html">Home</a> 
                             <i class="icon-angle-right"></i>
                         </li>
                         <li><a href="#">Dashboard</a></li>
-                    </ul>
+                    </ul>-->
                     <?php echo $this->Session->flash(); ?>
 <?php echo $this->Session->flash('auth'); ?>
 <?php echo $this->fetch('content'); ?>
