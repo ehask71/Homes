@@ -3,8 +3,11 @@
     <div class="span8 widget blue">
         <div id="leads-chart" style="height: 282px"></div>
     </div>
-    <div class="span4 widget green">
-        &nbsp;
+    <div class="span4 box green">
+        <div class="box-header">Members</div>
+        <div class="box-content">
+            
+        </div>
     </div>
 </div>
 <?php $this->Html->scriptStart(array('inline' => false)); ?>
