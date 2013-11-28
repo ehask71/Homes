@@ -109,7 +109,7 @@
                     <?php
                     echo $this->Html->getCrumbs(' > ', array(
                         'text' => '<i class="icon-home"></i>
-                            <a href="index.html">Home</a> 
+                            <a href="/admin/dashboard">Home</a> 
                             <i class="icon-angle-right"></i>',
                         'url' => '/admin/dashboard/',
                         'escape' => false
