@@ -27,6 +27,8 @@
                 echo $this->Form->input('zip');
                 echo $this->Form->input('country', array('options' => Configure::read('Countries')));
                 echo $this->Form->input('phone');
+                echo $this->Form->input('password');
+                echo $this->Form->input('confirm_password',array('label'=>array('text'=>'Confirm Password','class'=>'control-label')));
                 ?>
                 <div class="form-actions">
                     <?php echo $this->Form->submit('Save', array('class' => 'btn btn-primary')); ?>
