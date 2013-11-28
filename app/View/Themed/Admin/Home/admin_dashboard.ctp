@@ -1,4 +1,4 @@
-<?php $this->Html->addCrumb('Dashboard', '/admin/dashboard');?>
+<?php $this->Html->addCrumb('Dashboard', '/admin/dashboard/');?>
 <div class="row-fluid">
     <div class="span8 widget blue">
         <div id="leads-chart" style="height: 282px"></div>
