@@ -90,7 +90,7 @@
                         <ul class="nav nav-tabs nav-stacked main-menu">
                             <li><a href="/admin/home/dashboard"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
                             <li><a href="/admin/account/users"><i class="icon-user"></i> Members</a></li>
-                          
+
                         </ul>
                     </div>
                 </div>
@@ -106,7 +106,15 @@
                 <!-- start: Content -->
                 <div id="content" class="span10">
 
-
+                    <?php
+                    echo $this->Html->getCrumbs(' > ', array(
+                        'text' => '<i class="icon-home"></i>
+                            <a href="index.html">Home</a> 
+                            <i class="icon-angle-right"></i>',
+                        'url' => '/admin/dashboard/',
+                        'escape' => false
+                    ));
+                    ?>
                     <ul class="breadcrumb">
                         <li>
                             <i class="icon-home"></i>
@@ -116,8 +124,8 @@
                         <li><a href="#">Dashboard</a></li>
                     </ul>
                     <?php echo $this->Session->flash(); ?>
-                    <?php echo $this->Session->flash('auth'); ?>
-                    <?php echo $this->fetch('content'); ?>
+<?php echo $this->Session->flash('auth'); ?>
+<?php echo $this->fetch('content'); ?>
                 </div><!--/#content.span10-->
             </div><!--/fluid-row-->
 
@@ -139,7 +147,7 @@
 
             <footer>
                 <p>
-                    <span style="text-align:left;float:left">&copy; <a href="#" target="_blank"><?php echo Configure::read('Sitename');?></a> 2013</span>
+                    <span style="text-align:left;float:left">&copy; <a href="#" target="_blank"><?php echo Configure::read('Sitename'); ?></a> 2013</span>
                     <span class="hidden-phone" style="text-align:right;float:right">Powered by: <a href="http://highoctanebrands.com" target="_blank">High Octane Brands LLC</a></span>
                 </p>
 
