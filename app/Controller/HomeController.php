@@ -99,6 +99,12 @@ class HomeController extends AppController {
     public function admin_dashboard(){
         $last15 = $this->Lead->chartLast15day();
         $this->set('last15',$last15);
+        $this->loadModel('Account');
+        $lastusers = $this->Account->find('all',array(
+           'order' => array('Account.created DESC'),
+            'limit' => 5
+        ));
+        $this->set(compact('lastusers'));
         
         //mail('ehask71@gmail.com','Last count',print_r($last15,1));
     }
