@@ -11,12 +11,13 @@ class AccountController extends AppController {
 
     public $name = 'Account';
     public $uses = array('Account', 'Lead', 'Transaction', 'ZipData');
-    public $components = array('AuthNetXml','Cart','Paginator');
+    public $components = array('AuthNetXml', 'Cart', 'Paginator');
     public $paginate = array(
         'Account' => array(
             'limit' => 50
         )
     );
+
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('register', 'login', 'logout', 'forgotpwd');
@@ -140,22 +141,21 @@ class AccountController extends AppController {
             }
         }
     }
-    
-    public function professionals_addcounty(){
-	if($this->request->is('post')){
-	    
-	} else {
-	    $counties = $this->ZipData->getCountiesByState('FL', true);
-	    $this->request->data['state'] = 'FL';
-	    $this->request->data['counties'] = $counties;
-	    $this->set('cty', $counties);
-	}
-    }
-    
-    public function professionals_confirm(){
-	
+
+    public function professionals_addcounty() {
+        if ($this->request->is('post')) {
+            
+        } else {
+            $counties = $this->ZipData->getCountiesByState('FL', true);
+            $this->request->data['state'] = 'FL';
+            $this->request->data['counties'] = $counties;
+            $this->set('cty', $counties);
+        }
     }
 
+    public function professionals_confirm() {
+        
+    }
 
     public function professionals_history() {
         $this->paginate = array(
@@ -326,12 +326,36 @@ class AccountController extends AppController {
             $this->set('_serialize', array('counties'));
         }
     }
-    
+
     // Admin
-    public function admin_users(){
+    public function admin_users() {
         $this->Paginator->settings = $this->paginate;
         $users = $this->Paginator->paginate('Account');
-        $this->set('data',$users);
+        $this->set('data', $users);
+    }
+
+    public function admin_edit($id) {
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Account->accountValidateEdit()) {
+                if ($this->Account->save($this->request->data)) {
+                    $this->Session->setFlash(__('Member Updated Successfully'), 'alert', array(
+                        'plugin' => 'BoostCake',
+                        'class' => 'alert-success'
+                    ));
+                    $this->redirect('/admin/account/edit/' . $id);
+                }
+            }
+        }
+        $user = $this->Account->find('first', array(
+            'conditions' => array(
+                'Account.id' => $id
+            )
+        ));
+
+        if ($user) {
+            $this->request->data = $user;
+        }
+        $this->set('title', 'Edit Member');
     }
 
 }
