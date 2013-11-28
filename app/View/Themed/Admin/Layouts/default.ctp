@@ -107,10 +107,9 @@
                 <div id="content" class="span10">
 
                     <?php
-                    echo $this->Html->getCrumbList(array('class'=>'breadcrumb'), array(
+                    echo $this->Html->getCrumbList(array('class'=>'breadcrumb','separator'=>'<i class="icon-angle-right"></i>'), array(
                         'text' => '<i class="icon-home"></i>
-                            <a href="/admin/dashboard">Home</a> 
-                            <i class="icon-angle-right"></i>',
+                            <a href="/admin/dashboard">Home</a>',
                         'url' => '/admin/dashboard/',
                         'escape' => false
                     ));
