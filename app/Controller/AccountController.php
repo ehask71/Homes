@@ -14,7 +14,7 @@ class AccountController extends AppController {
     public $components = array('AuthNetXml','Cart','Paginator');
     public $paginate = array(
         'Account' => array(
-            'limit' => 50
+            'limit' => 2
         )
     );
     public function beforeFilter() {
