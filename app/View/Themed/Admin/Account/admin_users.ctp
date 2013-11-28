@@ -6,9 +6,9 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Date Registered</th>
-                            <th>Status</th>
+                            <th><?php echo $this->Paginator->sort('lastname', 'Name');?></th>
+                            <th><?php echo $this->Paginator->sort('created', 'Date Registered');?></th>
+                            <th><?php echo $this->Paginator->sort('is_active', 'Status');?></th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
