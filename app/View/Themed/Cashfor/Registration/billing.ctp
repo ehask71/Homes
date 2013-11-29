@@ -29,15 +29,16 @@
                 '11' => '11',
                 '12' => '12')));
         echo $this->Form->input('expyear', array('label' => 'Exp Year', 'options' => $years));
-        echo $this->Form->input('cardholder', array('label' => 'Name on Card'));
+        echo $this->Form->input('firstname', array('label' => 'Name on Card'));
+        echo $this->Form->input('lastname', array('label' => 'Name on Card'));
         echo $this->Form->input('name', array('label' => 'Name This Profile (for your records)',
             'value' => 'bpf_' . substr($this->Auth->user('firstname'), 0, 1) . $this->Auth->user('lastname') . date('is')
         ));
         echo $this->Form->input('billing_company', array('label' => 'Company'));
-        echo $this->Form->input('billing_address', array('label' => 'Address'));
-        echo $this->Form->input('billing_city', array('label' => 'City'));
-        echo $this->Form->input('billing_state', array('label' => 'State', 'options' => Configure::read('States')));
-        echo $this->Form->input('billing_zip', array('label' => 'Zip'));
+        echo $this->Form->input('address', array('label' => 'Address'));
+        echo $this->Form->input('city', array('label' => 'City'));
+        echo $this->Form->input('state', array('label' => 'State', 'options' => Configure::read('States')));
+        echo $this->Form->input('zip', array('label' => 'Zip'));
         echo $this->Form->input('phone', array('label' => 'Phone'));
         echo $this->Form->input('comments', array('label' => 'Comment'));
         echo $this->Form->end('Finish Registration');
