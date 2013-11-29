@@ -9,13 +9,19 @@
             $years[$year] = $year;
         }
         echo $this->Form->create('Payment', array(
-            'inputDefaults' => array(
-                'required' => FALSE
-        )));
+                'inputDefaults' => array(
+                    'div' => 'control-group',
+                    'label' => array(
+                        'class' => 'control-label'
+                    ),
+                    'wrapInput' => 'controls'
+                ),
+                'class' => 'form-horizontal'
+            ));
 
-        echo $this->Form->input('cardnum', array('label' => 'Card Number'));
-        echo $this->Form->input('cvv', array('label' => 'CVV Code (on back)'));
-        echo $this->Form->input('expmnth', array('label' => 'Exp Month', 'options' => array(
+        echo $this->Form->input('cardnum', array('label' => array('text'=>'Card Number','class'=>'control-label')));
+        echo $this->Form->input('cvv', array('label' => array('class'=>'control-label','text'=>'CVV Code (on back)')));
+        echo $this->Form->input('expmnth', array('label' => array('class'=>'control-label','text'=>'Exp Month'), 'options' => array(
                 '01' => '01',
                 '02' => '02',
                 '03' => '03',
@@ -28,19 +34,19 @@
                 '10' => '10',
                 '11' => '11',
                 '12' => '12')));
-        echo $this->Form->input('expyear', array('label' => 'Exp Year', 'options' => $years));
-        echo $this->Form->input('firstname', array('label' => 'Name on Card'));
-        echo $this->Form->input('lastname', array('label' => 'Name on Card'));
-        echo $this->Form->input('name', array('label' => 'Name This Profile (for your records)',
+        echo $this->Form->input('expyear', array('label' => array('class'=>'control-label','text'=>'Exp Year'), 'options' => $years));
+        echo $this->Form->input('firstname', array('label' => array('class'=>'control-label','text'=>'Firstname')));
+        echo $this->Form->input('lastname', array('label' => array('class'=>'control-label','text'=>'Lastname')));
+        echo $this->Form->input('name', array('label' => array('class'=>'control-label','text'=>'Name This Profile (for your records)'),
             'value' => 'bpf_' . substr($this->Auth->user('firstname'), 0, 1) . $this->Auth->user('lastname') . date('is')
         ));
-        echo $this->Form->input('billing_company', array('label' => 'Company'));
-        echo $this->Form->input('address', array('label' => 'Address'));
-        echo $this->Form->input('city', array('label' => 'City'));
-        echo $this->Form->input('state', array('label' => 'State', 'options' => Configure::read('States')));
-        echo $this->Form->input('zip', array('label' => 'Zip'));
-        echo $this->Form->input('phone', array('label' => 'Phone'));
-        echo $this->Form->input('comments', array('label' => 'Comment'));
+        echo $this->Form->input('billing_company', array('label' => array('class'=>'control-label','text'=>'Company')));
+        echo $this->Form->input('address', array('label' => array('class'=>'control-label','text'=>'Address')));
+        echo $this->Form->input('city', array('label' => array('class'=>'control-label','text'=>'City')));
+        echo $this->Form->input('state', array('label' => array('class'=>'control-label','text'=>'State'), 'options' => Configure::read('States')));
+        echo $this->Form->input('zip', array('label' => array('class'=>'control-label','text'=>'Zip')));
+        echo $this->Form->input('phone', array('label' => array('class'=>'control-label','text'=>'Phone')));
+        echo $this->Form->input('comments', array('label' => array('class'=>'control-label','text'=>'Comment')));
         echo $this->Form->end('Finish Registration');
         ?>
     </div>
