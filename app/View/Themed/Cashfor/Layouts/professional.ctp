@@ -78,8 +78,6 @@
                                 echo '<li>'.$this->Html->link('Admin', '/admin/dashboard').'</li>';
                             }?>
                         </ul>
-                        <?php
-                          echo '<pre>'.print_r($userinfo).'</pre>';?>
                     </div>
                     <?php echo $this->fetch('content'); ?>
                 </div>
