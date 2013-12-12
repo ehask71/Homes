@@ -15,7 +15,7 @@
 	<?php foreach($data AS $row){?>
 	<tr>
 	    <td><?php echo $row['Lead']['firstname'];?></td
-	    <td><?php echo $row['Lead']['lastname'];?></td>
+	    <!--<td><?php echo $row['Lead']['lastname'];?></td>-->
 	    <td><?php echo $row['Lead']['city'];?></td>
 	    <td><?php echo $row['Lead']['state'];?></td>
 	    <td><?php echo $row['Lead']['zip'];?></td>
