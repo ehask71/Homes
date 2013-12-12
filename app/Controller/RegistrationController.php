@@ -90,7 +90,8 @@ class RegistrationController extends AppController {
 	    if ($cimresponse) {
 		CakeLog::write('debug', 'CIM success');
 		$update['Account']['id'] = $this->Auth->user('id');
-		$update['Account']['authnet_profile'] = $cimresponse;
+		$update['Account']['authnet_profile'] = $cimresponse['profileId'];
+                $update['Account']['authnet_payment'] = $cimresponse['paymentId'];
 		$this->Account->create();
 		$this->Account->save($update);
 	    } else {
