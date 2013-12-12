@@ -136,7 +136,7 @@ class AuthnetXML {
         $merch_auth->addChild('name', $this->login);
         $merch_auth->addChild('transactionKey', $this->transkey);
 
-        $this->setParameters($this->xml, $args[0]);
+        $this->setParameters($this->xml, @$args[0]);
         $this->process();
     }
 
