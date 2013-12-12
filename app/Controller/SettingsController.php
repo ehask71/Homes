@@ -53,8 +53,8 @@ class SettingsController extends AppController {
         print_r($out);
         $arr = (array)$out->ids->numericString;
         print_r($arr);
-        foreach($arr AS $id){
-            print_r($id);//.'<br>';
+        foreach ($arr AS $id){
+            echo $id.'<br/>';
         }
     }
 }
