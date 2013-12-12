@@ -51,7 +51,7 @@ class SettingsController extends AppController {
         $out = $this->AuthNetXml->get_customer_profile_ids(array());
         echo '<pre>';
         print_r($out);
-        $arr = (array)$out->ids[0];
+        $arr = (array)$out->ids->numericString;
         print_r($arr);
         foreach($arr AS $id){
             print_r($id);//.'<br>';
