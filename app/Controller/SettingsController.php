@@ -47,7 +47,10 @@ class SettingsController extends AppController {
     }
     
     public function admin_paymentprofiles(){
+        $this->autoRender = false;
         
+        $out = $this->AuthNetXml->get_customer_profile_ids(array());
+        print_r($out);
     }
 }
 
