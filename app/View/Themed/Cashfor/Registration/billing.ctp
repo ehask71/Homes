@@ -1,4 +1,4 @@
-<div class='row'>
+<div class='row-fluid'>
     <div class="span12">
         <h2>Payment Info</h2>
         <?php
