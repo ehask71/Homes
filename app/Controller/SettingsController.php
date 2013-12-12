@@ -50,7 +50,7 @@ class SettingsController extends AppController {
         $this->autoRender = false;
         
         $out = $this->AuthNetXml->get_customer_profile_ids(array());
-        print_r($out);
+        print_r($out->ids);
     }
 }
 
