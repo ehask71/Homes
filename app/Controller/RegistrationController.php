@@ -74,7 +74,7 @@ class RegistrationController extends AppController {
 	    // Billing Profile
 	    $data['id'] = $this->Auth->user('id');
 	    $data['email'] = $this->request->data['Payment']['email'];
-	    $data['cardholde'] = $this->request->data['Payment']['firstname'];
+	    $data['firstname'] = $this->request->data['Payment']['firstname'];
 	    $data['lastname'] = $this->request->data['Payment']['lastname'];
 	    $data['address'] = $this->request->data['Payment']['address'];
 	    $data['city'] = $this->request->data['Payment']['city'];
