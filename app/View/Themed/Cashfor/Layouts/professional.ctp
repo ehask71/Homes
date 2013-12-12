@@ -59,11 +59,11 @@
         </div>
         <!-- start body -->
         <div class="container-fluid">
-            <div class="row">
+            <div class="row-fluid">
+                <div class="non-fluid">
                 <?php echo $this->Session->flash(); ?>
                 <?php echo $this->Session->flash('auth'); ?>
-            </div>
-            <div class="row-fluid">
+                </div>
                 <div class="non-fluid">
                     <div class="span2">
                         <ul class="nav nav-list">
