@@ -51,7 +51,6 @@ function getCart(){
     });
 }
 <?php $this->Html->scriptEnd();?>
-<div class="span12">
     <div class="row">
 	<div class="span6">
 	    <?php
@@ -78,7 +77,6 @@ function getCart(){
 	    Total:<span id="carttotal">$0.00</span>
             <div id="debug"></div>
 	</div>
-    </div>
 </div>
 <script type="text/javascript">
     function fetchCounties() {
