@@ -81,4 +81,11 @@ class AuthNetXmlComponent extends Component {
 	
 	return $xml;
     }
+    
+    public function get_customer_profile_ids($data){
+        $xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), $this->server);
+        $xml->getCustomerProfileIdsRequest();
+        
+        return $xml;
+    }
 }
