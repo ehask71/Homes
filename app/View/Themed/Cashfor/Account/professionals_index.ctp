@@ -1,6 +1,6 @@
 <div class="span10">
 <h2>Leads</h2>
-<table class="table">
+<table class="table table-striped table-bordered table-condensed">
     <thead>
 	<tr>
 	    <th><?php echo $this->Paginator->sort('firstname', 'First Name'); ?></th>
