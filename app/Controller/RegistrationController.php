@@ -86,11 +86,11 @@ class RegistrationController extends AppController {
 	    $data['ccexpmnth'] = $this->request->data['Payment']['expmnth'];
 	    $data['cvv'] = $this->request->data['Payment']['cvv'];
 
-	    $cimresponse = $this->AuthNetXml->create_customer_profile_request($data);
-	    if (!$cimresponse->isError()) {
+	    $cimresponse = $this->AuthNetXml->create_customer_full_profile_request($data);
+	    if ($cimresponse) {
 		CakeLog::write('debug', 'CIM success');
 		$update['Account']['id'] = $this->Auth->user('id');
-		$update['Account']['authnet_profile'] = $cimresponse->customerProfileId;
+		$update['Account']['authnet_profile'] = $cimresponse;
 		$this->Account->create();
 		$this->Account->save($update);
 	    } else {
