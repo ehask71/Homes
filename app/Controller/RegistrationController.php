@@ -94,6 +94,7 @@ class RegistrationController extends AppController {
                 $update['Account']['authnet_payment'] = $cimresponse['paymentId'];
                 $this->Account->create();
                 $this->Account->save($update);
+                $this->redirect('/register/finish');
             } else {
                 $this->Session->setFlash(__('There there was a problem creating your billing profile. Please try again.'), 'alert', array(
                     'plugin' => 'BoostCake',
