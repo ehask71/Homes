@@ -51,7 +51,7 @@ function getCart(){
     });
 }
 <?php $this->Html->scriptEnd();?>
-    <div class="row">
+    <div class="row-fluid">
 	<div class="span6">
 	    <?php
 	    echo $this->Form->create(null, array(
