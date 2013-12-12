@@ -85,7 +85,7 @@ class AuthNetXmlComponent extends Component {
             'validationMode' => $this->validationMode
         ));
         if (!$xml->isError()) {
-            CakeLog::write('debug', $xml->messages->resultCode . ' ' . $xml->messages->message->code . ' ' . $xml->customerProfileId . ' ' . $xml->customerPaymentProfileIdList->numericString);
+            //CakeLog::write('debug', $xml->messages->resultCode . ' ' . $xml->messages->message->code . ' ' . $xml->customerProfileId . ' ' . $xml->customerPaymentProfileIdList->numericString);
             return array('profileId' => $xml->customerProfileId, 'paymentId' => $xml->customerPaymentProfileIdList->numericString);
         }
         CakeLog::write('debug', $xml->messages->resultCode . ' ' . $xml->messages->message->code . ' ' . $xml->customerProfileId . ' ' . $xml->customerPaymentProfileIdList->numericString);
