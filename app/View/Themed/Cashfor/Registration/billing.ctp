@@ -16,7 +16,7 @@
                     ),
                     'wrapInput' => 'controls'
                 ),
-                'class' => 'form-horizontal'
+                'class' => 'well form-horizontal'
             ));
 
         echo $this->Form->input('cardnum', array('label' => array('text'=>'Card Number','class'=>'control-label')));
@@ -37,6 +37,7 @@
         echo $this->Form->input('expyear', array('label' => array('class'=>'control-label','text'=>'Exp Year'), 'options' => $years));
         echo $this->Form->input('firstname', array('label' => array('class'=>'control-label','text'=>'Firstname')));
         echo $this->Form->input('lastname', array('label' => array('class'=>'control-label','text'=>'Lastname')));
+        echo $this->Form->input('email', array('value'=>$userinfo['email'],'label' => array('class'=>'control-label','text'=>'Email')));
         echo $this->Form->input('name', array('label' => array('class'=>'control-label','text'=>'Name This Profile (for your records)'),
             'value' => 'bpf_' . substr($userinfo['firstname'], 0, 1) . $userinfo['lastname'] . date('is')
         ));
@@ -47,7 +48,8 @@
         echo $this->Form->input('zip', array('label' => array('class'=>'control-label','text'=>'Zip')));
         echo $this->Form->input('phone', array('label' => array('class'=>'control-label','text'=>'Phone')));
         echo $this->Form->input('comments', array('label' => array('class'=>'control-label','text'=>'Comment')));
-        echo $this->Form->end('Finish Registration');
+        echo $this->Form->submit('Finish Registration',array('class'=> 'btn'));
+        echo $this->Form->end();
         ?>
     </div>
 </div>
