@@ -38,6 +38,14 @@ $(document).ready(function() {
 	getCart();
     });
 });
+
+function checkCart(){
+    var sz = $('#selectedcounties').size();
+    if(sz > 0){
+        window.location = '/register/billing-info';
+    }
+}
+
 function getCart(){
     $.get("/registration/cartadd.json",function(data){
 	if(data.cart.Order.total != null){
