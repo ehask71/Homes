@@ -9,6 +9,7 @@ class SettingsController extends AppController {
     
     public $name = 'Settings';
     public $uses = array('ZipData');
+    public $components = array('AuthNetXml');
     
     public function beforeFilter() {
 	parent::beforeFilter();
@@ -43,6 +44,10 @@ class SettingsController extends AppController {
 		$this->ZipData->save($data);
             }
         }
+    }
+    
+    public function admin_paymentprofiles(){
+        
     }
 }
 
