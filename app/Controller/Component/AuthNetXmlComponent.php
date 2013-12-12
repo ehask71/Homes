@@ -17,23 +17,23 @@ class AuthNetXmlComponent extends Component {
         parent::__construct($collection, $settings);
     }
 
-    public function initialize($controller) {
+    public function initialize(Controller $controller) {
         
     }
 
-    public function startup($controller) {
+    public function startup(Controller $controller) {
         
     }
 
-    public function beforeRender($controller) {
+    public function beforeRender(Controller $controller) {
         
     }
 
-    public function shutDown($controller) {
+    public function shutDown(Controller $controller) {
         
     }
 
-    public function beforeRedirect($controller, $url, $status = null, $exit = true) {
+    public function beforeRedirect(Controller $controller, $url, $status = null, $exit = true) {
         
     }
     
