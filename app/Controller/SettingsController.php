@@ -49,9 +49,9 @@ class SettingsController extends AppController {
     public function admin_customerprofiles(){
         $this->autoRender = false;     
         $out = $this->AuthNetXml->get_customer_profile_ids(array());
-        
+        echo '<pre>';
         foreach((array)$out->ids AS $id){
-            echo $id.'<br>';
+            print_r($id);
         }
     }
 }
