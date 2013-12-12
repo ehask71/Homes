@@ -11,6 +11,7 @@ class RegistrationController extends AppController {
     public $name = 'Registration';
     public $uses = array('Account', 'Transaction', 'ZipData');
     public $components = array('AuthNetXml', 'Cart');
+    public $helpers = array('Session');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -92,6 +93,8 @@ class RegistrationController extends AppController {
                 $update['Account']['id'] = $this->Auth->user('id');
                 $update['Account']['authnet_profile'] = $cimresponse['profileId'];
                 $update['Account']['authnet_payment'] = $cimresponse['paymentId'];
+                $this->Session->write('Billing',$data);
+                $this->Session->write('Billing.ccnum','XXXX-XXXX-XXXX-'.substr($data['ccnum'],-4));
                 $this->Account->create();
                 $this->Account->save($update);
                 $this->redirect('/register/finish');
