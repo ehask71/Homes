@@ -49,7 +49,7 @@ class AuthNetXmlComponent extends Component {
                 'merchantCustomerId' => Configure::read('SitePrefix') . $data['id'],
                 'email' => $data['email']
             ),
-            'validationMode' => 'testMode'
+            'validationMode' => $this->validationMode
         ));
         if (!$xml->isError()) {
             return $xml->customerProfileId;
@@ -82,10 +82,10 @@ class AuthNetXmlComponent extends Component {
                     ),
                 ),
             ),
-            'validationMode' => 'testMode'
+            'validationMode' => $this->validationMode
         ));
         if (!$xml->isError()) {
-            return $xml->customerProfileId;
+            return array('profileId'=>$xml->customerProfileId,'paymentId'=>(array)$xml->customerPaymentProfileIdList->numericString);
         }
         return false;
     }
