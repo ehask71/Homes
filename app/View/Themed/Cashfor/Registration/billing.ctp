@@ -38,7 +38,7 @@
         echo $this->Form->input('firstname', array('label' => array('class'=>'control-label','text'=>'Firstname')));
         echo $this->Form->input('lastname', array('label' => array('class'=>'control-label','text'=>'Lastname')));
         echo $this->Form->input('name', array('label' => array('class'=>'control-label','text'=>'Name This Profile (for your records)'),
-            'value' => 'bpf_' . substr($this->Auth->user('firstname'), 0, 1) . $this->Auth->user('lastname') . date('is')
+            'value' => 'bpf_' . substr($userinfo['firstname'], 0, 1) . $userinfo['lastname'] . date('is')
         ));
         echo $this->Form->input('billing_company', array('label' => array('class'=>'control-label','text'=>'Company')));
         echo $this->Form->input('address', array('label' => array('class'=>'control-label','text'=>'Address')));
