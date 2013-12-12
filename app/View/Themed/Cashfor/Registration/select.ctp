@@ -66,8 +66,8 @@ function getCart(){
 		'class' => 'well form-horizontal'
 	    ));
 	    ?>
-	    <?php echo $this->Form->input('state', array('label' => 'Select A State', 'id' => 'state', 'options' => Configure::read('States'), 'onchange' => 'fetchCounties();')); ?>
-	    <?php echo $this->Form->input('counties', array('label' => 'Select your Counties', 'id' => 'counties', 'multiple' => 'multiple', 'type' => 'select', 'options' => $cty)); ?>
+	    <?php echo $this->Form->input('state', array('label' => array('text'=>'Select A State','class'=>'control-label'), 'id' => 'state', 'options' => Configure::read('States'), 'onchange' => 'fetchCounties();')); ?>
+	    <?php echo $this->Form->input('counties', array('label' => array('text'=>'Select your Counties','class'=>'control-label'), 'id' => 'counties', 'multiple' => 'multiple', 'type' => 'select', 'options' => $cty)); ?>
 	    <?php echo $this->Form->end(); ?>
 
 	</div>
