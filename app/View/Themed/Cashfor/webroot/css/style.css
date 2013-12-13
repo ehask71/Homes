@@ -327,7 +327,7 @@ blockquote{
 .alert-error{
   color: #D8000C;
   background-color: #FFBABA;
-  background-image: url('Knob Error.png');
+  background-image: url('../img/Knob Error.png');
   
 }
 /* Thumbnails For Property Upload */
