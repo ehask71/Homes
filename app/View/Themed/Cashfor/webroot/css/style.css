@@ -152,7 +152,7 @@ body{
 
 .non-fluid{
 	max-width: 1170px;
-	float:none;
+	float: none;
 	margin: 0 auto;
 }
 #form-container{
@@ -300,6 +300,36 @@ blockquote{
 	margin: 35px 0px 50px 0px;
 }
 
+.alert, .alert-success, .alert-warning, .alert-error, .alert-validation{
+  border: 1px solid;
+  margin: 10px 0px;
+  padding:15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+.alert{
+    color: #00529B;
+  background-color: #BDE5F8;
+  background-image: url('../img/Knob Info.png');
+}
+.alert-success{
+    color: #4F8A10;
+  background-color: #DFF2BF;
+  background-image:url('../img/Knob Success.png');
+
+}
+.alert-warning{
+   color: #9F6000;
+  background-color: #FEEFB3;
+  background-image: url('../img/Knob Warning.png');
+ 
+}
+.alert-error{
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image: url('Knob Error.png');
+  
+}
 /* Thumbnails For Property Upload */
 .thumbnails li{
     max-width: 23%;
