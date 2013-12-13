@@ -316,24 +316,28 @@ blockquote{
 .alert-success{
     color: #4F8A10;
   background-color: #DFF2BF;
-  background-image:url('../img/Knob Success.png');
+  background-image:url('../img/Knob Valid Green.png');
 
 }
 .alert-warning{
    color: #9F6000;
   background-color: #FEEFB3;
-  background-image: url('../img/Knob Warning.png');
+  background-image: url('../img/Knob Attention.png');
  
 }
 .alert-error{
   color: #D8000C;
   background-color: #FFBABA;
-  background-image: url('../img/Knob Error.png');
+  background-image: url('../img/Knob Cancel.png');
   
 }
 .alert a.close{
     position: absolute;
-    left: -30px;
+    right: 30px;
+    display: inline-block;
+    padding: 2px 4px;
+    color: #000;
+    border: 1px solid #000;
 }
 /* Thumbnails For Property Upload */
 .thumbnails li{
