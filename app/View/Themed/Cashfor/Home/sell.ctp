@@ -1,6 +1,7 @@
 <div class='row'>
     <div class='span6'>
 <h2>Sell</h2>
+<div id="form-container">
 <div id="form-wrapper">
     <div id="form-content">
         
@@ -39,6 +40,7 @@ echo $this->Form->input('tmplead',array('type' =>'hidden'));
 echo $this->Form->end('Submit');
 ?>
         </div>
+</div>
 </div>
     </div>
 </div>
