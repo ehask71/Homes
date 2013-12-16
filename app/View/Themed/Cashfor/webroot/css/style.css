@@ -215,7 +215,10 @@ body{
 	position: absolute;
 	left: -9999px;
 }
-
+.content ul.li{
+    margin: 6px 0px;
+    padding: 0px 8px;
+}
 ul#how-it-works-content{
 	list-style-type: none;
 	padding: 0;
