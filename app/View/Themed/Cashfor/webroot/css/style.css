@@ -267,7 +267,8 @@ p{
     font-family: Arial,"sans-serif";
     font-size: .8em;
 }
-blockquote{
+blockquote.simple{
+    background: none;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 13px;
     font-style: italic;
