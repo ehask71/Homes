@@ -1,6 +1,6 @@
 <div class='row'>
     <h2>Privacy Policy</h2>
-    <div class='span12'>
+    <div class='span12 content'>
         <p>CashForHomes.com  recognizes that privacy is important.  This Privacy Policy applies to all of the products, services and  websites offered by CashForHomes.com  or its subsidiaries; collectively,  Cashforhomes.com's services. In addition, where more detailed  information is needed to explain our privacy practices, we post  supplementary privacy notices to describe how particular services  process personal information.  </p>
     	  <p>CashForHomes.com  adheres to the US Safe Harbor Privacy Principles of Notice,  Choice, Onward Transfer, Security, Data Integrity, Access and  Enforcement, and is registered with the <a href="http://www.export.gov/safeharbor/" rel="nofollow">U.S. Department of Commerces Safe Harbor Program</a>. </p>
     	  <p>If you have any questions about this Privacy Policy, please feel free to <a href="/contact">contact us</a> through our website.</p>
