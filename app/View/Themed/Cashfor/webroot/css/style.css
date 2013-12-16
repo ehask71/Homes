@@ -168,7 +168,7 @@ body{
 	-webkit-box-shadow:1px 1px 3px #555;
 	margin: 0 0 20px 0;
 }
-#form-wrapper{
+#form-wrapper, #form-wrapper-large{
 	padding: 8px;
 }
 #form-wrapper label{
@@ -177,11 +177,18 @@ body{
 	font-size: 1.5em;
 	letter-spacing: .073em;
 }
+#form-wrapper-large label{
+    color: #FFF;
+    text-align: left;
+    font-size: 1.4em;
+    letter-spacing: .073em;
+    line-height: 130%;
+}
 .btn-group{
 	text-align: center;
 	width: 100%;
 }
-#form-wrapper .big-btn{
+#form-wrapper .big-btn, #form-wrapper-large .big-btn{
 	width: 267px;
 	height: 44px;
 	background: transparent url('../images/lrg-submit.png') left top no-repeat;
@@ -195,7 +202,13 @@ body{
 	padding: 20px 0px;
         font-family: Arial, "sans-serif";
 }
-#form-wrapper .form-horizontal .control-group {
+#form-wrapper-large  input[type=text], #form-wrapper-large  input[type=email], #form-wrapper-large  input[type=tel]{
+	border: 1px solid #000;
+	font-size: 1.4em;
+	padding: 15px 0px;
+        font-family: Arial, "sans-serif";
+}
+#form-wrapper .form-horizontal .control-group, #form-wrapper-large .form-horizontal .control-group {
 	margin-bottom: 15px;
 }
 .big-btn span{
