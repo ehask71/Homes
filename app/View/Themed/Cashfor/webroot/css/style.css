@@ -193,6 +193,7 @@ body{
 	border: 1px solid #000;
 	font-size: 1.5em;
 	padding: 20px 0px;
+        font-family: Arial, "sans-serif";
 }
 #form-wrapper .form-horizontal .control-group {
 	margin-bottom: 15px;
@@ -260,8 +261,11 @@ blockquote{
 		
 }
 p{
-  margin: 8px 0px 10px;
-  font-weight: normal;
+    margin: 8px 0px 10px;
+    font-weight: 300;
+    text-align: justify;
+    font-family: Arial,"sans-serif";
+    font-size: .8em;
 }
 #footer-wrapper{
 	background-color: #5EAB1F;
