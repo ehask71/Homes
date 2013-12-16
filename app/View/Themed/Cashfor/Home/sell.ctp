@@ -1,6 +1,10 @@
 <div class='row'>
     <div class='span6'>
 <h2>Sell</h2>
+<div id="form-wrapper">
+    <div id="form-content">
+        
+    
 <?php 
 echo $this->Form->create('Lead',array(
     'class' => 'form-horizontal',
@@ -34,5 +38,7 @@ echo $this->Form->input('comments',array('label' => array('text' => 'Comments', 
 echo $this->Form->input('tmplead',array('type' =>'hidden'));
 echo $this->Form->end('Submit');
 ?>
+        </div>
+</div>
     </div>
 </div>
