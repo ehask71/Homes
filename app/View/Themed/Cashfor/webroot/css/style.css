@@ -273,6 +273,8 @@ blockquote.simple{
     font-size: 13px;
     font-style: italic;
     line-height: 150%;
+    border: none;
+    padding: 10px;
 }
 #footer-wrapper{
 	background-color: #5EAB1F;
