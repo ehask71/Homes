@@ -2,7 +2,7 @@
     <div class='span7'>
 <h2>Sell</h2>
 <div id="form-container">
-<div id="form-wrapper">
+<div id="form-wrapper-large">
     <div id="form-content">
         
     

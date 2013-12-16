@@ -189,7 +189,7 @@ body{
 	text-align: center;
 	margin: 0 auto;
 }
-#form-wrapper  input[type=text]{
+#form-wrapper  input[type=text], #form-wrapper  input[type=email], #form-wrapper  input[type=tel]{
 	border: 1px solid #000;
 	font-size: 1.5em;
 	padding: 20px 0px;
