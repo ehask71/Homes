@@ -267,6 +267,12 @@ p{
     font-family: Arial,"sans-serif";
     font-size: .8em;
 }
+blockquote{
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 13px;
+    font-style: italic;
+    line-height: 150%;
+}
 #footer-wrapper{
 	background-color: #5EAB1F;
 	padding: 20px 0px 0px;
