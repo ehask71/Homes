@@ -5,7 +5,7 @@
 </div>
 <div class='row'>
     <div class='span12 content'>
-        <h2>Terms of Service</h2>
+        
         
 <h2>
 	Web Site Terms and Conditions of Use
