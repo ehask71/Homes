@@ -267,6 +267,9 @@ p{
     font-family: Arial,"sans-serif";
     font-size: .8em;
 }
+p.highlight{
+    font-weight: 400;
+}
 blockquote.simple{
     background: none;
     font-family: Georgia,"Times New Roman",Times,serif;
