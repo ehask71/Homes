@@ -339,6 +339,30 @@ h3.lined span+hr{
     color: #000;
     border: 1px solid #000;
 }
+.content ul li{
+    margin: 6px 0px;
+    padding: 0px 8px;
+}
+p{
+    margin: 8px 0px 10px;
+    font-weight: 300;
+    text-align: justify;
+    font-family: Arial,"sans-serif";
+    font-size: .8em;
+}
+p.highlight{
+    font-weight: 700;
+    line-height: 130%;
+}
+blockquote.simple{
+    background: none;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 13px;
+    font-style: italic;
+    line-height: 150%;
+    border: none;
+    padding: 10px;
+}
 /* Media Queries */
 @media (max-width: 979px){
     #logo{
