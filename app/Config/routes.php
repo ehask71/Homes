@@ -45,7 +45,7 @@
 	Router::connect('/register/personal-info', array('controller' => 'registration', 'action' => 'register'));
 	Router::connect('/register/select-counties', array('controller' => 'registration', 'action' => 'select'));
 	Router::connect('/register/billing-info', array('controller' => 'registration', 'action' => 'billing'));
-	Router::connect('/register/finish', array('controller' => 'registration', 'action' => 'finsh'));
+	Router::connect('/register/finish', array('controller' => 'registration', 'action' => 'finish'));
 	
         // Login
         Router::connect('/login', array('controller' => 'account', 'action' => 'login'));
