@@ -108,7 +108,7 @@ class RegistrationController extends AppController {
         }
     }
 
-    public function complete() {
+    public function finish() {
         
     }
 
