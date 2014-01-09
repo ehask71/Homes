@@ -109,7 +109,19 @@ class RegistrationController extends AppController {
     }
 
     public function finish() {
-        
+        $shop = $this->Session->read('Shop');
+        if($this->request->is('post')){
+            // We are charging them Now
+            $account = $this->Account->find('first',array(
+                'conditions' => array(
+                    'Account.id' => $this->Auth->user('id')
+                )
+            ));
+            
+            if(count($account) > 0 && $shop['Order']['total'] != '0.00'){
+                // Ready to rock
+            }
+        }
     }
 
     /**
