@@ -118,6 +118,21 @@ class AuthNetXmlComponent extends Component {
 
         return $xml;
     }
+    
+    public function createCustomerProfileTransactionRequest($data){
+        $xml = new AuthNetXml(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), $this->server);
+        $xml->createCustomerProfileTransactionRequest(array(
+            'profileTransAuthCapture' => array(
+                'amount' => $data['amount'],
+                'customerProfileId' => $data['profileId'],
+                'customerPaymentProfileId' => $data['customerPaymentProfileId'],
+                'order' => array(
+                    'invoiceNumber' => $data['order_id'],
+                    'description' => $data['description']
+                )
+            ),
+        ));
+    }
 
     public function get_customer_profile($data) {
         $xml = new AuthnetXML(Configure::read('Authnet.apilogin'), Configure::read('Authnet.txnkey'), $this->server);
