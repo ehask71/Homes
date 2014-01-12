@@ -15,6 +15,7 @@ class OntraportComponent extends Component {
     public $components = array();
     public $appid = '2_11292_SI205ZRK3';
     public $key = 'f7TTGzJXBuAaYYG';
+    public $url = 'https://api.moon-ray.com/cdata.php';
 
     public function initialize($controller) {
         
@@ -54,10 +55,9 @@ class OntraportComponent extends Component {
     public function send($data, $reqType = 'add') {
         $data = urlencode(urlencode($data));
         $postargs = "appid=" . $appid . "&key=" . $key . "&return_id=1&reqType=" . $reqType . "&data=" . $data;
-        $request = "https://api.moon-ray.com/cdata.php";
 
         //Start the curl session and send the data
-        $session = curl_init($request);
+        $session = curl_init($this->url);
         curl_setopt($session, CURLOPT_POST, true);
         curl_setopt($session, CURLOPT_POSTFIELDS, $postargs);
         curl_setopt($session, CURLOPT_HEADER, false);
