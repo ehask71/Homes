@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of Contactfactory
+ * Factory Builder for Ontraport
  *
  * @author ehaskins
  */
