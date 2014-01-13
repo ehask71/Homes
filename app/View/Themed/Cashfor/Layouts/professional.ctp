@@ -70,6 +70,7 @@
                             <li class="nav-header">Navigation</li>
                             <li><?php echo $this->Html->link('Leads', '/professionals/account/'); ?></li>
                             <li><?php echo $this->Html->link('Properties', '/professionals/account/properties'); ?></li>
+                            <li><?php echo $this->Html->link('Resources', '/professionals/account/resources'); ?></li>
                             <li class="divider"></li>
                             <li><?php echo $this->Html->link('Profile', '/professionals/account/edit'); ?></li>
                             <li><?php echo $this->Html->link('Purchase', '/professionals/account/addcounty'); ?></li>
