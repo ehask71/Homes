@@ -25,7 +25,7 @@
             <div class="row-fluid">
                 <div class="span12" id="rf-lean">
                     <div id="hdr-cta">
-                        <h3 id="hdr-inner-cta">Fast Close &middot; No Fees  &middot; No Commission &middot; Any Reason &middot; Any Reason</h3>
+                        <h3 id="hdr-inner-cta">Fast Close &middot; No Fees  &middot; No Commission &middot; Any Reason &middot; Any Condition</h3>
                     </div>
                 </div>
             </div>
