@@ -38,14 +38,27 @@ class OntraportComponent extends Component {
     }
 
     public function add() {
-        
+        $data = '<contact>
+                    <Group_Tag name="Contact Information">
+                        <field name="First Name">Tim</field>
+                        <field name="Last Name">Lincecum</field>
+                        <field name="E-Mail">t.lincecum@test.com</field>
+                    </Group_Tag>
+                </contact>';
     }
 
-    public function add_tag() {
+    public function add_tag($id,$tags) {
+        $t = '';
+        if(is_array($tags)) {
+            foreach ($tags AS $tag){
+                $t .= '<tag>'.$tag.'</tag>';
+            }
+        } else {
+            $t = '<tag>'.$tag.'</tag>';
+        }
         $data = "
-            <contact id='16972'>
-                <tag>Tag1</tag>
-                <tag>Tag2</tag>
+            <contact id='".$id."'>
+                $t
             </contact>
             ";
         
