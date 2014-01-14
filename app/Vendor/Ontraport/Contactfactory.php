@@ -6,4 +6,7 @@
  */
 class Contactfactory {
     
+    public $contactMap = array(
+        
+    );
 }
