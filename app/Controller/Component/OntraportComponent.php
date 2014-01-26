@@ -52,11 +52,15 @@ class OntraportComponent extends Component {
                         <field name="Office Phone">'.$data['phone'].'</field>
                         <field name="register - password">'.$data['password'].'</field>
                         <field name="register - i agree to terms and conditions">'.$data['agreeterms'].'</field>
+                        <field name="pURL Link"></field>
                     </Group_Tag>
                     <Group_Tag name="Sequences and Tags">
                         <field name="Contact Tags">#1 Personal Info*/*#1 Register</field>
                     </Group_Tag>
                 </contact>';
+        
+        $this->response($this->send($data));
+        
     }
 
     public function add_tag($id,$tags) {
@@ -68,11 +72,11 @@ class OntraportComponent extends Component {
         } else {
             $t = '<tag>'.$tag.'</tag>';
         }
-        $data = "
-            <contact id='".$id."'>
-                $t
+        $data = '
+            <contact id="'.$id.'">
+                '.$t.'
             </contact>
-            ";
+            ';
         
         $this->send($data);
     }
@@ -95,6 +99,12 @@ class OntraportComponent extends Component {
         curl_close($session);
 
         return $response;
+    }
+    
+    public function response($data){
+        
+        
+        return $resp;
     }
 
 }
