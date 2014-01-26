@@ -17,23 +17,11 @@ class OntraportComponent extends Component {
     public $key = 'f7TTGzJXBuAaYYG';
     public $url = 'https://api.moon-ray.com/cdata.php';
 
-    public function initialize($controller) {
+    public function initialize(Controller $controller) {
         
     }
 
-    public function startup($controller) {
-        
-    }
-
-    public function beforeRender($controller) {
-        
-    }
-
-    public function shutDown($controller) {
-        
-    }
-
-    public function beforeRedirect($controller, $url, $status = null, $exit = true) {
+    public function startup(Controller $controller) {
         
     }
 
