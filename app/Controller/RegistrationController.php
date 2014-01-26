@@ -35,8 +35,8 @@ class RegistrationController extends AppController {
                     // Initial Contact Created in Ontraport Here
                     $ont = (integer)$this->Ontraport->add($this->request->data['Account'],$userid);
                     $ontid = array();
-                    $ontid['id'] = $userid;
-                    $ontid['ontraport'] = (integer)$ont;
+                    $ontid['Account']['id'] = $userid;
+                    $ontid['Account']['ontraport'] = (integer)$ont;
                     $this->Account->create();
                     $this->Account->save($ontid);
                     $this->request->data['Account']['ontraport'] = (integer)$ont;
