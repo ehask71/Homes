@@ -48,7 +48,7 @@ class RegistrationController extends AppController {
                     $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid, 'Role' => $role));
                     $this->Auth->login($this->request->data['Account']);
                     
-                    $ont = $this->Ontraport->add($data,$userid);
+                    $ont = $this->Ontraport->add($this->request->data['Account'],$userid);
                     mail('ehask71@gmail.com','Ontraport',$ont);
                     
                     $this->Session->setFlash(__('Account Created.'));
