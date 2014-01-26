@@ -10,7 +10,7 @@ class RegistrationController extends AppController {
 
     public $name = 'Registration';
     public $uses = array('Account', 'Transaction', 'ZipData');
-    public $components = array('AuthNetXml', 'Cart');
+    public $components = array('AuthNetXml', 'Cart','Ontraport');
     public $helpers = array('Session');
 
     public function beforeFilter() {
@@ -47,7 +47,10 @@ class RegistrationController extends AppController {
                     );
                     $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid, 'Role' => $role));
                     $this->Auth->login($this->request->data['Account']);
-
+                    
+                    $ont = $this->Ontraport->add($data,$userid);
+                    mail('ehask71@gmail.com','Ontraport',$ont);
+                    
                     $this->Session->setFlash(__('Account Created.'));
                     $this->redirect('/register/select-counties');
                 } else {
