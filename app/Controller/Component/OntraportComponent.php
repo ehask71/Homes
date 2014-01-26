@@ -71,7 +71,7 @@ class OntraportComponent extends Component {
 
     public function send($data, $reqType = 'add') {
         $data = urlencode(urlencode($data));
-        $postargs = "appid=" . $appid . "&key=" . $key . "&return_id=1&reqType=" . $reqType . "&data=" . $data;
+        $postargs = "appid=" . $this->appid . "&key=" . $this->key . "&return_id=1&reqType=" . $reqType . "&data=" . $data;
 
         //Start the curl session and send the data
         $session = curl_init($this->url);
