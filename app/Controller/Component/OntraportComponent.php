@@ -47,7 +47,7 @@ class OntraportComponent extends Component {
                     </Group_Tag>
                 </contact>';
         
-        $this->response($this->send($data));
+        return($this->response($this->send($data)));
         
     }
 
