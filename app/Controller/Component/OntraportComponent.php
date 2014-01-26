@@ -37,7 +37,7 @@ class OntraportComponent extends Component {
         
     }
 
-    public function add($data,$seq) {
+    public function add($data,$id) {
         $data = '<contact>
                     <Group_Tag name="Contact Information">
                         <field name="First Name">'.$data['firstname'].'</field>
@@ -52,7 +52,7 @@ class OntraportComponent extends Component {
                         <field name="Office Phone">'.$data['phone'].'</field>
                         <field name="register - password">'.$data['password'].'</field>
                         <field name="register - i agree to terms and conditions">'.$data['agreeterms'].'</field>
-                        <field name="pURL Link"></field>
+                        <field name="pURL Link">'.$id.'</field>
                     </Group_Tag>
                     <Group_Tag name="Sequences and Tags">
                         <field name="Contact Tags">#1 Personal Info*/*#1 Register</field>
