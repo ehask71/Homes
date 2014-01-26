@@ -94,7 +94,7 @@ class OntraportComponent extends Component {
         switch($type){
         
             default:
-                mail('ehask71@gmail.com','Debug---',print_r($data->contact['id'],1).' '.$data->status);
+                mail('ehask71@gmail.com','Debug---',$data->contact['id'].' '.$data->status);
                 return $data->contact['id'];
         }
         
