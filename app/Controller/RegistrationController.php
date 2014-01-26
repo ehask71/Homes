@@ -34,16 +34,11 @@ class RegistrationController extends AppController {
                     
                     // Initial Contact Created in Ontraport Here
                     $ont = (integer)$this->Ontraport->add($this->request->data['Account'],$userid);
-                    $ontid = array();
-                    $ontid['Account']['id'] = $userid;
-                    $ontid['Account']['ontraport'] = (integer)$ont;
-                    mail('ehask71@gmail.com','ID Test',$ont.' '.print_r($ontid,1));
+
                     $this->Account->create();
-                    if($this->Account->save($ontid)){
-                        throw new InternalErrorException('Adding Ontraport Id!!');
-                    } else {
-                        throw new InternalErrorException('Error Adding Ontraport Id!!');
-                    }
+                    $this->Account->id = $userid;
+                    $this->Account->saveField('ontraport', $ont); 
+
                     $this->request->data['Account']['ontraport'] = (integer)$ont;
                     
                     // Assign a Role
