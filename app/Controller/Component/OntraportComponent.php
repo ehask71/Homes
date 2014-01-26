@@ -98,13 +98,17 @@ class OntraportComponent extends Component {
         //Close the session
         curl_close($session);
 
-        return $response;
+        return simplexml_load_string($response);
     }
     
-    public function response($data){
+    public function response($data,$type='add'){
         
+        switch($type){
         
-        return $resp;
+            default:
+                return $data->contact['id'];
+        }
+        
     }
 
 }
