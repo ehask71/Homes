@@ -39,7 +39,9 @@ class RegistrationController extends AppController {
                     $ontid['Account']['ontraport'] = (integer)$ont;
                     mail('ehask71@gmail.com','ID Test',$ont.' '.print_r($ontid,1));
                     $this->Account->create();
-                    if(!$this->Account->save($ontid)){
+                    if($this->Account->save($ontid)){
+                        throw new InternalErrorException('Adding Ontraport Id!!');
+                    } else {
                         throw new InternalErrorException('Error Adding Ontraport Id!!');
                     }
                     $this->request->data['Account']['ontraport'] = (integer)$ont;
