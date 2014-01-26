@@ -39,7 +39,7 @@ class RegistrationController extends AppController {
                     $ontid['ontraport'] = (int)$ont;
                     $this->Account->create();
                     $this->Account->save($ontid);
-                    $this->request->data['Account']['ontraport'] = $ont;
+                    $this->request->data['Account']['ontraport'] = (int)$ont;
                     
                     // Assign a Role
                     $this->loadModel('RoleUser');
