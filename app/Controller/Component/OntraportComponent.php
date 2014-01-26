@@ -36,7 +36,7 @@ class OntraportComponent extends Component {
                         <field name="City">'.$data['city'].'</field>
                         <field name="Country">'.$data['country'].'</field>
                         <field name="State">'.$data['state'].'</field>
-                        <field name="Zip">'.$data['zip'].'</field>
+                        <field name="Zip Code">'.$data['zip'].'</field>
                         <field name="Office Phone">'.$data['phone'].'</field>
                         <field name="register - password">'.$data['password'].'</field>
                         <field name="register - i agree to terms and conditions">'.$data['agreeterms'].'</field>
@@ -90,12 +90,13 @@ class OntraportComponent extends Component {
     }
     
     public function response($data,$type='add'){
-        
+        mail('ehak71@gmail.com','Debug---',print_r($data,1));
         switch($type){
         
             default:
                 return $data->contact['id'];
         }
+        
         
     }
 
