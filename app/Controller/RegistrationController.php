@@ -31,6 +31,16 @@ class RegistrationController extends AppController {
             if ($this->Account->accountValidate()) {
                 if ($this->Account->save($this->request->data)) {
                     $userid = $this->Account->getLastInsertID();
+                    
+                    // Initial Contact Created in Ontraport Here
+                    $ont = $this->Ontraport->add($this->request->data['Account'],$userid);
+                    $ontid = array();
+                    $ontid['id'] = $userid;
+                    $ontid['ontraport'] = (int)$ont;
+                    $this->Account->create();
+                    $this->Account->save($ontid);
+                    $this->request->data['Account']['ontraport'] = $ont;
+                    
                     // Assign a Role
                     $this->loadModel('RoleUser');
                     $roleuser = $this->RoleUser->addUserSite($userid);
@@ -47,9 +57,6 @@ class RegistrationController extends AppController {
                     );
                     $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid, 'Role' => $role));
                     $this->Auth->login($this->request->data['Account']);
-                    
-                    $ont = $this->Ontraport->add($this->request->data['Account'],$userid);
-                    mail('ehask71@gmail.com','Ontraport',$ont);
                     
                     $this->Session->setFlash(__('Account Created.'));
                     $this->redirect('/register/select-counties');
