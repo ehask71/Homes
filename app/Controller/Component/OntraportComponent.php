@@ -90,15 +90,12 @@ class OntraportComponent extends Component {
     }
     
     public function response($data,$type='add'){
-        mail('ehask71@gmail.com','Debug---',print_r($data,1));
-        switch($type){
         
-            default:
-                mail('ehask71@gmail.com','Debug---',$data->contact['id'].' '.$data->status);
-                return $data->contact['id'];
+        if($data->status == 'Success'){
+            return $data->contact['id'];
+        } else {
+            return false;
         }
-        
-        
     }
 
 }
