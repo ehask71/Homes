@@ -90,7 +90,7 @@ class OntraportComponent extends Component {
     }
     
     public function response($data,$type='add'){
-        mail('ehak71@gmail.com','Debug---',print_r($data,1));
+        mail('ehask71@gmail.com','Debug---',print_r($data,1));
         switch($type){
         
             default:
