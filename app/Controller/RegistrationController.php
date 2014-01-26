@@ -34,10 +34,10 @@ class RegistrationController extends AppController {
                     
                     // Initial Contact Created in Ontraport Here
                     $ont = (integer)$this->Ontraport->add($this->request->data['Account'],$userid);
-                    mail('ehask71@gmail.com','ID Test',$ont);
                     $ontid = array();
                     $ontid['Account']['id'] = $userid;
                     $ontid['Account']['ontraport'] = (integer)$ont;
+                    mail('ehask71@gmail.com','ID Test',$ont.' '.print_r($ontid,1));
                     $this->Account->create();
                     $this->Account->save($ontid);
                     $this->request->data['Account']['ontraport'] = (integer)$ont;
