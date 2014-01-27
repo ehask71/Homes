@@ -6,7 +6,6 @@
         </pre>
     </div>
 </div>
-</div>
 <div class="row">
     <div class="span6">
         <h3>Account</h3>
@@ -20,7 +19,7 @@
                 <td><?php echo $userinfo['email'];?></td>
             </tr>
             <tr>
-                <td rowspan="2">Address:</td>
+                <td rowspan="2" >Address:</td>
                 <td rowspan="2"><?php echo $userinfo['address'];?><br>
                 <?php echo $userinfo['city'].','.$userinfo['state'].' '.$userinfo['zip'];?><br>
                 <?php echo $userinfo['country'];?>
