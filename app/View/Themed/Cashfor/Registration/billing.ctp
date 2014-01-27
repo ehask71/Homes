@@ -57,7 +57,7 @@
         <ul id="selectedcounties">
 
         </ul>
-        Setup: $<?php echo number_format(Configure::read('Setupfee'),2);?>
+        Setup: $<?php echo number_format(Configure::read('Setupfee'),2);?><br/>
         Total:<span id="carttotal">$0.00</span>
         
         <div id="debug"></div>
