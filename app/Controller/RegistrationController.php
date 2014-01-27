@@ -132,6 +132,8 @@ class RegistrationController extends AppController {
                 // Ready to rock
             }
         }
+        
+        $this->set('shop',$shop);
     }
     
     public function finish() {
@@ -142,7 +144,6 @@ class RegistrationController extends AppController {
      *  End Registration Process Actions
      */
     public function cartadd() {
-        //$this->autoRender = false;
         if ($this->request->is('post')) {
             $this->Cart->add($this->request->data['id']);
         }
@@ -151,7 +152,6 @@ class RegistrationController extends AppController {
     }
 
     public function cartremove() {
-        //$this->autoRender = false;
         if ($this->request->is('post')) {
             $this->Cart->remove($this->request->data['id']);
         }
