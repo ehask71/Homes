@@ -52,7 +52,7 @@
 <div class="row">
     <div class="span12">
 	<h3>Items</h3>
-	<table width="75%">
+        <table width="75%" class="table table-striped table-condensed">
             <thead>
                 <tr>
                     <th>Product</th>
