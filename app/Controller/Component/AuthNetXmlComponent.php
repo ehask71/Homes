@@ -124,14 +124,16 @@ class AuthNetXmlComponent extends Component {
         $xml->createCustomerProfileTransactionRequest(array(
             'profileTransAuthCapture' => array(
                 'amount' => $data['amount'],
-                'customerProfileId' => $data['profileId'],
-                'customerPaymentProfileId' => $data['customerPaymentProfileId'],
+                'customerProfileId' => $data['authnet_profile'],
+                'customerPaymentProfileId' => $data['authnet_payment'],
                 'order' => array(
-                    'invoiceNumber' => $data['order_id'],
+                    'invoiceNumber' => $data['invoice'],
                     'description' => $data['description']
                 )
             ),
         ));
+        
+        return $xml;
     }
 
     public function get_customer_profile($data) {
