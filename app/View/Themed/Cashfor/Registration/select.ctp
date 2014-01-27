@@ -50,7 +50,7 @@ function getCart(){
 $.get("/registration/cartadd.json",function(data){
 if(data.cart.Order.total != null){
 var ctotal = parseFloat(data.cart.Order.total).toFixed(2) + parseFloat("<?php echo Configure::read('Setupfee');?>").toFixed(2);
-alert(parseFloat(data.cart.Order.total).toFixed(2) + parseFloat("<?php echo Configure::read('Setupfee');?>").toFixed(2));
+alert(Number(data.cart.Order.total).toFixed(2) + Number("<?php echo Configure::read('Setupfee');?>").toFixed(2));
 $('#carttotal').html('$'+ctotal);
 } else {
 $('#carttotal').html('$0.00');
