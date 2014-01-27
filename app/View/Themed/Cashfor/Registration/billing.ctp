@@ -53,7 +53,12 @@
         ?>
     </div>
     <div class="span6">
+        <h2>Selected Counties</h2>
+        <ul id="selectedcounties">
 
+        </ul>
+        Total:<span id="carttotal">$0.00</span>
+        <div id="debug"></div>
     </div>
 </div>
 <script src='http://www1.moon-ray.com/v2.4/analytics/tracking.js' type='text/javascript'></script>
@@ -61,3 +66,42 @@
     _mri = "11292_1_2";
     mrtracking();
 </script>
+<?php $this->Html->scriptStart(array('block' => 'scriptBottom')); ?> 
+$(document).ready(function() {
+$('#selectedcounties').on('click','li', function() {
+var pid = $(this).val();
+$(this).remove();
+$.post("/registration/cartremove.json",{id:pid},function(data){
+if(data.cart.Order.total != null){
+$('#carttotal').html('$'+data.cart.Order.total);
+} else {
+$('#carttotal').html('$0.00');
+}
+});
+});
+
+$(function(){
+getCart();
+});
+});
+
+function checkCart(){
+var sz = $('#selectedcounties').size();
+if(sz > 0){
+window.location = '/register/billing-info';
+}
+}
+
+function getCart(){
+$.get("/registration/cartadd.json",function(data){
+if(data.cart.Order.total != null){
+$('#carttotal').html('$'+data.cart.Order.total);
+} else {
+$('#carttotal').html('$0.00');
+}
+$.each(data.cart.OrderItem,function(i,item){
+$('#selectedcounties').append('<li value="' + item.product_id + '">$' + item.price +' '+ item.name  + '</li>');
+});
+});
+}
+<?php $this->Html->scriptEnd(); ?>
