@@ -107,7 +107,7 @@ class RegistrationController extends AppController {
                 $this->Session->write('Billing.ccnum','XXXX-XXXX-XXXX-'.substr($data['ccnum'],-4));
                 $this->Account->create();
                 $this->Account->save($update);
-                $this->redirect('/register/finish');
+                $this->redirect('/register/review');
             } else {
                 $this->Session->setFlash(__('There there was a problem creating your billing profile. Please try again.'), 'alert', array(
                     'plugin' => 'BoostCake',
@@ -118,7 +118,7 @@ class RegistrationController extends AppController {
         }
     }
 
-    public function finish() {
+    public function review() {
         $shop = $this->Session->read('Shop');
         if($this->request->is('post')){
             // We are charging them Now
@@ -132,6 +132,10 @@ class RegistrationController extends AppController {
                 // Ready to rock
             }
         }
+    }
+    
+    public function finish() {
+	
     }
 
     /**
