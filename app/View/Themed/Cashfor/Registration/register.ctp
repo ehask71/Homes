@@ -23,7 +23,7 @@
         echo $this->Form->input('phone', array('type' => 'text', 'label' => array('text' => 'Phone', 'class' => 'control-label')));
         echo $this->Form->input('email', array('label' => array('text' => 'Email', 'class' => 'control-label')));
         echo $this->Form->input('password', array('label' => array('text' => 'Password', 'class' => 'control-label')));
-        echo $this->Form->input('confirm_password', array('label' => array('text' => 'Confirm Password', 'class' => 'control-label')));
+        echo $this->Form->input('confirm_password', array('type' => 'password','label' => array('text' => 'Confirm Password', 'class' => 'control-label')));
         echo $this->Form->input('agreeterms', array('type' => 'checkbox', 'value' => 1, 'label' => array('text' => 'I agree to the <a href="/terms" target="_blank">Terms & Conditions</a>', 'class' => 'control-label')));
         echo $this->Form->end('Register');
         ?>
