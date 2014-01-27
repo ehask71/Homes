@@ -85,7 +85,7 @@ $('#selectedcounties').append('<li value="' + item.product_id + '">$' + item.pri
             <ul id="selectedcounties">
 
             </ul>
-            Setup: $<?php echo number_format(Configure::read('Setupfee'),2);?><br/>
+            Setup: $<?php echo sprintf('%0.2f', Configure::read('Setupfee'));?><br/>
             Total: <span id="carttotal">$0.00</span>
             <div id="debug"></div>
         </div>
