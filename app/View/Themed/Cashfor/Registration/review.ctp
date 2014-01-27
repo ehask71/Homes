@@ -70,6 +70,10 @@
                         echo '<td>' . $item['price'] . '</td>';
                         echo '</tr>';
                     }
+                } else {
+                    echo '<tr>';
+                    echo '<td colspan="100">No Items Selected</td>';
+                    echo '</tr>';
                 }
             ?>
             </tbody>
