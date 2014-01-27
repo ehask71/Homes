@@ -56,7 +56,6 @@
             <thead>
                 <tr>
                     <th>Product</th>
-                    <th>Qty</th>
                     <th>Price</th>
                 </tr>
             </thead>
