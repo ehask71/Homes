@@ -1,5 +1,5 @@
 <div class='row-fluid'>
-    <div class="span8">
+    <div class="span6">
         <h2>Payment Info</h2>
         <?php
         $year = date('Y');
@@ -52,7 +52,7 @@
         echo $this->Form->end();
         ?>
     </div>
-    <div class="span4">
+    <div class="span6">
 
     </div>
 </div>
