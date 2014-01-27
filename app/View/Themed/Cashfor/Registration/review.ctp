@@ -53,7 +53,26 @@
     <div class="span12">
 	<h3>Items</h3>
 	<table>
-	    
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+	    <?php
+                if(count($shop['OrderItem']) > 0){
+                    foreach($shop['OrderItem'] as $item){
+                        echo '<tr>';
+                        echo '<td>' . $item['name'] . '</td>';
+                        echo '<td>' . $item['quantity'] . '</td>';
+                        echo '<td>' . $item['price'] . '</td>';
+                        echo '</tr>';
+                    }
+                }
+            ?>
+            </tbody>
 	</table>
     </div>
 </div>
