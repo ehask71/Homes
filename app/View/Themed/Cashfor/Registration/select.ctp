@@ -49,7 +49,8 @@ window.location = '/register/billing-info';
 function getCart(){
 $.get("/registration/cartadd.json",function(data){
 if(data.cart.Order.total != null){
-$('#carttotal').html('$'+data.cart.Order.total);
+var ctotal = data.cart.Order.total + <?php echo Configure::read('Setupfee');?>;
+$('#carttotal').html('$'+ctotal);
 } else {
 $('#carttotal').html('$0.00');
 }
