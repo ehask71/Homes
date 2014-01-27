@@ -13,7 +13,8 @@ return false;
 if (!exists) {
 $.post("/registration/cartadd.json",{id:val},function(data){
 if(data.cart.Order.total != null){
-$('#carttotal').html('$'+data.cart.Order.total);
+var ctotal = (parseFloat(data.cart.Order.total) + parseFloat(<?php echo Configure::read('Setupfee');?>)).toFixed(2);
+$('#carttotal').html('$'+ctotal);
 } else {
 $('#carttotal').html('$0.00');
 }
@@ -27,7 +28,8 @@ var pid = $(this).val();
 $(this).remove();
 $.post("/registration/cartremove.json",{id:pid},function(data){
 if(data.cart.Order.total != null){
-$('#carttotal').html('$'+data.cart.Order.total);
+var ctotal = (parseFloat(data.cart.Order.total) + parseFloat(<?php echo Configure::read('Setupfee');?>)).toFixed(2);
+$('#carttotal').html('$'+ctotal);
 } else {
 $('#carttotal').html('$0.00');
 }
