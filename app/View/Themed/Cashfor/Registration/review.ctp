@@ -52,7 +52,7 @@
 <div class="row">
     <div class="span12">
 	<h3>Items</h3>
-	<table>
+	<table width="75%">
             <thead>
                 <tr>
                     <th>Product</th>
@@ -66,7 +66,6 @@
                     foreach($shop['OrderItem'] as $item){
                         echo '<tr>';
                         echo '<td>' . $item['name'] . '</td>';
-                        echo '<td>' . $item['quantity'] . '</td>';
                         echo '<td>' . $item['price'] . '</td>';
                         echo '</tr>';
                     }
