@@ -62,16 +62,16 @@
                     foreach($shop['OrderItem'] as $item){
                         echo '<tr>';
                         echo '<td>' . $item['name'] . '</td>';
-                        echo '<td>' . $item['price'] . '</td>';
+                        echo '<td>$' . $item['price'] . '</td>';
                         echo '</tr>';
                     }
                     echo '<tr>';
                     echo '<td style="text-align:right">Setup Fee:</td>';
-                    echo '<td>'.sprintf('%0.2f', Configure::read('Setupfee')).'</td>';
+                    echo '<td>$'.sprintf('%0.2f', Configure::read('Setupfee')).'</td>';
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td style="text-align:right">Total:</td>';
-                    echo '<td>'.sprintf('%0.2f', ($shop['Order']['total'] + (int)Configure::read('Setupfee'))).'</td>';
+                    echo '<td>$'.sprintf('%0.2f', ($shop['Order']['total'] + (int)Configure::read('Setupfee'))).'</td>';
                     echo '</tr>';
                 } else {
                     echo '<tr>';
