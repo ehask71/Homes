@@ -6,7 +6,7 @@
 <div class="row">
     <div class="span6">
         <h3>Account</h3>
-        <table class="table">
+        <table class="table table-bordered">
             <tr>
                 <td>Name:</td>
                 <td><?php echo $userinfo['firstname'].' '.$userinfo['lastname'];?></td>
@@ -26,7 +26,7 @@
     </div>
     <div class="span6">
         <h3>Billing</h3>
-        <table class="table">
+        <table class="table table-bordered">
             <tr>
                 <td>Name:</td>
                 <td><?php echo $this->Session->read('Billing.firstname').' '.$this->Session->read('Billing.lastname');?></td>
