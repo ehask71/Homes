@@ -48,11 +48,11 @@
 </div>
 <div class="row">
     <div class="span12">
-	<h3>Items</h3>
+	<h3>Counties</h3>
         <table width="75%" class="table table-striped table-condensed">
             <thead>
                 <tr>
-                    <th>Product</th>
+                    <th>County</th>
                     <th>Price</th>
                 </tr>
             </thead>
@@ -67,7 +67,7 @@
                     }
                     echo '<tr>';
                     echo '<td style="text-align:right">Setup Fee:</td>';
-                    echo '<td>'.Configure::read('Setupfee').'</td>';
+                    echo '<td>'.sprintf('%0.2f', Configure::read('Setupfee')).'</td>';
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td style="text-align:right">Total:</td>';
