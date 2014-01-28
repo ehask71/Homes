@@ -67,7 +67,7 @@
                     }
                     echo '<tr>';
                     echo '<td style="text-align:right">Setup Fee:</td>';
-                    echo '<td>'.$this->Session->read('Setupfee').'</td>';
+                    echo '<td>'.Configure::read('Setupfee').'</td>';
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td style="text-align:right">Total:</td>';
