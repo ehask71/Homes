@@ -31,10 +31,12 @@ class OntraportComponent extends Component {
                         <field name="State">'.$data['state'].'</field>
                         <field name="Zip Code">'.$data['zip'].'</field>
                         <field name="Office Phone">'.$data['phone'].'</field>
-                        <field name="register - password">'.$data['password'].'</field>
+                    </Group_Tag>
+		    <Group_Tag name="Custom Fields">
+			<field name="register - password">'.$data['password'].'</field>
                         <field name="register - i agree to terms and conditions">'.$data['agreeterms'].'</field>
                         <field name="pURL Link">'.$id.'</field>
-                    </Group_Tag>
+		    </Group>
                     <Group_Tag name="Sequences and Tags">
                         <field name="Contact Tags">#1 Personal Info*/*#1 Register</field>
                     </Group_Tag>
