@@ -65,6 +65,14 @@
                         echo '<td>' . $item['price'] . '</td>';
                         echo '</tr>';
                     }
+                    echo '<tr>';
+                    echo '<td style="text-align:right">Setup Fee:</td>';
+                    echo '<td>'.$this->Session->read('Setupfee').'</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td style="text-align:right">Total:</td>';
+                    echo '<td>'.($shop['Order']['total'] + (int)$this->Session->read('Setupfee')).'</td>';
+                    echo '</tr>';
                 } else {
                     echo '<tr>';
                     echo '<td colspan="100">No Items Selected</td>';
