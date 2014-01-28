@@ -71,7 +71,7 @@
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td style="text-align:right">Total:</td>';
-                    echo '<td>'.($shop['Order']['total'] + (int)$this->Session->read('Setupfee')).'</td>';
+                    echo '<td>'.($shop['Order']['total'] + (int)Configure::read('Setupfee')).'</td>';
                     echo '</tr>';
                 } else {
                     echo '<tr>';
