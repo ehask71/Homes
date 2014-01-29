@@ -84,8 +84,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="span10"></div>
-    <div class="span2">
+    <div class="span9"></div>
+    <div class="span3">
         <?php echo $this->Form->postButton('Confirm & Pay', '/registration/review', array('class'=>'btn btn-primary btn-large'));?>
     </div>
 </div>
