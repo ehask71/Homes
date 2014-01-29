@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
 class RegistrationController extends AppController {
 
     public $name = 'Registration';
-    public $uses = array('Account', 'Transaction', 'ZipData');
+    public $uses = array('Account', 'Transaction', 'ZipData','Order','Invoice');
     public $components = array('AuthNetXml', 'Cart','Ontraport');
     public $helpers = array('Session');
 
@@ -130,6 +130,12 @@ class RegistrationController extends AppController {
             
             if(count($account) > 0 && $shop['Order']['total'] != '0.00'){
                 // Ready to rock
+                if($this->Order->saveAll($shop)){
+                // Lets Add the Invoice
+                $total = sprintf('%0.2f',((int)$shop['Order']['total'] + (int)Configure::read('Setupfee')));
+                
+                        
+                }
             }
         }
         
