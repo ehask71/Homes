@@ -32,7 +32,7 @@ class OntraportComponent extends Component {
                         <field name="Zip Code">'.$data['zip'].'</field>
                         <field name="Office Phone">'.$data['phone'].'</field>
                     </Group_Tag>
-		    <Group_Tag name="Custom Fields">
+		    <Group_Tag name="Custom Fields ">
 			<field name="register - password">'.$data['password'].'</field>
                         <field name="register - i agree to terms and conditions">'.$data['agreeterms'].'</field>
                         <field name="pURL Link">'.$id.'</field>
@@ -45,7 +45,11 @@ class OntraportComponent extends Component {
         return($this->response($this->send($data)));
         
     }
-
+    
+    public function key(){
+        
+    }
+    
     public function add_tag($id,$tags) {
         $t = '';
         if(is_array($tags)) {
