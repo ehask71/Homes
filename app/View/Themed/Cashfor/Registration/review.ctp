@@ -83,6 +83,12 @@
 	</table>
     </div>
 </div>
+<div class="row">
+    <div class="span10"></div>
+    <div class="span2">
+        <?php echo $this->Form->postButton('Confirm & Pay', '/registration/review', array('class'=>'btn btn-primary btn-large'));?>
+    </div>
+</div>
 <script src='http://www1.moon-ray.com/v2.4/analytics/tracking.js' type='text/javascript'></script>
 <script>
     _mri = "11292_1_2";
