@@ -26,18 +26,6 @@ class AuthNetXmlComponent extends Component {
         
     }
 
-    public function beforeRender(Controller $controller) {
-        
-    }
-
-    public function shutDown(Controller $controller) {
-        
-    }
-
-    public function beforeRedirect(Controller $controller, $url, $status = null, $exit = true) {
-        
-    }
-
     public function payment_profile_create($profileid, $data) {
         
     }
