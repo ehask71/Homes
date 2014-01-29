@@ -36,7 +36,7 @@ class OntraportComponent extends Component {
 			<field name="register - password">'.$data['password'].'</field>
                         <field name="register - i agree to terms and conditions">'.$data['agreeterms'].'</field>
                         <field name="pURL Link">'.$id.'</field>
-		    </Group>
+		    </Group_Tag>
                     <Group_Tag name="Sequences and Tags">
                         <field name="Contact Tags">#1 Personal Info*/*#1 Register</field>
                     </Group_Tag>
