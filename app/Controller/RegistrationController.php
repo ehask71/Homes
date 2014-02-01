@@ -130,6 +130,7 @@ class RegistrationController extends AppController {
 
 	    if (count($account) > 0 && $shop['Order']['total'] != '0.00') {
 		// Ready to rock
+		$shop[]
 		$total = sprintf('%0.2f', ((int) $shop['Order']['total'] + (int) Configure::read('Setupfee')));
 		$data = array();
 		$data['amount'] = $total;
@@ -144,7 +145,7 @@ class RegistrationController extends AppController {
 		}
 	    }
 	}
-
+	$this->Cart->add(1);
 	$this->set('shop', $shop);
     }
 
