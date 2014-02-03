@@ -134,7 +134,8 @@ class RegistrationController extends AppController {
 		$total = sprintf('%0.2f', ((int) $shop['Order']['total'] + (int) Configure::read('Setupfee')));
 		$data = array();
 		$data['amount'] = $total;
-		$data['invoice'] = $cim = $this->AuthNetXml->createCustomerProfileTransactionRequest($data);
+		$data['invoice'] = 
+		$cim = $this->AuthNetXml->createCustomerProfileTransactionRequest($data);
 		if ($this->Order->saveAll($shop)) {
 		    // Lets Add the Invoice
 		    $total = sprintf('%0.2f', ((int) $shop['Order']['total'] + (int) Configure::read('Setupfee')));
