@@ -132,7 +132,7 @@ class RegistrationController extends AppController {
 		// Ready to rock
 		$order['Order']['status'] = 1;
                 $order['Order']['site_id'] = 0;
-                $order['Order']['user_id'] = $this->Auth->user('id');
+                $order['Order']['account_id'] = $this->Auth->user('id');
                 
 		$total = sprintf('%0.2f', (int) $shop['Order']['total']);
 		$data = array();
