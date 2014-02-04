@@ -130,14 +130,16 @@ class RegistrationController extends AppController {
 
 	    if (count($account) > 0 && $shop['Order']['total'] != '0.00') {
 		// Ready to rock
-		$shop[]
-		$total = sprintf('%0.2f', ((int) $shop['Order']['total'] + (int) Configure::read('Setupfee')));
+		$order['Order']['status'] = 1;
+                $order['Order']['site_id'] = 0;
+                $order['Order']['user_id'] = $this->Auth->user('id');
+                
+		$total = sprintf('%0.2f', (int) $shop['Order']['total']);
 		$data = array();
 		$data['amount'] = $total;
 		$data['invoice'] = $cim = $this->AuthNetXml->createCustomerProfileTransactionRequest($data);
-		if ($this->Order->saveAll($shop)) {
+		if ($this->Order->saveAll($shop, array('validate' => 'first'))) {
 		    // Lets Add the Invoice
-		    $total = sprintf('%0.2f', ((int) $shop['Order']['total'] + (int) Configure::read('Setupfee')));
 		    $data = array();
 		    $data['amount'] = $total;
 		    $data['invoice'] = '';
