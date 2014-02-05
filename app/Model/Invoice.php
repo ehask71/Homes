@@ -12,7 +12,7 @@ class Invoice extends AppModel {
 
     public $primaryKey = 'id';
 
-    public function createInvoice($ordid,$total=false) {
+    public function createInvoice($ordid,$setup=false) {
         $order = new Order();
         $orderinfo = $order->find('first', array(
             'conditions' => array(
