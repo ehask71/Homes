@@ -21,12 +21,16 @@ class Invoice extends AppModel {
           )
         );
 
-        $data[$this->alias]['account_id'] = $order->field('account_id');
-        $data[$this->alias]['order_id'] = $order->field('order_id');
+        $data[$this->alias]['account_id'] = $orderinfo[$this->alias]['account_id'];
+        $data[$this->alias]['order_id'] = $orderinfo[$this->alias]['order_id'];
         $data[$this->alias]['name'] = '';
         $data[$this->alias]['desc'] = '';
         $data[$this->alias]['total'] = '';
         $data[$this->alias]['paid'] = 0;
+        // Add Items
+        foreach($orderinfo['OrderItem'] AS $item){
+            
+        }
         $this->saveAll($data);
     }
 
