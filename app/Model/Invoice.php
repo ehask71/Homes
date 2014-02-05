@@ -12,7 +12,7 @@ class Invoice extends AppModel {
 
     public $primaryKey = 'id';
 
-    public function createInvoice($ordid) {
+    public function createInvoice($ordid,$total=false) {
         $order = new Order();
         $orderinfo = $order->find('first', array(
             'conditions' => array(
@@ -23,7 +23,7 @@ class Invoice extends AppModel {
 
         $data[$this->alias]['account_id'] = $orderinfo[$this->alias]['account_id'];
         $data[$this->alias]['order_id'] = $orderinfo[$this->alias]['order_id'];
-        $data[$this->alias]['name'] = '';
+        $data[$this->alias]['name'] = Configure::read('Sitename').' Invoice '.date('Y-m-d');
         $data[$this->alias]['desc'] = '';
         $data[$this->alias]['total'] = '';
         $data[$this->alias]['paid'] = 0;
