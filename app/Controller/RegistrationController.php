@@ -132,7 +132,7 @@ class RegistrationController extends AppController {
 		// Ready to rock
 		$order['Order']['status'] = 1;
                 $order['Order']['site_id'] = 0;
-                $order['Order']['account_id'] = $this->Auth->user('id');
+                $order['Order']['account_id'] = $account['Account']['id'];
                 
 
 		if ($this->Order->saveAll($shop, array('validate' => 'first'))) {
@@ -144,6 +144,8 @@ class RegistrationController extends AppController {
 		    $data = array();
 		    $data['amount'] = $invoice['total'];
 		    $data['invoice'] = $invoice['id'];
+                    $data['authnet_profile'] = $account['Account']['authnet_profile'];
+                    $data['authnet_payment'] = $account['Account']['authnet_payment'];
 		    $cim = $this->AuthNetXml->createCustomerProfileTransactionRequest($data);
 		}
 	    }
