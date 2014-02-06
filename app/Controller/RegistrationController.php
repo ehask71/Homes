@@ -132,9 +132,9 @@ class RegistrationController extends AppController {
 
 	    if (count($account) > 0 && $shop['Order']['total'] != '0.00') {
 		// Ready to rock
-		$order['Order']['status'] = 1;
-                $order['Order']['site_id'] = 0;
-                $order['Order']['account_id'] = $account['Account']['id'];
+		$shop['Order']['status'] = 1;
+                $shop['Order']['site_id'] = 0;
+                $shop['Order']['account_id'] = $account['Account']['id'];
                 
 
 		if ($this->Order->saveAll($shop, array('validate' => 'first'))) {
