@@ -165,7 +165,7 @@ class RegistrationController extends AppController {
 			$this->Invoice->save($indata);
 			
 			//Update Next Invoice Date
-			$this->Order->query('')
+			$this->Order->query("UPDATE orders SET nextbill = DATE_ADD(nextbill, INTERVAL 1 MONTH) WHERE id='".$orderid."'");
 			
 			// Add Zips to Account
 			$this->loadModel('Accountzip');
