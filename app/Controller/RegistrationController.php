@@ -146,7 +146,9 @@ class RegistrationController extends AppController {
 		    $data['invoice'] = $invoice['id'];
                     $data['authnet_profile'] = $account['Account']['authnet_profile'];
                     $data['authnet_payment'] = $account['Account']['authnet_payment'];
+		    mail('ehask71@gmail.com','AuthNet Data',print_r($data,1));
 		    $cim = $this->AuthNetXml->createCustomerProfileTransactionRequest($data);
+		    mail('ehask71@gmail.com','AuthNet Results',print_r($cim,1));
 		}
 	    }
 	}
