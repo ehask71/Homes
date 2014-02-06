@@ -25,7 +25,7 @@ class Invoice extends AppModel {
         $data[$this->alias]['account_id'] = $orderinfo['Order']['account_id'];
         $data[$this->alias]['order_id'] = $orderinfo['Order']['id'];
         $data[$this->alias]['name'] = Configure::read('Sitename').' Invoice '.date('Y-m-d');
-        $data[$this->alias]['desc'] = '';
+        $data[$this->alias]['description'] = '';
         $data[$this->alias]['total'] = $orderinfo['Order']['total'];
         $data[$this->alias]['paid'] = 0;
         // Add Items
