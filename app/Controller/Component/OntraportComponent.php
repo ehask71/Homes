@@ -65,7 +65,7 @@ class OntraportComponent extends Component {
             </contact>
             ';
         
-        $this->send($data);
+        $this->send($data,'add_tag');
     }
 
     public function send($data, $reqType = 'add') {
