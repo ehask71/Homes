@@ -17,6 +17,7 @@ class Accountzip extends AppModel {
 	    foreach ($zips AS $zip) {
 		$data[$i]['account_id'] = $acct;
 		$data[$i]['zd_id'] = $zip;
+		$i++;
 	    }
 	    $this->saveMany($data);
 	}
