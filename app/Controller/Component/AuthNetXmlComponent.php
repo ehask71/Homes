@@ -116,7 +116,7 @@ class AuthNetXmlComponent extends Component {
                 'customerPaymentProfileId' => $data['authnet_payment'],
                 'order' => array(
                     'invoiceNumber' => $data['invoice'],
-                    'description' => $data['description']
+                    'description' => @$data['description']
                 )
             ),
         ));
