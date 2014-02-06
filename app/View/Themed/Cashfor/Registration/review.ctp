@@ -94,10 +94,3 @@
     _mri = "11292_1_2";
     mrtracking();
 </script>
-<div class="row">
-    <div class="span12">
-	<pre>
-	    <?php print_r($shop);?>
-	</pre>
-    </div>
-</div>
