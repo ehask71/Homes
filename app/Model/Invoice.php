@@ -20,6 +20,7 @@ class Invoice extends AppModel {
             )
           )
         );
+        mail('ehask71@gmail.com','Test Invoice',print_r($orderinfo,1));
         $data = array();
         $data[$this->alias]['account_id'] = $orderinfo['Order']['account_id'];
         $data[$this->alias]['order_id'] = $orderinfo['Order']['order_id'];
