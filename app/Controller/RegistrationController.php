@@ -122,10 +122,11 @@ class RegistrationController extends AppController {
 	$shop = $this->Session->read('Shop');
 	if ($this->request->is('post')) {
 	    // We are charging them Now
+	    $user = $this->Auth->user();
 	    mail('ehask71@gmail.com','Auth',print_r($this->Auth->user(),1));
 	    $account = $this->Account->find('first', array(
 		'conditions' => array(
-		    'Account.id' => $this->Auth->user('id')
+		    'Account.id' => $user['id']
 		)
 	    ));
 
