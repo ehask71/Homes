@@ -44,7 +44,7 @@ class Invoice extends AppModel {
         $this->saveAll($data);
         $invoice_id = $this->getLastInsertID();
         
-        return array('id'=>$invoice_id,'total');
+        return array('id'=>$invoice_id,'total'=>$data[$this->alias]['total']);
     }
 
 }
