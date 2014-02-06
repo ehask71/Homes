@@ -144,7 +144,7 @@ class RegistrationController extends AppController {
                     $invoice = $this->Invoice->createInvoice($orderid,TRUE);
                     
 		    $data = array();
-		    $data['amount'] = $invoice['total'];
+		    $data['amount'] = sprintf('%0.2f', $invoice['total']);
 		    $data['invoice'] = $invoice['id'];
                     $data['authnet_profile'] = $account['Account']['authnet_profile'];
                     $data['authnet_payment'] = $account['Account']['authnet_payment'];
