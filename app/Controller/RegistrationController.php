@@ -107,6 +107,8 @@ class RegistrationController extends AppController {
 		$this->Session->write('Billing.ccnum', 'XXXX-XXXX-XXXX-' . substr($data['ccnum'], -4));
 		$this->Account->create();
 		$this->Account->save($update);
+		// Change Ontraport
+		$this->Ontraport->add_tag($this->Auth->user('ontraport'), array('#1 Billing Info'));
 		$this->redirect('/register/review');
 	    } else {
 		$this->Session->setFlash(__('There there was a problem creating your billing profile. Please try again.'), 'alert', array(
@@ -164,7 +166,7 @@ class RegistrationController extends AppController {
 			$this->loadModel('Accountzip');
 			$this->Accountzip->addZip2Account($user['id'],$zips);
 			// Change Ontraport
-			$this->Ontraport->add_tag($user['ontraport'], array('#1 Billing Info', '#1 Sales'));
+			$this->Ontraport->add_tag($user['ontraport'], array('#1 Sales'));
 			// YAY Redirect to Finish
 			$this->redirect('/register/finish');
 		    } else {
