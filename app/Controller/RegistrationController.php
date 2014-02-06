@@ -147,9 +147,22 @@ class RegistrationController extends AppController {
 		    $data['invoice'] = $invoice['id'];
                     $data['authnet_profile'] = $account['Account']['authnet_profile'];
                     $data['authnet_payment'] = $account['Account']['authnet_payment'];
-		    mail('ehask71@gmail.com','AuthNet Data',print_r($data,1));
+
 		    $cim = $this->AuthNetXml->createCustomerProfileTransactionRequest($data);
 		    mail('ehask71@gmail.com','AuthNet Results',print_r($cim,1));
+		    if($cim){
+			$response = explode(",", (string)$cim);
+			$this->Invoice->create();
+			$indata = array();
+			$indata['id'] = $invoice['id'];
+			$indata['auth'] = $response[4];
+			$indata['txnid'] = $response[6];
+			$indata['paid'] = 1;
+			$this->Invoice->save($indata);
+			// Change Ontraport
+			$this->Ontraport->add_tag($user['ontraport'], array('#1 Billing Info','#1 Sales'));
+		    }
+		    
 		}
 	    }
 	}
