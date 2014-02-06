@@ -41,6 +41,8 @@ class Invoice extends AppModel {
             // Fix Total
             $data[$this->alias]['total'] = ($data[$this->alias]['total'] + (int) Configure::read('Setupfee'));
         }
+        
+        mail('ehask71@gmail.com','Invoice Data', print_r($data,1));
         $this->saveAll($data);
         $invoice_id = $this->getLastInsertID();
         
