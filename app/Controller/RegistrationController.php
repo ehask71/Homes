@@ -134,20 +134,16 @@ class RegistrationController extends AppController {
                 $order['Order']['site_id'] = 0;
                 $order['Order']['account_id'] = $this->Auth->user('id');
                 
-		$total = sprintf('%0.2f', (int) $shop['Order']['total']);
 
 		if ($this->Order->saveAll($shop, array('validate' => 'first'))) {
 		    // Lets Add the Invoice
                     $orderid = $this->Order->getLastInsertID();
                     
-                    $invdata = array();
-                    $invdata['Invoice']['account_id'] = $this->Auth->user('id');
-                    $invdata['Invoice']['order_id'] = $orderid;
-                    $this->Invoice->create();
+                    $invoice = $this->Invoice->create($orderid,TRUE);
                     
 		    $data = array();
-		    $data['amount'] = $total;
-		    $data['invoice'] = '';
+		    $data['amount'] = $invoice['total'];
+		    $data['invoice'] = $invoice['id'];
 		    $cim = $this->AuthNetXml->createCustomerProfileTransactionRequest($data);
 		}
 	    }
