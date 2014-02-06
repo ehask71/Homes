@@ -136,6 +136,7 @@ class RegistrationController extends AppController {
 		$shop['Order']['status'] = 1;
 		$shop['Order']['site_id'] = 0;
 		$shop['Order']['account_id'] = $account['Account']['id'];
+		$shop['Order']['nextbill'] = date('Y-m-d');
 		$zips = array_keys($shop['OrderItem']);
 
 
@@ -162,6 +163,10 @@ class RegistrationController extends AppController {
 			$indata['txnid'] = $response[6];
 			$indata['paid'] = 1;
 			$this->Invoice->save($indata);
+			
+			//Update Next Invoice Date
+			$this->Order->query('')
+			
 			// Add Zips to Account
 			$this->loadModel('Accountzip');
 			$this->Accountzip->addZip2Account($user['id'],$zips);
