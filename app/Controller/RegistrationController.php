@@ -148,7 +148,6 @@ class RegistrationController extends AppController {
 		}
 	    }
 	}
-	$this->Cart->add(1);
 	$this->set('shop', $shop);
     }
 
