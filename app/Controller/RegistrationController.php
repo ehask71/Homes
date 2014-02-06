@@ -134,6 +134,7 @@ class RegistrationController extends AppController {
 		$shop['Order']['status'] = 1;
 		$shop['Order']['site_id'] = 0;
 		$shop['Order']['account_id'] = $account['Account']['id'];
+		$zips = array_keys($shop['OrderItem']);
 
 
 		if ($this->Order->saveAll($shop, array('validate' => 'first'))) {
@@ -159,6 +160,9 @@ class RegistrationController extends AppController {
 			$indata['txnid'] = $response[6];
 			$indata['paid'] = 1;
 			$this->Invoice->save($indata);
+			// Add Zips to Account
+			$this->loadModel('Accountzip');
+			$this->Accountzip->addZip2Account($user['id'],$zips);
 			// Change Ontraport
 			$this->Ontraport->add_tag($user['ontraport'], array('#1 Billing Info', '#1 Sales'));
 			// YAY Redirect to Finish
