@@ -139,7 +139,7 @@ class RegistrationController extends AppController {
 		    // Lets Add the Invoice
                     $orderid = $this->Order->getLastInsertID();
                     
-                    $invoice = $this->Invoice->create($orderid,TRUE);
+                    $invoice = $this->Invoice->createInvoice($orderid,TRUE);
                     
 		    $data = array();
 		    $data['amount'] = $invoice['total'];
