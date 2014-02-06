@@ -121,8 +121,13 @@ class AuthNetXmlComponent extends Component {
 		    )
 		),
 	)));
-
-	return $xml;
+	
+	if (!$xml->isError()) {
+	    return $xml->directResponse;
+	}
+	
+	CakeLog::write('debug', $xml->messages->resultCode . ' ' . $xml->messages->message->code . ' ' . $xml->customerProfileId . ' ' . $xml->customerPaymentProfileIdList->numericString);
+	return false;
     }
 
     public function get_customer_profile($data) {
