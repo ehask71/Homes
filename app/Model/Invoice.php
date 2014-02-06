@@ -31,13 +31,13 @@ class Invoice extends AppModel {
         // Add Items
         $i = 0;
         foreach($orderinfo['OrderItem'] AS $item){
-            $data[$i]['InvoiceItem']['description'] = $item['name'];
-            $data[$i]['InvoiceItem']['price'] = $item['price'];
+            $data['InvoiceItem'][$i]['description'] = $item['name'];
+            $data['InvoiceItem'][$i]['price'] = $item['price'];
             $i++;  
         }
         if($setup){
-            $data[$i]['InvoiceItem']['description'] = 'Setup Fee';
-            $data[$i]['InvoiceItem']['price'] = sprintf('%0.2f', (int) Configure::read('Setupfee'));
+            $data['InvoiceItem'][$i]['description'] = 'Setup Fee';
+            $data['InvoiceItem'][$i]['price'] = sprintf('%0.2f', (int) Configure::read('Setupfee'));
             // Fix Total
             $data[$this->alias]['total'] = ($data[$this->alias]['total'] + (int) Configure::read('Setupfee'));
         }
