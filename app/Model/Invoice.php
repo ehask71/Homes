@@ -43,7 +43,7 @@ class Invoice extends AppModel {
         }
         
         mail('ehask71@gmail.com','Invoice Data', print_r($data,1));
-        $this->saveAll($data);
+        $this->saveAll($data, array('validate' => 'first'));
         $invoice_id = $this->getLastInsertID();
         
         return array('id'=>$invoice_id,'total'=>$data[$this->alias]['total']);
