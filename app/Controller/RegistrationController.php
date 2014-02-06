@@ -57,7 +57,7 @@ class RegistrationController extends AppController {
 		    );
 		    $this->request->data['Account'] = array_merge($this->request->data['Account'], array('id' => $userid, 'Role' => $role));
 		    $this->Auth->login($this->request->data['Account']);
-		    
+
 		    $this->Session->setFlash(__('Account Created.'));
 		    $this->redirect('/register/select-counties');
 		} else {
@@ -132,26 +132,26 @@ class RegistrationController extends AppController {
 	    if (count($account) > 0 && $shop['Order']['total'] != '0.00') {
 		// Ready to rock
 		$shop['Order']['status'] = 1;
-                $shop['Order']['site_id'] = 0;
-                $shop['Order']['account_id'] = $account['Account']['id'];
-                
+		$shop['Order']['site_id'] = 0;
+		$shop['Order']['account_id'] = $account['Account']['id'];
+
 
 		if ($this->Order->saveAll($shop, array('validate' => 'first'))) {
 		    // Lets Add the Invoice
-                    $orderid = $this->Order->getLastInsertID();
-                    
-                    $invoice = $this->Invoice->createInvoice($orderid,TRUE);
-                    
+		    $orderid = $this->Order->getLastInsertID();
+
+		    $invoice = $this->Invoice->createInvoice($orderid, TRUE);
+
 		    $data = array();
 		    $data['amount'] = sprintf('%0.2f', $invoice['total']);
 		    $data['invoice'] = $invoice['id'];
-                    $data['authnet_profile'] = $account['Account']['authnet_profile'];
-                    $data['authnet_payment'] = $account['Account']['authnet_payment'];
+		    $data['authnet_profile'] = $account['Account']['authnet_profile'];
+		    $data['authnet_payment'] = $account['Account']['authnet_payment'];
 
 		    $cim = $this->AuthNetXml->createCustomerProfileTransactionRequest($data);
-		    mail('ehask71@gmail.com','AuthNet Results',print_r($cim,1));
-		    if($cim){
-			$response = explode(",", (string)$cim);
+		    mail('ehask71@gmail.com', 'AuthNet Results', print_r($cim, 1));
+		    if ($cim) {
+			$response = explode(",", (string) $cim);
 			$this->Invoice->create();
 			$indata = array();
 			$indata['id'] = $invoice['id'];
@@ -160,9 +160,16 @@ class RegistrationController extends AppController {
 			$indata['paid'] = 1;
 			$this->Invoice->save($indata);
 			// Change Ontraport
-			$this->Ontraport->add_tag($user['ontraport'], array('#1 Billing Info','#1 Sales'));
+			$this->Ontraport->add_tag($user['ontraport'], array('#1 Billing Info', '#1 Sales'));
+			// YAY Redirect to Finish
+			$this->redirect('/register/finish');
+		    } else {
+			$this->Session->setFlash(__('There there was a problem charging your card. Please try again.'), 'alert', array(
+			    'plugin' => 'BoostCake',
+			    'class' => 'alert-error'
+			));
+			$this->redirect('/register/review');
 		    }
-		    
 		}
 	    }
 	}
