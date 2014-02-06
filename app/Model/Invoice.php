@@ -21,11 +21,11 @@ class Invoice extends AppModel {
           )
         );
         $data = array();
-        $data[$this->alias]['account_id'] = $orderinfo[$this->alias]['account_id'];
-        $data[$this->alias]['order_id'] = $orderinfo[$this->alias]['order_id'];
-        $data[$this->alias]['name'] = '';
+        $data[$this->alias]['account_id'] = $orderinfo['Order']['account_id'];
+        $data[$this->alias]['order_id'] = $orderinfo['Order']['order_id'];
+        $data[$this->alias]['name'] = Configure::read('Sitename');
         $data[$this->alias]['desc'] = '';
-        $data[$this->alias]['total'] = '';
+        $data[$this->alias]['total'] = $orderinfo['Order']['total'];
         $data[$this->alias]['paid'] = 0;
         // Add Items
         $i = 0;
@@ -37,8 +37,13 @@ class Invoice extends AppModel {
         if($setup){
             $data[$i]['InvoiceItem']['description'] = 'Setup Fee';
             $data[$i]['InvoiceItem']['price'] = sprintf('%0.2f', (int) Configure::read('Setupfee'));
+            // Fix Total
+            $data[$this->alias]['total'] = ($data[$this->alias]['total'] + (int) Configure::read('Setupfee'));
         }
         $this->saveAll($data);
+        $invoice_id = $this->getLastInsertID();
+        
+        return array('id'=>$invoice_id,'total');
     }
 
 }
