@@ -12,7 +12,6 @@ class NotifyTask extends Shell {
 
     public function execute($interval) {
         
-        mail('ehask71@gmail.com','Test', 'Testing Cron '.$interval);
         $orders = $this->Order->find('all',array(
             'conditions' => array(
                 'and' => array(
