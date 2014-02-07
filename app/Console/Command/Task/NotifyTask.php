@@ -8,10 +8,23 @@
 
 class Notify extends Shell {
 
-    //public $uses = array('RawData', 'Campaign');
+    public $uses = array('Order');
 
-    public function execute() {
-
+    public function execute($interval=7) {
+        
+        
+        $orders = $this->Order->find('all',array(
+            'conditions' => array(
+                'Order.status' => 1,
+                'DATE_SUB(Order.nextbill, INTERVAL '.$interval.' DAY) = CURDATE()'
+            )
+        ));
+        
+        if(count($orders) > 0){
+            foreach($orders AS $order){
+                
+            }
+        }
 	
 	return true;
     }
