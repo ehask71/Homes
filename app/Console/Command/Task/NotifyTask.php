@@ -12,7 +12,7 @@ class NotifyTask extends Shell {
 
     public function execute($interval=7) {
         
-        
+        mail('ehask71@gmail.com','Test', 'Testing Cron');
         $orders = $this->Order->find('all',array(
             'conditions' => array(
                 'Order.status' => 1,
