@@ -172,6 +172,8 @@ class RegistrationController extends AppController {
 			$this->Accountzip->addZip2Account($user['id'],$zips);
 			// Change Ontraport
 			$this->Ontraport->add_tag($user['ontraport'], array('#1 Sales'));
+                        // Clear the Cart
+                        $this->Cart->clear();
 			// YAY Redirect to Finish
 			$this->redirect('/register/finish');
 		    } else {
