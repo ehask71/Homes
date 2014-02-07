@@ -126,6 +126,7 @@ class RegistrationController extends AppController {
 	    // We are charging them Now
 	    $user = $this->Auth->user();
 	    $account = $this->Account->find('first', array(
+                'recursive' => -1,
 		'conditions' => array(
 		    'Account.id' => $user['id']
 		)
