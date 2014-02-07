@@ -23,6 +23,7 @@ class NotifyTask extends Shell {
         if(count($orders) > 0){
             foreach($orders AS $order){
                 mail('ehask71@gmail.com','Test',  print_r($order,1));
+                print_r($order);
             }
         }
 	
