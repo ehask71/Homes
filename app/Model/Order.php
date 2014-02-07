@@ -10,5 +10,6 @@ class Order extends AppModel {
 
     public $primaryKey = 'id';
     public $hasMany = array('OrderItem');
+    public $belongsTo = array('Account');
 
 }
