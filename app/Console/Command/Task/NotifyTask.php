@@ -6,7 +6,7 @@
  * Licensed to do so.
  */
 
-class Notify extends Shell {
+class NotifyTask extends Shell {
 
     public $uses = array('Order');
 
