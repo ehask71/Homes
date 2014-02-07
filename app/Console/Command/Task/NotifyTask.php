@@ -10,14 +10,14 @@ class NotifyTask extends Shell {
 
     public $uses = array('Order');
 
-    public function execute($interval=7) {
+    public function execute($interval) {
         
         mail('ehask71@gmail.com','Test', 'Testing Cron '.$interval);
         $orders = $this->Order->find('all',array(
             'conditions' => array(
                 'and' => array(
                 'Order.status' => 1,
-                'DATE_SUB(Order.nextbill, INTERVAL '.$interval.' DAY) = CURDATE()')
+                'CURDATE() = DATE_SUB(Order.nextbill, INTERVAL '.$interval.' DAY)')
             )
         ));
         
