@@ -6,8 +6,8 @@ class BillingShell extends AppShell {
 
     public function main() {
         // Notify Customers 
-        $this->out("Starting Billing Cron.....");
-        mail('ehask71@gmail.com','Test', 'Testing Cron '.$this->args[1]);
+        $this->out("Starting Billing Cron.....".$this->args[0]);
+
         if($this->args[0] == 'notify'){
             // Run Summary  cron ->  cd /home/ehask/public_html/vverify/app && Console/cake site summary 15
             $this->out("Running Notify Interval ".$this->args[1]);
