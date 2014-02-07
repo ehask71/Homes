@@ -15,8 +15,9 @@ class NotifyTask extends Shell {
         mail('ehask71@gmail.com','Test', 'Testing Cron '.$interval);
         $orders = $this->Order->find('all',array(
             'conditions' => array(
+                'and' => array(
                 'Order.status' => 1,
-                'DATE_SUB(Order.nextbill, INTERVAL '.$interval.' DAY) = CURDATE()'
+                'DATE_SUB(Order.nextbill, INTERVAL '.$interval.' DAY) = CURDATE()')
             )
         ));
         
