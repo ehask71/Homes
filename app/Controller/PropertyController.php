@@ -16,5 +16,8 @@ class PropertyController extends AppController {
     public function index() {
 	
     }
-
+    
+    public function view(){
+	
+    }
 }
