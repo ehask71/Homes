@@ -17,7 +17,9 @@ class HomeController extends AppController {
     }
     
     public function index(){
-        
+        if(isset($this->request->params['slug'])){
+	    
+	}
         $this->layout = 'index';
     }
     
