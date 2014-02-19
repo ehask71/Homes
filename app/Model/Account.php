@@ -185,5 +185,9 @@ class Account extends AppModel {
 	}
 	return false;
     }
+    
+    public function checkAcctSlug($slug){
+	
+    }
 }
 
