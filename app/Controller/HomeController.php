@@ -18,6 +18,7 @@ class HomeController extends AppController {
     
     public function index(){
         if(isset($this->request->params['slug'])){
+	    $this->loadModel('Account');
 	    if($this->Account->checkAcctSlug($this->request->params['slug'])){
 		
 	    } else {
