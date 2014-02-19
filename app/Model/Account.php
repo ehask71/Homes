@@ -187,7 +187,18 @@ class Account extends AppModel {
     }
     
     public function checkAcctSlug($slug){
+	$res = $this->find('first',array(
+	    'conditions' => array(
+		'Account.slug' => $slug,
+		'Account.is_active' => 'yes'
+	    )
+	));
 	
+	if(count($res) > 0){
+	    return $res;
+	}
+	
+	return false;
     }
 }
 
