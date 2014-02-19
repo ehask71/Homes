@@ -18,7 +18,11 @@ class HomeController extends AppController {
     
     public function index(){
         if(isset($this->request->params['slug'])){
-	    
+	    if($this->Account->checkAcctSlug($this->request->params['slug'])){
+		
+	    } else {
+		throw new NotFoundException('Sorry we seemed to have misplaced it.');
+	    }
 	}
         $this->layout = 'index';
     }
