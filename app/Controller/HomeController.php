@@ -72,10 +72,10 @@ class HomeController extends AppController {
         }
         // Check for Slug
         if (isset($this->request->params['county']) && isset($this->request->params['state'])) {
+            // We have a Slug lets Check for an Active Account
             $this->loadModel('Account');
-            if ($this->Account->getAccountByCounty($this->request->params['state'], str_replace('-', ' ', $this->request->params['county']))) {
-                $this->set('county', str_replace('-', ' ', $this->request->params['county']));
-                $this->set('state', $this->request->params['state']);
+            if ($account = $this->Account->getAccountByCounty($this->request->params['state'], str_replace('-', ' ', $this->request->params['county']))) {
+                $this->set('account', $account);
             }
         } else {
             
