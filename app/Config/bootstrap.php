@@ -71,6 +71,7 @@ Cache::config('default', array('engine' => 'File'));
  */
 CakePlugin::load('DebugKit');
 CakePlugin::load('BoostCake');
+CakePlugin::load('Recaptcha');
 //CakePlugin::load('Upload');
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:
@@ -125,6 +126,8 @@ Cache::config('long', array(
 /**
  *   Config Section
  */
+Configure::write('Recaptcha.publicKey', 'your-public-api-key');
+Configure::write('Recaptcha.privateKey', 'your-private-api-key');
 Configure::write('Copyright','HO Brands 2013');
 Configure::write('Sitename','CashForHomes');
 Configure::write('SitePrefix','CFH');
