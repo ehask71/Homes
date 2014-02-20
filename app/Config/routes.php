@@ -35,6 +35,7 @@
 	Router::connect('/sitemap', array('controller' => 'seo', 'action' => 'sitemap'));
 	Router::connect('/robots.txt', array('controller' => 'seo', 'action' => 'robots'));
 	Router::connect('/sell', array('controller' => 'home', 'action' => 'sell'));
+        Router::connect('/sell/:county-:state',array('controller'=>'home','action'=>'sell'),array('county'=>'[a-zA-Z0-9_-]+','state'=>'[a-zA-Z0-9_-]+'));
         Router::connect('/buy',array('controller'=>'home','action'=>'buy'));
         // Change to sell
         Router::connect('/buy/:county-:state',array('controller'=>'home','action'=>'buy'),array('county'=>'[a-zA-Z0-9_-]+','state'=>'[a-zA-Z0-9_-]+'));
