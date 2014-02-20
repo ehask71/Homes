@@ -74,7 +74,7 @@ class ZipData extends AppModel {
         $data = Cache::read('popularCounties', 'short');
         if (!$data) {
             $data = $this->query("SELECT 
-            CONCAT(REPLACE(county,' ','_'),'-',state) AS slug,
+            CONCAT(REPLACE(county,' ','-'),'-',state) AS slug,
             county,
             state 
             FROM 
