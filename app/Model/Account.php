@@ -200,5 +200,11 @@ class Account extends AppModel {
 	
 	return false;
     }
+    
+    public function getAccountByCounty($state,$county){
+        $result = $this->find('first',array(
+            
+        ));
+    }
 }
 
