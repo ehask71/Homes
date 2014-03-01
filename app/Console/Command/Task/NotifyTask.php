@@ -16,7 +16,7 @@ class NotifyTask extends Shell {
             'conditions' => array(
                 'and' => array(
                 'Order.status' => 1,
-                'CURDATE() = DATE_SUB(Order.nextbill, INTERVAL '.$interval.' DAY)')
+                'CURDATE() = DATE_SUB(nextbill, INTERVAL '.$interval.' DAY)')
             )
         ));
         
