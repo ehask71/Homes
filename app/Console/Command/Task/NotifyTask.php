@@ -6,7 +6,7 @@
  * Licensed to do so.
  */
 App::uses('Controller', 'Controller');
-App::import('Component', 'Email');
+App::uses('CakeEmail', 'Network/Email');
 
 class NotifyTask extends Shell {
 
@@ -26,10 +26,8 @@ class NotifyTask extends Shell {
         
         if(count($orders) > 0){
             foreach($orders AS $order){
-                $controller =& new Controller();
-                $this->Email =& new EmailComponent(null);
-                $this->Email->initialize($controller);
-                $this->Email->to = 'ehask71@gmail.com';
+                $this->Email = new CakeEmail();
+                $this->Email->to = array('ehask71@gmail.com'=>'Eric Haskins');
                 $this->Email->from = 'no-reply@cashforhomes.com';
                 $this->Email->subject = Configure::read('Sitename').' Billing Notification';
                 $this->Email->send(print_r($order,1));
