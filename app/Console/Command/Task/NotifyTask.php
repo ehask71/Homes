@@ -26,7 +26,9 @@ class NotifyTask extends Shell {
         
         if(count($orders) > 0){
             foreach($orders AS $order){
-                $this->Email = new EmailComponent(null);
+                $controller =& new Controller();
+                $this->Email =& new EmailComponent(null);
+                $this->Email->initialize($controller);
                 $this->Email->to = 'ehask71@gmail.com';
                 $this->Email->from = 'no-reply@cashforhomes.com';
                 $this->Email->subject = Configure::read('Sitename').' Billing Notification';
