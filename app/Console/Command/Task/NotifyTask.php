@@ -5,10 +5,13 @@
  * You may not use this file unless you or your domain are properly
  * Licensed to do so.
  */
+App::import('Component', 'Email');
 
 class NotifyTask extends Shell {
 
     public $uses = array('Order');
+    
+    public $Email = null;
 
     public function execute($interval=7) {
         $this->out($interval);
@@ -22,6 +25,11 @@ class NotifyTask extends Shell {
         
         if(count($orders) > 0){
             foreach($orders AS $order){
+                $this->Email = new EmailComponent();
+                $this->Email->to = 'ehask71@gmail.com';
+                $this->Email->from = 'no-reply@cashforhomes.com';
+                $this->Email->subject = Configure::read('Sitename').' Billing Notification';
+                $this->Email->send(print_r($order,1));
                 mail('ehask71@gmail.com','Test',  print_r($order,1));
                 print_r($order);
             }
