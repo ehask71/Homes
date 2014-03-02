@@ -130,6 +130,7 @@ Configure::write('Recaptcha.publicKey', 'your-public-api-key');
 Configure::write('Recaptcha.privateKey', 'your-private-api-key');
 Configure::write('Copyright','HO Brands 2013');
 Configure::write('Sitename','CashForHomes');
+Configure::write('Siteurl', 'cashforhomes.com');
 Configure::write('SitePrefix','CFH');
 Configure::write('Authnet.apilogin', '6VckCd8562vT');
 Configure::write('Authnet.txnkey', '22Fk7S5srmm7B57r');
