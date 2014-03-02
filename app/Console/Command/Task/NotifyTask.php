@@ -28,7 +28,7 @@ class NotifyTask extends Shell {
             foreach($orders AS $order){
                 $this->Email = new CakeEmail();
                 $this->Email->to = array('ehask71@gmail.com'=>'Eric Haskins');
-                $this->Email->from = 'no-reply@cashforhomes.com';
+                $this->Email->from = array('no-reply@cashforhomes.com'=> Configure::read('Sitename'));
                 $this->Email->subject = Configure::read('Sitename').' Billing Notification';
                 $this->Email->send(print_r($order,1));
                 mail('ehask71@gmail.com','Test',  print_r($order,1));
