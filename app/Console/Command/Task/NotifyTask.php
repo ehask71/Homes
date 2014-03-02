@@ -5,6 +5,7 @@
  * You may not use this file unless you or your domain are properly
  * Licensed to do so.
  */
+App::uses('Controller', 'Controller');
 App::import('Component', 'Email');
 
 class NotifyTask extends Shell {
@@ -25,7 +26,7 @@ class NotifyTask extends Shell {
         
         if(count($orders) > 0){
             foreach($orders AS $order){
-                $this->Email = new EmailComponent();
+                $this->Email = new EmailComponent(null);
                 $this->Email->to = 'ehask71@gmail.com';
                 $this->Email->from = 'no-reply@cashforhomes.com';
                 $this->Email->subject = Configure::read('Sitename').' Billing Notification';
