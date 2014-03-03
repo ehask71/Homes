@@ -36,7 +36,7 @@ class NotifyTask extends Shell {
                 $this->Email->send();
                 $this->out($order['Account']['firstname'].' '.$order['Account']['lastname']);
                 $this->out('Order: '.$order['Order']['id']);
-                $this->out('---> $'.$order['Order']['amount']);
+                $this->out('---> $'.$order['Order']['total']);
                 $i++;
             }
         }
