@@ -34,8 +34,9 @@ class NotifyTask extends Shell {
                 $this->Email->template('billingnotify7');
                 $this->Email->viewVars(array('order'=>$order));
                 $this->Email->send();
-                //mail('ehask71@gmail.com','Test',  print_r($order,1));
-                $this->out(print_r($order,1));
+                $this->out($order['Account']['firstname'].' '.$order['Account']['lastname']);
+                $this->out('Order: '.$order['Order']['id']);
+                $this->out('---> $'.$order['Order']['amount']);
             }
         }
 	
