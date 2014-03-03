@@ -23,7 +23,7 @@ class NotifyTask extends Shell {
                 'CURDATE() = DATE_SUB(nextbill, INTERVAL '.$interval.' DAY)')
             )
         ));
-        
+        $i=0;
         if(count($orders) > 0){
             foreach($orders AS $order){
                 $this->Email = new CakeEmail();
@@ -37,9 +37,12 @@ class NotifyTask extends Shell {
                 $this->out($order['Account']['firstname'].' '.$order['Account']['lastname']);
                 $this->out('Order: '.$order['Order']['id']);
                 $this->out('---> $'.$order['Order']['amount']);
+                $i++;
             }
         }
-	
+	if(Configure::read('NotifyAdmin') == 'true'){
+            
+        }
 	return true;
     }
 
