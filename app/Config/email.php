@@ -28,6 +28,7 @@ class EmailConfig {
             'username' => 'do-not-reply@leaguelaunch.com',
             'password' => '87.~~?ZG}eI}',
             'transport' => 'Smtp',
+            'layout' => 'default',
             'client' => null,
             'log' => false);
         /*
