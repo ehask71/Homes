@@ -132,9 +132,15 @@ Configure::write('Copyright','HO Brands 2013');
 Configure::write('Sitename','CashForHomes');
 Configure::write('Siteurl', 'cashforhomes.com');
 Configure::write('SitePrefix','CFH');
+Configure::write('Adminemail','ehask71@gmail.com');
+
+Configure::write('NotifyAdmin','true');
+
 Configure::write('Authnet.apilogin', '6VckCd8562vT');
 Configure::write('Authnet.txnkey', '22Fk7S5srmm7B57r');
 Configure::write('Setupfee', 3500);
+
+
 
 Configure::write('Roles',array(
    'admin'=>1,'member'=>2 
