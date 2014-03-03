@@ -30,6 +30,7 @@ class NotifyTask extends Shell {
                 $this->Email->config('default');
                 $this->Email->to(array('ehask71@gmail.com'=>'Eric Haskins'));
                 $this->Email->subject(Configure::read('Sitename').' Billing Notification');
+                $this->Email->emailFormat('text');
                 $this->Email->template('billingnotify7');
                 $this->Email->send();
                 //mail('ehask71@gmail.com','Test',  print_r($order,1));
