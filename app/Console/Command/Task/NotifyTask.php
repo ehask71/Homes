@@ -15,7 +15,7 @@ class NotifyTask extends Shell {
     public $Email = null;
 
     public function execute($interval=7) {
-        $this->out($interval);
+        
         $orders = $this->Order->find('all',array(
             'conditions' => array(
                 'and' => array(
