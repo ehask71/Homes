@@ -2,7 +2,7 @@
 
 class BillingShell extends AppShell {
 
-    public $tasks = array('Notify');
+    public $tasks = array('Notify','Invoice');
 
     public function main() {
         // Notify Customers 
@@ -14,7 +14,10 @@ class BillingShell extends AppShell {
             $this->Notify->execute($this->args[1]);
         }
         if($this->args[0] == 'generateInvoices'){
-            
+            //$this->Invoice->execute()
+        }
+        if($this->args[0] == 'billing'){
+            // Bill Customers
         }
         
     }
