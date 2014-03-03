@@ -21,11 +21,21 @@ class EmailConfig {
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);*/
+        public $default = array(
+            'from' => array('do-not-reply@leaguelaunch.com' => 'League Launch'),
+            'host' => 'mail.leaguelaunch.com',
+            'port' => 25,
+            'username' => 'do-not-reply@leaguelaunch.com',
+            'password' => '87.~~?ZG}eI}',
+            'transport' => 'Smtp',
+            'client' => null,
+            'log' => false);
+        /*
 	public $default = array(
 		'transport' => 'Mail',
 		'from' => 'do-not-reply@cashforhomes.com',
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
-	);
+	); */
 
 }
