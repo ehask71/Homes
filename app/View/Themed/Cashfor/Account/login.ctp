@@ -5,20 +5,28 @@
                 <div id="form-content">
                     <h2>Login</h2>
                     <?php
-                    echo $this->Form->create(null, array(
-                        'class' => 'form-horizontal',
+                     echo $this->Form->create('BoostCake', array(
                         'inputDefaults' => array(
-                            'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
-                            'div' => array('class' => 'control-group'),
-                            'label' => array('class' => 'control-label'),
-                            'class' => array('class' => 'span12'),
-                            'between' => '<div class="controls">',
-                            'after' => '</div>',
-                            'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
-                    )));
+                            'div' => 'form-group',
+                            'label' => array(
+                                'class' => 'col col-md-3 control-label'
+                            ),
+                            'wrapInput' => 'col col-md-9',
+                            'class' => 'form-control'
+                        ),
+                        'class' => 'well form-horizontal'
+                    ));
+
                     echo $this->Form->input('email');
                     echo $this->Form->input('password');
-                    echo $this->Form->end('Login');
+                    ?>
+                    <div class="form-group">
+		<?php echo $this->Form->submit('Sign in', array(
+			'div' => 'col col-md-9 col-md-offset-3',
+			'class' => 'btn btn-default'
+		)); ?>
+	</div>
+                    <?php echo $this->Form->end();
                     ?>
                 </div>
             </div>
